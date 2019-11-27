@@ -86,7 +86,7 @@ const LoginPage = (props) => {
 	const classes = useStyles();
 	return (
 		<div className="LoginPage">
-			<Container maxWidth="sm">
+			<Container maxWidth="xs">
 				<Typography variant="h3" className={classes.title}>Login</Typography>
 				<TextField required
 				           fullWidth

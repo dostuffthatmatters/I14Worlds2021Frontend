@@ -11,14 +11,21 @@ import {LoginPageManager} from "../App/LoginPage/LoginPage";
 const userRoutes = ["/event", "/news-feed", "/gallery", "/sailors-guide", "/contact-us"];
 const adminRoutes = ["/admin/news-feed", "/admin/gallery", "/admin/contact-us"];
 
-let navBarRoutes = "/(";
-userRoutes.concat(adminRoutes).forEach(element => {
-	navBarRoutes += element.slice(1) + "|";
-});
-navBarRoutes = navBarRoutes.slice(0, -1) + ")";
-
 
 export const Router = (props) => {
+
+	let navBarRoutes = "/(";
+
+	userRoutes.forEach(element => {
+		navBarRoutes += element.slice(1) + "|";
+	});
+	if (props.loggedIn) {
+		adminRoutes.forEach(element => {
+			navBarRoutes += element.slice(1) + "|";
+		});
+	}
+
+	navBarRoutes = navBarRoutes.slice(0, -1) + ")";
 
 	return (
 		<BrowserRouter>
@@ -32,17 +39,19 @@ export const Router = (props) => {
 				</Route>
 				<Route exact strict path="/login">
 					<LoginPageManager loggedIn={props.loggedIn}
-					           loginUser={(email, api_key) => props.loginUser(email, api_key)}/>
+					                  loginUser={(email, api_key) => props.loginUser(email, api_key)}/>
 				</Route>
 				{userRoutes.map((path, index) => (
 						<Route path={path} key={index}>
-							<ContentPage/>
+							<ContentPage loggedIn={props.loggedIn}
+							             path={path}/>
 						</Route>
 					)
 				)}
 				{adminRoutes.map((path, index) => (
 						<Route path={path} key={index}>
-							<ContentPage/>
+							<ContentPage loggedIn={props.loggedIn}
+							             path={path}/>
 						</Route>
 					)
 				)}
