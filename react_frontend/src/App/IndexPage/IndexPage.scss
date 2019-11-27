@@ -1,0 +1,18 @@
+.IndexPage {
+    width: 100vw;
+    height: 100vh;
+
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    .MuiButton-root .MuiButton-label a {
+        text-decoration: none;
+        color: white;
+    }
+}
