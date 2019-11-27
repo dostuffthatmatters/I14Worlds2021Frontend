@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import { useHistory } from "react-router-dom";
 import {BackendPOST, getCookie} from "./backendCommunication";
 import {Router} from "./Router";
+
+import {BACKEND_URL} from '../constants';
 
 
 export class Login extends Component {
@@ -30,7 +31,7 @@ export class Login extends Component {
 			api_key: getCookie("api_key"),
 		};
 
-		BackendPOST("http://127.0.0.1:5000/backend/login", params).then((resolveMessage) => {
+		BackendPOST(BACKEND_URL + "/backend/login", params).then((resolveMessage) => {
 			console.log("Automatic login succeeded");
 
 			// Changing Frontend View
@@ -71,7 +72,7 @@ export class Login extends Component {
 
 	logoutUser() {
 		let params = {email: this.state.api.email, api_key: this.state.api.api_key};
-		BackendPOST("http://127.0.0.1:5000/backend/logout", params).then((resolveMessage) => {
+		BackendPOST(BACKEND_URL + "/backend/logout", params).then((resolveMessage) => {
 			// Changing Frontend View
 			this.setState({
 				loggedIn: false,

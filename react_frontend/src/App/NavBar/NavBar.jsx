@@ -7,7 +7,6 @@ import {AppBar, Toolbar, IconButton, Typography} from '@material-ui/core';
 import {Drawer, Divider} from "@material-ui/core";
 import MenuIcon from '@material-ui/icons/Menu';
 
-import DeleteIcon from '@material-ui/icons/Delete';
 import {Button} from "@material-ui/core";
 
 
@@ -16,6 +15,7 @@ import ChatTwoToneIcon from '@material-ui/icons/ChatTwoTone';
 import PermMediaTwoToneIcon from '@material-ui/icons/PermMediaTwoTone';
 import AssignmentTurnedInTwoToneIcon from '@material-ui/icons/AssignmentTurnedInTwoTone';
 import ContactMailTwoToneIcon from '@material-ui/icons/ContactMailTwoTone';
+import AccountCircleTwoToneIcon from '@material-ui/icons/AccountCircleTwoTone';
 
 
 import './NavBar.scss';
@@ -145,7 +145,7 @@ export const NavBar = (props) => {
 	if (props.loggedIn) {
 		loginButton = (
 			<Button size="large"
-			        startIcon={<DeleteIcon/>}
+			        startIcon={<AccountCircleTwoToneIcon/>}
 			        className={`${classes.button} ${classes.loginButton}`}
 			        onClick={props.logoutUser}>
 				Logout
@@ -155,7 +155,7 @@ export const NavBar = (props) => {
 		loginButton = (
 			<Link to="/login" className={classes.link}>
 				<Button size="large"
-				        startIcon={<DeleteIcon/>}
+				        startIcon={<AccountCircleTwoToneIcon/>}
 				        className={`${classes.button} ${classes.loginButton}`}>
 					Login
 				</Button>

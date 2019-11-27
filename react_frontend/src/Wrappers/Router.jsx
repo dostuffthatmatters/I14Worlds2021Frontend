@@ -5,7 +5,7 @@ import {IndexPage} from "../App/IndexPage/IndexPage";
 import {NavBar} from "../App/NavBar/NavBar";
 import {ContentPage} from "../App/ContentPage/ContentPage";
 import {NotFoundPage} from "../App/NotFoundPage/NotFoundPage";
-import {LoginPageManager} from "../App/LoginPage/LoginPage";
+import LoginPageManager from "../App/LoginPage/LoginPage";
 
 
 const userRoutes = ["/event", "/news-feed", "/gallery", "/sailors-guide", "/contact-us"];
