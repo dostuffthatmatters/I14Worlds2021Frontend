@@ -37,10 +37,12 @@ export const Router = (props) => {
 				<Route exact strict path="/">
 					<IndexPage/>
 				</Route>
+				{!props.loggedIn && (
 				<Route exact strict path="/login">
 					<LoginPageManager loggedIn={props.loggedIn}
 					                  loginUser={(email, api_key) => props.loginUser(email, api_key)}/>
 				</Route>
+				)}
 				{userRoutes.map((path, index) => (
 						<Route path={path} key={index}>
 							<ContentPage loggedIn={props.loggedIn}

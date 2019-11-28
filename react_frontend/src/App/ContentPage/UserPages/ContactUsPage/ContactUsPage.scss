@@ -1,4 +1,18 @@
 
 .ContactUsPage {
 
+    .CardCountryFlag {
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+
+        img {
+            position: absolute;
+            right: 0;
+            top: 0;
+            height: 100%;
+        }
+    }
 }

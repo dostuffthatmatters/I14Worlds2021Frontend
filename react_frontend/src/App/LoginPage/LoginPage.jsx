@@ -65,7 +65,7 @@ class LoginPageManager extends Component {
 		};
 
 		BackendPOST(BACKEND_URL + "/backend/login", params).then((resolveMessage) => {
-			console.log("Login successfull");
+			console.log("Login successful");
 			this.props.loginUser(params.email, resolveMessage);
 		}).catch((rejectMessage) => {
 			console.log("Login failed");
@@ -102,11 +102,12 @@ class LoginPageManager extends Component {
 
 		const {classes} = this.props;
 
+		/*
 		const {history} = this.props;
 
 		if (this.props.loggedIn) {
 			history.push('/admin/news-feed');
-		}
+		}*/
 
 		return (
 			<div className="LoginPage">

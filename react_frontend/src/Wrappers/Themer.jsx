@@ -4,6 +4,8 @@ import {ThemeProvider} from "@material-ui/styles";
 
 import {Login} from './Login';
 
+import {BreakpointProvider} from 'react-socks';
+
 
 const theme = createMuiTheme({
 	palette : {
@@ -19,7 +21,9 @@ const theme = createMuiTheme({
 export const Themer = () => {
 	return (
 		<ThemeProvider theme={theme}>
-			<Login/>
+			<BreakpointProvider>
+				<Login/>
+			</BreakpointProvider>
 		</ThemeProvider>
 	);
 }

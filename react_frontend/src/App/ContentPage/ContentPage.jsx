@@ -10,7 +10,7 @@ import {NewsFeedPage} from "./UserPages/NewsFeedPage/NewsFeedPage";
 import {GalleryPage} from "./UserPages/GalleryPage/GalleryPage";
 import {AdminGalleryPage} from "./AdminPages/AdminGalleryPage/AdminGalleryPage";
 import {SailorsGuidePage} from "./UserPages/SailorsGuidePage/SailorsGuidePage";
-import {ContactUsPage} from "./UserPages/ContactUsPage/ContactUsPage";
+import ContactUsPageManager from "./UserPages/ContactUsPage/ContactUsPage";
 import {AdminNewsFeedPage} from "./AdminPages/AdminNewsFeedPage/AdminNewsFeedPage";
 import {AdminContactUsPage} from "./AdminPages/AdminContactUsPage/AdminContactUsPage";
 
@@ -25,7 +25,7 @@ export const ContentPage = (props) => {
 	}
 
 	return (
-		<Container className="ContentPage" maxWidth="sm">
+		<Container className="ContentPage" maxWidth="md">
 			<Route path="/event">
 				<EventPage/>
 			</Route>
@@ -39,7 +39,7 @@ export const ContentPage = (props) => {
 				<SailorsGuidePage/>
 			</Route>
 			<Route path="/contact-us">
-				<ContactUsPage/>
+				<ContactUsPageManager/>
 			</Route>
 			<Route path="/admin/news-feed">
 				<AdminNewsFeedPage/>
