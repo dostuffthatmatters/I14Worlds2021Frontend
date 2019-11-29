@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import './ContactUsPage.scss';
-import {Typography} from "@material-ui/core";
+import {Typography, LinearProgress} from "@material-ui/core";
 import {BackendGET} from "../../../../Wrappers/backendCommunication";
 import {BACKEND_URL} from "../../../../constants";
 
 import {Breakpoint} from 'react-socks';
 
 
-import {Card} from "@material-ui/core";
+import {Card, CardMedia, CardContent} from "@material-ui/core";
 import Grid from '@material-ui/core/Grid';
 
 import PropTypes from "prop-types";
@@ -35,37 +35,37 @@ const countryHosts = [
 		email: "tbd",
 		flag: AUSFlag,
 		alt: "AUS Flag"
-	},{
+	}, {
 		name: "tbd",
 		email: "tbd",
 		flag: CANFlag,
 		alt: "CAN Flag"
-	},{
+	}, {
 		name: "tbd",
 		email: "tbd",
 		flag: GERFlag,
 		alt: "GER Flag"
-	},{
+	}, {
 		name: "tbd",
 		email: "tbd",
 		flag: ITAFlag,
 		alt: "ITA Flag"
-	},{
+	}, {
 		name: "tbd",
 		email: "tbd",
 		flag: JPNFlag,
 		alt: "JPN Flag"
-	},{
+	}, {
 		name: "tbd",
 		email: "tbd",
 		flag: SWIFlag,
 		alt: "SWI Flag"
-	},{
+	}, {
 		name: "tbd",
 		email: "tbd",
 		flag: GBRFlag,
 		alt: "GBR Flag"
-	},{
+	}, {
 		name: "tbd",
 		email: "tbd",
 		flag: USAFlag,
@@ -116,8 +116,22 @@ const styles = theme => ({
 		position: "relative",
 		padding: 0
 	},
-	card_content: {
-		padding: theme.spacing(1),
+	cardMedia: {
+		height: 0,
+		paddingTop: '50%', // 2:1
+	},
+	cardContent: {
+		paddingTop: theme.spacing(2),
+		paddingRight: theme.spacing(2),
+		paddingBottom: theme.spacing(1),
+		paddingLeft: theme.spacing(2),
+		margin: 0,
+		"&:last-child": {
+			paddingBottom: theme.spacing(2),
+		}
+	},
+	countryLinePadding: {
+		paddingBottom: theme.spacing(1),
 	}
 });
 
@@ -197,16 +211,37 @@ class ContactUsPageManager extends Component {
 			return (
 
 				<Grid item xs={12}>
-					<Breakpoint medium up>
-						<Card className={classes.card} elevation={3}>
-							<div className={classes.card_content}>
-								<div className={classes.contact_line}>
+					<Breakpoint small down>
+						<Card elevation={3}>
+							<CardMedia
+								className={classes.cardMedia}
+								image={countryHost.flag}
+								title={countryHost.alt}
+								alt={countryHost.alt}
+							/>
+							<CardContent className={classes.cardContent}>
+								<div className={classes.countryLinePadding}>
 									<PersonOutlineTwoToneIcon className={classes.contact_icon}/>
 									<Typography variant="body1"
 									            className={classes.contact_label}>{countryHost.name}</Typography>
 								</div>
-
-								<div className={classes.contact_line}>
+								<div>
+									<MailTwoToneIcon className={classes.contact_icon}/>
+									<Typography variant="body1"
+									            className={classes.contact_label}>{countryHost.email}</Typography>
+								</div>
+							</CardContent>
+						</Card>
+					</Breakpoint>
+					<Breakpoint medium up>
+						<Card className={classes.card} elevation={3}>
+							<div className={classes.cardContent}>
+								<div className={classes.countryLinePadding}>
+									<PersonOutlineTwoToneIcon className={classes.contact_icon}/>
+									<Typography variant="body1"
+									            className={classes.contact_label}>{countryHost.name}</Typography>
+								</div>
+								<div className={classes.countryLinePadding}>
 									<MailTwoToneIcon className={classes.contact_icon}/>
 									<Typography variant="body1"
 									            className={classes.contact_label}>{countryHost.email}</Typography>
@@ -216,7 +251,6 @@ class ContactUsPageManager extends Component {
 								<img src={countryHost.flag} alt={countryHost.alt}/>
 							</div>
 						</Card>
-
 					</Breakpoint>
 				</Grid>
 			);
@@ -235,7 +269,7 @@ class ContactUsPageManager extends Component {
 		return (
 			<div className="ContactUsPage">
 				<Typography variant="h4" className={classes.headline}>Contact Us</Typography>
-				{this.state.loading && <Typography variant="body1">Loading</Typography>}
+				{this.state.loading && <LinearProgress color="secondary"/>}
 				<div className={classes.root}>
 					{!this.state.loading && this.getContactList()}
 				</div>
