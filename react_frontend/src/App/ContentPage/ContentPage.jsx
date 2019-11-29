@@ -6,7 +6,7 @@ import './ContentPage.scss';
 import {useHistory} from 'react-router-dom';
 
 import {EventPage} from "./UserPages/EventPage/EventPage";
-import {NewsFeedPage} from "./UserPages/NewsFeedPage/NewsFeedPage";
+import NewsFeedPageManager from "./UserPages/NewsFeedPage/NewsFeedPage";
 import {GalleryPage} from "./UserPages/GalleryPage/GalleryPage";
 import {AdminGalleryPage} from "./AdminPages/AdminGalleryPage/AdminGalleryPage";
 import {SailorsGuidePage} from "./UserPages/SailorsGuidePage/SailorsGuidePage";
@@ -30,7 +30,7 @@ export const ContentPage = (props) => {
 				<EventPage/>
 			</Route>
 			<Route path="/news-feed">
-				<NewsFeedPage/>
+				<NewsFeedPageManager/>
 			</Route>
 			<Route path="/gallery">
 				<GalleryPage/>

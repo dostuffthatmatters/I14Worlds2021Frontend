@@ -18,10 +18,6 @@ import {BACKEND_URL} from '../../constants';
 
 
 
-import { amber, green } from '@material-ui/core/colors';
-
-
-
 const styles = theme => ({
 	title: {
 		display: "block",

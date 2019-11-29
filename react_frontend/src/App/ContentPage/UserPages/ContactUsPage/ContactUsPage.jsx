@@ -174,7 +174,7 @@ class ContactUsPageManager extends Component {
 
 		let contact_list = this.state.contacts.map((contact, index) => {
 			return (
-				<Grid item xs>
+				<Grid item xs key={index}>
 					<Card className={classes.paper} elevation={3}>
 
 						<div className={classes.contact_line}>
@@ -209,8 +209,7 @@ class ContactUsPageManager extends Component {
 
 		let countryHostList = countryHosts.map((countryHost, index) => {
 			return (
-
-				<Grid item xs={12}>
+				<Grid item xs={12} key={index}>
 					<Breakpoint small down>
 						<Card elevation={3}>
 							<CardMedia
