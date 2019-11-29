@@ -55,7 +55,8 @@ export const Router = (props) => {
 				)}
 				{adminRoutes.map((path, index) => (
 						<Route path={path} key={index}>
-							<ContentPage loggedIn={props.loggedIn}
+							<ContentPage automaticLogin={props.automaticLogin}
+							             loggedIn={props.loggedIn}
 							             path={path}/>
 						</Route>
 					)

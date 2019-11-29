@@ -4,6 +4,8 @@ import {Router} from "./Router";
 
 import {BACKEND_URL} from '../constants';
 
+import Cookies from 'js-cookie'
+
 
 export class Login extends Component {
 
@@ -11,6 +13,7 @@ export class Login extends Component {
 		super(props);
 		this.state = {
 			loggedIn: false,
+			automaticLogin: true,
 
 			api: {
 				email: "null",
@@ -27,37 +30,39 @@ export class Login extends Component {
 		console.log("Trying to log in automatically");
 
 		let params = {
-			email: getCookie("email"),
-			api_key: getCookie("api_key"),
+			email: Cookies.get("email"),
+			api_key: Cookies.get("api_key"),
 		};
+
+		console.log({cookie: params});
 
 		BackendPOST(BACKEND_URL + "/backend/login", params).then((resolveMessage) => {
 			console.log("Automatic login succeeded");
 
-			// Changing Frontend View
-			this.setState({
-				loggedIn: true,
-				userView: true,
-				api: {
-					email: params.email,
-					api_key: resolveMessage
-				}
-			});
-
-			document.cookie = "email=" + encodeURIComponent(params.email);
-			document.cookie = "api_key=" + encodeURIComponent(resolveMessage);
+			this.loginUser(params.email, resolveMessage);
 
 		}).catch((rejectMessage) => {
 			console.log("Automatic login failed");
-			document.cookie = "email=none";
-			document.cookie = "api_key=none";
+
+			this.setState({
+				automaticLogin: false
+			});
+
+			Cookies.remove('email');
+			Cookies.remove('api_key');
+
 		});
 	}
 
 
 	loginUser(email, api_key) {
+
+		Cookies.set('email', email, { expires: 7 });
+		Cookies.set('api_key', api_key, { expires: 7 });
+
 		this.setState({
 			loggedIn: true,
+			automaticLogin: false,
 
 			api: {
 				email: email,
@@ -65,8 +70,11 @@ export class Login extends Component {
 			}
 		});
 
-		document.cookie = "email=" + encodeURIComponent(email);
-		document.cookie = "api_key=" + encodeURIComponent(api_key);
+		Cookies.set('email', encodeURIComponent(email), { expires: 7 });
+		Cookies.set('api_key', encodeURIComponent(api_key), { expires: 7 });
+
+		// document.cookie = "email=" + encodeURIComponent(email);
+		// document.cookie = "api_key=" + encodeURIComponent(api_key);
 	}
 
 
@@ -87,13 +95,17 @@ export class Login extends Component {
 			console.log(rejectMessage);
 		});
 
-		document.cookie = "email=none";
-		document.cookie = "api_key=none";
+		Cookies.remove('email');
+		Cookies.remove('api_key');
+
+		// document.cookie = "email=";
+		// document.cookie = "api_key=";
 	}
 
 	render() {
 		return (
-			<Router loggedIn={this.state.loggedIn}
+			<Router automaticLogin={this.state.automaticLogin}
+			        loggedIn={this.state.loggedIn}
 			        loginUser={(email, api_key) => this.loginUser(email, api_key)}
 			        logoutUser={this.logoutUser}/>
         );

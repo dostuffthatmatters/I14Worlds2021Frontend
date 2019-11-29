@@ -12,7 +12,7 @@ import {AdminGalleryPage} from "./AdminPages/AdminGalleryPage/AdminGalleryPage";
 import {SailorsGuidePage} from "./UserPages/SailorsGuidePage/SailorsGuidePage";
 import ContactUsPageManager from "./UserPages/ContactUsPage/ContactUsPage";
 import {AdminNewsFeedPage} from "./AdminPages/AdminNewsFeedPage/AdminNewsFeedPage";
-import {AdminContactUsPage} from "./AdminPages/AdminContactUsPage/AdminContactUsPage";
+import AdminContactUsPageManager from "./AdminPages/AdminContactUsPage/AdminContactUsPage";
 
 import {Container} from "@material-ui/core";
 
@@ -20,8 +20,14 @@ export const ContentPage = (props) => {
 
 	const history = useHistory();
 
-	if (!props.loggedIn && props.path.startsWith("/admin")) {
-		history.push("/event");
+	if (props.path.startsWith("/admin")) {
+		if (props.automaticLogin) {
+			console.log({source: "contentPage:25"});
+			return "";
+		} else if (!props.loggedIn) {
+			console.log({source: "contentPage:28"});
+			history.push("/event");
+		}
 	}
 
 	return (
@@ -48,7 +54,7 @@ export const ContentPage = (props) => {
 				<AdminGalleryPage/>
 			</Route>
 			<Route path="/admin/contact-us">
-				<AdminContactUsPage/>
+				<AdminContactUsPageManager/>
 			</Route>
 		</Container>
 	);
