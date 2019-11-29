@@ -5,16 +5,21 @@ import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {withStyles} from '@material-ui/styles';
 
-import { withRouter } from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
 import './LoginPage.scss';
-import {Container, Typography} from "@material-ui/core";
+import {Container, Typography, CircularProgress, Snackbar, SnackbarContent} from "@material-ui/core";
 import {BackendPOST} from "../../Wrappers/backendCommunication";
 
 import {BACKEND_URL} from '../../constants';
+
+
+
+import { amber, green } from '@material-ui/core/colors';
+
 
 
 const styles = theme => ({
@@ -28,14 +33,34 @@ const styles = theme => ({
 		display: "block"
 	},
 	button: {
-		marginTop: theme.spacing(1),
-		marginLeft: theme.spacing(0.5),
-		marginRight: theme.spacing(0.5)
+		color: "white"
 	},
 	textField: {
 		display: "block",
 		marginBottom: theme.spacing(1)
-	}
+	},
+	wrapper: {
+		marginTop: theme.spacing(1),
+		marginLeft: theme.spacing(0.5),
+		marginRight: theme.spacing(0.5),
+		position: 'relative',
+	},
+	buttonProgress: {
+		position: 'absolute',
+		top: '50%',
+		left: '50%',
+		marginTop: -12,
+		marginLeft: -12,
+	},
+	snackbar: {
+		margin: theme.spacing(1)
+	},
+	snackbarContentError: {
+		backgroundColor: theme.palette.primary.main,
+	},
+	snackbarContentSuccess: {
+		backgroundColor: theme.palette.secondary.main,
+	},
 });
 
 
@@ -44,8 +69,11 @@ class LoginPageManager extends Component {
 		super(props);
 
 		this.state = {
+			loading: false,
 			email: "",
-			password: ""
+			password: "",
+			errorMessageVisible: false,
+			errorMessageText: "",
 		};
 
 		this.emailInputRef = React.createRef();
@@ -59,6 +87,10 @@ class LoginPageManager extends Component {
 	processLogin() {
 		console.log("Trying to log in");
 
+		this.setState({
+			loading: true
+		});
+
 		let params = {
 			email: this.state.email,
 			password: this.state.password,
@@ -66,15 +98,29 @@ class LoginPageManager extends Component {
 
 		BackendPOST(BACKEND_URL + "/backend/login", params).then((resolveMessage) => {
 			console.log("Login successful");
-			this.props.loginUser(params.email, resolveMessage);
+			this.setState({
+				loading: false,
+				successMessageVisible: true,
+				successMessageText: "Login successful!"
+			});
+			setTimeout(() => {
+				this.props.loginUser(params.email, resolveMessage);
+			}, 1000);
 		}).catch((rejectMessage) => {
 			console.log("Login failed");
-			document.cookie = "email=none";
-			document.cookie = "api_key=none";
+			this.setState({
+				loading: false,
+				errorMessageVisible: true,
+				errorMessageText: rejectMessage
+			});
 		});
 	}
 
 	handleEmailKeyDown(event) {
+		this.setState({
+			errorMessageVisible: false,
+		});
+
 		console.log(event.which);
 		if (event.which === 13 || event.which === 9) {
 			// enter || tab
@@ -85,6 +131,10 @@ class LoginPageManager extends Component {
 	}
 
 	handlePasswordKeyDown(event) {
+		this.setState({
+			errorMessageVisible: false,
+		});
+
 		console.log(event.which);
 		if (event.which === 13) {
 			// enter
@@ -101,13 +151,6 @@ class LoginPageManager extends Component {
 	render() {
 
 		const {classes} = this.props;
-
-		/*
-		const {history} = this.props;
-
-		if (this.props.loggedIn) {
-			history.push('/admin/news-feed');
-		}*/
 
 		return (
 			<div className="LoginPage">
@@ -135,16 +178,49 @@ class LoginPageManager extends Component {
 					           onChange={event => this.setState({password: event.target.value})}
 					           onKeyDown={this.handlePasswordKeyDown}
 					           className={classes.textField}/>
-
 					<div className="ButtonBox">
-						<Button variant="contained" color="secondary" className={classes.button}>
-							<Link to={"/event"} className={classes.link}>Cancel</Link>
-						</Button>
-						<Button variant="contained"
-						        color="secondary"
-						        onClick={this.processLogin}
-						        className={classes.button}>login</Button>
+						<div className={classes.wrapper}>
+							<Button variant="contained"
+							        color={this.state.loading ? "default" : "secondary"}
+							        className={classes.button}>
+								<Link to={"/event"} className={classes.link}>Cancel</Link>
+							</Button>
+						</div>
+						<div className={classes.wrapper}>
+							<Button variant="contained"
+							        color={this.state.loading ? "default" : "secondary"}
+							        onClick={this.processLogin}
+							        className={classes.button}>login</Button>
+							{this.state.loading && (
+								<CircularProgress size={24}
+								                  className={classes.buttonProgress}
+								                  color="secondary"/>
+							)
+							}
+						</div>
 					</div>
+					{this.state.errorMessageVisible && (
+						<Snackbar className={classes.snackbar}
+						          open={true}
+						          anchorOrigin={{vertical: 'bottom', horizontal: 'center'}}>
+							<SnackbarContent
+								className={classes.snackbarContentError}
+								aria-describedby = "message-id"
+								message={<span id="message-id">{this.state.errorMessageText}</span>}
+							/>
+						</Snackbar>
+					)}
+					{this.state.successMessageVisible && (
+						<Snackbar className={classes.snackbar}
+						          open={true}
+						          anchorOrigin={{vertical: 'bottom', horizontal: 'center'}}>
+							<SnackbarContent
+								className={classes.snackbarContentSuccess}
+								aria-describedby = "message-id"
+								message={<span id="message-id">{this.state.successMessageText}</span>}
+							/>
+						</Snackbar>
+					)}
 				</Container>
 			</div>
 		);

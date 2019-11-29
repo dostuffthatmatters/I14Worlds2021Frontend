@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter, Route, Switch} from "react-router-dom";
+import {BrowserRouter, Route, Switch, Redirect} from "react-router-dom";
 
 import {IndexPage} from "../App/IndexPage/IndexPage";
 import {NavBar} from "../App/NavBar/NavBar";
@@ -37,12 +37,15 @@ export const Router = (props) => {
 				<Route exact strict path="/">
 					<IndexPage/>
 				</Route>
-				{!props.loggedIn && (
 				<Route exact strict path="/login">
-					<LoginPageManager loggedIn={props.loggedIn}
-					                  loginUser={(email, api_key) => props.loginUser(email, api_key)}/>
+					{props.loggedIn && (
+						<Redirect to="/admin/news-feed" />
+					)}
+					{!props.loggedIn && (
+						<LoginPageManager loggedIn={props.loggedIn}
+						                  loginUser={(email, api_key) => props.loginUser(email, api_key)}/>
+					)}
 				</Route>
-				)}
 				{userRoutes.map((path, index) => (
 						<Route path={path} key={index}>
 							<ContentPage loggedIn={props.loggedIn}
