@@ -173,6 +173,9 @@ class ContactUsPageManager extends Component {
 		const {classes} = this.props;
 
 		let contact_list = this.state.contacts.map((contact, index) => {
+			if (contact.visible === 0) {
+				return "";
+			}
 			return (
 				<Grid item xs key={index}>
 					<Card className={classes.paper} elevation={3}>
