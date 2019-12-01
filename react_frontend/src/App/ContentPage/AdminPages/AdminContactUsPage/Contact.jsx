@@ -233,17 +233,17 @@ class Contact extends Component {
 			contact_id: this.props.contact.id
 		};
 
-		BackendREST(BACKEND_URL + "/backend/database/contact", params, "DELETE").then(
-			() => {
-				this.props.removeContact(this.props.index);
-			}
-		).catch(
-			() => {
-				this.setState({
-					deleteDialogOpen: false
-				});
-			}
-		);
+		BackendREST(BACKEND_URL + "/backend/database/contact", params, "DELETE").then((resolveMessage) => {
+			console.log("calling removeContact");
+			this.setState({
+				deleteDialogOpen: false
+			});
+			this.props.removeContact(this.props.index);
+		}).catch((rejectmessage) => {
+			this.setState({
+				deleteDialogOpen: false
+			});
+		});
 	}
 
 	render() {

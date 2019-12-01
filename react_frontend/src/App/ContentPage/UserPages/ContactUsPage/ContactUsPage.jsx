@@ -90,8 +90,7 @@ const styles = theme => ({
 		flexGrow: 1,
 	},
 	paper: {
-		padding: theme.spacing(1),
-		minWidth: 300,
+		padding: theme.spacing(1)
 	},
 	contact_line: {
 		display: "block",
@@ -180,7 +179,7 @@ class ContactUsPageManager extends Component {
 				return "";
 			}
 			return (
-				<Grid item xs key={index}>
+				<Grid item xs={12} sm={6} key={index}>
 					<Card className={classes.paper} elevation={3}>
 
 						<div className={classes.contact_line}>
@@ -204,7 +203,7 @@ class ContactUsPageManager extends Component {
 		});
 
 		return (
-			<Grid container spacing={2}>
+			<Grid container spacing={2} justify="center">
 				{contactList}
 			</Grid>
 		);
@@ -215,8 +214,7 @@ class ContactUsPageManager extends Component {
 
 		let countryHostList = countryHosts.map((countryHost, index) => {
 			return (
-				<Grid item xs={12} key={index}>
-					<Breakpoint small down>
+				<Grid item xs={12} sm={6} key={index}>
 						<Card elevation={3}>
 							<CardMedia
 								className={classes.cardMedia}
@@ -237,7 +235,21 @@ class ContactUsPageManager extends Component {
 								</div>
 							</CardContent>
 						</Card>
-					</Breakpoint>
+				</Grid>
+			);
+		});
+
+		return (
+			<Grid container spacing={2} justify="center">
+				{countryHostList}
+			</Grid>
+		);
+	}
+
+
+	/*
+
+	</Breakpoint>
 					<Breakpoint medium up>
 						<Card className={classes.card} elevation={3}>
 							<div className={classes.cardContent}>
@@ -257,16 +269,8 @@ class ContactUsPageManager extends Component {
 							</div>
 						</Card>
 					</Breakpoint>
-				</Grid>
-			);
-		});
 
-		return (
-			<Grid container spacing={2}>
-				{countryHostList}
-			</Grid>
-		);
-	}
+	 */
 
 	render() {
 		const {classes} = this.props;

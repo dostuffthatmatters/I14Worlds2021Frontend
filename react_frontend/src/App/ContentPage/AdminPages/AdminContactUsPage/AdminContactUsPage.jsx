@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
 import './AdminContactUsPage.scss';
-import {LinearProgress, Typography} from "@material-ui/core";
+import {LinearProgress, Typography, Divider, CircularProgress} from "@material-ui/core";
 import PropTypes from "prop-types";
 import {withStyles} from "@material-ui/styles";
-import {BackendGET} from "../../../../Wrappers/backendCommunication";
+import {BackendGET, BackendREST} from "../../../../Wrappers/backendCommunication";
 import {BACKEND_URL} from "../../../../constants";
 import Grid from "@material-ui/core/Grid";
 
 import Contact from "./Contact";
+import Button from "@material-ui/core/Button";
 
 
 const styles = theme => ({
@@ -21,6 +22,26 @@ const styles = theme => ({
 	},
 	root: {
 		flexGrow: 1,
+	},
+	wrapper: {
+		display: "flex",
+		position: 'relative',
+		alignItems: "center",
+		justifyContent: "center"
+	},
+	button: {
+		color: "white"
+	},
+	buttonProgress: {
+		position: 'absolute',
+		top: '50%',
+		left: '50%',
+		marginTop: -12,
+		marginLeft: -12,
+	},
+	divider: {
+		marginTop: theme.spacing(2),
+		marginBottom: theme.spacing(2)
 	}
 });
 
@@ -31,11 +52,13 @@ class AdminContactUsPageManager extends Component {
 
 		this.state = {
 			loading: true,
-			contacts: []
+			contacts: [],
+			creatingContact: false
 		};
 
 		this.updateState = this.updateState.bind(this);
 		this.removeContact = this.removeContact.bind(this);
+		this.createContact = this.createContact.bind(this);
 
 		this.getContactList = this.getContactList.bind(this);
 	}
@@ -73,25 +96,72 @@ class AdminContactUsPageManager extends Component {
 	}
 
 	removeContact(index) {
-		let contacts = this.state.contacts;
-		contacts.splice(index, 1);
-		this.setState({contacts: contacts});
+		let newContacts = [];
+
+		for (let i=0; i<this.state.contacts.length; i++) {
+			if (i === index) {
+				continue;
+			}
+			newContacts.push(this.state.contacts[i]);
+		}
+
+		console.log({oldContacts: this.state.contacts, newContacts: newContacts});
+		this.setState({contacts: newContacts});
 	}
 
+	createContact() {
+		console.log("Creating new contact");
+
+		this.setState({creatingContact: true});
+
+		let params = {
+			email: this.props.api.email,
+			api_key: this.props.api.api_key
+		};
+
+		BackendREST(BACKEND_URL + "/backend/database/contact", params, "POST").then((resolveMessage) => {
+			console.log("Creating new contact: successful");
+
+			let newContact = {
+				role: "",
+				name: "",
+				email: "",
+				visible: 0,
+				id: JSON.parse(resolveMessage)["new_contact_id"]
+			};
+
+			let contacts = this.state.contacts;
+			contacts.push(newContact);
+
+			this.setState({
+				creatingContact: false,
+				contacts: contacts
+			});
+		}).catch((rejectMessage) => {
+			console.log("Creating new contact: failed");
+			this.setState({
+				creatingContact: false,
+			});
+		});
+	}
 
 
 	getContactList() {
 
 		let contactList = this.state.contacts.map((contact, index) => {
 			return (
-				<Grid item xs key={index}>
-					<Contact api={this.props.api} contact={contact} index={index} updateState={this.updateState}/>
+				<Grid item xs={12} sm={6} key={index}>
+					<Contact api={this.props.api}
+					         contact={contact}
+					         index={index}
+					         updateState={this.updateState}
+					         removeContact={this.removeContact}/>
 				</Grid>
 			);
 		});
 
 		return (
-			<Grid container spacing={2}>
+			<Grid container spacing={2} justify="center">
 				{contactList}
 			</Grid>
 		);
@@ -106,7 +176,24 @@ class AdminContactUsPageManager extends Component {
 				<Typography variant="h4" className={classes.headline}>Contact Us</Typography>
 				{this.state.loading && <LinearProgress className={classes.linearProgress} color="secondary"/>}
 				<div className={classes.root}>
-					{!this.state.loading && this.getContactList()}
+					{!this.state.loading && (
+						<React.Fragment>
+							<div className={classes.wrapper}>
+								<Button variant="contained"
+								        color={this.state.creatingContact ? "default" : "secondary"}
+								        onClick={this.createContact}
+								        className={classes.button}>Add Contact</Button>
+								{this.state.creatingContact && (
+									<CircularProgress size={24}
+									                  className={classes.buttonProgress}
+									                  color="secondary"/>
+								)
+								}
+							</div>
+							<Divider className={classes.divider}/>
+							{this.getContactList()}
+						</React.Fragment>
+					)}
 				</div>
 			</div>
 		);
