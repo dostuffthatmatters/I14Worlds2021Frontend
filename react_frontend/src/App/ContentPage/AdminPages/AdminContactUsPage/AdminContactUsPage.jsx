@@ -16,6 +16,9 @@ const styles = theme => ({
 		textAlign: "center",
 		marginBottom: theme.spacing(4)
 	},
+	linearProgress: {
+		borderRadius: "2px"
+	},
 	root: {
 		flexGrow: 1,
 	}
@@ -32,6 +35,8 @@ class AdminContactUsPageManager extends Component {
 		};
 
 		this.updateState = this.updateState.bind(this);
+		this.removeContact = this.removeContact.bind(this);
+
 		this.getContactList = this.getContactList.bind(this);
 	}
 
@@ -39,7 +44,12 @@ class AdminContactUsPageManager extends Component {
 
 		console.log("Fetching contact data");
 
-		BackendGET(BACKEND_URL + "/backend/database/contact", {}).then((resolveMessage) => {
+		let params = {
+			email: this.props.api.email,
+			api_key: this.props.api.api_key
+		};
+
+		BackendGET(BACKEND_URL + "/backend/database/contact", params).then((resolveMessage) => {
 			console.log("Fetching contact data: successful");
 			this.setState({
 				loading: false,
@@ -62,12 +72,20 @@ class AdminContactUsPageManager extends Component {
 		this.setState({contacts: contacts});
 	}
 
+	removeContact(index) {
+		let contacts = this.state.contacts;
+		contacts.splice(index, 1);
+		this.setState({contacts: contacts});
+	}
+
+
+
 	getContactList() {
 
 		let contactList = this.state.contacts.map((contact, index) => {
 			return (
 				<Grid item xs key={index}>
-					<Contact contact={contact} index={index} updateState={this.updateState}/>
+					<Contact api={this.props.api} contact={contact} index={index} updateState={this.updateState}/>
 				</Grid>
 			);
 		});
@@ -86,7 +104,7 @@ class AdminContactUsPageManager extends Component {
 		return (
 			<div className="AdminContactUsPage">
 				<Typography variant="h4" className={classes.headline}>Contact Us</Typography>
-				{this.state.loading && <LinearProgress color="secondary"/>}
+				{this.state.loading && <LinearProgress className={classes.linearProgress} color="secondary"/>}
 				<div className={classes.root}>
 					{!this.state.loading && this.getContactList()}
 				</div>

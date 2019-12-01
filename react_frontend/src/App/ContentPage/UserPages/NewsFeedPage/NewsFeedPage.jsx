@@ -19,6 +19,9 @@ const styles = theme => ({
 		textAlign: "center",
 		marginBottom: theme.spacing(4)
 	},
+	linearProgress: {
+		borderRadius: "2px"
+	},
 	card: {
 		display: 'flex',
 		cursor: "pointer"
@@ -172,7 +175,7 @@ class NewsFeedPageManager extends Component {
 		return (
 			<div className="NewsFeedPage">
 				<Typography variant="h3" className={classes.headline}>News Feed</Typography>
-				{this.state.loading && <LinearProgress color="secondary"/>}
+				{this.state.loading && <LinearProgress className={classes.linearProgress} color="secondary"/>}
 				<div className={classes.root}>
 					{!this.state.loading && this.getArticleList()}
 				</div>

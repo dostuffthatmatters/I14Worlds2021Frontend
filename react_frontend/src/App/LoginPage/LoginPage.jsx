@@ -117,7 +117,6 @@ class LoginPageManager extends Component {
 			errorMessageVisible: false,
 		});
 
-		console.log(event.which);
 		if (event.which === 13 || event.which === 9) {
 			// enter || tab
 			event.preventDefault();
@@ -131,7 +130,6 @@ class LoginPageManager extends Component {
 			errorMessageVisible: false,
 		});
 
-		console.log(event.which);
 		if (event.which === 13) {
 			// enter
 			this.passwordInputRef.current.blur();

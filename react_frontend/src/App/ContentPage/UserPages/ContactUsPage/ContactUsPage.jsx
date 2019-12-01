@@ -80,6 +80,9 @@ const styles = theme => ({
 		textAlign: "center",
 		marginBottom: theme.spacing(4)
 	},
+	linearProgress: {
+		borderRadius: "2px"
+	},
 	headline2: {
 		marginTop: theme.spacing(8)
 	},
@@ -87,7 +90,8 @@ const styles = theme => ({
 		flexGrow: 1,
 	},
 	paper: {
-		padding: theme.spacing(1)
+		padding: theme.spacing(1),
+		minWidth: 300,
 	},
 	contact_line: {
 		display: "block",
@@ -111,7 +115,6 @@ const styles = theme => ({
 		whiteSpace: "nowrap",
 		overflow: "hidden"
 	},
-
 	card: {
 		position: "relative",
 		padding: 0
@@ -172,7 +175,7 @@ class ContactUsPageManager extends Component {
 	getContactList() {
 		const {classes} = this.props;
 
-		let contact_list = this.state.contacts.map((contact, index) => {
+		let contactList = this.state.contacts.map((contact, index) => {
 			if (contact.visible === 0) {
 				return "";
 			}
@@ -202,7 +205,7 @@ class ContactUsPageManager extends Component {
 
 		return (
 			<Grid container spacing={2}>
-				{contact_list}
+				{contactList}
 			</Grid>
 		);
 	}
@@ -271,7 +274,7 @@ class ContactUsPageManager extends Component {
 		return (
 			<div className="ContactUsPage">
 				<Typography variant="h4" className={classes.headline}>Contact Us</Typography>
-				{this.state.loading && <LinearProgress color="secondary"/>}
+				{this.state.loading && <LinearProgress className={classes.linearProgress} color="secondary"/>}
 				<div className={classes.root}>
 					{!this.state.loading && this.getContactList()}
 				</div>
@@ -281,7 +284,6 @@ class ContactUsPageManager extends Component {
 				<div className={classes.root}>
 					{this.getCountryHostList()}
 				</div>
-
 			</div>
 		);
 	}

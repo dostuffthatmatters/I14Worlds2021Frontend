@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {BackendPOST, getCookie} from "./backendCommunication";
+import {BackendPOST} from "./backendCommunication";
 import {Router} from "./Router";
 
 import {BACKEND_URL} from '../constants';
@@ -70,8 +70,8 @@ export class Login extends Component {
 			}
 		});
 
-		Cookies.set('email', encodeURIComponent(email), { expires: 7 });
-		Cookies.set('api_key', encodeURIComponent(api_key), { expires: 7 });
+		Cookies.set('email', email, { expires: 7 });
+		Cookies.set('api_key', api_key, { expires: 7 });
 
 		// document.cookie = "email=" + encodeURIComponent(email);
 		// document.cookie = "api_key=" + encodeURIComponent(api_key);
@@ -107,7 +107,8 @@ export class Login extends Component {
 			<Router automaticLogin={this.state.automaticLogin}
 			        loggedIn={this.state.loggedIn}
 			        loginUser={(email, api_key) => this.loginUser(email, api_key)}
-			        logoutUser={this.logoutUser}/>
+			        logoutUser={this.logoutUser}
+			        api={this.state.api}/>
         );
 	}
 }

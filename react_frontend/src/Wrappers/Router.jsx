@@ -57,7 +57,9 @@ export const Router = (props) => {
 						<Route path={path} key={index}>
 							<ContentPage automaticLogin={props.automaticLogin}
 							             loggedIn={props.loggedIn}
-							             path={path}/>
+							             path={path}
+							             api={props.api}
+							/>
 						</Route>
 					)
 				)}

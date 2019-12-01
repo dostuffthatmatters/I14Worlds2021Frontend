@@ -7,3 +7,15 @@
     min-height: calc(80vh - 4vw);
 
 }
+
+.SyncSpinner {
+    animation: spinner 1s infinite linear;
+}
+
+@keyframes spinner {
+      0% { transform: rotate(360deg)}
+     25% { transform: rotate(270deg)}
+     50% { transform: rotate(180deg)}
+     75% { transform: rotate( 90deg)}
+    100% { transform: rotate(  0deg)}
+}
