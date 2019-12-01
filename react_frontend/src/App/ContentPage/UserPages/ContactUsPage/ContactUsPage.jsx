@@ -4,8 +4,6 @@ import {Typography, LinearProgress} from "@material-ui/core";
 import {BackendGET} from "../../../../Wrappers/backendCommunication";
 import {BACKEND_URL} from "../../../../constants";
 
-import {Breakpoint} from 'react-socks';
-
 
 import {Card, CardMedia, CardContent} from "@material-ui/core";
 import Grid from '@material-ui/core/Grid';
@@ -179,7 +177,7 @@ class ContactUsPageManager extends Component {
 				return "";
 			}
 			return (
-				<Grid item xs={12} sm={6} key={index}>
+				<Grid item xs={12} sm={6} md={5} lg={5} xl={5} key={index}>
 					<Card className={classes.paper} elevation={3}>
 
 						<div className={classes.contact_line}>
@@ -214,27 +212,27 @@ class ContactUsPageManager extends Component {
 
 		let countryHostList = countryHosts.map((countryHost, index) => {
 			return (
-				<Grid item xs={12} sm={6} key={index}>
-						<Card elevation={3}>
-							<CardMedia
-								className={classes.cardMedia}
-								image={countryHost.flag}
-								title={countryHost.alt}
-								alt={countryHost.alt}
-							/>
-							<CardContent className={classes.cardContent}>
-								<div className={classes.countryLinePadding}>
-									<PersonOutlineTwoToneIcon className={classes.contact_icon}/>
-									<Typography variant="body1"
-									            className={classes.contact_label}>{countryHost.name}</Typography>
-								</div>
-								<div>
-									<MailTwoToneIcon className={classes.contact_icon}/>
-									<Typography variant="body1"
-									            className={classes.contact_label}>{countryHost.email}</Typography>
-								</div>
-							</CardContent>
-						</Card>
+				<Grid item xs={12} sm={6} md={5} lg={5} xl={5} key={index}>
+					<Card elevation={3}>
+						<CardMedia
+							className={classes.cardMedia}
+							image={countryHost.flag}
+							title={countryHost.alt}
+							alt={countryHost.alt}
+						/>
+						<CardContent className={classes.cardContent}>
+							<div className={classes.countryLinePadding}>
+								<PersonOutlineTwoToneIcon className={classes.contact_icon}/>
+								<Typography variant="body1"
+								            className={classes.contact_label}>{countryHost.name}</Typography>
+							</div>
+							<div>
+								<MailTwoToneIcon className={classes.contact_icon}/>
+								<Typography variant="body1"
+								            className={classes.contact_label}>{countryHost.email}</Typography>
+							</div>
+						</CardContent>
+					</Card>
 				</Grid>
 			);
 		});
@@ -249,26 +247,28 @@ class ContactUsPageManager extends Component {
 
 	/*
 
+	Old version of the country host cards (on medium and large screens).
+	The mobile version looks better on all screens though
+
+	<Breakpoint medium up>
+		<Card className={classes.card} elevation={3}>
+			<div className={classes.cardContent}>
+				<div className={classes.countryLinePadding}>
+					<PersonOutlineTwoToneIcon className={classes.contact_icon}/>
+					<Typography variant="body1"
+					            className={classes.contact_label}>{countryHost.name}</Typography>
+				</div>
+				<div className={classes.countryLinePadding}>
+					<MailTwoToneIcon className={classes.contact_icon}/>
+					<Typography variant="body1"
+					            className={classes.contact_label}>{countryHost.email}</Typography>
+				</div>
+			</div>
+			<div className="CardCountryFlag">
+				<img src={countryHost.flag} alt={countryHost.alt}/>
+			</div>
+		</Card>
 	</Breakpoint>
-					<Breakpoint medium up>
-						<Card className={classes.card} elevation={3}>
-							<div className={classes.cardContent}>
-								<div className={classes.countryLinePadding}>
-									<PersonOutlineTwoToneIcon className={classes.contact_icon}/>
-									<Typography variant="body1"
-									            className={classes.contact_label}>{countryHost.name}</Typography>
-								</div>
-								<div className={classes.countryLinePadding}>
-									<MailTwoToneIcon className={classes.contact_icon}/>
-									<Typography variant="body1"
-									            className={classes.contact_label}>{countryHost.email}</Typography>
-								</div>
-							</div>
-							<div className="CardCountryFlag">
-								<img src={countryHost.flag} alt={countryHost.alt}/>
-							</div>
-						</Card>
-					</Breakpoint>
 
 	 */
 
