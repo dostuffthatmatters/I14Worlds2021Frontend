@@ -153,3 +153,46 @@ export function BackendREST(url, params, method) {
 	});
 
 }
+
+export function BackendImagePost(url, formdata) {
+
+	return new Promise((resolve, reject) => {
+
+		let xmlhttp;
+
+		if (window.XMLHttpRequest) {
+			// code for modern browsers
+			xmlhttp = new XMLHttpRequest();
+
+			xmlhttp.onreadystatechange = function () {
+
+				/*
+				https://www.w3schools.com/xml/ajax_xmlhttprequest_response.asp
+				https://malcoded.com/posts/react-http-requests-axios/
+				*/
+
+				/*
+				this.readyState = 0: request not initialized
+								  1: server connection established
+								  2: request received
+								  3: processing request
+								  4: request finished and response is ready
+				*/
+
+				if (this.readyState === 4) {
+					if (this.status === 200) {
+						resolve(this.responseText);
+					} else {
+						reject("\nAJAX Request Rejected: " + this.responseText);
+					}
+				}
+			};
+
+			xmlhttp.open("POST", url, true);
+			xmlhttp.send(formdata)
+
+		}
+
+	});
+
+}

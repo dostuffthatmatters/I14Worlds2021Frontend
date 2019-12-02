@@ -73,7 +73,7 @@ class AdminContactUsPageManager extends Component {
 		};
 
 		BackendGET(BACKEND_URL + "/backend/database/contact", params).then((resolveMessage) => {
-			console.log("Fetching contact data: successful");
+			console.log("Fetching contact data: Success");
 			this.setState({
 				loading: false,
 				contacts: JSON.parse(resolveMessage)["contacts"]
@@ -117,7 +117,7 @@ class AdminContactUsPageManager extends Component {
 		};
 
 		BackendREST(BACKEND_URL + "/backend/database/contact", params, "POST").then((resolveMessage) => {
-			console.log("Creating new contact: successful");
+			console.log("Creating new contact: Status = " + resolveMessage);
 
 			let newContact = {
 				role: "",

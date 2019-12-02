@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Card, Typography, Divider, CardMedia, CardContent} from "@material-ui/core";
+import {Typography} from "@material-ui/core";
 import PropTypes from "prop-types";
 import {withStyles} from "@material-ui/styles";
 
@@ -11,6 +11,7 @@ import {withRouter} from "react-router-dom";
 
 import ArrowBackIosTwoToneIcon from '@material-ui/icons/ArrowBackIosTwoTone';
 
+
 const styles = theme => ({
 	backIcon: {
 		position: "absolute",
@@ -21,6 +22,22 @@ const styles = theme => ({
 		display: "block",
 		textAlign: "center",
 		marginBottom: theme.spacing(4)
+	},
+	buttonRow: {
+		display: "flex",
+		position: 'relative',
+		alignItems: "center",
+		justifyContent: "center"
+	},
+	buttonSpinnerWrapper: {
+		position: 'relative',
+		display: "inline-flex",
+		marginLeft: theme.spacing(0.5),
+		marginRight: theme.spacing(0.5),
+	},
+	divider: {
+		marginTop: theme.spacing(2),
+		marginBottom: theme.spacing(2)
 	},
 	card: {
 		position: "relative",
@@ -123,11 +140,16 @@ class AdminAlbumPage extends Component {
 	render() {
 
 		const {classes} = this.props;
+
 		const album = this.props.getAlbumFromId(this.albumId);
 		let albumContent;
 
 		if (album === undefined) {
-			albumContent = <Typography variant="h4" className={classes.headline}>Nothing here ...</Typography>;
+			albumContent = (
+				<React.Fragment>
+					<Typography variant="h4" className={classes.headline}>Nothing here ...</Typography>
+				</React.Fragment>
+			);
 		} else {
 			albumContent = (
 				<React.Fragment>

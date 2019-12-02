@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Card, Typography, Divider, CardMedia, CardContent} from "@material-ui/core";
+import {Card, Typography, CardMedia, CardContent} from "@material-ui/core";
 import PropTypes from "prop-types";
 import {withStyles} from "@material-ui/styles";
 

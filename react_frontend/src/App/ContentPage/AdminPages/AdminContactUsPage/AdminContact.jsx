@@ -115,7 +115,11 @@ class AdminContact extends Component {
 			contact_visible: this.props.contact.visible
 		};
 
-		BackendREST(BACKEND_URL + "/backend/database/contact", params, "PUT").then().catch();
+		BackendREST(BACKEND_URL + "/backend/database/contact", params, "PUT").then((resolveMessage) => {
+			console.log("Pushing current version: Status = " + resolveMessage);
+		}).catch((rejectMessage) => {
+			console.log("Pushing current version: Failed");
+		});
 	}
 
 	handleRoleChange(event) {

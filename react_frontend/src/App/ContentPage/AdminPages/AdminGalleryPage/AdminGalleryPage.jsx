@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './AdminGalleryPage.scss';
-import {Card, CardContent, CardMedia, CircularProgress, Divider, LinearProgress, Typography} from "@material-ui/core";
+import {CircularProgress, Divider, LinearProgress, Typography} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import PropTypes from "prop-types";
 import {withStyles} from "@material-ui/styles";
@@ -9,8 +9,8 @@ import {BACKEND_URL} from "../../../../constants";
 import Grid from "@material-ui/core/Grid";
 import {Switch, Link, Route} from "react-router-dom";
 import AdminAlbum from "./AdminAlbum";
-import Album from "../../UserPages/GalleryPage/Album";
 import AdminAlbumPage from "./AdminAlbumPage";
+import ImageUploadPage from "./ImageUploadPage";
 
 
 const styles = theme => ({
@@ -74,6 +74,9 @@ class AdminGalleryPageManager extends Component {
 		this.updateImageState = this.updateImageState.bind(this);
 		this.removeAlbumFromView = this.removeAlbumFromView.bind(this);
 		this.removeImageFromView = this.removeImageFromView.bind(this);
+
+		this.getAlbumIds = this.getAlbumIds.bind(this);
+		this.getAlbumIdtoNameDict = this.getAlbumIdtoNameDict.bind(this);
 	}
 
 	componentDidMount() {
@@ -89,7 +92,7 @@ class AdminGalleryPageManager extends Component {
 		console.log({url: BACKEND_URL + "/backend/database/album"});
 
 		BackendGET(BACKEND_URL + "/backend/database/album", params).then((resolveMessage) => {
-			console.log("Fetching album data: successful");
+			console.log("Fetching album data: Success");
 
 			console.log({response: JSON.parse(resolveMessage)});
 			this.setState({
@@ -168,10 +171,13 @@ class AdminGalleryPageManager extends Component {
 
 			let albums = this.state.albums;
 			albums.push(newAlbum);
+			let albumIdtoIndex = this.state.albumIdtoIndex;
+			albumIdtoIndex[JSON.parse(resolveMessage)["new_album_id"]] = this.state.albums.length;
 
 			this.setState({
 				creatingAlbum: false,
-				albums: albums
+				albums: albums,
+				albumIdtoIndex: albumIdtoIndex,
 			});
 		}).catch((rejectMessage) => {
 			console.log("Creating new album: failed");
@@ -229,12 +235,38 @@ class AdminGalleryPageManager extends Component {
 		this.setState({albums: newAlbums});
 	}
 
+	getAlbumIds() {
+		let albumIds = [];
+
+		for (let i=0; i<this.state.albums.length; i++) {
+			albumIds.push(this.state.albums[i].id);
+		}
+
+		return albumIds;
+	}
+
+	getAlbumIdtoNameDict() {
+		let albumIdtoName = {};
+
+		for (let i=0; i<this.state.albums.length; i++) {
+			albumIdtoName[this.state.albums[i].id] = this.state.albums[i].name;
+		}
+
+		return albumIdtoName;
+	}
+
 	render() {
 
 		const {classes} = this.props;
 
 		return (
 			<Switch>
+				<Route exact path="/admin/gallery/new">
+					{this.state.loading && (
+						<LinearProgress className={classes.linearProgress} color="secondary"/>
+					)}
+					{!this.state.loading && (<ImageUploadPage api={this.props.api} albumIds={this.getAlbumIds()} albumIdtoNameDict={this.getAlbumIdtoNameDict()}/>)}
+				</Route>
 				<Route exact path="/admin/gallery">
 					<div className="AdminGalleryPage">
 						<Typography variant="h4" className={classes.headline}>Admin - Gallery</Typography>
@@ -257,9 +289,11 @@ class AdminGalleryPageManager extends Component {
 										}
 									</div>
 									<div className={classes.buttonSpinnerWrapper}>
-										<Button variant="contained"
-										        color="secondary"
-										        className={classes.button}>Add Image</Button>
+										<Link to="/admin/gallery/new">
+											<Button variant="contained"
+											        color="secondary"
+											        className={classes.button}>Add Image</Button>
+										</Link>
 									</div>
 								</div>
 								<Divider className={classes.divider}/>

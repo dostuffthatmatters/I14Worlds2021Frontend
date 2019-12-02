@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
-import {Card, Typography, Divider, CardMedia, CardContent} from "@material-ui/core";
+import {Card, CardMedia, CardContent} from "@material-ui/core";
 import PropTypes from "prop-types";
 import {withStyles} from "@material-ui/styles";
 import TextField from "@material-ui/core/TextField";
 
-import clsx from 'clsx';
 import {BackendREST} from "../../../../Wrappers/backendCommunication";
 import {BACKEND_URL} from "../../../../constants";
 

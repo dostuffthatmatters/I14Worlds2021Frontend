@@ -1,13 +1,20 @@
 import React from 'react'
 import {Card, CardMedia, Typography} from "@material-ui/core";
 
-import {withRouter} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 import PropTypes from "prop-types";
 import {withStyles} from "@material-ui/styles";
 import Grid from "@material-ui/core/Grid";
 
+import ArrowBackIosTwoToneIcon from '@material-ui/icons/ArrowBackIosTwoTone';
+
 
 const styles = theme => ({
+	backIcon: {
+		position: "absolute",
+		top: theme.spacing(1),
+		left: theme.spacing(1),
+	},
 	headline: {
 		display: "block",
 		textAlign: "center",
@@ -81,6 +88,9 @@ class Album extends React.Component {
 
 		return (
 			<div className="GalleryPage">
+				<Link to="/gallery">
+					<ArrowBackIosTwoToneIcon className={classes.backIcon} color="secondary"/>
+				</Link>
 				{albumContent}
 			</div>
 		);
