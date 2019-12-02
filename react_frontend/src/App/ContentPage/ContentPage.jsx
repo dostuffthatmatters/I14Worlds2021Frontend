@@ -8,7 +8,7 @@ import {useHistory} from 'react-router-dom';
 import {EventPage} from "./UserPages/EventPage/EventPage";
 import NewsFeedPageManager from "./UserPages/NewsFeedPage/NewsFeedPage";
 import GalleryPageManager from "./UserPages/GalleryPage/GalleryPage";
-import {AdminGalleryPage} from "./AdminPages/AdminGalleryPage/AdminGalleryPage";
+import AdminGalleryPageManager from "./AdminPages/AdminGalleryPage/AdminGalleryPage";
 import {SailorsGuidePage} from "./UserPages/SailorsGuidePage/SailorsGuidePage";
 import ContactUsPageManager from "./UserPages/ContactUsPage/ContactUsPage";
 import {AdminNewsFeedPage} from "./AdminPages/AdminNewsFeedPage/AdminNewsFeedPage";
@@ -53,7 +53,7 @@ export const ContentPage = (props) => {
 					<AdminNewsFeedPage/>
 				</Route>
 				<Route path="/admin/gallery">
-					<AdminGalleryPage/>
+					<AdminGalleryPageManager api={props.api}/>
 				</Route>
 				<Route path="/admin/contact-us">
 					<AdminContactUsPageManager api={props.api}/>

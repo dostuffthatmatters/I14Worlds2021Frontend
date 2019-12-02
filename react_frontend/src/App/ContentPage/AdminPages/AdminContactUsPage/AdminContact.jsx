@@ -6,7 +6,7 @@ import {withStyles} from "@material-ui/styles";
 import TextField from "@material-ui/core/TextField";
 
 import clsx from 'clsx';
-import {BackendPUT, BackendREST} from "../../../../Wrappers/backendCommunication";
+import {BackendREST} from "../../../../Wrappers/backendCommunication";
 import {BACKEND_URL} from "../../../../constants";
 
 import AssignmentTwoToneIcon from '@material-ui/icons/AssignmentTwoTone';
@@ -74,7 +74,7 @@ const styles = theme => ({
 	}
 });
 
-class Contact extends Component {
+class AdminContact extends Component {
 
 	constructor(props) {
 		super(props);
@@ -115,9 +115,7 @@ class Contact extends Component {
 			contact_visible: this.props.contact.visible
 		};
 
-		console.log({contact_params: params});
-
-		BackendPUT(BACKEND_URL + "/backend/database/contact", params).then().catch();
+		BackendREST(BACKEND_URL + "/backend/database/contact", params, "PUT").then().catch();
 	}
 
 	handleRoleChange(event) {
@@ -211,8 +209,6 @@ class Contact extends Component {
 			newVisibility = 1;
 		}
 
-		console.log({oldVisibility: this.props.contact.visible, newVisibility: newVisibility});
-
 		let newContact = {
 			role: this.props.contact.role,
 			name: this.props.contact.name,
@@ -221,6 +217,7 @@ class Contact extends Component {
 			id: this.props.contact.id
 		};
 		this.props.updateState(this.props.index, newContact);
+
 		setTimeout(() => {
 			this.pushCurrentVersion();
 		}, 0.05);
@@ -234,11 +231,10 @@ class Contact extends Component {
 		};
 
 		BackendREST(BACKEND_URL + "/backend/database/contact", params, "DELETE").then((resolveMessage) => {
-			console.log("calling removeContact");
 			this.setState({
 				deleteDialogOpen: false
 			});
-			this.props.removeContact(this.props.index);
+			this.props.removeContactFromView(this.props.index);
 		}).catch((rejectmessage) => {
 			this.setState({
 				deleteDialogOpen: false
@@ -313,8 +309,8 @@ class Contact extends Component {
 	}
 }
 
-Contact.propTypes = {
+AdminContact.propTypes = {
 	classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Contact);
+export default withStyles(styles)(AdminContact);

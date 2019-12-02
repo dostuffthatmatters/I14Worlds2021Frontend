@@ -5,7 +5,6 @@
     margin-top: calc(4vw + 10vh);
     margin-bottom: 10vh;
     min-height: calc(80vh - 4vw);
-
 }
 
 .SyncSpinner {
@@ -18,4 +17,8 @@
      50% { transform: rotate(180deg)}
      75% { transform: rotate( 90deg)}
     100% { transform: rotate(  0deg)}
+}
+
+a {
+    text-decoration: none;
 }

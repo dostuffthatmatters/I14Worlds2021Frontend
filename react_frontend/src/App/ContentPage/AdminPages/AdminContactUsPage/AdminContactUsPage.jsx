@@ -7,7 +7,7 @@ import {BackendGET, BackendREST} from "../../../../Wrappers/backendCommunication
 import {BACKEND_URL} from "../../../../constants";
 import Grid from "@material-ui/core/Grid";
 
-import Contact from "./Contact";
+import AdminContact from "./AdminContact";
 import Button from "@material-ui/core/Button";
 
 
@@ -57,7 +57,7 @@ class AdminContactUsPageManager extends Component {
 		};
 
 		this.updateState = this.updateState.bind(this);
-		this.removeContact = this.removeContact.bind(this);
+		this.removeContactFromView = this.removeContactFromView.bind(this);
 		this.createContact = this.createContact.bind(this);
 
 		this.getContactList = this.getContactList.bind(this);
@@ -89,23 +89,20 @@ class AdminContactUsPageManager extends Component {
 
 	updateState(index, contact) {
 		let contacts = this.state.contacts;
-		console.log({oldContacts: contacts, index: index, newContact: contact});
-
 		contacts[index] = contact;
 		this.setState({contacts: contacts});
 	}
 
-	removeContact(index) {
+	removeContactFromView(index) {
 		let newContacts = [];
 
-		for (let i=0; i<this.state.contacts.length; i++) {
+		for (let i = 0; i < this.state.contacts.length; i++) {
 			if (i === index) {
 				continue;
 			}
 			newContacts.push(this.state.contacts[i]);
 		}
 
-		console.log({oldContacts: this.state.contacts, newContacts: newContacts});
 		this.setState({contacts: newContacts});
 	}
 
@@ -151,11 +148,11 @@ class AdminContactUsPageManager extends Component {
 		let contactList = this.state.contacts.map((contact, index) => {
 			return (
 				<Grid item xs={12} sm={6} key={index}>
-					<Contact api={this.props.api}
-					         contact={contact}
-					         index={index}
-					         updateState={this.updateState}
-					         removeContact={this.removeContact}/>
+					<AdminContact api={this.props.api}
+					              contact={contact}
+					              index={index}
+					              updateState={this.updateState}
+					              removeContactFromView={this.removeContactFromView}/>
 				</Grid>
 			);
 		});
