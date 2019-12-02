@@ -33,5 +33,7 @@
 independent from the heroku pipeline). Maybe Google Cloud SQL (I don't really +
 need the flexibility of NoSQL in this project right now.)
 
-3. Maybe hosting the whole app on the Google Cloud instead of using
+3. Maybe hosting the **whole app on the Google Cloud** instead of using
 the Heroku pipline. More control, but also more effort.
+
+4. Using **React Redux** - especially for the admin pages - to manage state transitions
