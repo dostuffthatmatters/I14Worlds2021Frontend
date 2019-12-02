@@ -4,7 +4,7 @@ import 'date-fns';
 
 import PropTypes from "prop-types";
 import {withStyles} from "@material-ui/styles";
-import {Typography, Divider, Button, TextField, CircularProgress} from "@material-ui/core";
+import {Typography, Divider, Button, TextField, CircularProgress, Card, CardContent} from "@material-ui/core";
 import {Link} from "react-router-dom";
 
 import Breakpoint from 'react-socks';
@@ -29,6 +29,9 @@ import MenuItem from '@material-ui/core/MenuItem';
 import {BackendImagePost} from "../../../../Wrappers/backendCommunication";
 import {BACKEND_URL} from "../../../../constants";
 
+import CheckBoxTwoToneIcon from '@material-ui/icons/CheckBoxTwoTone';
+import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
+
 
 const styles = theme => ({
 	backIcon: {
@@ -44,6 +47,25 @@ const styles = theme => ({
 	divider: {
 		marginTop: theme.spacing(2),
 		marginBottom: theme.spacing(4)
+	},
+	card: {
+		position: "relative",
+		width: "100%"
+	},
+	cardContent: {
+		paddingTop: theme.spacing(2),
+		paddingRight: theme.spacing(0),
+		paddingBottom: theme.spacing(2),
+		paddingLeft: theme.spacing(0),
+		margin: 0,
+		"&:last-child": {
+			paddingTop: theme.spacing(2),
+			paddingRight: theme.spacing(0),
+			paddingBottom: theme.spacing(2),
+			paddingLeft: theme.spacing(0),
+		},
+		display: "flex",
+		position: "relative"
 	},
 	hiddenInput: {
 		display: "none"
@@ -91,6 +113,11 @@ const styles = theme => ({
 		marginTop: -12,
 		marginLeft: -12,
 	},
+	uploadButtonWrapper: {
+		display: "flex",
+		alignItems: "center",
+		justifyContent: "center"
+	}
 });
 
 class ImageUploadPage extends React.Component {
@@ -171,7 +198,7 @@ class ImageUploadPage extends React.Component {
 
 		const {classes} = this.props;
 
-		return (
+		let formContent = (
 			<Grid container spacing={1} justify="center" alignItems="center">
 
 				<Grid item xs={12} className={classes.gridItem}>
@@ -228,8 +255,17 @@ class ImageUploadPage extends React.Component {
 					           onKeyDown={this.handleDescriptionKeyDown}
 					           label="Description"/>
 				</Grid>
+			</Grid>
+		);
 
-				<Grid item xs={12} className={classes.gridItem}>
+		return (
+			<React.Fragment>
+				<Card elevation={3} className={classes.card}>
+					<CardContent className={classes.cardContent}>
+						{formContent}
+					</CardContent>
+				</Card>
+				<div className={classes.uploadButtonWrapper}>
 					<div className={classes.buttonSpinnerWrapper}>
 						<Button variant="contained"
 						        color={this.state.uploading ? "default" : "secondary"}
@@ -242,8 +278,8 @@ class ImageUploadPage extends React.Component {
 						)
 						}
 					</div>
-				</Grid>
-			</Grid>
+				</div>
+			</React.Fragment>
 		);
 	}
 
@@ -254,7 +290,7 @@ class ImageUploadPage extends React.Component {
 		return (
 			<div className="AdminGalleryPage">
 				<Breakpoint medium up>
-					<Link to="/admin/gallery">
+					<Link to="/admin/gallery" onClick={this.props.triggerReload}>
 						<ArrowBackIosTwoToneIcon className={classes.backIcon} color="secondary"/>
 					</Link>
 				</Breakpoint>

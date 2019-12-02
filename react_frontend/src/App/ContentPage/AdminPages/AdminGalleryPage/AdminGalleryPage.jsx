@@ -67,6 +67,8 @@ class AdminGalleryPageManager extends Component {
 			creatingAlbum: false
 		};
 
+		this.triggerReload = this.triggerReload.bind(this);
+
 		this.getAlbumFromId = this.getAlbumFromId.bind(this);
 		this.getAlbumList = this.getAlbumList.bind(this);
 		this.createAlbum = this.createAlbum.bind(this);
@@ -102,6 +104,36 @@ class AdminGalleryPageManager extends Component {
 			});
 		}).catch((rejectMessage) => {
 			console.log("Fetching album data: failed");
+			this.setState({
+				loading: false
+			});
+		});
+
+	}
+
+	triggerReload() {
+
+		console.log("Reloading album data");
+
+		let params = {
+			email: this.props.api.email,
+			api_key: this.props.api.api_key
+		};
+
+		console.log({params: params});
+		console.log({url: BACKEND_URL + "/backend/database/album"});
+
+		BackendGET(BACKEND_URL + "/backend/database/album", params).then((resolveMessage) => {
+			console.log("Reloading album data: Success");
+
+			console.log({response: JSON.parse(resolveMessage)});
+			this.setState({
+				loading: false,
+				albums: JSON.parse(resolveMessage)["albums"],
+				albumIdtoIndex: JSON.parse(resolveMessage)["album_id_to_index"]
+			});
+		}).catch((rejectMessage) => {
+			console.log("Reloading album data: failed");
 			this.setState({
 				loading: false
 			});
@@ -238,7 +270,7 @@ class AdminGalleryPageManager extends Component {
 	getAlbumIds() {
 		let albumIds = [];
 
-		for (let i=0; i<this.state.albums.length; i++) {
+		for (let i = 0; i < this.state.albums.length; i++) {
 			albumIds.push(this.state.albums[i].id);
 		}
 
@@ -248,7 +280,7 @@ class AdminGalleryPageManager extends Component {
 	getAlbumIdtoNameDict() {
 		let albumIdtoName = {};
 
-		for (let i=0; i<this.state.albums.length; i++) {
+		for (let i = 0; i < this.state.albums.length; i++) {
 			albumIdtoName[this.state.albums[i].id] = this.state.albums[i].name;
 		}
 
@@ -265,7 +297,12 @@ class AdminGalleryPageManager extends Component {
 					{this.state.loading && (
 						<LinearProgress className={classes.linearProgress} color="secondary"/>
 					)}
-					{!this.state.loading && (<ImageUploadPage api={this.props.api} albumIds={this.getAlbumIds()} albumIdtoNameDict={this.getAlbumIdtoNameDict()}/>)}
+					{!this.state.loading && (
+						<ImageUploadPage api={this.props.api}
+						                 albumIds={this.getAlbumIds()}
+						                 albumIdtoNameDict={this.getAlbumIdtoNameDict()}
+						                 triggerReload={this.triggerReload}/>
+					)}
 				</Route>
 				<Route exact path="/admin/gallery">
 					<div className="AdminGalleryPage">
@@ -313,7 +350,10 @@ class AdminGalleryPageManager extends Component {
 						<AdminAlbumPage getAlbumFromId={this.getAlbumFromId}
 						                api={this.props.api}
 						                updateImageState={this.updateImageState}
-						                removeImageFromView={this.removeImageFromView}/>
+						                removeImageFromView={this.removeImageFromView}
+						                albumIds={this.getAlbumIds()}
+						                albumIdtoNameDict={this.getAlbumIdtoNameDict()}
+						                triggerReload={this.triggerReload}/>
 					)}
 				</Route>
 			</Switch>

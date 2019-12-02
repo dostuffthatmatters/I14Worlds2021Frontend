@@ -7,9 +7,12 @@ import Grid from "@material-ui/core/Grid";
 import {Link} from "react-router-dom";
 import AdminImage from "./AdminImage";
 
-import {withRouter} from "react-router-dom";
+import {Switch, Route, withRouter} from "react-router-dom";
 
 import ArrowBackIosTwoToneIcon from '@material-ui/icons/ArrowBackIosTwoTone';
+
+import AdminImagePage from './AdminImagePage';
+import ImageUploadPage from "./ImageUploadPage";
 
 
 const styles = theme => ({
@@ -164,11 +167,20 @@ class AdminAlbumPage extends Component {
 				<Link to="/admin/gallery">
 					<ArrowBackIosTwoToneIcon className={classes.backIcon} color="secondary"/>
 				</Link>
-				{albumContent}
+				<Switch>
+					<Route exact path={"/admin/gallery/" + this.albumId}>
+						{albumContent}
+					</Route>
+					<Route path={"/admin/gallery/:albumId/:imageId"}>
+						<AdminImagePage api={this.props.api}
+						                albumIds={this.props.albumIds}
+						                albumIdtoNameDict={this.props.albumIdtoNameDict}
+						                album={album}
+						                triggerReload={this.props.triggerReload}/>
+					</Route>
+				</Switch>
 			</div>
 		);
-
-
 	}
 }
 
