@@ -30,6 +30,8 @@ import {BackendImagePost} from "../../../../Wrappers/backendCommunication";
 import {BACKEND_URL} from "../../../../constants";
 
 import {CustomSelect} from '../../../../Components/Forms/CustomSelect';
+import {CustomDatePicker} from '../../../../Components/Forms/CustomDatePicker';
+import {CustomTimePicker} from '../../../../Components/Forms/CustomTimePicker';
 
 
 const styles = theme => ({
@@ -227,15 +229,15 @@ class NewImagePage extends React.Component {
 				</Grid>
 
 				<Grid item className={classes.gridItem}>
-					<DatePicker classes={classes}
-					            timestamp={this.state.timestamp}
-					            updateTimestamp={timestamp => this.setState({timestamp: timestamp})}/>
+					<CustomDatePicker timestamp={this.state.timestamp}
+					                  updateTimestamp={timestamp => this.setState({timestamp: timestamp})}
+					                  className={classes.datepicker}/>
 				</Grid>
 
 				<Grid item className={classes.gridItem}>
-					<TimePicker classes={classes}
-					            timestamp={this.state.timestamp}
-					            updateTimestamp={timestamp => this.setState({timestamp: timestamp})}/>
+					<CustomTimePicker timestamp={this.state.timestamp}
+					                  updateTimestamp={timestamp => this.setState({timestamp: timestamp})}
+					                  className={classes.timepicker}/>
 				</Grid>
 
 				<Grid item xs={12} className={classes.gridItem}>
@@ -301,32 +303,6 @@ NewImagePage.propTypes = {
 export default withStyles(styles)(NewImagePage);
 
 
-const DatePicker = (props) => {
-	const [selectedDate, setSelectedDate] = React.useState(new Date(props.timestamp * 1000));
-
-	const handleDateChange = date => {
-		setSelectedDate(date);
-		props.updateTimestamp(Math.round(date.getTime() / 1000));
-	};
-
-	return (
-		<MuiPickersUtilsProvider utils={DateFnsUtils}>
-			<KeyboardDatePicker
-				className={props.classes.datepicker}
-				margin="normal"
-				id="date-picker"
-				label="Date"
-				format="dd/MM/yyyy"
-				value={selectedDate}
-				onChange={handleDateChange}
-				KeyboardButtonProps={{
-					'aria-label': 'change date',
-				}}
-			/>
-		</MuiPickersUtilsProvider>
-	);
-};
-
 const TimePicker = (props) => {
 	const [selectedDate, setSelectedDate] = React.useState(new Date(props.timestamp * 1000));
 
@@ -350,4 +326,4 @@ const TimePicker = (props) => {
 			/>
 		</MuiPickersUtilsProvider>
 	);
-}
+};

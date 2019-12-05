@@ -19,6 +19,8 @@ import DateFnsUtils from "@date-io/date-fns";
 import {BackendREST} from "../../../../Wrappers/backendCommunication";
 import {BACKEND_URL} from "../../../../constants";
 import {CustomSelect} from "../../../../Components/Forms/CustomSelect";
+import {CustomDatePicker} from "../../../../Components/Forms/CustomDatePicker";
+import {CustomTimePicker} from "../../../../Components/Forms/CustomTimePicker";
 
 
 const styles = theme => ({
@@ -196,7 +198,6 @@ class EditImagePage extends Component {
 				this.setState({
 					description: undefined,
 					timestamp: undefined,
-					albumId: undefined,
 					saving: false,
 				});
 			}
@@ -224,15 +225,15 @@ class EditImagePage extends Component {
 				</Grid>
 
 				<Grid item className={classes.gridItem}>
-					<DatePicker classes={classes}
-					            initialTimestamp={parseInt(image.timestamp)}
-					            updateTimestamp={timestamp => this.setState({timestamp: timestamp})}/>
+					<CustomDatePicker timestamp={this.state.timestamp === undefined ? parseInt(image.timestamp) : this.state.timestamp}
+					                  updateTimestamp={timestamp => this.setState({timestamp: timestamp})}
+					                  className={classes.datepicker}/>
 				</Grid>
 
 				<Grid item className={classes.gridItem}>
-					<TimePicker classes={classes}
-					            initialTimestamp={parseInt(image.timestamp)}
-					            updateTimestamp={timestamp => this.setState({timestamp: timestamp})}/>
+					<CustomTimePicker timestamp={this.state.timestamp === undefined ? parseInt(image.timestamp) : this.state.timestamp}
+					                  updateTimestamp={timestamp => this.setState({timestamp: timestamp})}
+					                  className={classes.timepicker}/>
 				</Grid>
 
 				<Grid item xs={12} className={classes.gridItem}>
@@ -325,53 +326,3 @@ EditImagePage.propTypes = {
 export default withStyles(styles)(withRouter(EditImagePage));
 
 
-const DatePicker = (props) => {
-	const [selectedDate, setSelectedDate] = React.useState(new Date(props.initialTimestamp * 1000));
-
-	const handleDateChange = date => {
-		setSelectedDate(date);
-		props.updateTimestamp(Math.round(date.getTime() / 1000));
-	};
-
-	return (
-		<MuiPickersUtilsProvider utils={DateFnsUtils}>
-			<KeyboardDatePicker
-				className={props.classes.datepicker}
-				margin="normal"
-				id="date-picker"
-				label="Date"
-				format="dd/MM/yyyy"
-				value={selectedDate}
-				onChange={handleDateChange}
-				KeyboardButtonProps={{
-					'aria-label': 'change date',
-				}}
-			/>
-		</MuiPickersUtilsProvider>
-	);
-};
-
-const TimePicker = (props) => {
-	const [selectedDate, setSelectedDate] = React.useState(new Date(props.initialTimestamp * 1000));
-
-	const handleDateChange = date => {
-		setSelectedDate(date);
-		props.updateTimestamp(Math.round(date.getTime() / 1000));
-	};
-
-	return (
-		<MuiPickersUtilsProvider utils={DateFnsUtils}>
-			<KeyboardTimePicker
-				className={props.classes.timepicker}
-				margin="normal"
-				id="time-picker"
-				label="Time"
-				value={selectedDate}
-				onChange={handleDateChange}
-				KeyboardButtonProps={{
-					'aria-label': 'change time',
-				}}
-			/>
-		</MuiPickersUtilsProvider>
-	);
-};
