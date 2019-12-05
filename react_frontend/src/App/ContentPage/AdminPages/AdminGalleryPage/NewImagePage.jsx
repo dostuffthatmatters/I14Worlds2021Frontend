@@ -29,9 +29,6 @@ import MenuItem from '@material-ui/core/MenuItem';
 import {BackendImagePost} from "../../../../Wrappers/backendCommunication";
 import {BACKEND_URL} from "../../../../constants";
 
-import CheckBoxTwoToneIcon from '@material-ui/icons/CheckBoxTwoTone';
-import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
-
 
 const styles = theme => ({
 	backIcon: {
@@ -120,7 +117,7 @@ const styles = theme => ({
 	}
 });
 
-class ImageUploadPage extends React.Component {
+class NewImagePage extends React.Component {
 	constructor(props) {
 		super(props);
 
@@ -302,11 +299,11 @@ class ImageUploadPage extends React.Component {
 	}
 }
 
-ImageUploadPage.propTypes = {
+NewImagePage.propTypes = {
 	classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(ImageUploadPage);
+export default withStyles(styles)(NewImagePage);
 
 
 const DatePicker = (props) => {

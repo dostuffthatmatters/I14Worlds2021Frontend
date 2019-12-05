@@ -4,15 +4,14 @@ import PropTypes from "prop-types";
 import {withStyles} from "@material-ui/styles";
 
 import Grid from "@material-ui/core/Grid";
-import {Link} from "react-router-dom";
-import AdminImage from "./AdminImage";
 
-import {Switch, Route, withRouter} from "react-router-dom";
+// noinspection ES6CheckImport
+import {Link, Switch, Route, withRouter} from "react-router-dom";
 
 import ArrowBackIosTwoToneIcon from '@material-ui/icons/ArrowBackIosTwoTone';
 
-import AdminImagePage from './AdminImagePage';
-import ImageUploadPage from "./ImageUploadPage";
+import AdminAlbumPageImage from "./AdminAlbumPageImage";
+import EditImagePage from './EditImagePage';
 
 
 const styles = theme => ({
@@ -115,12 +114,12 @@ class AdminAlbumPage extends Component {
 		let imageList = album.images.map((image, index) => {
 			return (
 				<Grid item xs={12} sm={6} md={4} lg={4} xl={4} key={index}>
-					<AdminImage path={"/admin/gallery/" + album.id + "/" + image.id}
-					            image={image}
-					            index={index}
-					            updateState={this.updateState}
-					            api={this.props.api}
-					            removeImageFromView={this.removeImageFromView}/>
+					<AdminAlbumPageImage path={"/admin/gallery/" + album.id + "/" + image.id}
+					                     image={image}
+					                     index={index}
+					                     updateState={this.updateState}
+					                     api={this.props.api}
+					                     removeImageFromView={this.removeImageFromView}/>
 				</Grid>
 			);
 		});
@@ -172,11 +171,11 @@ class AdminAlbumPage extends Component {
 						{albumContent}
 					</Route>
 					<Route path={"/admin/gallery/:albumId/:imageId"}>
-						<AdminImagePage api={this.props.api}
-						                albumIds={this.props.albumIds}
-						                albumIdtoNameDict={this.props.albumIdtoNameDict}
-						                album={album}
-						                triggerReload={this.props.triggerReload}/>
+						<EditImagePage api={this.props.api}
+						               albumIds={this.props.albumIds}
+						               albumIdtoNameDict={this.props.albumIdtoNameDict}
+						               album={album}
+						               triggerReload={this.props.triggerReload}/>
 					</Route>
 				</Switch>
 			</div>

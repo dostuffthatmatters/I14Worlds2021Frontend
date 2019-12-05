@@ -8,9 +8,9 @@ import {BackendGET, BackendREST} from "../../../../Wrappers/backendCommunication
 import {BACKEND_URL} from "../../../../constants";
 import Grid from "@material-ui/core/Grid";
 import {Switch, Link, Route} from "react-router-dom";
-import AdminAlbum from "./AdminAlbum";
+import AdminGalleryPageAlbum from "./AdminGalleryPageAlbum";
 import AdminAlbumPage from "./AdminAlbumPage";
-import ImageUploadPage from "./ImageUploadPage";
+import NewImagePage from "./NewImagePage";
 
 
 const styles = theme => ({
@@ -157,12 +157,12 @@ class AdminGalleryPageManager extends Component {
 		let albumList = this.state.albums.map((album, index) => {
 			return (
 				<Grid item xs={12} sm={6} md={4} lg={4} xl={4} key={index}>
-					<AdminAlbum path={"/admin/gallery/" + album.id}
-					            album={album}
-					            api={this.props.api}
-					            index={index}
-					            updateAlbumState={this.updateAlbumState}
-					            removeAlbumFromView={this.removeAlbumFromView}/>
+					<AdminGalleryPageAlbum path={"/admin/gallery/" + album.id}
+					                       album={album}
+					                       api={this.props.api}
+					                       index={index}
+					                       updateAlbumState={this.updateAlbumState}
+					                       removeAlbumFromView={this.removeAlbumFromView}/>
 				</Grid>
 			);
 		});
@@ -298,10 +298,10 @@ class AdminGalleryPageManager extends Component {
 						<LinearProgress className={classes.linearProgress} color="secondary"/>
 					)}
 					{!this.state.loading && (
-						<ImageUploadPage api={this.props.api}
-						                 albumIds={this.getAlbumIds()}
-						                 albumIdtoNameDict={this.getAlbumIdtoNameDict()}
-						                 triggerReload={this.triggerReload}/>
+						<NewImagePage api={this.props.api}
+						              albumIds={this.getAlbumIds()}
+						              albumIdtoNameDict={this.getAlbumIdtoNameDict()}
+						              triggerReload={this.triggerReload}/>
 					)}
 				</Route>
 				<Route exact path="/admin/gallery">

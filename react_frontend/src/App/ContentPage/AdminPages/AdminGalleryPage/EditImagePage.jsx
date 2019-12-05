@@ -5,12 +5,11 @@ import {withStyles} from "@material-ui/styles";
 
 import Grid from "@material-ui/core/Grid";
 import {Link} from "react-router-dom";
-import AdminImage from "./AdminImage";
 
+// noinspection ES6CheckImport
 import {withRouter} from "react-router-dom";
 
 import ArrowBackIosTwoToneIcon from '@material-ui/icons/ArrowBackIosTwoTone';
-import CloudUploadIcon from "@material-ui/core/SvgIcon/SvgIcon";
 import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
@@ -112,7 +111,7 @@ const styles = theme => ({
 	}
 });
 
-class AdminImagePage extends Component {
+class EditImagePage extends Component {
 
 	constructor(props) {
 		super(props);
@@ -318,11 +317,11 @@ class AdminImagePage extends Component {
 	}
 }
 
-AdminImagePage.propTypes = {
+EditImagePage.propTypes = {
 	classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(withRouter(AdminImagePage));
+export default withStyles(styles)(withRouter(EditImagePage));
 
 
 const DatePicker = (props) => {

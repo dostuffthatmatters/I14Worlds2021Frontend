@@ -60,7 +60,7 @@ const styles = theme => ({
 	}
 });
 
-class AdminContact extends Component {
+class AdminAlbumPageImage extends Component {
 
 	constructor(props) {
 		super(props);
@@ -169,8 +169,8 @@ class AdminContact extends Component {
 	}
 }
 
-AdminContact.propTypes = {
+AdminAlbumPageImage.propTypes = {
 	classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(AdminContact);
+export default withStyles(styles)(AdminAlbumPageImage);

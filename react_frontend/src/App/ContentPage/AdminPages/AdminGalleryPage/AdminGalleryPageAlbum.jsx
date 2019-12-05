@@ -45,7 +45,7 @@ const styles = theme => ({
 	},
 });
 
-class AdminAlbum extends Component {
+class AdminGalleryPageAlbum extends Component {
 
 	constructor(props) {
 		super(props);
@@ -165,8 +165,8 @@ class AdminAlbum extends Component {
 	}
 }
 
-AdminAlbum.propTypes = {
+AdminGalleryPageAlbum.propTypes = {
 	classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(AdminAlbum);
+export default withStyles(styles)(AdminGalleryPageAlbum);
