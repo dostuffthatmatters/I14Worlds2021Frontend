@@ -25,6 +25,8 @@ import DateFnsUtils from "@date-io/date-fns";
 
 import CheckBoxTwoToneIcon from '@material-ui/icons/CheckBoxTwoTone';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
+import {CustomDatePicker} from "../../../../Components/Forms/CustomDatePicker";
+import {CustomTimePicker} from "../../../../Components/Forms/CustomTimePicker";
 
 const contentReplacements = {
 	"<h6>": "<h6 class='MuiTypography-root MuiTypography-h6'>",
@@ -285,15 +287,15 @@ class EditArticlePage extends Component {
 				</Grid>
 
 				<Grid item className={classes.gridItem}>
-					<DatePicker classes={classes}
-					            timestamp={this.state.timestamp === undefined ? article.timestamp: this.state.timestamp}
-					            updateTimestamp={timestamp => this.setState({timestamp: timestamp})}/>
+					<CustomDatePicker timestamp={this.state.timestamp === undefined ? article.timestamp: this.state.timestamp}
+					                  updateTimestamp={timestamp => this.setState({timestamp: timestamp})}
+					                  className={classes.datepicker}/>
 				</Grid>
 
 				<Grid item className={classes.gridItem}>
-					<TimePicker classes={classes}
-					            timestamp={this.state.timestamp === undefined ? article.timestamp: this.state.timestamp}
-					            updateTimestamp={timestamp => this.setState({timestamp: timestamp})}/>
+					<CustomTimePicker timestamp={this.state.timestamp === undefined ? article.timestamp: this.state.timestamp}
+					                  updateTimestamp={timestamp => this.setState({timestamp: timestamp})}
+					                  className={classes.timepicker}/>
 				</Grid>
 
 				<Grid item className={clsx(classes.gridItem, classes.visibilityBox)}>
@@ -385,57 +387,5 @@ EditArticlePage.propTypes = {
 export default withStyles(styles)(withRouter(EditArticlePage));
 
 
-
-
-const DatePicker = (props) => {
-	const [selectedDate, setSelectedDate] = React.useState(new Date(props.timestamp * 1000));
-
-	const handleDateChange = date => {
-		setSelectedDate(date);
-		props.updateTimestamp(Math.round(date.getTime() / 1000));
-	};
-
-	return (
-		<MuiPickersUtilsProvider utils={DateFnsUtils}>
-			<KeyboardDatePicker
-				className={props.classes.datepicker}
-				margin="normal"
-				id="date-picker"
-				label="Date"
-				format="dd/MM/yyyy"
-				value={selectedDate}
-				onChange={handleDateChange}
-				KeyboardButtonProps={{
-					'aria-label': 'change date',
-				}}
-			/>
-		</MuiPickersUtilsProvider>
-	);
-};
-
-const TimePicker = (props) => {
-	const [selectedDate, setSelectedDate] = React.useState(new Date(props.timestamp * 1000));
-
-	const handleDateChange = date => {
-		setSelectedDate(date);
-		props.updateTimestamp(Math.round(date.getTime() / 1000));
-	};
-
-	return (
-		<MuiPickersUtilsProvider utils={DateFnsUtils}>
-			<KeyboardTimePicker
-				className={props.classes.timepicker}
-				margin="normal"
-				id="time-picker"
-				label="Time"
-				value={selectedDate}
-				onChange={handleDateChange}
-				KeyboardButtonProps={{
-					'aria-label': 'change time',
-				}}
-			/>
-		</MuiPickersUtilsProvider>
-	);
-};
 
 

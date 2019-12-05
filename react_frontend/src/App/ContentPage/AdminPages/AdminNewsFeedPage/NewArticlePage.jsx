@@ -27,6 +27,8 @@ import {BACKEND_URL} from "../../../../constants";
 
 import CheckBoxTwoToneIcon from '@material-ui/icons/CheckBoxTwoTone';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
+import {CustomDatePicker} from "../../../../Components/Forms/CustomDatePicker";
+import {CustomTimePicker} from "../../../../Components/Forms/CustomTimePicker";
 
 
 const styles = theme => ({
@@ -255,15 +257,15 @@ class NewArticlePage extends React.Component {
 				</Grid>
 
 				<Grid item className={classes.gridItem}>
-					<DatePicker classes={classes}
-					            timestamp={this.state.timestamp}
-					            updateTimestamp={timestamp => this.setState({timestamp: timestamp})}/>
+					<CustomDatePicker timestamp={this.state.timestamp}
+					                  updateTimestamp={timestamp => this.setState({timestamp: timestamp})}
+					                  className={classes.datepicker}/>
 				</Grid>
 
 				<Grid item className={classes.gridItem}>
-					<TimePicker classes={classes}
-					            timestamp={this.state.timestamp}
-					            updateTimestamp={timestamp => this.setState({timestamp: timestamp})}/>
+					<CustomTimePicker timestamp={this.state.timestamp}
+					                  updateTimestamp={timestamp => this.setState({timestamp: timestamp})}
+					                  className={classes.timepicker}/>
 				</Grid>
 
 				<Grid item className={clsx(classes.gridItem, classes.visibilityBox)}>
