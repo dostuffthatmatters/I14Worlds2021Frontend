@@ -16,8 +16,8 @@ export class Login extends Component {
 			automaticLogin: true,
 
 			api: {
-				email: "null",
-				api_key: "null"
+				email: Cookies.get("email"),
+				api_key: Cookies.get("api_key"),
 			}
 		};
 
@@ -37,9 +37,19 @@ export class Login extends Component {
 		console.log({cookie: params});
 
 		BackendPOST(BACKEND_URL + "/backend/login", params).then((resolveMessage) => {
-			console.log("Automatic login succeeded");
+			const resultJson = JSON.parse(resolveMessage);
 
-			this.loginUser(params.email, resolveMessage);
+			if (resultJson["Status"] === "Ok") {
+				console.log("Automatic login: Status = " + resolveMessage);
+				this.loginUser(params.email, resultJson["api_key"], resultJson["name"]);
+			} else {
+				console.log("Automatic login failed");
+				this.setState({
+					automaticLogin: false
+				});
+				Cookies.remove('email');
+				Cookies.remove('api_key');
+			}
 
 		}).catch((rejectMessage) => {
 			console.log("Automatic login failed");
@@ -55,10 +65,10 @@ export class Login extends Component {
 	}
 
 
-	loginUser(email, api_key) {
+	loginUser(email, api_key, name) {
 
-		Cookies.set('email', email, { expires: 7 });
-		Cookies.set('api_key', api_key, { expires: 7 });
+		Cookies.set('email', email, {expires: 7});
+		Cookies.set('api_key', api_key, {expires: 7});
 
 		this.setState({
 			loggedIn: true,
@@ -66,15 +76,15 @@ export class Login extends Component {
 
 			api: {
 				email: email,
-				api_key: api_key
+				api_key: api_key,
+				name: name
 			}
 		});
 
-		Cookies.set('email', email, { expires: 7 });
-		Cookies.set('api_key', api_key, { expires: 7 });
-
-		// document.cookie = "email=" + encodeURIComponent(email);
-		// document.cookie = "api_key=" + encodeURIComponent(api_key);
+		// The cookie will not be accessible on all domains-paths
+		// when I don't set it again after the view refresh ...
+		Cookies.set('email', email, {expires: 7});
+		Cookies.set('api_key', api_key, {expires: 7});
 	}
 
 
@@ -87,7 +97,8 @@ export class Login extends Component {
 
 				api: {
 					email: "none",
-					api_key: "none"
+					api_key: "none",
+					name: "none"
 				}
 			});
 
@@ -109,6 +120,6 @@ export class Login extends Component {
 			        loginUser={(email, api_key) => this.loginUser(email, api_key)}
 			        logoutUser={this.logoutUser}
 			        api={this.state.api}/>
-        );
+		);
 	}
 }

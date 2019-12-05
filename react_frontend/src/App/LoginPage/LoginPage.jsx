@@ -15,6 +15,7 @@ import {Container, Typography, CircularProgress, Snackbar, SnackbarContent} from
 import {BackendPOST} from "../../Wrappers/backendCommunication";
 
 import {BACKEND_URL} from '../../constants';
+import Cookies from "js-cookie";
 
 
 
@@ -93,21 +94,38 @@ class LoginPageManager extends Component {
 		};
 
 		BackendPOST(BACKEND_URL + "/backend/login", params).then((resolveMessage) => {
-			console.log("Login successful");
-			this.setState({
-				loading: false,
-				successMessageVisible: true,
-				successMessageText: "Login successful!"
-			});
-			setTimeout(() => {
-				this.props.loginUser(params.email, resolveMessage);
-			}, 1000);
+			const resultJson = JSON.parse(resolveMessage);
+
+			console.log({resultJson: resultJson});
+
+			if (resultJson["Status"] === "Ok") {
+				console.log("Login: Status = " + resolveMessage);
+				this.setState({
+					loading: false,
+					successMessageVisible: true,
+					successMessageText: "Login successful!"
+				});
+				setTimeout(() => {
+					this.props.loginUser(params.email, resultJson["api_key"], resultJson["name"]);
+				}, 0.7);
+			} else {
+				console.log("Login failed");
+				this.setState({
+					loading: false,
+					errorMessageVisible: true,
+					errorMessageText: resultJson["Status"]
+				});
+			}
+
 		}).catch((rejectMessage) => {
 			console.log("Login failed");
+			const resultJson = JSON.parse(rejectMessage);
+			console.log({resultJson: resultJson});
+
 			this.setState({
 				loading: false,
 				errorMessageVisible: true,
-				errorMessageText: rejectMessage
+				errorMessageText: resultJson["Status"]
 			});
 		});
 	}
