@@ -400,4 +400,4 @@ const AlbumSelect = (props) => {
 			</Select>
 		</FormControl>
 	);
-}
+};

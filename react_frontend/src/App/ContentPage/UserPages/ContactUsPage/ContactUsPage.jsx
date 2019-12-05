@@ -19,56 +19,38 @@ import MailTwoToneIcon from '@material-ui/icons/MailTwoTone';
 
 import AUSFlag from './images/AUSFlag.png';
 import CANFlag from './images/CANFlag.svg';
-import GERFlag from './images/GERFlag.svg';
-import ITAFlag from './images/ITAFlag.svg';
 import JPNFlag from './images/JPNFlag.svg';
-import SWIFlag from './images/SWIFlag.svg';
-import GBRFlag from './images/GBRFlag.png';
 import USAFlag from './images/USAFlag.svg';
+import EURFlag from './images/EURFlag.svg';
 
 
 const countryHosts = [
 	{
-		name: "tbd",
-		email: "tbd",
+		name: "Henning Uck",
+		email: "henning.uck@hotmail.de",
 		flag: AUSFlag,
 		alt: "AUS Flag"
 	}, {
-		name: "tbd",
-		email: "tbd",
+		name: "Andrew McConnell",
+		email: "mcconnell.aps@gmail.com",
 		flag: CANFlag,
 		alt: "CAN Flag"
 	}, {
-		name: "tbd",
-		email: "tbd",
-		flag: GERFlag,
-		alt: "GER Flag"
-	}, {
-		name: "tbd",
-		email: "tbd",
-		flag: ITAFlag,
-		alt: "ITA Flag"
-	}, {
-		name: "tbd",
-		email: "tbd",
+		name: "Mathias Nippel",
+		email: "mathiasnippel@gmail.com",
 		flag: JPNFlag,
 		alt: "JPN Flag"
 	}, {
-		name: "tbd",
-		email: "tbd",
-		flag: SWIFlag,
-		alt: "SWI Flag"
-	}, {
-		name: "tbd",
-		email: "tbd",
-		flag: GBRFlag,
-		alt: "GBR Flag"
-	}, {
-		name: "tbd",
-		email: "tbd",
+		name: "Dennis Gehrlein",
+		email: "gehrleindennis@gmail.com",
 		flag: USAFlag,
-		alt: "USA Flag"
-	},
+		alt: "US Flag"
+	}, {
+		name: "Lasse Nielandt",
+		email: "lasse.nielandt@gmail.com",
+		flag: EURFlag,
+		alt: "EURO Flag"
+	}
 ];
 
 

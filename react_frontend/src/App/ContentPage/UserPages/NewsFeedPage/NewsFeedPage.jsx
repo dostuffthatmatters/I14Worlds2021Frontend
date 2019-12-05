@@ -11,7 +11,11 @@ import {withStyles} from "@material-ui/styles";
 import {BackendGET} from "../../../../Wrappers/backendCommunication";
 import {BACKEND_URL} from "../../../../constants";
 import Grid from "@material-ui/core/Grid";
+import Album from "../GalleryPage/Album";
 
+import {Switch, Route, Link} from 'react-router-dom';
+
+import Article from './Article';
 
 const styles = theme => ({
 	headline: {
@@ -80,10 +84,12 @@ class NewsFeedPageManager extends Component {
 
 		this.state = {
 			loading: true,
-			articles: []
+			articles: [],
+			articleIdtoIndex: {}
 		};
 
 		this.getArticleList = this.getArticleList.bind(this);
+		this.getArticleFromId = this.getArticleFromId.bind(this);
 	}
 
 	componentDidMount() {
@@ -94,7 +100,8 @@ class NewsFeedPageManager extends Component {
 			console.log("Fetching contact data: successful");
 			this.setState({
 				loading: false,
-				articles: JSON.parse(resolveMessage)["articles"]
+				articles: JSON.parse(resolveMessage)["articles"],
+				articleIdtoIndex: JSON.parse(resolveMessage)["article_id_to_index"]
 			});
 		}).catch((rejectMessage) => {
 			console.log("Fetching contact data: failed");
@@ -115,49 +122,51 @@ class NewsFeedPageManager extends Component {
 			if (article.images.length === 0) {
 				imageSrc = "https://wallpaperaccess.com/full/25637.jpg";
 			} else {
-				imageSrc = article.images[0];
+				imageSrc = article.images[0]["filepath_medium"];
 			}
 
 			return (
 				<Grid item xs={12} key={index}>
-					<Breakpoint small down>
-						<Card elevation={3}>
-							<CardMedia
-								className={classes.cardImageTop}
-								image={imageSrc}
-							/>
-							<div className={classes.cardContentBottom}>
-								<div className={classes.cardContentOverlay}/>
-								<CardContent className={classes.cardContent}>
-									<Typography component="h5" variant="h5">
-										{article.headline}
-									</Typography>
-									<Typography variant="subtitle1" color="textSecondary">
-										{article.content_plain}
-									</Typography>
-								</CardContent>
-							</div>
-						</Card>
-					</Breakpoint>
-					<Breakpoint medium up>
-						<Card className={classes.card} elevation={3}>
-							<CardMedia
-								className={classes.cardImageLeft}
-								image={imageSrc}
-							/>
-							<div className={classes.cardContentRight}>
-								<div className={classes.cardContentOverlay}/>
-								<CardContent className={classes.cardContent}>
-									<Typography component="h5" variant="h5">
-										{article.headline}
-									</Typography>
-									<Typography variant="subtitle1" color="textSecondary">
-										{article.content_plain}
-									</Typography>
-								</CardContent>
-							</div>
-						</Card>
-					</Breakpoint>
+					<Link to={"/news-feed/" + article.id}>
+						<Breakpoint small down>
+							<Card elevation={3}>
+								<CardMedia
+									className={classes.cardImageTop}
+									image={imageSrc}
+								/>
+								<div className={classes.cardContentBottom}>
+									<div className={classes.cardContentOverlay}/>
+									<CardContent className={classes.cardContent}>
+										<Typography component="h5" variant="h5">
+											{article.headline}
+										</Typography>
+										<Typography variant="subtitle1" color="textSecondary">
+											{article.content_plain}
+										</Typography>
+									</CardContent>
+								</div>
+							</Card>
+						</Breakpoint>
+						<Breakpoint medium up>
+							<Card className={classes.card} elevation={3}>
+								<CardMedia
+									className={classes.cardImageLeft}
+									image={imageSrc}
+								/>
+								<div className={classes.cardContentRight}>
+									<div className={classes.cardContentOverlay}/>
+									<CardContent className={classes.cardContent}>
+										<Typography component="h5" variant="h5">
+											{article.headline}
+										</Typography>
+										<Typography variant="subtitle1" color="textSecondary">
+											{article.content_plain}
+										</Typography>
+									</CardContent>
+								</div>
+							</Card>
+						</Breakpoint>
+					</Link>
 				</Grid>
 			);
 		});
@@ -169,17 +178,36 @@ class NewsFeedPageManager extends Component {
 		);
 	}
 
+	getArticleFromId(articleId) {
+		return this.state.articles[this.state.articleIdtoIndex[articleId]];
+	}
+
 	render() {
 		const {classes} = this.props;
 
 		return (
-			<div className="NewsFeedPage">
-				<Typography variant="h3" className={classes.headline}>News Feed</Typography>
-				{this.state.loading && <LinearProgress className={classes.linearProgress} color="secondary"/>}
-				<div className={classes.root}>
-					{!this.state.loading && this.getArticleList()}
-				</div>
-			</div>
+			<Switch>
+				<Route exact strict path="/news-feed">
+					<div className="NewsFeedPage">
+						<Typography variant="h4" className={classes.headline}>News Feed</Typography>
+						{this.state.loading && <LinearProgress className={classes.linearProgress} color="secondary"/>}
+						<div className={classes.root}>
+							{!this.state.loading && this.getArticleList()}
+						</div>
+					</div>
+				</Route>
+				<Route path={"/news-feed/:articleId"}>
+					{this.state.loading && (
+						<React.Fragment>
+							<Typography variant="h4" className={classes.headline}>Gallery</Typography>
+							<LinearProgress className={classes.linearProgress} color="secondary"/>
+						</React.Fragment>
+					)}
+					{!this.state.loading && (
+						<Article getArticleFromId={this.getArticleFromId}/>
+					)}
+				</Route>
+			</Switch>
 		);
 	}
 }

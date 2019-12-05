@@ -152,17 +152,17 @@ class GalleryPageManager extends React.Component {
 						)}
 					</div>
 				</Route>
-				{this.state.loading && (
-					<React.Fragment>
-						<Typography variant="h4" className={classes.headline}>Gallery</Typography>
-						<LinearProgress className={classes.linearProgress} color="secondary"/>
-					</React.Fragment>
-				)}
-				{!this.state.loading && (
-					<Route path={"/gallery/:albumId"}>
+				<Route path={"/gallery/:albumId"}>
+					{this.state.loading && (
+						<React.Fragment>
+							<Typography variant="h4" className={classes.headline}>Gallery</Typography>
+							<LinearProgress className={classes.linearProgress} color="secondary"/>
+						</React.Fragment>
+					)}
+					{!this.state.loading && (
 						<Album getAlbumFromId={this.getAlbumFromId}/>
-					</Route>
-				)}
+					)}
+				</Route>
 			</Switch>
 		);
 	}

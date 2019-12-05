@@ -11,7 +11,7 @@ import GalleryPageManager from "./UserPages/GalleryPage/GalleryPage";
 import AdminGalleryPageManager from "./AdminPages/AdminGalleryPage/AdminGalleryPage";
 import {SailorsGuidePage} from "./UserPages/SailorsGuidePage/SailorsGuidePage";
 import ContactUsPageManager from "./UserPages/ContactUsPage/ContactUsPage";
-import {AdminNewsFeedPage} from "./AdminPages/AdminNewsFeedPage/AdminNewsFeedPage";
+import AdminNewsFeedPageManager from "./AdminPages/AdminNewsFeedPage/AdminNewsFeedPage";
 import AdminContactUsPageManager from "./AdminPages/AdminContactUsPage/AdminContactUsPage";
 
 import {Container} from "@material-ui/core";
@@ -50,7 +50,7 @@ export const ContentPage = (props) => {
 					<ContactUsPageManager/>
 				</Route>
 				<Route path="/admin/news-feed">
-					<AdminNewsFeedPage/>
+					<AdminNewsFeedPageManager api={props.api}/>
 				</Route>
 				<Route path="/admin/gallery">
 					<AdminGalleryPageManager api={props.api}/>
