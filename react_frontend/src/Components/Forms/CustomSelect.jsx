@@ -8,16 +8,16 @@ import MenuItem from "@material-ui/core/MenuItem";
 export const CustomSelect = (props) => {
 
 	/*
-	REQUIRED props:
 
+	REQUIRED props:
 	* label (label of the select box)
 	* value (initial value)
 	* selectOptions (JS Object storing all possible values as keys
 					 and their labels as the respective values)
 
 	OPTIONAL props:
-	onChange (function that takes in the value of the select after changing it)
-	className (optional)
+	* onChange (function that takes in the value of the select after changing it)
+	* className (actual classname strings)
 
 	*/
 
