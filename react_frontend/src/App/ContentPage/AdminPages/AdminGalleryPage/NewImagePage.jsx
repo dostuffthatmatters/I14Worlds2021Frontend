@@ -29,6 +29,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import {BackendImagePost} from "../../../../Wrappers/backendCommunication";
 import {BACKEND_URL} from "../../../../constants";
 
+import {CustomSelect} from '../../../../Components/Forms/CustomSelect';
+
 
 const styles = theme => ({
 	backIcon: {
@@ -217,18 +219,11 @@ class NewImagePage extends React.Component {
 				</Grid>
 
 				<Grid item className={classes.gridItem}>
-					<FormControl className={classes.formControl}>
-						<InputLabel id="demo-simple-select-label">Album</InputLabel>
-						<Select
-							labelId="demo-simple-select-label"
-							id="demo-simple-select"
-							value={this.state.albumId}
-							onChange={(event) => this.setState({albumId: event.target.value})}>
-							{this.props.albumIds.map((albumId, index) => (
-								<MenuItem value={albumId}>{this.props.albumIdtoNameDict[albumId]}</MenuItem>
-							))}
-						</Select>
-					</FormControl>
+					<CustomSelect label="Album"
+					              value={this.state.albumId}
+					              selectOptions={this.props.albumIdtoNameDict}
+					              onChange={newValue => this.setState({albumId: newValue})}
+					              className={classes.formControl}/>
 				</Grid>
 
 				<Grid item className={classes.gridItem}>

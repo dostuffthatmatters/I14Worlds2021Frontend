@@ -18,6 +18,7 @@ import {KeyboardDatePicker, KeyboardTimePicker, MuiPickersUtilsProvider} from "@
 import DateFnsUtils from "@date-io/date-fns";
 import {BackendREST} from "../../../../Wrappers/backendCommunication";
 import {BACKEND_URL} from "../../../../constants";
+import {CustomSelect} from "../../../../Components/Forms/CustomSelect";
 
 
 const styles = theme => ({
@@ -215,11 +216,11 @@ class EditImagePage extends Component {
 			<Grid container spacing={1} justify="center" alignItems="center">
 
 				<Grid item className={classes.gridItem}>
-					<AlbumSelect classes={classes}
-					             initialAlbumId={this.albumId}
-					             albumIds={this.props.albumIds}
-					             albumIdtoNameDict={this.props.albumIdtoNameDict}
-					             updateAlbumId={(newAlbumId) => this.setState({albumId: parseInt(newAlbumId)})}/>
+	                <CustomSelect label="Album"
+					              value={this.state.albumId}
+					              selectOptions={this.props.albumIdtoNameDict}
+					              onChange={newValue => this.setState({albumId: newValue})}
+					              className={classes.formControl}/>
 				</Grid>
 
 				<Grid item className={classes.gridItem}>
@@ -372,31 +373,5 @@ const TimePicker = (props) => {
 				}}
 			/>
 		</MuiPickersUtilsProvider>
-	);
-};
-
-
-const AlbumSelect = (props) => {
-	const classes = props.classes;
-	const [albumId, setAlbumId] = React.useState(props.initialAlbumId);
-
-	const handleChange = (event) => {
-		setAlbumId(event.target.value);
-		props.updateAlbumId(event.target.value);
-	};
-
-	return (
-		<FormControl className={classes.formControl}>
-			<InputLabel id="demo-simple-select-label">Age</InputLabel>
-			<Select
-				labelId="demo-simple-select-label"
-				id="demo-simple-select"
-				value={albumId}
-				onChange={handleChange}>
-				{props.albumIds.map((PossibleAlbumId, index) => (
-					<MenuItem value={PossibleAlbumId}>{props.albumIdtoNameDict[PossibleAlbumId]}</MenuItem>
-				))}
-			</Select>
-		</FormControl>
 	);
 };
