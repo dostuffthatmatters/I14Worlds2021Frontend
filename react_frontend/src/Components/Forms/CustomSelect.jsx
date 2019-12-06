@@ -38,7 +38,7 @@ export const CustomSelect = (props) => {
 			<Select
 				labelId="select-label"
 				id="demo-simple-select"
-				value={props.value}
+				value={value}
 				onChange={handleChange}>
 				{Object.keys(props.selectOptions).map(value => (
 					<MenuItem value={value}>{props.selectOptions[value]}</MenuItem>

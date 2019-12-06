@@ -3,9 +3,8 @@ import {
 	Button,
 	Card,
 	CardContent,
-	CardMedia,
 	CircularProgress,
-	Container, Divider,
+	Divider,
 	TextField,
 	Typography
 } from "@material-ui/core";
@@ -20,26 +19,11 @@ import ArrowBackIosTwoToneIcon from '@material-ui/icons/ArrowBackIosTwoTone';
 import {BackendREST} from "../../../../Wrappers/backendCommunication";
 import {BACKEND_URL} from "../../../../constants";
 import Grid from "@material-ui/core/Grid";
-import {KeyboardDatePicker, KeyboardTimePicker, MuiPickersUtilsProvider} from "@material-ui/pickers";
-import DateFnsUtils from "@date-io/date-fns";
 
 import CheckBoxTwoToneIcon from '@material-ui/icons/CheckBoxTwoTone';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import {CustomDatePicker} from "../../../../Components/Forms/CustomDatePicker";
 import {CustomTimePicker} from "../../../../Components/Forms/CustomTimePicker";
-
-const contentReplacements = {
-	"<h6>": "<h6 class='MuiTypography-root MuiTypography-h6'>",
-	"<h5>": "<h5 class='MuiTypography-root MuiTypography-h5'>",
-	"<h4>": "<h4 class='MuiTypography-root MuiTypography-h4'>",
-	"<h3>": "<h3 class='MuiTypography-root MuiTypography-h3'>",
-	"<h2>": "<h2 class='MuiTypography-root MuiTypography-h2'>",
-	"<h1>": "<h1 class='MuiTypography-root MuiTypography-h1'>",
-	"<p>": "<p class='MuiTypography-root MuiTypography-body1'>",
-	"<a href=": "<strong><a href=",
-	"<a target=": "<strong><a target=",
-	"</a>": "</a><strong>",
-};
 
 
 const styles = theme => ({

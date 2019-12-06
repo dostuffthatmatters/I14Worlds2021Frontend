@@ -1,10 +1,8 @@
 import React, {Component} from "react";
-import {Card, CardContent, CardMedia, Container, Typography} from "@material-ui/core";
+import {Card, CardMedia, Container, Typography} from "@material-ui/core";
 import PropTypes from "prop-types";
 import {withStyles} from "@material-ui/styles";
 import {Link, withRouter} from "react-router-dom";
-
-import clsx from 'react-socks';
 
 import ArrowBackIosTwoToneIcon from '@material-ui/icons/ArrowBackIosTwoTone';
 

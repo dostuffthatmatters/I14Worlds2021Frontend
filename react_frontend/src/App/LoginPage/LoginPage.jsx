@@ -15,7 +15,6 @@ import {Container, Typography, CircularProgress, Snackbar, SnackbarContent} from
 import {BackendPOST} from "../../Wrappers/backendCommunication";
 
 import {BACKEND_URL} from '../../constants';
-import Cookies from "js-cookie";
 
 
 

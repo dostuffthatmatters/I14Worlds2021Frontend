@@ -11,7 +11,6 @@ import {withStyles} from "@material-ui/styles";
 import {BackendGET} from "../../../../Wrappers/backendCommunication";
 import {BACKEND_URL} from "../../../../constants";
 import Grid from "@material-ui/core/Grid";
-import Album from "../GalleryPage/Album";
 
 import {Switch, Route, Link} from 'react-router-dom';
 

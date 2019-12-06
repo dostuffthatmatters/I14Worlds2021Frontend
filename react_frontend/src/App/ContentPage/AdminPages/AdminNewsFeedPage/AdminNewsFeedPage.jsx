@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './AdminNewsFeedPage.scss';
-import {CircularProgress, Divider, LinearProgress, Typography} from "@material-ui/core";
+import {Divider, LinearProgress, Typography} from "@material-ui/core";
 
 import {Card, CardContent, CardMedia} from "@material-ui/core";
 

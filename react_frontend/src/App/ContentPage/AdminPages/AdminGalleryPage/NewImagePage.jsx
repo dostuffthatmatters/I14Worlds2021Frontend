@@ -12,20 +12,8 @@ import Breakpoint from 'react-socks';
 import ArrowBackIosTwoToneIcon from '@material-ui/icons/ArrowBackIosTwoTone';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 
-import DateFnsUtils from '@date-io/date-fns';
-
-import {
-	MuiPickersUtilsProvider,
-	KeyboardTimePicker,
-	KeyboardDatePicker,
-} from '@material-ui/pickers';
 import Grid from "@material-ui/core/Grid";
 
-
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
 import {BackendImagePost} from "../../../../Wrappers/backendCommunication";
 import {BACKEND_URL} from "../../../../constants";
 
@@ -301,29 +289,3 @@ NewImagePage.propTypes = {
 };
 
 export default withStyles(styles)(NewImagePage);
-
-
-const TimePicker = (props) => {
-	const [selectedDate, setSelectedDate] = React.useState(new Date(props.timestamp * 1000));
-
-	const handleDateChange = date => {
-		setSelectedDate(date);
-		props.updateTimestamp(Math.round(date.getTime() / 1000));
-	};
-
-	return (
-		<MuiPickersUtilsProvider utils={DateFnsUtils}>
-			<KeyboardTimePicker
-				className={props.classes.timepicker}
-				margin="normal"
-				id="time-picker"
-				label="Time"
-				value={selectedDate}
-				onChange={handleDateChange}
-				KeyboardButtonProps={{
-					'aria-label': 'change time',
-				}}
-			/>
-		</MuiPickersUtilsProvider>
-	);
-};

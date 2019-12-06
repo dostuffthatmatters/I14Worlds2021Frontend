@@ -10,12 +10,7 @@ import {Link} from "react-router-dom";
 import {withRouter} from "react-router-dom";
 
 import ArrowBackIosTwoToneIcon from '@material-ui/icons/ArrowBackIosTwoTone';
-import FormControl from "@material-ui/core/FormControl";
-import InputLabel from "@material-ui/core/InputLabel";
-import Select from "@material-ui/core/Select";
-import MenuItem from "@material-ui/core/MenuItem";
-import {KeyboardDatePicker, KeyboardTimePicker, MuiPickersUtilsProvider} from "@material-ui/pickers";
-import DateFnsUtils from "@date-io/date-fns";
+
 import {BackendREST} from "../../../../Wrappers/backendCommunication";
 import {BACKEND_URL} from "../../../../constants";
 import {CustomSelect} from "../../../../Components/Forms/CustomSelect";
