@@ -1,26 +1,39 @@
+/* General Imports --------------------------------------------------------------- */
 import React from 'react';
-
 import 'date-fns';
 
-import PropTypes from "prop-types";
-import {withStyles} from "@material-ui/styles";
-import {Typography, Divider, Button, TextField, CircularProgress, Card, CardContent} from "@material-ui/core";
+/* Routing Imports --------------------------------------------------------------- */
 import {Link} from "react-router-dom";
 
+/* Styling Imports --------------------------------------------------------------- */
+import PropTypes from "prop-types";
+import {withStyles} from "@material-ui/styles";
 import Breakpoint from 'react-socks';
 
-import ArrowBackIosTwoToneIcon from '@material-ui/icons/ArrowBackIosTwoTone';
-import CloudUploadIcon from '@material-ui/icons/CloudUpload';
-
-import Grid from "@material-ui/core/Grid";
-
+/* AJAX Imports ------------------------------------------------------------------ */
 import {BackendImagePost} from "../../../../Wrappers/backendCommunication";
 import {BACKEND_URL} from "../../../../constants";
 
+/* Material UI Imports ----------------------------------------------------------- */
+import {
+	Typography,
+	Divider,
+	Button,
+	CircularProgress,
+	Card,
+	CardContent,
+	Grid} from "@material-ui/core";
+import ArrowBackIosTwoToneIcon from '@material-ui/icons/ArrowBackIosTwoTone';
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+
+/* Component Imports ------------------------------------------------------------- */
 import {CustomSelect} from '../../../../Components/Forms/CustomSelect';
 import {CustomDatePicker} from '../../../../Components/Forms/CustomDatePicker';
 import {CustomTimePicker} from '../../../../Components/Forms/CustomTimePicker';
 import {CustomTextField} from "../../../../Components/Forms/CustomTextField";
+
+
+/* ------------------------------------------------------------------------------- */
 
 
 const styles = theme => ({
@@ -123,20 +136,10 @@ class NewImagePage extends React.Component {
 			visible: 1
 		};
 
-		this.handleDescriptionKeyDown = this.handleDescriptionKeyDown.bind(this);
 		this.descriptionInputRef = React.createRef();
 
 		this.processUpload = this.processUpload.bind(this);
-
 		this.getUploadForm = this.getUploadForm.bind(this);
-	}
-
-	handleDescriptionKeyDown(event) {
-		if (event.which === 13 || event.which === 9) {
-			// enter || tab
-			event.preventDefault();
-			this.descriptionInputRef.current.blur();
-		}
 	}
 
 	processUpload() {
@@ -168,7 +171,7 @@ class NewImagePage extends React.Component {
 
 		console.log({formData: formData});
 
-		BackendImagePost(BACKEND_URL + "/backend/database/image", formData).then((resolveMessage) => {
+		BackendImagePost(BACKEND_URL + "/backend/database/image", formData).then(resolveMessage => {
 			console.log("Uploading image: Status = " + resolveMessage);
 
 			this.setState({
@@ -176,7 +179,7 @@ class NewImagePage extends React.Component {
 				description: "",
 				file: undefined,
 			});
-		}).catch((rejectMessage) => {
+		}).catch(() => {
 			console.log("Uploading image: failed");
 			this.setState({
 				uploading: false,
@@ -293,3 +296,33 @@ NewImagePage.propTypes = {
 };
 
 export default withStyles(styles)(NewImagePage);
+
+
+
+
+/* General Imports --------------------------------------------------------------- */
+
+
+
+/* Routing Imports --------------------------------------------------------------- */
+
+
+
+/* Styling Imports --------------------------------------------------------------- */
+
+
+
+/* AJAX Imports ------------------------------------------------------------------ */
+
+
+
+/* Material UI Imports ----------------------------------------------------------- */
+
+
+
+/* Component Imports ------------------------------------------------------------- */
+
+
+
+/* ------------------------------------------------------------------------------- */
+

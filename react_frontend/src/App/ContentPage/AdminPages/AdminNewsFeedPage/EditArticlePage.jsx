@@ -1,29 +1,48 @@
-import React, {Component} from "react";
+
+/* General Imports --------------------------------------------------------------- */
+import React from "react";
+
+
+/* Routing Imports --------------------------------------------------------------- */
+// noinspection ES6CheckImport
+import {
+	Link,
+	withRouter} from "react-router-dom";
+
+
+/* Styling Imports --------------------------------------------------------------- */
+import PropTypes from "prop-types";
+import {withStyles} from "@material-ui/styles";
+import Breakpoint from 'react-socks';
+import clsx from 'clsx';
+
+
+/* AJAX Imports ------------------------------------------------------------------ */
+import {BackendREST} from "../../../../Wrappers/backendCommunication";
+import {BACKEND_URL} from "../../../../constants";
+
+
+/* Material UI Imports ----------------------------------------------------------- */
 import {
 	Button,
 	Card,
 	CardContent,
 	CircularProgress,
 	Divider,
-	Typography
-} from "@material-ui/core";
-import PropTypes from "prop-types";
-import {withStyles} from "@material-ui/styles";
-import {Link, withRouter} from "react-router-dom";
-
-import Breakpoint from 'react-socks';
-import clsx from 'clsx';
-
+	Typography,
+	Grid} from "@material-ui/core";
 import ArrowBackIosTwoToneIcon from '@material-ui/icons/ArrowBackIosTwoTone';
-import {BackendREST} from "../../../../Wrappers/backendCommunication";
-import {BACKEND_URL} from "../../../../constants";
-import Grid from "@material-ui/core/Grid";
-
 import CheckBoxTwoToneIcon from '@material-ui/icons/CheckBoxTwoTone';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
+
+
+/* Component Imports ------------------------------------------------------------- */
 import {CustomDatePicker} from "../../../../Components/Forms/CustomDatePicker";
 import {CustomTimePicker} from "../../../../Components/Forms/CustomTimePicker";
 import {CustomTextField} from "../../../../Components/Forms/CustomTextField";
+
+
+/* ------------------------------------------------------------------------------- */
 
 
 const styles = theme => ({
@@ -134,7 +153,7 @@ const styles = theme => ({
 });
 
 
-class EditArticlePage extends Component {
+class EditArticlePage extends React.Component {
 
 	constructor(props) {
 		super(props);

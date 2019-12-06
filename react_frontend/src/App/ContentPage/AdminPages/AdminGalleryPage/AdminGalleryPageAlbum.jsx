@@ -1,17 +1,37 @@
-import React, {Component} from 'react';
-import {Card, CardMedia, CardContent} from "@material-ui/core";
+
+/* General Imports /* ------------------------------------------------------------ */
+import React from 'react';
+
+
+/* Routing Imports --------------------------------------------------------------- */
+import {Link} from "react-router-dom";
+// noinspection ES6CheckImport
+
+
+/* Styling Imports --------------------------------------------------------------- */
 import PropTypes from "prop-types";
 import {withStyles} from "@material-ui/styles";
-import TextField from "@material-ui/core/TextField";
 
+
+/* AJAX Imports ------------------------------------------------------------------ */
 import {BackendREST} from "../../../../Wrappers/backendCommunication";
 import {BACKEND_URL} from "../../../../constants";
 
 
+/* Material UI Imports ----------------------------------------------------------- */
+import {
+	Button,
+	Card,
+	CardContent,
+	CardMedia,
+	Dialog,
+	DialogTitle,
+	DialogActions,
+	TextField} from "@material-ui/core";
 import DeleteTwoToneIcon from '@material-ui/icons/DeleteTwoTone';
 
-import {Dialog, DialogTitle, DialogActions, Button} from "@material-ui/core";
-import {Link} from "react-router-dom";
+
+/* ------------------------------------------------------------------------------- */
 
 
 const styles = theme => ({
@@ -45,7 +65,7 @@ const styles = theme => ({
 	},
 });
 
-class AdminGalleryPageAlbum extends Component {
+class AdminGalleryPageAlbum extends React.Component {
 
 	constructor(props) {
 		super(props);

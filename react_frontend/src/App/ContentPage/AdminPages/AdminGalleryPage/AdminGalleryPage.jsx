@@ -1,16 +1,43 @@
-import React, {Component} from 'react';
+
+/* General Imports --------------------------------------------------------------- */
+import React from 'react';
+
+
+/* Routing Imports --------------------------------------------------------------- */
+// noinspection ES6CheckImport
+import {
+	Switch,
+	Link,
+	Route} from "react-router-dom";
+
+
+/* Styling Imports --------------------------------------------------------------- */
 import './AdminGalleryPage.scss';
-import {CircularProgress, Divider, LinearProgress, Typography} from "@material-ui/core";
-import Button from "@material-ui/core/Button";
 import PropTypes from "prop-types";
 import {withStyles} from "@material-ui/styles";
+
+/* AJAX Imports ------------------------------------------------------------------ */
 import {BackendGET, BackendREST} from "../../../../Wrappers/backendCommunication";
 import {BACKEND_URL} from "../../../../constants";
-import Grid from "@material-ui/core/Grid";
-import {Switch, Link, Route} from "react-router-dom";
+
+
+/* Material UI Imports ----------------------------------------------------------- */
+import {
+	CircularProgress,
+	Divider,
+	LinearProgress,
+	Typography,
+	Grid,
+	Button} from "@material-ui/core";
+
+
+/* Component Imports ------------------------------------------------------------- */
 import AdminGalleryPageAlbum from "./AdminGalleryPageAlbum";
 import AdminAlbumPage from "./AdminAlbumPage";
 import NewImagePage from "./NewImagePage";
+
+
+/* ------------------------------------------------------------------------------- */
 
 
 const styles = theme => ({
@@ -56,7 +83,7 @@ const styles = theme => ({
 });
 
 
-class AdminGalleryPageManager extends Component {
+class AdminGalleryPageManager extends React.Component {
 
 	constructor(props) {
 		super(props);

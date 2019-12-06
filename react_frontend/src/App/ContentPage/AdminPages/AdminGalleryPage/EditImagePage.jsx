@@ -1,23 +1,43 @@
-import React, {Component} from 'react';
-import {Button, Card, CardContent, CardMedia, CircularProgress, Typography} from "@material-ui/core";
-import PropTypes from "prop-types";
-import {withStyles} from "@material-ui/styles";
+/* General Imports --------------------------------------------------------------- */
+import React from 'react';
 
-import Grid from "@material-ui/core/Grid";
+
+/* Routing Imports --------------------------------------------------------------- */
 import {Link} from "react-router-dom";
-
 // noinspection ES6CheckImport
 import {withRouter} from "react-router-dom";
 
-import ArrowBackIosTwoToneIcon from '@material-ui/icons/ArrowBackIosTwoTone';
 
+/* Styling Imports --------------------------------------------------------------- */
+import PropTypes from "prop-types";
+import {withStyles} from "@material-ui/styles";
+
+
+/* AJAX Imports ------------------------------------------------------------------ */
 import {BackendREST} from "../../../../Wrappers/backendCommunication";
 import {BACKEND_URL} from "../../../../constants";
 
+
+/* Material UI Imports ----------------------------------------------------------- */
+import {
+	Button,
+	Card,
+	CardContent,
+	CardMedia,
+	CircularProgress,
+	Typography,
+	Grid} from "@material-ui/core";
+import ArrowBackIosTwoToneIcon from '@material-ui/icons/ArrowBackIosTwoTone';
+
+
+/* Component Imports ------------------------------------------------------------- */
 import {CustomSelect} from "../../../../Components/Forms/CustomSelect";
 import {CustomDatePicker} from "../../../../Components/Forms/CustomDatePicker";
 import {CustomTimePicker} from "../../../../Components/Forms/CustomTimePicker";
 import {CustomTextField} from "../../../../Components/Forms/CustomTextField";
+
+
+/* ------------------------------------------------------------------------------- */
 
 
 const styles = theme => ({
@@ -111,7 +131,7 @@ const styles = theme => ({
 	}
 });
 
-class EditImagePage extends Component {
+class EditImagePage extends React.Component {
 
 	constructor(props) {
 		super(props);

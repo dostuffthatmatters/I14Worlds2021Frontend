@@ -1,14 +1,34 @@
-import React, {Component} from 'react';
+
+/* General Imports --------------------------------------------------------------- */
+import React from 'react';
 import './AdminContactUsPage.scss';
-import {LinearProgress, Typography, Divider, CircularProgress} from "@material-ui/core";
+
+
+/* Styling Imports --------------------------------------------------------------- */
 import PropTypes from "prop-types";
 import {withStyles} from "@material-ui/styles";
+
+
+/* AJAX Imports ------------------------------------------------------------------ */
 import {BackendGET, BackendREST} from "../../../../Wrappers/backendCommunication";
 import {BACKEND_URL} from "../../../../constants";
-import Grid from "@material-ui/core/Grid";
 
+
+/* Material UI Imports ----------------------------------------------------------- */
+import {
+	LinearProgress,
+	Typography,
+	Divider,
+	CircularProgress,
+	Grid,
+	Button} from "@material-ui/core";
+
+
+/* Component Imports ------------------------------------------------------------- */
 import AdminContact from "./AdminContact";
-import Button from "@material-ui/core/Button";
+
+
+/* ------------------------------------------------------------------------------- */
 
 
 const styles = theme => ({
@@ -45,7 +65,7 @@ const styles = theme => ({
 	}
 });
 
-class AdminContactUsPageManager extends Component {
+class AdminContactUsPageManager extends React.Component {
 
 	constructor(props) {
 		super(props);

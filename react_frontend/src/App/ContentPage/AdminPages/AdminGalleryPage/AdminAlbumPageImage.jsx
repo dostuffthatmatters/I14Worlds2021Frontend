@@ -1,20 +1,39 @@
-import React, {Component} from 'react';
-import {Card, Typography, CardMedia, CardContent} from "@material-ui/core";
+
+/* General Imports --------------------------------------------------------------- */
+import React from 'react';
+
+
+/* Routing Imports --------------------------------------------------------------- */
+import {Link} from 'react-router-dom';
+
+
+/* Styling Imports --------------------------------------------------------------- */
 import PropTypes from "prop-types";
 import {withStyles} from "@material-ui/styles";
-
 import clsx from 'clsx';
+
+
+/* AJAX Imports ------------------------------------------------------------------ */
 import {BackendREST} from "../../../../Wrappers/backendCommunication";
 import {BACKEND_URL} from "../../../../constants";
 
+
+/* Material UI Imports ----------------------------------------------------------- */
+import {
+	Card,
+	Typography,
+	CardMedia,
+	CardContent,
+	Dialog,
+	DialogTitle,
+	DialogActions,
+	Button} from "@material-ui/core";
 import CheckBoxTwoToneIcon from '@material-ui/icons/CheckBoxTwoTone';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import DeleteTwoToneIcon from '@material-ui/icons/DeleteTwoTone';
 
-import {Link} from 'react-router-dom';
 
-
-import {Dialog, DialogTitle, DialogActions, Button} from "@material-ui/core";
+/* ------------------------------------------------------------------------------- */
 
 
 const styles = theme => ({
@@ -60,7 +79,7 @@ const styles = theme => ({
 	}
 });
 
-class AdminAlbumPageImage extends Component {
+class AdminAlbumPageImage extends React.Component {
 
 	constructor(props) {
 		super(props);

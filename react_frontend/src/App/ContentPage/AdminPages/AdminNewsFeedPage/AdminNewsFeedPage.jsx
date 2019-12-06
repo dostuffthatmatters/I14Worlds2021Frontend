@@ -1,22 +1,47 @@
-import React, {Component} from 'react';
+
+/* General Imports --------------------------------------------------------------- */
+import React from 'react';
 import './AdminNewsFeedPage.scss';
-import {Divider, LinearProgress, Typography} from "@material-ui/core";
 
-import {Card, CardContent, CardMedia} from "@material-ui/core";
 
+/* Routing Imports --------------------------------------------------------------- */
+// noinspection ES6CheckImport
+import {
+	Switch,
+	Route,
+	Link} from 'react-router-dom';
+
+
+/* Styling Imports --------------------------------------------------------------- */
 import {Breakpoint} from 'react-socks';
-
 import PropTypes from "prop-types";
 import {withStyles} from "@material-ui/styles";
+
+
+/* AJAX Imports ------------------------------------------------------------------ */
 import {BackendGET} from "../../../../Wrappers/backendCommunication";
 import {BACKEND_URL} from "../../../../constants";
-import Grid from "@material-ui/core/Grid";
 
-import {Switch, Route, Link} from 'react-router-dom';
 
+/* Material UI Imports ----------------------------------------------------------- */
+import {
+	Button,
+	Grid,
+	Divider,
+	LinearProgress,
+	Typography,
+	Card,
+	CardContent,
+	CardMedia} from "@material-ui/core";
+
+
+/* Component Imports ------------------------------------------------------------- */
 import EditArticlePage from './EditArticlePage';
-import Button from "@material-ui/core/Button";
 import NewArticlePage from "./NewArticlePage";
+
+
+/* ------------------------------------------------------------------------------- */
+
 
 const styles = theme => ({
 	headline: {
@@ -99,7 +124,7 @@ const styles = theme => ({
 });
 
 
-class AdminNewsFeedPageManager extends Component {
+class AdminNewsFeedPageManager extends React.Component {
 
 	constructor(props) {
 		super(props);

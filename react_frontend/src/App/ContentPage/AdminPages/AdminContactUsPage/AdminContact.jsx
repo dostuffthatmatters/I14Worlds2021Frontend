@@ -1,24 +1,41 @@
-import React, {Component} from 'react';
+/* General Imports --------------------------------------------------------------- */
+import React from 'react';
 import './AdminContactUsPage.scss';
-import {Card, Typography, Divider} from "@material-ui/core";
+
+
+/* Styling Imports --------------------------------------------------------------- */
 import PropTypes from "prop-types";
 import {withStyles} from "@material-ui/styles";
-
 import clsx from 'clsx';
+
+
+/* AJAX Imports ------------------------------------------------------------------ */
 import {BackendREST} from "../../../../Wrappers/backendCommunication";
 import {BACKEND_URL} from "../../../../constants";
 
+
+/* Material UI Imports ----------------------------------------------------------- */
+import {
+	Card,
+	Typography,
+	Divider,
+	Dialog,
+	DialogTitle,
+	DialogActions,
+	Button} from "@material-ui/core";
 import AssignmentTwoToneIcon from '@material-ui/icons/AssignmentTwoTone';
 import PersonOutlineTwoToneIcon from '@material-ui/icons/PersonOutlineTwoTone';
 import MailTwoToneIcon from '@material-ui/icons/MailTwoTone';
-
 import CheckBoxTwoToneIcon from '@material-ui/icons/CheckBoxTwoTone';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import DeleteTwoToneIcon from '@material-ui/icons/DeleteTwoTone';
 
 
-import {Dialog, DialogTitle, DialogActions, Button} from "@material-ui/core";
+/* Component Imports ------------------------------------------------------------- */
 import {CustomTextField} from "../../../../Components/Forms/CustomTextField";
+
+
+/* ------------------------------------------------------------------------------- */
 
 
 const styles = theme => ({
@@ -74,7 +91,7 @@ const styles = theme => ({
 	}
 });
 
-class AdminContact extends Component {
+class AdminContact extends React.Component {
 
 	constructor(props) {
 		super(props);

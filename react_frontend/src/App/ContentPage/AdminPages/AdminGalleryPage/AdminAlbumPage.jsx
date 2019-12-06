@@ -1,17 +1,38 @@
-import React, {Component} from 'react';
-import {Typography} from "@material-ui/core";
+/* General Imports --------------------------------------------------------------- */
+import React from 'react';
+
+
+/* Routing Imports --------------------------------------------------------------- */
+// noinspection ES6CheckImport
+import {
+	Link,
+	Switch,
+	Route,
+	withRouter} from "react-router-dom";
+
+
+/* Styling Imports --------------------------------------------------------------- */
 import PropTypes from "prop-types";
 import {withStyles} from "@material-ui/styles";
 
-import Grid from "@material-ui/core/Grid";
 
-// noinspection ES6CheckImport
-import {Link, Switch, Route, withRouter} from "react-router-dom";
+/* AJAX Imports ------------------------------------------------------------------ */
 
+
+
+/* Material UI Imports ----------------------------------------------------------- */
+import {
+	Typography,
+	Grid} from "@material-ui/core";
 import ArrowBackIosTwoToneIcon from '@material-ui/icons/ArrowBackIosTwoTone';
 
+
+/* Component Imports ------------------------------------------------------------- */
 import AdminAlbumPageImage from "./AdminAlbumPageImage";
 import EditImagePage from './EditImagePage';
+
+
+/* ------------------------------------------------------------------------------- */
 
 
 const styles = theme => ({
@@ -92,7 +113,7 @@ const styles = theme => ({
 	}
 });
 
-class AdminAlbumPage extends Component {
+class AdminAlbumPage extends React.Component {
 
 	constructor(props) {
 		super(props);
