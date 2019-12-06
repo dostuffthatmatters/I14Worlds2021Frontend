@@ -1,16 +1,37 @@
-import React from 'react';
-import './GalleryPage.scss';
-import {Card, CardContent, CardMedia, LinearProgress, Typography} from "@material-ui/core";
 
-import PropTypes from "prop-types";
-import {withStyles} from "@material-ui/styles";
-import Grid from "@material-ui/core/Grid";
+/* General Imports --------------------------------------------------------------- */
+import React from 'react';
+
+
+/* Routing Imports --------------------------------------------------------------- */
+import Switch from 'react-router-dom/Switch';
+import Route from 'react-router-dom/Route';
+import Link from 'react-router-dom/Link';
+
+
+/* Styling Imports --------------------------------------------------------------- */
+import './GalleryPage.scss';
+
+
+/* AJAX Imports ------------------------------------------------------------------ */
 import {BackendREST} from "../../../../Wrappers/backendCommunication";
 import {BACKEND_URL} from "../../../../constants";
 
+
+/* Material UI Imports ----------------------------------------------------------- */
+import {Card, CardContent, CardMedia, LinearProgress, Typography, Grid} from "@material-ui/core";
+
+
+/* Component Imports ------------------------------------------------------------- */
 import Album from "./Album";
 
-import {Switch, Route, Link} from 'react-router-dom';
+
+/* Hook Linking Imports --------------------------------------------------------------- */
+import PropTypes from "prop-types";
+import withStyles from "@material-ui/styles/withStyles/withStyles";
+
+
+/* Styles ------------------------------------------------------------------------ */
 
 
 const styles = theme => ({
@@ -58,6 +79,11 @@ const styles = theme => ({
 
 	}
 });
+
+
+/* Component --------------------------------------------------------------------- */
+
+
 
 class GalleryPageManager extends React.Component {
 

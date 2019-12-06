@@ -1,12 +1,28 @@
+
+/* General Imports --------------------------------------------------------------- */
 import React from 'react'
-import {Card, CardMedia, Typography} from "@material-ui/core";
 
-import {Link, withRouter} from "react-router-dom";
-import PropTypes from "prop-types";
-import {withStyles} from "@material-ui/styles";
-import Grid from "@material-ui/core/Grid";
 
+/* Routing Imports --------------------------------------------------------------- */
+import Link from 'react-router-dom/Link';
+
+
+/* Material UI Imports ----------------------------------------------------------- */
+import {
+	Card,
+	CardMedia,
+	Typography,
+	Grid} from "@material-ui/core";
 import ArrowBackIosTwoToneIcon from '@material-ui/icons/ArrowBackIosTwoTone';
+
+
+/* Hook Linking Imports --------------------------------------------------------------- */
+import PropTypes from "prop-types";
+import withStyles from "@material-ui/styles/withStyles/withStyles";
+import withRouter from "react-router-dom/withRouter";
+
+
+/* ------------------------------------------------------------------------------- */
 
 
 const styles = theme => ({

@@ -1,10 +1,23 @@
-import React from 'react';
-import {Route} from 'react-router-dom';
 
+/* General Imports --------------------------------------------------------------- */
+import React from 'react';
+
+
+/* Routing Imports --------------------------------------------------------------- */
+// noinspection ES6CheckImport
+import {useHistory} from 'react-router-dom';
+import Route from 'react-router-dom/Route';
+
+
+/* Styling Imports --------------------------------------------------------------- */
 import './ContentPage.scss';
 
-import {useHistory} from 'react-router-dom';
 
+/* Material UI Imports ----------------------------------------------------------- */
+import {Container} from "@material-ui/core";
+
+
+/* Component Imports ------------------------------------------------------------- */
 import {EventPage} from "./UserPages/EventPage/EventPage";
 import NewsFeedPageManager from "./UserPages/NewsFeedPage/NewsFeedPage";
 import GalleryPageManager from "./UserPages/GalleryPage/GalleryPage";
@@ -14,7 +27,8 @@ import ContactUsPageManager from "./UserPages/ContactUsPage/ContactUsPage";
 import AdminNewsFeedPageManager from "./AdminPages/AdminNewsFeedPage/AdminNewsFeedPage";
 import AdminContactUsPageManager from "./AdminPages/AdminContactUsPage/AdminContactUsPage";
 
-import {Container} from "@material-ui/core";
+
+/* Component --------------------------------------------------------------------- */
 
 
 export const ContentPage = (props) => {
@@ -61,4 +75,4 @@ export const ContentPage = (props) => {
 			</Container>
 		</React.Fragment>
 	);
-}
+};

@@ -1,20 +1,45 @@
-import React, {Component} from 'react';
+
+/* General Imports --------------------------------------------------------------- */
+import React from 'react';
+
+
+/* Routing Imports --------------------------------------------------------------- */
+import Switch from 'react-router-dom/Switch';
+import Route from 'react-router-dom/Route';
+import Link from 'react-router-dom/Link';
+
+
+/* Styling Imports --------------------------------------------------------------- */
 import './NewsFeedPage.scss';
-import {LinearProgress, Typography} from "@material-ui/core";
-
-import {Card, CardContent, CardMedia} from "@material-ui/core";
-
 import {Breakpoint} from 'react-socks';
 
-import PropTypes from "prop-types";
-import {withStyles} from "@material-ui/styles";
+
+/* AJAX Imports ------------------------------------------------------------------ */
 import {BackendGET} from "../../../../Wrappers/backendCommunication";
 import {BACKEND_URL} from "../../../../constants";
-import Grid from "@material-ui/core/Grid";
 
-import {Switch, Route, Link} from 'react-router-dom';
 
+/* Material UI Imports ----------------------------------------------------------- */
+import {
+	LinearProgress,
+	Typography,
+	Card,
+	CardContent,
+	CardMedia,
+	Grid} from "@material-ui/core";
+
+
+/* Component Imports ------------------------------------------------------------- */
 import Article from './Article';
+
+
+/* Hook Linking Imports --------------------------------------------------------------- */
+import PropTypes from "prop-types";
+import withStyles from "@material-ui/styles/withStyles/withStyles";
+
+
+/* Styles ------------------------------------------------------------------------ */
+
 
 const styles = theme => ({
 	headline: {
@@ -76,7 +101,10 @@ const styles = theme => ({
 });
 
 
-class NewsFeedPageManager extends Component {
+/* Component --------------------------------------------------------------------- */
+
+
+class NewsFeedPageManager extends React.Component {
 
 	constructor(props) {
 		super(props);

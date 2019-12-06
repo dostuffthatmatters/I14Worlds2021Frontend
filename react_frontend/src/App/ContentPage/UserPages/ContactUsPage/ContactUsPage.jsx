@@ -1,27 +1,44 @@
-import React, {Component} from 'react';
+
+/* General Imports --------------------------------------------------------------- */
+import React from 'react';
+
+
+/* Styling Imports --------------------------------------------------------------- */
 import './ContactUsPage.scss';
-import {Typography, LinearProgress} from "@material-ui/core";
+
+
+/* AJAX Imports ------------------------------------------------------------------ */
 import {BackendGET} from "../../../../Wrappers/backendCommunication";
 import {BACKEND_URL} from "../../../../constants";
 
 
-import {Card, CardMedia, CardContent} from "@material-ui/core";
-import Grid from '@material-ui/core/Grid';
-
-import PropTypes from "prop-types";
-import {withStyles} from "@material-ui/styles";
-
-
+/* Material UI Imports ----------------------------------------------------------- */
+import {
+	Typography,
+	LinearProgress,
+	Card,
+	CardMedia,
+	CardContent,
+	Grid} from "@material-ui/core";
 import AssignmentTwoToneIcon from '@material-ui/icons/AssignmentTwoTone';
 import PersonOutlineTwoToneIcon from '@material-ui/icons/PersonOutlineTwoTone';
 import MailTwoToneIcon from '@material-ui/icons/MailTwoTone';
 
 
+/* Asset Imports ------------------------------------------------------------- */
 import AUSFlag from './images/AUSFlag.png';
 import CANFlag from './images/CANFlag.svg';
 import JPNFlag from './images/JPNFlag.svg';
 import USAFlag from './images/USAFlag.svg';
 import EURFlag from './images/EURFlag.svg';
+
+
+/* Hook Linking Imports --------------------------------------------------------------- */
+import PropTypes from "prop-types";
+import withStyles from "@material-ui/styles/withStyles/withStyles";
+
+
+/* Data -------------------------------------------------------------------------- */
 
 
 const countryHosts = [
@@ -52,6 +69,9 @@ const countryHosts = [
 		alt: "EURO Flag"
 	}
 ];
+
+
+/* Styles ------------------------------------------------------------------------ */
 
 
 const styles = theme => ({
@@ -118,7 +138,10 @@ const styles = theme => ({
 });
 
 
-class ContactUsPageManager extends Component {
+/* Component --------------------------------------------------------------------- */
+
+
+class ContactUsPageManager extends React.Component {
 
 	constructor(props) {
 		super(props);

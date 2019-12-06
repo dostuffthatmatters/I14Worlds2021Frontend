@@ -1,10 +1,29 @@
-import React, {Component} from "react";
-import {Card, CardMedia, Container, Typography} from "@material-ui/core";
-import PropTypes from "prop-types";
-import {withStyles} from "@material-ui/styles";
-import {Link, withRouter} from "react-router-dom";
 
+/* General Imports --------------------------------------------------------------- */
+import React from "react";
+
+
+/* Routing Imports --------------------------------------------------------------- */
+import Link from "react-router-dom/Link";
+
+
+/* Material UI Imports ----------------------------------------------------------- */
+import {
+	Card,
+	CardMedia,
+	Container,
+	Typography} from "@material-ui/core";
 import ArrowBackIosTwoToneIcon from '@material-ui/icons/ArrowBackIosTwoTone';
+
+
+/* Hook Linking Imports --------------------------------------------------------------- */
+import PropTypes from "prop-types";
+import withStyles from "@material-ui/styles/withStyles/withStyles";
+import withRouter from "react-router-dom/withRouter";
+
+
+/* Data -------------------------------------------------------------------------- */
+
 
 const contentReplacements = {
 	"<h6>": "<h6 class='MuiTypography-root MuiTypography-h6'>",
@@ -18,6 +37,9 @@ const contentReplacements = {
 	"<a target=": "<strong><a target=",
 	"</a>": "</a><strong>",
 };
+
+
+/* Styles ------------------------------------------------------------------------ */
 
 
 const styles = theme => ({
@@ -49,7 +71,10 @@ const styles = theme => ({
 });
 
 
-class Article extends Component {
+/* Component --------------------------------------------------------------------- */
+
+
+class Article extends React.Component {
 
 	constructor(props) {
 		super(props);

@@ -1,10 +1,20 @@
-import React, {Component} from 'react';
+
+/* General Imports --------------------------------------------------------------- */
+import React from 'react';
+
+
+/* Styling Imports --------------------------------------------------------------- */
 import './EventPage.scss';
 
+
+/* Material UI Imports ----------------------------------------------------------- */
 import {Typography} from "@material-ui/core";
 
 
-export class EventPage extends Component {
+/* ------------------------------------------------------------------------------- */
+
+
+export class EventPage extends React.Component {
 	render() {
 		return (
 			<div className="EventPage">

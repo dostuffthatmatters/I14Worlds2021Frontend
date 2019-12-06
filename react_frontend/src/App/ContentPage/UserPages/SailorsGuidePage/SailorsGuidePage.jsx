@@ -1,10 +1,16 @@
-
-import React, {Component} from 'react';
+/* General Imports --------------------------------------------------------------- */
+import React from 'react';
 import './SailorsGuidePage.scss';
+
+
+/* Material UI Imports ----------------------------------------------------------- */
 import {Typography} from "@material-ui/core";
 
 
-export class SailorsGuidePage extends Component {
+/* ------------------------------------------------------------------------------- */
+
+
+export class SailorsGuidePage extends React.Component {
 	render() {
 		return (
 			<div className="SailorsGuidePage">
