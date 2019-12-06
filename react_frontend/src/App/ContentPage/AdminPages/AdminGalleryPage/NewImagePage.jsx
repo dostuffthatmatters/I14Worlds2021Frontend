@@ -20,6 +20,7 @@ import {BACKEND_URL} from "../../../../constants";
 import {CustomSelect} from '../../../../Components/Forms/CustomSelect';
 import {CustomDatePicker} from '../../../../Components/Forms/CustomDatePicker';
 import {CustomTimePicker} from '../../../../Components/Forms/CustomTimePicker';
+import {CustomTextField} from "../../../../Components/Forms/CustomTextField";
 
 
 const styles = theme => ({
@@ -229,13 +230,16 @@ class NewImagePage extends React.Component {
 				</Grid>
 
 				<Grid item xs={12} className={classes.gridItem}>
-					<TextField fullWidth
-					           className={classes.descriptionInput}
-					           value={this.state.description}
-					           inputRef={this.descriptionInputRef}
-					           onChange={(event) => this.setState({description: event.target.value})}
-					           onKeyDown={this.handleDescriptionKeyDown}
-					           label="Description"/>
+					<CustomTextField
+						fullWidth={true}
+						className={classes.descriptionInput}
+						value={this.state.description}
+						ref={this.descriptionInputRef}
+						onChange={value => this.setState({description: value})}
+						onEnter={() => this.descriptionInputRef.current.blur()}
+						onTab={() => this.descriptionInputRef.current.blur()}
+						onEscape={() => this.descriptionInputRef.current.blur()}
+						label="Description"/>
 				</Grid>
 			</Grid>
 		);

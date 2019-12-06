@@ -89,7 +89,8 @@ class AdminContactUsPageManager extends Component {
 
 	updateState(index, contact) {
 		let contacts = this.state.contacts;
-		contacts[index] = contact;
+		// contacts[index] = contact;
+		Object.assign(contacts[index], contact);
 		this.setState({contacts: contacts});
 	}
 

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button, Card, CardContent, CardMedia, CircularProgress, TextField, Typography} from "@material-ui/core";
+import {Button, Card, CardContent, CardMedia, CircularProgress, Typography} from "@material-ui/core";
 import PropTypes from "prop-types";
 import {withStyles} from "@material-ui/styles";
 
@@ -13,9 +13,11 @@ import ArrowBackIosTwoToneIcon from '@material-ui/icons/ArrowBackIosTwoTone';
 
 import {BackendREST} from "../../../../Wrappers/backendCommunication";
 import {BACKEND_URL} from "../../../../constants";
+
 import {CustomSelect} from "../../../../Components/Forms/CustomSelect";
 import {CustomDatePicker} from "../../../../Components/Forms/CustomDatePicker";
 import {CustomTimePicker} from "../../../../Components/Forms/CustomTimePicker";
+import {CustomTextField} from "../../../../Components/Forms/CustomTextField";
 
 
 const styles = theme => ({
@@ -129,19 +131,8 @@ class EditImagePage extends Component {
 
 		this.descriptionInputRef = React.createRef();
 
-		this.handleDescriptionKeyDown = this.handleDescriptionKeyDown.bind(this);
-
 		this.processSave = this.processSave.bind(this);
 		this.getImageForm = this.getImageForm.bind(this);
-
-	}
-
-	handleDescriptionKeyDown(event) {
-		if (event.which === 13 || event.which === 9) {
-			// enter || tab
-			event.preventDefault();
-			this.descriptionInputRef.current.blur();
-		}
 	}
 
 	processSave() {
@@ -212,33 +203,39 @@ class EditImagePage extends Component {
 			<Grid container spacing={1} justify="center" alignItems="center">
 
 				<Grid item className={classes.gridItem}>
-	                <CustomSelect label="Album"
-					              value={this.state.albumId}
-					              selectOptions={this.props.albumIdtoNameDict}
-					              onChange={newValue => this.setState({albumId: newValue})}
-					              className={classes.formControl}/>
+					<CustomSelect
+						label="Album"
+						value={this.state.albumId}
+						selectOptions={this.props.albumIdtoNameDict}
+						onChange={newValue => this.setState({albumId: newValue})}
+						className={classes.formControl}/>
 				</Grid>
 
 				<Grid item className={classes.gridItem}>
-					<CustomDatePicker timestamp={this.state.timestamp === undefined ? parseInt(image.timestamp) : this.state.timestamp}
-					                  updateTimestamp={timestamp => this.setState({timestamp: timestamp})}
-					                  className={classes.datepicker}/>
+					<CustomDatePicker
+						timestamp={this.state.timestamp === undefined ? parseInt(image.timestamp) : this.state.timestamp}
+						updateTimestamp={timestamp => this.setState({timestamp: timestamp})}
+						className={classes.datepicker}/>
 				</Grid>
 
 				<Grid item className={classes.gridItem}>
-					<CustomTimePicker timestamp={this.state.timestamp === undefined ? parseInt(image.timestamp) : this.state.timestamp}
-					                  updateTimestamp={timestamp => this.setState({timestamp: timestamp})}
-					                  className={classes.timepicker}/>
+					<CustomTimePicker
+						timestamp={this.state.timestamp === undefined ? parseInt(image.timestamp) : this.state.timestamp}
+						updateTimestamp={timestamp => this.setState({timestamp: timestamp})}
+						className={classes.timepicker}/>
 				</Grid>
 
 				<Grid item xs={12} className={classes.gridItem}>
-					<TextField fullWidth
-					           className={classes.descriptionInput}
-					           value={this.state.description === undefined ? image.description : this.state.description}
-					           inputRef={this.descriptionInputRef}
-					           onChange={(event) => this.setState({description: event.target.value})}
-					           onKeyDown={this.handleDescriptionKeyDown}
-					           label="Description"/>
+					<CustomTextField
+						fullWidth={true}
+						className={classes.descriptionInput}
+						value={this.state.description === undefined ? image.description : this.state.description}
+						ref={this.descriptionInputRef}
+						onChange={value => this.setState({description: value})}
+						onEnter={() => this.descriptionInputRef.current.blur()}
+						onTab={() => this.descriptionInputRef.current.blur()}
+						onEscape={() => this.descriptionInputRef.current.blur()}
+						label="Description"/>
 				</Grid>
 			</Grid>
 		);

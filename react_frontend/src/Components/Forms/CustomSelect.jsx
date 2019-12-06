@@ -30,10 +30,8 @@ export const CustomSelect = (props) => {
 		}
 	};
 
-	const className = ("className" in props ? props["className"] : undefined);
-
 	return (
-		<FormControl className={className !== undefined ? className : ""}>
+		<FormControl className={"className" in props ? props["className"] : ""}>
 			<InputLabel id="select-label">{props.label}</InputLabel>
 			<Select
 				labelId="select-label"

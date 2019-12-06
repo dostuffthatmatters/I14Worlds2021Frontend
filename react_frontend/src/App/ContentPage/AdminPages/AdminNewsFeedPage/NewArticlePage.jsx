@@ -4,7 +4,7 @@ import 'date-fns';
 
 import PropTypes from "prop-types";
 import {withStyles} from "@material-ui/styles";
-import {Typography, Divider, Button, TextField, CircularProgress, Card, CardContent} from "@material-ui/core";
+import {Typography, Divider, Button, CircularProgress, Card, CardContent} from "@material-ui/core";
 import {Link} from "react-router-dom";
 
 import Breakpoint from 'react-socks';
@@ -22,6 +22,7 @@ import CheckBoxTwoToneIcon from '@material-ui/icons/CheckBoxTwoTone';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import {CustomDatePicker} from "../../../../Components/Forms/CustomDatePicker";
 import {CustomTimePicker} from "../../../../Components/Forms/CustomTimePicker";
+import {CustomTextField} from "../../../../Components/Forms/CustomTextField";
 
 
 const styles = theme => ({
@@ -144,45 +145,12 @@ class NewArticlePage extends React.Component {
 			author: this.props.api.name
 		};
 
-		this.handleHeadlineKeyDown = this.handleHeadlineKeyDown.bind(this);
 		this.headlineInputRef = React.createRef();
-
-		this.handleContentKeyDown = this.handleContentKeyDown.bind(this);
 		this.contentInputRef = React.createRef();
-
-		this.handleAuthorKeyDown = this.handleAuthorKeyDown.bind(this);
 		this.authorInputRef = React.createRef();
 
 		this.processUpload = this.processUpload.bind(this);
 		this.getArticleForm = this.getArticleForm.bind(this);
-	}
-
-	handleHeadlineKeyDown(event) {
-		if (event.which === 13 || event.which === 27) {
-			// enter || escape
-			event.preventDefault();
-			this.headlineInputRef.current.blur();
-		} else if (event.which === 9) {
-			// tab
-			event.preventDefault();
-			this.contentInputRef.current.focus();
-		}
-	}
-
-	handleContentKeyDown(event) {
-		if (event.which === 27) {
-			//escape
-			event.preventDefault();
-			this.contentInputRef.current.blur();
-		}
-	}
-
-	handleAuthorKeyDown(event) {
-		if (event.which === 13 || event.which === 27 || event.which === 9) {
-			// enter || escape || tab
-			event.preventDefault();
-			this.authorInputRef.current.blur();
-		}
 	}
 
 	processUpload() {
@@ -228,25 +196,35 @@ class NewArticlePage extends React.Component {
 			<Grid container spacing={2} justify="center" alignItems="center">
 
 				<Grid item xs={12} className={classes.gridItem}>
-					<TextField fullWidth
-					           className={classes.headlineInput}
-					           value={this.state.headline}
-					           inputRef={this.headlineInputRef}
-					           onChange={(event) => this.setState({headline: event.target.value})}
-					           onKeyDown={this.handleHeadlineKeyDown}
-					           label="Headline"/>
+					<CustomTextField
+						fullWidth={true}
+						label="Headline"
+
+						className={classes.headlineInput}
+						value={this.state.headline}
+						ref={this.headlineInputRef}
+
+						onChange={value => this.setState({headline: value})}
+						onEnter={() => this.contentInputRef.current.focus()}
+						onTab={() => this.contentInputRef.current.focus()}
+						onEscape={() => this.headlineInputRef.current.blur()}/>
 				</Grid>
 
 				<Grid item xs={12} className={classes.gridItem}>
-					<TextField fullWidth
-					           multiline
-					           rowsMax="12"
-					           className={classes.contentInput}
-					           value={this.state.content}
-					           inputRef={this.contentInputRef}
-					           onChange={(event) => this.setState({content: event.target.value})}
-					           onKeyDown={this.handleContentKeyDown}
-					           label="Content"/>
+					<CustomTextField
+						fullWidth={true}
+						label="Content"
+						multiline={true}
+						rowsMax="12"
+
+						className={classes.contentInput}
+						value={this.state.content}
+						ref={this.contentInputRef}
+
+						onChange={value => this.setState({content: value})}
+						onTab={() => null}
+						onEscape={() => this.contentInputRef.current.blur()}/>
+
 				</Grid>
 
 				<Grid item className={classes.gridItem}>
@@ -277,12 +255,18 @@ class NewArticlePage extends React.Component {
 				</Grid>
 
 				<Grid item className={classes.gridItem}>
-					<TextField className={classes.authorInput}
-					           value={this.state.author}
-					           inputRef={this.authorInputRef}
-					           onChange={(event) => this.setState({author: event.target.value})}
-					           onKeyDown={this.handleAuthorKeyDown}
-					           label="Author"/>
+					<CustomTextField
+						fullWidth={false}
+						label="Author"
+
+						className={classes.authorInput}
+						value={this.state.author}
+						ref={this.authorInputRef}
+
+						onChange={value => this.setState({author: value})}
+						onEnter={() => this.authorInputRef.current.blur()}
+						onTab={() => this.authorInputRef.current.blur()}
+						onEscape={() => this.authorInputRef.current.blur()}/>
 				</Grid>
 
 			</Grid>

@@ -3,7 +3,6 @@ import './AdminContactUsPage.scss';
 import {Card, Typography, Divider} from "@material-ui/core";
 import PropTypes from "prop-types";
 import {withStyles} from "@material-ui/styles";
-import TextField from "@material-ui/core/TextField";
 
 import clsx from 'clsx';
 import {BackendREST} from "../../../../Wrappers/backendCommunication";
@@ -19,6 +18,7 @@ import DeleteTwoToneIcon from '@material-ui/icons/DeleteTwoTone';
 
 
 import {Dialog, DialogTitle, DialogActions, Button} from "@material-ui/core";
+import {CustomTextField} from "../../../../Components/Forms/CustomTextField";
 
 
 const styles = theme => ({
@@ -89,16 +89,6 @@ class AdminContact extends Component {
 
 		this.pushCurrentVersion = this.pushCurrentVersion.bind(this);
 
-		this.handleRoleKeyDown = this.handleRoleKeyDown.bind(this);
-		this.handleNameKeyDown = this.handleNameKeyDown.bind(this);
-		this.handleEmailKeyDown = this.handleEmailKeyDown.bind(this);
-
-		this.handleRoleChange = this.handleRoleChange.bind(this);
-		this.handleNameChange = this.handleNameChange.bind(this);
-		this.handleEmailChange = this.handleEmailChange.bind(this);
-
-		this.handleBlur = this.handleBlur.bind(this);
-
 		this.toggleVisibility = this.toggleVisibility.bind(this);
 		this.triggerRemove = this.triggerRemove.bind(this);
 	}
@@ -120,88 +110,6 @@ class AdminContact extends Component {
 		}).catch((rejectMessage) => {
 			console.log("Pushing current version: Failed");
 		});
-	}
-
-	handleRoleChange(event) {
-		let newContact = {
-			role: event.target.value,
-			name: this.props.contact.name,
-			email: this.props.contact.email,
-			visible: this.props.contact.visible,
-			id: this.props.contact.id
-		};
-		this.props.updateState(this.props.index, newContact);
-	}
-
-	handleRoleKeyDown(event) {
-		if (event.which === 13) {
-			// enter
-			event.preventDefault();
-			this.roleInputRef.current.blur();
-			// Changes will be pushed automatically on blur
-		} else if (event.which === 9) {
-			// tab
-			event.preventDefault();
-			this.roleInputRef.current.blur();
-			this.nameInputRef.current.focus();
-			// Changes will be pushed automatically on blur
-		}
-	}
-
-	handleNameChange(event) {
-		let newContact = {
-			role: this.props.contact.role,
-			name: event.target.value,
-			email: this.props.contact.email,
-			visible: this.props.contact.visible,
-			id: this.props.contact.id
-		};
-		this.props.updateState(this.props.index, newContact);
-	}
-
-	handleNameKeyDown(event) {
-		if (event.which === 13) {
-			// enter
-			event.preventDefault();
-			this.nameInputRef.current.blur();
-			// Changes will be pushed automatically on blur
-		} else if (event.which === 9) {
-			// tab
-			event.preventDefault();
-			this.nameInputRef.current.blur();
-			this.emailInputRef.current.focus();
-			// Changes will be pushed automatically on blur
-		}
-	}
-
-	handleEmailChange(event) {
-		let newContact = {
-			role: this.props.contact.role,
-			name: this.props.contact.name,
-			email: event.target.value,
-			visible: this.props.contact.visible,
-			id: this.props.contact.id
-		};
-		this.props.updateState(this.props.index, newContact);
-	}
-
-	handleEmailKeyDown(event) {
-		if (event.which === 13) {
-			// enter
-			event.preventDefault();
-			this.emailInputRef.current.blur();
-			// Changes will be pushed automatically on blur
-		} else if (event.which === 9) {
-			// tab
-			event.preventDefault();
-			this.emailInputRef.current.blur();
-			this.roleInputRef.current.focus();
-			// Changes will be pushed automatically on blur
-		}
-	}
-
-	handleBlur() {
-		this.pushCurrentVersion();
 	}
 
 	toggleVisibility() {
@@ -255,36 +163,48 @@ class AdminContact extends Component {
 			      elevation={3}>
 				<div className={clsx(classes.iconInputBox, classes.textFieldMarginBottom)}>
 					<AssignmentTwoToneIcon className={classes.lineIcon}/>
-					<TextField fullWidth
-					           label="Role"
-					           value={this.props.contact.role}
-					           onChange={this.handleRoleChange}
-					           onKeyDown={this.handleRoleKeyDown}
-					           onBlur={this.handleBlur}
-					           inputRef={this.roleInputRef}
-					           className={classes.textField}/>
+					<CustomTextField
+						fullWidth={true}
+						label="Role"
+						className={classes.textField}
+						value={this.props.contact.role}
+						ref={this.roleInputRef}
+						onChange={value => this.props.updateState(this.props.index, {role: value})}
+						onEnter={() => this.nameInputRef.current.focus()}
+						onTab={() => this.nameInputRef.current.focus()}
+						onEscape={() => this.roleInputRef.current.blur()}
+						onBlur={() => this.pushCurrentVersion()}
+					/>
 				</div>
 				<div className={clsx(classes.iconInputBox, classes.textFieldMarginTop, classes.textFieldMarginBottom)}>
 					<PersonOutlineTwoToneIcon className={classes.lineIcon}/>
-					<TextField fullWidth
-					           label="Name"
-					           value={this.props.contact.name}
-					           onChange={this.handleNameChange}
-					           onKeyDown={this.handleNameKeyDown}
-					           onBlur={this.handleBlur}
-					           inputRef={this.nameInputRef}
-					           className={clsx(classes.textField)}/>
+					<CustomTextField
+						fullWidth={true}
+						label="Name"
+						className={classes.textField}
+						value={this.props.contact.name}
+						ref={this.nameInputRef}
+						onChange={value => this.props.updateState(this.props.index, {name: value})}
+						onEnter={() => this.emailInputRef.current.focus()}
+						onTab={() => this.emailInputRef.current.focus()}
+						onEscape={() => this.nameInputRef.current.blur()}
+						onBlur={() => this.pushCurrentVersion()}
+					/>
 				</div>
 				<div className={clsx(classes.iconInputBox, classes.textFieldMarginTop, classes.textFieldMarginBottom)}>
 					<MailTwoToneIcon className={classes.lineIcon}/>
-					<TextField fullWidth
-					           label="Email"
-					           value={this.props.contact.email}
-					           onChange={this.handleEmailChange}
-					           onKeyDown={this.handleEmailKeyDown}
-					           onBlur={this.handleBlur}
-					           inputRef={this.emailInputRef}
-					           className={clsx(classes.textField)}/>
+					<CustomTextField
+						fullWidth={true}
+						label="Email"
+						className={classes.textField}
+						value={this.props.contact.email}
+						ref={this.emailInputRef}
+						onChange={value => this.props.updateState(this.props.index, {email: value})}
+						onEnter={() => this.emailInputRef.current.blur()}
+						onTab={() => this.emailInputRef.current.blur()}
+						onEscape={() => this.emailInputRef.current.blur()}
+						onBlur={() => this.pushCurrentVersion()}
+					/>
 				</div>
 				<Divider/>
 				<div className={classes.visibilityBox}>

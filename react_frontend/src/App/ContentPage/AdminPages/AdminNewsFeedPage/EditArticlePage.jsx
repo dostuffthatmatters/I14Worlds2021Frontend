@@ -5,7 +5,6 @@ import {
 	CardContent,
 	CircularProgress,
 	Divider,
-	TextField,
 	Typography
 } from "@material-ui/core";
 import PropTypes from "prop-types";
@@ -24,6 +23,7 @@ import CheckBoxTwoToneIcon from '@material-ui/icons/CheckBoxTwoTone';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import {CustomDatePicker} from "../../../../Components/Forms/CustomDatePicker";
 import {CustomTimePicker} from "../../../../Components/Forms/CustomTimePicker";
+import {CustomTextField} from "../../../../Components/Forms/CustomTextField";
 
 
 const styles = theme => ({
@@ -151,45 +151,12 @@ class EditArticlePage extends Component {
 		this.articleId = this.props.match.params.articleId;
 		this.getArticleForm = this.getArticleForm.bind(this);
 
-		this.handleHeadlineKeyDown = this.handleHeadlineKeyDown.bind(this);
 		this.headlineInputRef = React.createRef();
-
-		this.handleContentKeyDown = this.handleContentKeyDown.bind(this);
 		this.contentInputRef = React.createRef();
-
-		this.handleAuthorKeyDown = this.handleAuthorKeyDown.bind(this);
 		this.authorInputRef = React.createRef();
 
 		this.processUpload = this.processUpload.bind(this);
 		this.getArticleForm = this.getArticleForm.bind(this);
-	}
-
-	handleHeadlineKeyDown(event) {
-		if (event.which === 13 || event.which === 27) {
-			// enter || escape
-			event.preventDefault();
-			this.headlineInputRef.current.blur();
-		} else if (event.which === 9) {
-			// tab
-			event.preventDefault();
-			this.contentInputRef.current.focus();
-		}
-	}
-
-	handleContentKeyDown(event) {
-		if (event.which === 27) {
-			//escape
-			event.preventDefault();
-			this.contentInputRef.current.blur();
-		}
-	}
-
-	handleAuthorKeyDown(event) {
-		if (event.which === 13 || event.which === 27 || event.which === 9) {
-			// enter || escape || tab
-			event.preventDefault();
-			this.authorInputRef.current.blur();
-		}
 	}
 
 	processUpload() {
@@ -249,61 +216,79 @@ class EditArticlePage extends Component {
 			<Grid container spacing={2} justify="center" alignItems="center">
 
 				<Grid item xs={12} className={classes.gridItem}>
-					<TextField fullWidth
-					           className={classes.headlineInput}
-					           value={this.state.headline === undefined ? article.headline: this.state.headline}
-					           inputRef={this.headlineInputRef}
-					           onChange={(event) => this.setState({headline: event.target.value})}
-					           onKeyDown={this.handleHeadlineKeyDown}
-					           label="Headline"/>
+					<CustomTextField
+						fullWidth={true}
+						label="Headline"
+
+						className={classes.headlineInput}
+						value={this.state.headline === undefined ? article.headline : this.state.headline}
+						ref={this.headlineInputRef}
+
+						onChange={value => this.setState({headline: value})}
+						onEnter={() => this.contentInputRef.current.focus()}
+						onTab={() => this.contentInputRef.current.focus()}
+						onEscape={() => this.headlineInputRef.current.blur()}/>
 				</Grid>
 
 				<Grid item xs={12} className={classes.gridItem}>
-					<TextField fullWidth
-					           multiline
-					           rowsMax="12"
-					           className={classes.contentInput}
-					           value={this.state.content === undefined ? article.content_markdown: this.state.content}
-					           inputRef={this.contentInputRef}
-					           onChange={(event) => this.setState({content: event.target.value})}
-					           onKeyDown={this.handleContentKeyDown}
-					           label="Content"/>
+					<CustomTextField
+						fullWidth={true}
+						label="Content"
+						multiline={true}
+						rowsMax="12"
+
+						className={classes.contentInput}
+						value={this.state.content === undefined ? article.content_markdown : this.state.content}
+						ref={this.contentInputRef}
+
+						onChange={value => this.setState({content: value})}
+						onTab={() => null}
+						onEscape={() => this.contentInputRef.current.blur()}/>
+
 				</Grid>
 
 				<Grid item className={classes.gridItem}>
-					<CustomDatePicker timestamp={this.state.timestamp === undefined ? article.timestamp: this.state.timestamp}
-					                  updateTimestamp={timestamp => this.setState({timestamp: timestamp})}
-					                  className={classes.datepicker}/>
+					<CustomDatePicker
+						timestamp={this.state.timestamp === undefined ? article.timestamp : this.state.timestamp}
+						updateTimestamp={timestamp => this.setState({timestamp: timestamp})}
+						className={classes.datepicker}/>
 				</Grid>
 
 				<Grid item className={classes.gridItem}>
-					<CustomTimePicker timestamp={this.state.timestamp === undefined ? article.timestamp: this.state.timestamp}
-					                  updateTimestamp={timestamp => this.setState({timestamp: timestamp})}
-					                  className={classes.timepicker}/>
+					<CustomTimePicker
+						timestamp={this.state.timestamp === undefined ? article.timestamp : this.state.timestamp}
+						updateTimestamp={timestamp => this.setState({timestamp: timestamp})}
+						className={classes.timepicker}/>
 				</Grid>
 
 				<Grid item className={clsx(classes.gridItem, classes.visibilityBox)}>
 					<div className={classes.visibilityBox}>
-						{(this.state.visible === undefined ? article.visible: this.state.visible) === 1 && (
+						{(this.state.visible === undefined ? article.visible : this.state.visible) === 1 && (
 							<CheckBoxTwoToneIcon onClick={() => this.setState({visible: 0})}
 							                     className={classes.visibilityIcon}/>)}
-						{(this.state.visible === undefined ? article.visible: this.state.visible) === 0 && (
+						{(this.state.visible === undefined ? article.visible : this.state.visible) === 0 && (
 							<CheckBoxOutlineBlankIcon onClick={() => this.setState({visible: 1})}
 							                          className={classes.visibilityIcon}/>)}
 						<Typography className={classes.visibilityText}
 						            variant="body1">
-							{(this.state.visible === undefined ? article.visible: this.state.visible) ? "Currently Visible" : "Currently Invisible"}
+							{(this.state.visible === undefined ? article.visible : this.state.visible) ? "Currently Visible" : "Currently Invisible"}
 						</Typography>
 					</div>
 				</Grid>
 
 				<Grid item className={classes.gridItem}>
-					<TextField className={classes.authorInput}
-					           value={this.state.author === undefined ? article.author: this.state.author}
-					           inputRef={this.authorInputRef}
-					           onChange={(event) => this.setState({author: event.target.value})}
-					           onKeyDown={this.handleAuthorKeyDown}
-					           label="Author"/>
+					<CustomTextField
+						fullWidth={false}
+						label="Author"
+
+						className={classes.authorInput}
+						value={this.state.author === undefined ? article.author : this.state.author}
+						ref={this.authorInputRef}
+
+						onChange={value => this.setState({author: value})}
+						onEnter={() => this.authorInputRef.current.blur()}
+						onTab={() => this.authorInputRef.current.blur()}
+						onEscape={() => this.authorInputRef.current.blur()}/>
 				</Grid>
 
 			</Grid>
@@ -355,7 +340,7 @@ class EditArticlePage extends Component {
 					</Link>
 				</Breakpoint>
 				<Typography variant="h4" className={classes.headline}>
-					{this.state.headline === undefined ? article.headline: this.state.headline}
+					{this.state.headline === undefined ? article.headline : this.state.headline}
 				</Typography>
 				<Divider className={classes.divider}/>
 				{articleContent}
