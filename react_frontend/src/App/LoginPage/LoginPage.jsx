@@ -11,7 +11,7 @@ import './LoginPage.scss';
 
 
 /* AJAX Imports ------------------------------------------------------------------ */
-import {BackendPOST} from "../../Wrappers/backendCommunication";
+import {BackendREST} from "../../Wrappers/backendCommunication";
 import {BACKEND_URL} from '../../constants';
 
 
@@ -112,7 +112,7 @@ class LoginPageManager extends React.Component {
 			password: this.state.password,
 		};
 
-		BackendPOST(BACKEND_URL + "/backend/login", params).then((resolveMessage) => {
+		BackendREST(BACKEND_URL + "/backend/login", params, "POST").then((resolveMessage) => {
 			const resultJson = JSON.parse(resolveMessage);
 
 			console.log({resultJson: resultJson});

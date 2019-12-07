@@ -40,6 +40,7 @@ export function BackendGET(url, params) {
 				if (typeof (params[key]) !== "string") {
 					query_string += key + "=";
 					// noinspection JSUnfilteredForInLoop
+					// eslint-disable-next-line
 					params[key].forEach((element) => {
 						query_string += element.toString() + ",";
 					});
