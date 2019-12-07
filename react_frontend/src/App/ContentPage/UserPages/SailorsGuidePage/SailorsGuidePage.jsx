@@ -1,5 +1,9 @@
+
 /* General Imports --------------------------------------------------------------- */
 import React from 'react';
+
+
+/* Style Imports ----------------------------------------------------------------- */
 import './SailorsGuidePage.scss';
 
 
@@ -7,15 +11,52 @@ import './SailorsGuidePage.scss';
 import {Typography} from "@material-ui/core";
 
 
+/* Component Imports ------------------------------------------------------------- */
+import ScheduleTable from "./ScheduleTable";
+
+
+/* Hook Linking Imports ---------------------------------------------------------- */
+import PropTypes from "prop-types";
+import withStyles from "@material-ui/styles/withStyles/withStyles";
+
+
 /* ------------------------------------------------------------------------------- */
 
 
-export class SailorsGuidePage extends React.Component {
+const styles = theme => ({
+	headline: {
+		display: "block",
+		textAlign: "center",
+		marginBottom: theme.spacing(4)
+	},
+	headlineSmall: {
+		display: "block",
+		textAlign: "center",
+		marginBottom: theme.spacing(1)
+	},
+});
+
+
+/* Component --------------------------------------------------------------------- */
+
+
+class SailorsGuidePage extends React.Component {
 	render() {
+
+		const {classes} = this.props;
+
 		return (
 			<div className="SailorsGuidePage">
-				<Typography variant="h3">Sailors Guide</Typography>
+				<Typography variant="h4" className={classes.headline}>Sailors Guide</Typography>
+				<Typography variant="h6" className={classes.headlineSmall}>Preliminary Schedule</Typography>
+				<ScheduleTable/>
 			</div>
 		);
 	}
 }
+
+SailorsGuidePage.propTypes = {
+	classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(SailorsGuidePage);

@@ -22,7 +22,7 @@ import {EventPage} from "./UserPages/EventPage/EventPage";
 import NewsFeedPageManager from "./UserPages/NewsFeedPage/NewsFeedPage";
 import GalleryPageManager from "./UserPages/GalleryPage/GalleryPage";
 import AdminGalleryPageManager from "./AdminPages/AdminGalleryPage/AdminGalleryPage";
-import {SailorsGuidePage} from "./UserPages/SailorsGuidePage/SailorsGuidePage";
+import SailorsGuidePage from "./UserPages/SailorsGuidePage/SailorsGuidePage";
 import ContactUsPageManager from "./UserPages/ContactUsPage/ContactUsPage";
 import AdminNewsFeedPageManager from "./AdminPages/AdminNewsFeedPage/AdminNewsFeedPage";
 import AdminContactUsPageManager from "./AdminPages/AdminContactUsPage/AdminContactUsPage";
