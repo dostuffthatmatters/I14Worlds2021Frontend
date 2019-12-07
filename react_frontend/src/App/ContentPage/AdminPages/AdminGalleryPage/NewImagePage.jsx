@@ -2,17 +2,19 @@
 import React from 'react';
 import 'date-fns';
 
+
 /* Routing Imports --------------------------------------------------------------- */
-import {Link} from "react-router-dom";
+import Link from "react-router-dom/Link";
+
 
 /* Styling Imports --------------------------------------------------------------- */
-import PropTypes from "prop-types";
-import {withStyles} from "@material-ui/styles";
 import Breakpoint from 'react-socks';
+
 
 /* AJAX Imports ------------------------------------------------------------------ */
 import {BackendImagePost} from "../../../../Wrappers/backendCommunication";
 import {BACKEND_URL} from "../../../../constants";
+
 
 /* Material UI Imports ----------------------------------------------------------- */
 import {
@@ -26,6 +28,7 @@ import {
 import ArrowBackIosTwoToneIcon from '@material-ui/icons/ArrowBackIosTwoTone';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 
+
 /* Component Imports ------------------------------------------------------------- */
 import {CustomSelect} from '../../../../Components/Forms/CustomSelect';
 import {CustomDatePicker} from '../../../../Components/Forms/CustomDatePicker';
@@ -33,7 +36,12 @@ import {CustomTimePicker} from '../../../../Components/Forms/CustomTimePicker';
 import {CustomTextField} from "../../../../Components/Forms/CustomTextField";
 
 
-/* ------------------------------------------------------------------------------- */
+/* Hook Linking Imports ---------------------------------------------------------- */
+import PropTypes from "prop-types";
+import withStyles from "@material-ui/styles/withStyles/withStyles";
+
+
+/* Styles ------------------------------------------------------------------------ */
 
 
 const styles = theme => ({
@@ -122,6 +130,10 @@ const styles = theme => ({
 		justifyContent: "center"
 	}
 });
+
+
+/* Component --------------------------------------------------------------------- */
+
 
 class NewImagePage extends React.Component {
 	constructor(props) {
@@ -296,33 +308,3 @@ NewImagePage.propTypes = {
 };
 
 export default withStyles(styles)(NewImagePage);
-
-
-
-
-/* General Imports --------------------------------------------------------------- */
-
-
-
-/* Routing Imports --------------------------------------------------------------- */
-
-
-
-/* Styling Imports --------------------------------------------------------------- */
-
-
-
-/* AJAX Imports ------------------------------------------------------------------ */
-
-
-
-/* Material UI Imports ----------------------------------------------------------- */
-
-
-
-/* Component Imports ------------------------------------------------------------- */
-
-
-
-/* ------------------------------------------------------------------------------- */
-

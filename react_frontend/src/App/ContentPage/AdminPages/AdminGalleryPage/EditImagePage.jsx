@@ -3,14 +3,7 @@ import React from 'react';
 
 
 /* Routing Imports --------------------------------------------------------------- */
-import {Link} from "react-router-dom";
-// noinspection ES6CheckImport
-import {withRouter} from "react-router-dom";
-
-
-/* Styling Imports --------------------------------------------------------------- */
-import PropTypes from "prop-types";
-import {withStyles} from "@material-ui/styles";
+import Link from "react-router-dom/Link";
 
 
 /* AJAX Imports ------------------------------------------------------------------ */
@@ -37,7 +30,13 @@ import {CustomTimePicker} from "../../../../Components/Forms/CustomTimePicker";
 import {CustomTextField} from "../../../../Components/Forms/CustomTextField";
 
 
-/* ------------------------------------------------------------------------------- */
+/* Hook Linking Imports ---------------------------------------------------------- */
+import PropTypes from "prop-types";
+import withStyles from "@material-ui/styles/withStyles/withStyles";
+import withRouter from "react-router-dom/withRouter";
+
+
+/* Styles ------------------------------------------------------------------------ */
 
 
 const styles = theme => ({
@@ -131,6 +130,10 @@ const styles = theme => ({
 	}
 });
 
+
+/* Component --------------------------------------------------------------------- */
+
+
 class EditImagePage extends React.Component {
 
 	constructor(props) {
@@ -207,7 +210,7 @@ class EditImagePage extends React.Component {
 					saving: false,
 				});
 			}
-		}).catch((rejectMessage) => {
+		}).catch(() => {
 			console.log("Saving image: failed");
 			this.setState({
 				saving: false,

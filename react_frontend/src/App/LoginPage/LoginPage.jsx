@@ -1,21 +1,38 @@
-import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
+/* General Imports --------------------------------------------------------------- */
+import React from 'react';
 
 
-import PropTypes from 'prop-types';
-import {withStyles} from '@material-ui/styles';
+/* Routing Imports --------------------------------------------------------------- */
+import Link from 'react-router-dom/Link';
 
-import {withRouter} from 'react-router-dom';
 
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-
+/* Styling Imports --------------------------------------------------------------- */
 import './LoginPage.scss';
-import {Container, Typography, CircularProgress, Snackbar, SnackbarContent} from "@material-ui/core";
-import {BackendPOST} from "../../Wrappers/backendCommunication";
 
+
+/* AJAX Imports ------------------------------------------------------------------ */
+import {BackendPOST} from "../../Wrappers/backendCommunication";
 import {BACKEND_URL} from '../../constants';
 
+
+/* Material UI Imports ----------------------------------------------------------- */
+import {
+	Container,
+	Typography,
+	CircularProgress,
+	Snackbar,
+	SnackbarContent,
+	TextField,
+	Button} from "@material-ui/core";
+
+
+/* Hook Linking Imports ---------------------------------------------------------- */
+import PropTypes from 'prop-types';
+import withStyles from '@material-ui/styles/withStyles/withStyles';
+import withRouter from 'react-router-dom/withRouter';
+
+
+/* Styles ------------------------------------------------------------------------ */
 
 
 const styles = theme => ({
@@ -60,7 +77,10 @@ const styles = theme => ({
 });
 
 
-class LoginPageManager extends Component {
+/* Component --------------------------------------------------------------------- */
+
+
+class LoginPageManager extends React.Component {
 	constructor(props) {
 		super(props);
 

@@ -1,8 +1,17 @@
+
+/* General Imports --------------------------------------------------------------- */
 import React from "react";
-import FormControl from "@material-ui/core/FormControl";
-import InputLabel from "@material-ui/core/InputLabel";
-import Select from "@material-ui/core/Select";
-import MenuItem from "@material-ui/core/MenuItem";
+
+
+/* Material UI Imports ----------------------------------------------------------- */
+import {
+	FormControl,
+	InputLabel,
+	Select,
+	MenuItem} from "@material-ui/core";
+
+
+/* Component --------------------------------------------------------------------- */
 
 
 export const CustomSelect = (props) => {

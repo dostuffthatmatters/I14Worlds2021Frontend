@@ -4,12 +4,10 @@ import React from 'react';
 
 
 /* Routing Imports --------------------------------------------------------------- */
-import {Link} from 'react-router-dom';
+import Link from "react-router-dom/Link";
 
 
 /* Styling Imports --------------------------------------------------------------- */
-import PropTypes from "prop-types";
-import {withStyles} from "@material-ui/styles";
 import clsx from 'clsx';
 
 
@@ -33,7 +31,12 @@ import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import DeleteTwoToneIcon from '@material-ui/icons/DeleteTwoTone';
 
 
-/* ------------------------------------------------------------------------------- */
+/* Hook Linking Imports ---------------------------------------------------------- */
+import PropTypes from "prop-types";
+import withStyles from "@material-ui/styles/withStyles/withStyles";
+
+
+/* Styles ------------------------------------------------------------------------ */
 
 
 const styles = theme => ({
@@ -78,6 +81,10 @@ const styles = theme => ({
 		bottom: theme.spacing(2),
 	}
 });
+
+
+/* Component --------------------------------------------------------------------- */
+
 
 class AdminAlbumPageImage extends React.Component {
 
@@ -134,12 +141,12 @@ class AdminAlbumPageImage extends React.Component {
 			image_id: this.props.image.id
 		};
 
-		BackendREST(BACKEND_URL + "/backend/database/image", params, "DELETE").then((resolveMessage) => {
+		BackendREST(BACKEND_URL + "/backend/database/image", params, "DELETE").then(() => {
 			this.setState({
 				deleteDialogOpen: false
 			});
 			this.props.removeImageFromView(this.props.index);
-		}).catch((rejectmessage) => {
+		}).catch(() => {
 			this.setState({
 				deleteDialogOpen: false
 			});

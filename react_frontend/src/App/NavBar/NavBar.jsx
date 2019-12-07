@@ -1,15 +1,26 @@
+/* General Imports --------------------------------------------------------------- */
 import React, {useState} from 'react';
-import {Link} from 'react-router-dom';
 
+
+/* Routing Imports --------------------------------------------------------------- */
+import Link from 'react-router-dom/Link';
+
+
+/* Styling Imports --------------------------------------------------------------- */
 import {makeStyles} from "@material-ui/core";
+import './NavBar.scss';
 
-import {AppBar, Toolbar, IconButton, Typography} from '@material-ui/core';
-import {Drawer, Divider} from "@material-ui/core";
+
+/* Material UI Imports ----------------------------------------------------------- */
+import {
+	AppBar,
+	Toolbar,
+	IconButton,
+	Typography,
+	Drawer,
+	Divider,
+	Button} from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
-
-import {Button} from "@material-ui/core";
-
-
 import EmojiEventsTwoToneIcon from '@material-ui/icons/EmojiEventsTwoTone';
 import ChatTwoToneIcon from '@material-ui/icons/ChatTwoTone';
 import PermMediaTwoToneIcon from '@material-ui/icons/PermMediaTwoTone';
@@ -18,7 +29,7 @@ import ContactMailTwoToneIcon from '@material-ui/icons/ContactMailTwoTone';
 import AccountCircleTwoToneIcon from '@material-ui/icons/AccountCircleTwoTone';
 
 
-import './NavBar.scss';
+/* Component --------------------------------------------------------------------- */
 
 
 const useStyles = makeStyles(theme => ({

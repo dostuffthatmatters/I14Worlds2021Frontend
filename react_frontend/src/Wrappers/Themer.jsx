@@ -1,10 +1,18 @@
+/* General Imports --------------------------------------------------------------- */
 import React from 'react';
+
+
+/* Styling Imports --------------------------------------------------------------- */
 import {createMuiTheme} from "@material-ui/core";
 import {ThemeProvider} from "@material-ui/styles";
+import {BreakpointProvider} from 'react-socks';
 
+
+/* Component Imports ------------------------------------------------------------- */
 import {Login} from './Login';
 
-import {BreakpointProvider} from 'react-socks';
+
+/* Theme ------------------------------------------------------------------------- */
 
 
 const theme = createMuiTheme({
@@ -18,6 +26,10 @@ const theme = createMuiTheme({
 	}
 });
 
+
+/* Component --------------------------------------------------------------------- */
+
+
 export const Themer = () => {
 	return (
 		<ThemeProvider theme={theme}>
@@ -26,4 +38,4 @@ export const Themer = () => {
 			</BreakpointProvider>
 		</ThemeProvider>
 	);
-}
+};

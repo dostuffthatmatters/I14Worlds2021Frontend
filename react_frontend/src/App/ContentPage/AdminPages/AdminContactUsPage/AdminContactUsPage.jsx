@@ -1,12 +1,10 @@
 
 /* General Imports --------------------------------------------------------------- */
 import React from 'react';
-import './AdminContactUsPage.scss';
 
 
 /* Styling Imports --------------------------------------------------------------- */
-import PropTypes from "prop-types";
-import {withStyles} from "@material-ui/styles";
+import './AdminContactUsPage.scss';
 
 
 /* AJAX Imports ------------------------------------------------------------------ */
@@ -28,7 +26,12 @@ import {
 import AdminContact from "./AdminContact";
 
 
-/* ------------------------------------------------------------------------------- */
+/* Hook Linking Imports ---------------------------------------------------------- */
+import PropTypes from "prop-types";
+import withStyles from "@material-ui/styles/withStyles/withStyles";
+
+
+/* Styles ------------------------------------------------------------------------ */
 
 
 const styles = theme => ({
@@ -65,6 +68,10 @@ const styles = theme => ({
 	}
 });
 
+
+/* Component --------------------------------------------------------------------- */
+
+
 class AdminContactUsPageManager extends React.Component {
 
 	constructor(props) {
@@ -98,7 +105,7 @@ class AdminContactUsPageManager extends React.Component {
 				loading: false,
 				contacts: JSON.parse(resolveMessage)["contacts"]
 			});
-		}).catch((rejectMessage) => {
+		}).catch(() => {
 			console.log("Fetching contact data: failed");
 			this.setState({
 				loading: false
@@ -155,7 +162,7 @@ class AdminContactUsPageManager extends React.Component {
 				creatingContact: false,
 				contacts: contacts
 			});
-		}).catch((rejectMessage) => {
+		}).catch(() => {
 			console.log("Creating new contact: failed");
 			this.setState({
 				creatingContact: false,

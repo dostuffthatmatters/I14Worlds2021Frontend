@@ -165,13 +165,12 @@ class ContactUsPageManager extends React.Component {
 				loading: false,
 				contacts: JSON.parse(resolveMessage)["contacts"]
 			});
-		}).catch((rejectMessage) => {
+		}).catch(() => {
 			console.log("Fetching contact data: failed");
 			this.setState({
 				loading: false
 			});
 		});
-
 	}
 
 	getContactList() {

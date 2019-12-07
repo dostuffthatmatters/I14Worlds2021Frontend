@@ -1,22 +1,17 @@
 
 /* General Imports --------------------------------------------------------------- */
 import React from 'react';
-import './AdminNewsFeedPage.scss';
 
 
 /* Routing Imports --------------------------------------------------------------- */
-// noinspection ES6CheckImport
-import {
-	Switch,
-	Route,
-	Link} from 'react-router-dom';
+import Switch from "react-router-dom/Switch";
+import Route from "react-router-dom/Route";
+import Link from "react-router-dom/Link";
 
 
 /* Styling Imports --------------------------------------------------------------- */
+import './AdminNewsFeedPage.scss';
 import {Breakpoint} from 'react-socks';
-import PropTypes from "prop-types";
-import {withStyles} from "@material-ui/styles";
-
 
 /* AJAX Imports ------------------------------------------------------------------ */
 import {BackendGET} from "../../../../Wrappers/backendCommunication";
@@ -40,7 +35,12 @@ import EditArticlePage from './EditArticlePage';
 import NewArticlePage from "./NewArticlePage";
 
 
-/* ------------------------------------------------------------------------------- */
+/* Hook Linking Imports ---------------------------------------------------------- */
+import PropTypes from "prop-types";
+import withStyles from "@material-ui/styles/withStyles/withStyles";
+
+
+/* Styles ------------------------------------------------------------------------ */
 
 
 const styles = theme => ({
@@ -124,6 +124,9 @@ const styles = theme => ({
 });
 
 
+/* Component --------------------------------------------------------------------- */
+
+
 class AdminNewsFeedPageManager extends React.Component {
 
 	constructor(props) {
@@ -157,7 +160,7 @@ class AdminNewsFeedPageManager extends React.Component {
 				articles: JSON.parse(resolveMessage)["articles"],
 				articleIdtoIndex: JSON.parse(resolveMessage)["article_id_to_index"]
 			});
-		}).catch((rejectMessage) => {
+		}).catch(() => {
 			console.log("Fetching contact data: failed");
 			this.setState({
 				loading: false
@@ -182,7 +185,7 @@ class AdminNewsFeedPageManager extends React.Component {
 				articles: JSON.parse(resolveMessage)["articles"],
 				articleIdtoIndex: JSON.parse(resolveMessage)["article_id_to_index"]
 			});
-		}).catch((rejectMessage) => {
+		}).catch(() => {
 			console.log("Fetching contact data: failed");
 			this.setState({
 				loading: false

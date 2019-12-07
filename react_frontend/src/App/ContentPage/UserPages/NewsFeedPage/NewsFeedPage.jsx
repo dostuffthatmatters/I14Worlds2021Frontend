@@ -130,7 +130,7 @@ class NewsFeedPageManager extends React.Component {
 				articles: JSON.parse(resolveMessage)["articles"],
 				articleIdtoIndex: JSON.parse(resolveMessage)["article_id_to_index"]
 			});
-		}).catch((rejectMessage) => {
+		}).catch(() => {
 			console.log("Fetching contact data: failed");
 			this.setState({
 				loading: false

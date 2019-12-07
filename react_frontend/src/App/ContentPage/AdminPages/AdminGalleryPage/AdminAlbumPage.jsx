@@ -3,21 +3,9 @@ import React from 'react';
 
 
 /* Routing Imports --------------------------------------------------------------- */
-// noinspection ES6CheckImport
-import {
-	Link,
-	Switch,
-	Route,
-	withRouter} from "react-router-dom";
-
-
-/* Styling Imports --------------------------------------------------------------- */
-import PropTypes from "prop-types";
-import {withStyles} from "@material-ui/styles";
-
-
-/* AJAX Imports ------------------------------------------------------------------ */
-
+import Switch from "react-router-dom/Switch"
+import Route from "react-router-dom/Route"
+import Link from "react-router-dom/Link"
 
 
 /* Material UI Imports ----------------------------------------------------------- */
@@ -32,7 +20,13 @@ import AdminAlbumPageImage from "./AdminAlbumPageImage";
 import EditImagePage from './EditImagePage';
 
 
-/* ------------------------------------------------------------------------------- */
+/* Hook Linking Imports ---------------------------------------------------------- */
+import PropTypes from "prop-types";
+import withStyles from "@material-ui/styles/withStyles/withStyles";
+import withRouter from "react-router-dom/withRouter";
+
+
+/* Styles ------------------------------------------------------------------------ */
 
 
 const styles = theme => ({
@@ -112,6 +106,10 @@ const styles = theme => ({
 		bottom: theme.spacing(2),
 	}
 });
+
+
+/* Component --------------------------------------------------------------------- */
+
 
 class AdminAlbumPage extends React.Component {
 

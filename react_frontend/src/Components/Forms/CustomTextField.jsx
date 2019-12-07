@@ -1,5 +1,13 @@
-import React from 'react'
+
+/* General Imports --------------------------------------------------------------- */
+import React from "react";
+
+
+/* Material UI Imports ----------------------------------------------------------- */
 import {TextField} from "@material-ui/core";
+
+
+/* Component --------------------------------------------------------------------- */
 
 
 export const CustomTextField = React.forwardRef((props, ref) => {

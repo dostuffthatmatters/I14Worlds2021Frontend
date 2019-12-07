@@ -4,13 +4,7 @@ import React from 'react';
 
 
 /* Routing Imports --------------------------------------------------------------- */
-import {Link} from "react-router-dom";
-// noinspection ES6CheckImport
-
-
-/* Styling Imports --------------------------------------------------------------- */
-import PropTypes from "prop-types";
-import {withStyles} from "@material-ui/styles";
+import Link from "react-router-dom/Link";
 
 
 /* AJAX Imports ------------------------------------------------------------------ */
@@ -31,7 +25,12 @@ import {
 import DeleteTwoToneIcon from '@material-ui/icons/DeleteTwoTone';
 
 
-/* ------------------------------------------------------------------------------- */
+/* Hook Linking Imports ---------------------------------------------------------- */
+import PropTypes from "prop-types";
+import withStyles from "@material-ui/styles/withStyles/withStyles";
+
+
+/* Styles ------------------------------------------------------------------------ */
 
 
 const styles = theme => ({
@@ -64,6 +63,10 @@ const styles = theme => ({
 		bottom: theme.spacing(1),
 	},
 });
+
+
+/* Component --------------------------------------------------------------------- */
+
 
 class AdminGalleryPageAlbum extends React.Component {
 
@@ -130,12 +133,12 @@ class AdminGalleryPageAlbum extends React.Component {
 			album_id: this.props.album.id
 		};
 
-		BackendREST(BACKEND_URL + "/backend/database/album", params, "DELETE").then((resolveMessage) => {
+		BackendREST(BACKEND_URL + "/backend/database/album", params, "DELETE").then(() => {
 			this.setState({
 				deleteDialogOpen: false
 			});
 			this.props.removeAlbumFromView(this.props.index);
-		}).catch((rejectmessage) => {
+		}).catch(() => {
 			this.setState({
 				deleteDialogOpen: false
 			});

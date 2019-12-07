@@ -1,8 +1,21 @@
+/* General Imports --------------------------------------------------------------- */
 import React from 'react';
+
+
+/* Routing Imports --------------------------------------------------------------- */
 import {Link} from 'react-router-dom';
 
+
+/* Styling Imports --------------------------------------------------------------- */
 import './IndexPage.scss';
-import Button from '@material-ui/core/Button';
+
+
+/* Material UI Imports ----------------------------------------------------------- */
+import {Button} from '@material-ui/core';
+
+
+/* Component --------------------------------------------------------------------- */
+
 
 export function IndexPage() {
   return (

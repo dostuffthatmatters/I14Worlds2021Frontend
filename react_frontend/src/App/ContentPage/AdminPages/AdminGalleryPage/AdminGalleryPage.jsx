@@ -4,17 +4,13 @@ import React from 'react';
 
 
 /* Routing Imports --------------------------------------------------------------- */
-// noinspection ES6CheckImport
-import {
-	Switch,
-	Link,
-	Route} from "react-router-dom";
+import Switch from "react-router-dom/Switch";
+import Route from "react-router-dom/Route";
+import Link from "react-router-dom/Link";
 
 
 /* Styling Imports --------------------------------------------------------------- */
 import './AdminGalleryPage.scss';
-import PropTypes from "prop-types";
-import {withStyles} from "@material-ui/styles";
 
 /* AJAX Imports ------------------------------------------------------------------ */
 import {BackendGET, BackendREST} from "../../../../Wrappers/backendCommunication";
@@ -37,7 +33,12 @@ import AdminAlbumPage from "./AdminAlbumPage";
 import NewImagePage from "./NewImagePage";
 
 
-/* ------------------------------------------------------------------------------- */
+/* Hook Linking Imports ---------------------------------------------------------- */
+import PropTypes from "prop-types";
+import withStyles from "@material-ui/styles/withStyles/withStyles";
+
+
+/* Styles ------------------------------------------------------------------------ */
 
 
 const styles = theme => ({
@@ -81,6 +82,9 @@ const styles = theme => ({
 		marginBottom: theme.spacing(2)
 	}
 });
+
+
+/* Component --------------------------------------------------------------------- */
 
 
 class AdminGalleryPageManager extends React.Component {
@@ -129,7 +133,7 @@ class AdminGalleryPageManager extends React.Component {
 				albums: JSON.parse(resolveMessage)["albums"],
 				albumIdtoIndex: JSON.parse(resolveMessage)["album_id_to_index"]
 			});
-		}).catch((rejectMessage) => {
+		}).catch(() => {
 			console.log("Fetching album data: failed");
 			this.setState({
 				loading: false
@@ -159,7 +163,7 @@ class AdminGalleryPageManager extends React.Component {
 				albums: JSON.parse(resolveMessage)["albums"],
 				albumIdtoIndex: JSON.parse(resolveMessage)["album_id_to_index"]
 			});
-		}).catch((rejectMessage) => {
+		}).catch(() => {
 			console.log("Reloading album data: failed");
 			this.setState({
 				loading: false
@@ -238,7 +242,7 @@ class AdminGalleryPageManager extends React.Component {
 				albums: albums,
 				albumIdtoIndex: albumIdtoIndex,
 			});
-		}).catch((rejectMessage) => {
+		}).catch(() => {
 			console.log("Creating new album: failed");
 			this.setState({
 				creatingAlbum: false,

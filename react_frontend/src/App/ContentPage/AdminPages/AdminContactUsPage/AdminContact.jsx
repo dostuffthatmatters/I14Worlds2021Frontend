@@ -1,11 +1,9 @@
 /* General Imports --------------------------------------------------------------- */
 import React from 'react';
-import './AdminContactUsPage.scss';
 
 
 /* Styling Imports --------------------------------------------------------------- */
-import PropTypes from "prop-types";
-import {withStyles} from "@material-ui/styles";
+import './AdminContactUsPage.scss';
 import clsx from 'clsx';
 
 
@@ -34,6 +32,10 @@ import DeleteTwoToneIcon from '@material-ui/icons/DeleteTwoTone';
 /* Component Imports ------------------------------------------------------------- */
 import {CustomTextField} from "../../../../Components/Forms/CustomTextField";
 
+
+/* Hook Linking Imports --------------------------------------------------------------- */
+import PropTypes from "prop-types";
+import withStyles from "@material-ui/styles/withStyles/withStyles";
 
 /* ------------------------------------------------------------------------------- */
 

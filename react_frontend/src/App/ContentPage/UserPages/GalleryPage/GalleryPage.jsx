@@ -111,7 +111,7 @@ class GalleryPageManager extends React.Component {
 				albums: JSON.parse(resolveMessage)["albums"],
 				albumIdtoIndex: JSON.parse(resolveMessage)["album_id_to_index"]
 			});
-		}).catch((rejectMessage) => {
+		}).catch(() => {
 			console.log("Fetching album data: failed");
 			this.setState({
 				loading: false

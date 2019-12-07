@@ -1,13 +1,22 @@
-import React, {Component} from 'react';
-import {BackendPOST} from "./backendCommunication";
-import {Router} from "./Router";
 
-import {BACKEND_URL} from '../constants';
-
+/* General Imports --------------------------------------------------------------- */
+import React from 'react';
 import Cookies from 'js-cookie'
 
 
-export class Login extends Component {
+/* AJAX Imports ------------------------------------------------------------------ */
+import {BackendREST} from "./backendCommunication";
+import {BACKEND_URL} from '../constants';
+
+
+/* Component Imports ------------------------------------------------------------- */
+import {Router} from "./Router";
+
+
+/* Component --------------------------------------------------------------------- */
+
+
+export class Login extends React.Component {
 
 	constructor(props) {
 		super(props);
@@ -36,7 +45,7 @@ export class Login extends Component {
 
 		console.log({cookie: params});
 
-		BackendPOST(BACKEND_URL + "/backend/login", params).then((resolveMessage) => {
+		BackendREST(BACKEND_URL + "/backend/login", params, "POST").then((resolveMessage) => {
 			const resultJson = JSON.parse(resolveMessage);
 
 			if (resultJson["Status"] === "Ok") {
@@ -51,7 +60,7 @@ export class Login extends Component {
 				Cookies.remove('api_key');
 			}
 
-		}).catch((rejectMessage) => {
+		}).catch(() => {
 			console.log("Automatic login failed");
 
 			this.setState({
@@ -90,7 +99,7 @@ export class Login extends Component {
 
 	logoutUser() {
 		let params = {email: this.state.api.email, api_key: this.state.api.api_key};
-		BackendPOST(BACKEND_URL + "/backend/logout", params).then((resolveMessage) => {
+		BackendREST(BACKEND_URL + "/backend/logout", params, "POST").then(() => {
 			// Changing Frontend View
 			this.setState({
 				loggedIn: false,
