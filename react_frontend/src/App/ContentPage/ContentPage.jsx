@@ -1,4 +1,3 @@
-
 /* General Imports --------------------------------------------------------------- */
 import React from 'react';
 
@@ -7,6 +6,7 @@ import React from 'react';
 // noinspection ES6CheckImport
 import {useHistory} from 'react-router-dom';
 import Route from 'react-router-dom/Route';
+import Switch from 'react-router-dom/Switch';
 
 
 /* Styling Imports --------------------------------------------------------------- */
@@ -18,7 +18,7 @@ import {Container} from "@material-ui/core";
 
 
 /* Component Imports ------------------------------------------------------------- */
-import {EventPage} from "./UserPages/EventPage/EventPage";
+import EventPage from "./UserPages/EventPage/EventPage";
 import NewsFeedPageManager from "./UserPages/NewsFeedPage/NewsFeedPage";
 import GalleryPageManager from "./UserPages/GalleryPage/GalleryPage";
 import AdminGalleryPageManager from "./AdminPages/AdminGalleryPage/AdminGalleryPage";
@@ -47,32 +47,36 @@ export const ContentPage = (props) => {
 
 	return (
 		<React.Fragment>
-			<Container className="ContentPage" maxWidth="md">
+			<Switch>
 				<Route path="/event">
 					<EventPage/>
 				</Route>
-				<Route path="/news-feed">
-					<NewsFeedPageManager/>
+				<Route>
+					<Container className="ContentPage" maxWidth="md">
+						<Route path="/news-feed">
+							<NewsFeedPageManager/>
+						</Route>
+						<Route path="/gallery">
+							<GalleryPageManager/>
+						</Route>
+						<Route path="/sailors-guide">
+							<SailorsGuidePage/>
+						</Route>
+						<Route path="/contact-us">
+							<ContactUsPageManager/>
+						</Route>
+						<Route path="/admin/news-feed">
+							<AdminNewsFeedPageManager api={props.api}/>
+						</Route>
+						<Route path="/admin/gallery">
+							<AdminGalleryPageManager api={props.api}/>
+						</Route>
+						<Route path="/admin/contact-us">
+							<AdminContactUsPageManager api={props.api}/>
+						</Route>
+					</Container>
 				</Route>
-				<Route path="/gallery">
-					<GalleryPageManager/>
-				</Route>
-				<Route path="/sailors-guide">
-					<SailorsGuidePage/>
-				</Route>
-				<Route path="/contact-us">
-					<ContactUsPageManager/>
-				</Route>
-				<Route path="/admin/news-feed">
-					<AdminNewsFeedPageManager api={props.api}/>
-				</Route>
-				<Route path="/admin/gallery">
-					<AdminGalleryPageManager api={props.api}/>
-				</Route>
-				<Route path="/admin/contact-us">
-					<AdminContactUsPageManager api={props.api}/>
-				</Route>
-			</Container>
+			</Switch>
 		</React.Fragment>
 	);
 };

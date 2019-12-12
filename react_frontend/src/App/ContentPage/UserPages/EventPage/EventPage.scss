@@ -1,4 +1,105 @@
 
 .EventPage {
 
+    a {
+        color: hsl(340, 100%, 50%);
+        text-decoration: none;
+    }
+
+    .EventImage1 {
+        position: absolute;
+        top: calc((-1866vw / 28) + 100vh);
+        left: 0;
+        width: 100vw;
+
+        z-index: 200;
+    }
+
+    .EventImage1Overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        //background-color: rgba(0, 0, 0, 0.25);
+
+        z-index: 300;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .Logo {
+            z-index: 400;
+        }
+
+    }
+
+    .InfoContainer {
+        position: relative;
+        margin-top: 100vh;
+    }
+
+    .AddressContainer {
+        position: relative;
+        display: block;
+        margin-left: 20vw;
+        width: 60vw;
+        overflow: hidden;
+    }
+
+    .MapPaper {
+        position: relative;
+        display: block;
+        margin-left: 20vw;
+        width: 60vw;
+        height: 30vw;
+        overflow: hidden;
+    }
+
+    .EventImage2, .EventImage3 {
+        position: relative;
+        width: 100vw;
+    }
+
+    .PDFPaper {
+
+        position: relative;
+        display: block;
+        margin-left: 20vw;
+        width: 60vw;
+        height: calc(60vw * (1080 / 1920));
+        overflow: hidden;
+
+        .react-pdf__Document .react-pdf__Page canvas {
+            max-width: 60vw !important;
+            height: auto !important;
+        }
+
+        .PageNumberBox {
+            position: absolute;
+            width: 60vw;
+            left: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 200;
+        }
+
+        .DarkColor {
+            color: #282c34;
+            svg path {
+                fill: #282c34;
+            }
+        }
+
+        .BrightColor {
+            color: white;
+            path {
+                fill: white;
+            }
+        }
+    }
+
 }
+

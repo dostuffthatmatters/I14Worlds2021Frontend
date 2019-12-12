@@ -18,11 +18,16 @@ import {Login} from './Login';
 const theme = createMuiTheme({
 	palette : {
 		primary: {
-			main: '#282c34'
+			main: '#282c34',
+			transparent80: 'rgba(40, 44, 52, 0.8)',
 		},
 		secondary: {
-			main: 'hsl(340, 100%, 50%)'
+			main: 'hsl(340, 100%, 50%)',
+			transparent80: 'hsla(340, 100%, 50%, 0.8)',
 		},
+		white: {
+			main: 'rgb(255, 255, 255)',
+		}
 	}
 });
 

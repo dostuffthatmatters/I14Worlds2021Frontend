@@ -13,6 +13,7 @@ import Redirect from "react-router-dom/Redirect";
 /* Component Imports ------------------------------------------------------------- */
 import {IndexPage} from "../App/IndexPage/IndexPage";
 import {NavBar} from "../App/NavBar/NavBar";
+import {Footer} from "../App/Footer/Footer";
 import {ContentPage} from "../App/ContentPage/ContentPage";
 import {NotFoundPage} from "../App/NotFoundPage/NotFoundPage";
 import LoginPageManager from "../App/LoginPage/LoginPage";
@@ -83,6 +84,9 @@ export const Router = (props) => {
 					<NotFoundPage/>
 				</Route>
 			</Switch>
+			<Route path={navBarRoutes}>
+				<Footer />
+			</Route>
 		</BrowserRouter>
 	);
 };
