@@ -1,0 +1,139 @@
+@import '../StyleConstants';
+
+
+.Footer {
+
+    overflow: hidden;
+
+    position: relative;
+
+    .DarkCard {
+        background-color: transparent;
+
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.15);
+        }
+
+        cursor: pointer;
+    }
+
+    .BrightCard {
+        background-color: transparent;
+
+        &:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+
+        cursor: pointer;
+    }
+
+    .SupporterBox {
+
+        overflow: hidden;
+
+        .Logo {
+            // Position
+            vertical-align: top;
+
+            // Size
+            width: 16vw;
+            height: 6vw;
+            padding: 0.5vw;
+
+            // Making sure that every Logo, no matter the aspect ration
+            // fits inside (16vw x 8vw) and is located in the center
+            display: inline-grid;
+            grid-template-columns: 1fr auto 1fr;
+            grid-template-rows: 1fr auto 1fr;
+            grid-template-areas: ".  .  ." ". a ." ".  .  .";
+
+            a {
+                grid-area: a;
+            }
+
+            .WideImage {
+                width: 16vw;
+            }
+
+            .NarrowImage {
+                height: 6vw;
+            }
+        }
+
+    }
+
+    .ImpressumBox {
+
+        overflow: hidden;
+
+        // Appearance
+        font-size: 1.1vw;
+
+        .LogoBox {
+
+            // Appearance
+            color: white;
+            text-decoration: none;
+            font-weight: 400;
+
+            a {
+
+                // Size
+                height: 3vw;
+                padding: 0.25vw 0;
+
+                // Content Alignment
+                text-align: right;
+                line-height: 1.5vw;
+                display: inline-grid;
+                grid-template-rows: 1fr 1fr;
+                grid-template-columns: 1fr auto 1vw auto 1fr;
+                grid-template-areas: ". row1 . icon ." ". row2 . icon .";
+
+                 // Appearance
+                color: white;
+                text-decoration: none;
+                font-weight: 400;
+
+                .LabelRow1 {
+                    grid-area: row1;
+                }
+
+                .LabelRow2 {
+                    grid-area: row2;
+                }
+
+                .Icon {
+                    // Content Alignment
+                    grid-area: icon;
+                    display: inline-grid;
+                    vertical-align: top;
+                    grid-template-columns: 1fr auto 1fr;
+                    grid-template-rows: 1fr auto 1fr;
+                    grid-template-areas: ".  .  ." ". img ." ".  .  .";
+
+                    img {
+                        vertical-align: top;
+                        grid-area: img;
+                        height: 2.5vw;
+                    }
+                }
+            }
+        }
+
+        .SimpleBox {
+
+            a {
+                // Appearance
+                color: white;
+                text-decoration: none;
+                font-weight: 400;
+            }
+
+        }
+
+    }
+
+}
+
+
