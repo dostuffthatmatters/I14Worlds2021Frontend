@@ -23,7 +23,10 @@ import withStyles from "@material-ui/styles/withStyles/withStyles";
 import PDFViewer from './PDFViewer/PDFViewer';
 
 /* Assets Imports ---------------------------------------------------------------- */
-import EventImage1 from './images/_DSC9541_2800px.jpg'
+import EventImageLandScape from './images/_DSC9541_Landscape.jpg'
+import EventImageSquare from './images/_DSC9541_Square.jpg'
+import EventImagePortrait from './images/_DSC9541_Portrait.jpg'
+
 import EventLogo from './images/EventLogo.svg'
 import FSCLogo from './images/FSCLogo.svg'
 import VRSportTVLogo from './images/VRSportTVLogo.svg'
@@ -37,7 +40,7 @@ import EventImage3 from './images/_DSC9718_3200px_cut.jpg'
 
 const styles = theme => ({
 	page: {
-		backgroundColor: '#E0E0E0',
+		backgroundColor: '#F0F0F0',
 		textAlign: "center",
 	},
 	paper: {
@@ -152,9 +155,31 @@ class EventPage extends React.Component {
 
 		const {classes} = this.props;
 
+		let eventImageElement;
+
+		if ((1866/2800) > (window.innerHeight/window.innerWidth)) {
+			console.log("LANDSCAPE");
+			eventImageElement = (
+				<img className="EventImage EventImageLandscape"
+				     src={EventImageLandScape} alt="Screaming Downwind"/>
+				);
+		} else if ((2666/2800) > (window.innerHeight/window.innerWidth)) {
+			console.log("SQUARE");
+			eventImageElement = (
+				<img className="EventImage EventImageSquare"
+				     src={EventImageSquare} alt="Screaming Downwind"/>
+				);
+		} else  {
+			console.log("PORTRAIT");
+			eventImageElement = (
+				<img className="EventImage EventImagePortrait"
+				     src={EventImagePortrait} alt="Screaming Downwind"/>
+				);
+		}
+
 		return (
 			<div className={clsx("EventPage", classes.page)}>
-				<img className="EventImage1" src={EventImage1} alt="Screaming Downwind"/>
+				{eventImageElement}
 				<div className="EventImage1Overlay">
 					<Container maxWidth="sm">
 						<Paper elevation={3} className={classes.paper}>

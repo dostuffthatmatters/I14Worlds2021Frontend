@@ -14,7 +14,7 @@ import withStyles from "@material-ui/styles/withStyles/withStyles";
 
 
 /* PDF Imports ------------------------------------------------------------------- */
-import {Document, Page, pdfjs} from 'react-pdf';
+import {pdfjs, Document, Page } from 'react-pdf';
 import InvitationPDF from './Invitation_WM2021.pdf';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
@@ -116,7 +116,8 @@ class PDFViewer extends React.Component {
 					            className={classes.pageNumber}>{this.state.page} / {this.state.pageCount}</Typography>
 					<div className={clsx(classes.downloadButton)}>
 						<a href="https://storage.googleapis.com/i14-worlds-documents/Invitation_WM2021.pdf"
-						   target="_blank">
+						   target="_blank"
+						   rel="noopener noreferrer">
 							<IconButton aria-label="download" size="medium">
 								<GetAppIcon/>
 							</IconButton>

@@ -6,13 +6,24 @@
         text-decoration: none;
     }
 
-    .EventImage1 {
+    .EventImage {
         position: absolute;
-        top: calc((-1866vw / 28) + 100vh);
         left: 0;
         width: 100vw;
 
         z-index: 200;
+    }
+
+    .EventImageLandscape {
+        top: calc((-1866vw / 28) + 100vh);
+    }
+
+    .EventImageSquare {
+        top: calc((-2666vw / 28) + 100vh);
+    }
+
+    .EventImagePortrait {
+        top: calc((-2800vw / 13.91) + 100vh);
     }
 
     .EventImage1Overlay {

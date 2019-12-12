@@ -1,6 +1,13 @@
+
 .IndexPage {
+    width: 100vw;
+    height: 100vh; /* Fallback for browsers that do not support Custom Properties */
+    height: calc(var(--vh, 1vh) * 100);
 
     .CenterBox {
+
+        height: 100vh; /* Fallback for browsers that do not support Custom Properties */
+        height: calc(var(--vh, 1vh) * 100);
 
         display: flex;
         align-items: center;
@@ -44,7 +51,8 @@
         top: 0;
         left: 0;
         width: 100vw;
-        height: 100vh;
+        height: 100vh; /* Fallback for browsers that do not support Custom Properties */
+        height: calc(var(--vh, 1vh) * 100);
     }
 
     .breakpoint__medium-up {
@@ -54,17 +62,17 @@
         left: 0;
 
         width: 100vw;
-        height: 100vh;
+        height: calc(var(--vh, 1vh) * 100);
         overflow: hidden;
 
         .Video {
             position: absolute;
-            top: 50vh;
+            top: calc(var(--vh, 1vh) * 50);
             left: 50vw;
             -webkit-transform: translateX(-50%) translateY(-50%);
             transform: translateX(-50%) translateY(-50%);
             min-width: 100vw;
-            min-height: 100vh;
+            min-height: calc(var(--vh, 1vh) * 100);
             width: auto;
             height: auto;
             z-index: 100;
@@ -77,8 +85,6 @@
 @media only screen and (max-device-width: 599px) {
     .IndexPage {
         .CenterBox {
-            width: 100vw;
-            height: 100vh;
 
             .Logo {
                 width: 80vw;
@@ -100,8 +106,6 @@
 @media only screen and (min-device-width: 600px) and (max-device-width: 979px) and (max-device-height: 599px) {
     .IndexPage {
         .CenterBox {
-            width: 100vw;
-            height: 100vh;
 
             .Logo {
                 width: 50vw;
@@ -122,8 +126,6 @@
 /** Tablet in Portrait **/
 @media only screen and (min-device-width: 600px) and (max-device-width: 979px) and (min-device-height: 599px) {
     .IndexPage .CenterBox {
-        width: 100vw;
-        height: 100vh;
 
         .Logo {
             width: 50vw;
@@ -135,19 +137,11 @@
 /** Tablet in Landscape **/
 @media only screen and (min-device-width: 980px) and (max-device-width: 1259px) {
 
-    #root {
-        width: 100vw;
-        height: 100vh;
-        overflow: hidden;
-    }
-
     .IndexPage {
 
         .CenterBox {
             margin: 0;
             padding: 0;
-            width: 100vw;
-            height: 100vh;
 
             .Logo {
                 width: 40vw;
@@ -160,8 +154,6 @@
 /** Desktop **/
 @media only screen and (min-device-width: 1260px) {
     .IndexPage .CenterBox {
-        width: 100vw;
-        height: 100vh;
 
         .Logo {
             width: 30vw;
