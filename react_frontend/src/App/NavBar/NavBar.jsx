@@ -19,7 +19,8 @@ import {
 	Typography,
 	Drawer,
 	Divider,
-	Button} from '@material-ui/core';
+	Button
+} from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import EmojiEventsTwoToneIcon from '@material-ui/icons/EmojiEventsTwoTone';
 import ChatTwoToneIcon from '@material-ui/icons/ChatTwoTone';
@@ -29,10 +30,24 @@ import ContactMailTwoToneIcon from '@material-ui/icons/ContactMailTwoTone';
 import AccountCircleTwoToneIcon from '@material-ui/icons/AccountCircleTwoTone';
 
 
+/* Asset Imports ----------------------------------------------------------- */
+import I14Icon from './images/I14Icon.svg';
+
+
 /* Component --------------------------------------------------------------------- */
 
 
 const useStyles = makeStyles(theme => ({
+	menuButton: {
+		marginRight: theme.spacing(1),
+	},
+	title: {
+		flexGrow: 1,
+	},
+	i14Icon: {
+		width: theme.spacing(4),
+		height: theme.spacing(4),
+	},
 	button: {
 		margin: theme.spacing(1),
 		marginBottom: 0,
@@ -181,10 +196,18 @@ export const NavBar = (props) => {
 					<IconButton edge="start"
 					            color="inherit"
 					            aria-label="menu"
+					            className={classes.menuButton}
 					            onClick={() => toggleDrawer(true)}>
 						<MenuIcon/>
 					</IconButton>
-					<Typography variant="h6">{pageTitle}</Typography>
+					<Typography variant="h6" className={classes.title}>{pageTitle}</Typography>
+					<IconButton edge="end"
+					            color="inherit"
+					            aria-label="index">
+						<Link to="/">
+							<img src={I14Icon} className={classes.i14Icon} alt="I14 Icon"/>
+						</Link>
+					</IconButton>
 				</Toolbar>
 			</AppBar>
 			<Drawer open={drawerIsOpen}
