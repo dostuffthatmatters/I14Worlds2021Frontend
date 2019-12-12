@@ -35,11 +35,6 @@
             // Position
             vertical-align: top;
 
-            // Size
-            width: 16vw;
-            height: 6vw;
-            padding: 0.5vw;
-
             // Making sure that every Logo, no matter the aspect ration
             // fits inside (16vw x 8vw) and is located in the center
             display: inline-grid;
@@ -50,14 +45,6 @@
             a {
                 grid-area: a;
             }
-
-            .WideImage {
-                width: 16vw;
-            }
-
-            .NarrowImage {
-                height: 6vw;
-            }
         }
 
     }
@@ -65,9 +52,6 @@
     .ImpressumBox {
 
         overflow: hidden;
-
-        // Appearance
-        font-size: 1.1vw;
 
         .LogoBox {
 
@@ -90,7 +74,7 @@
                 grid-template-columns: 1fr auto 1vw auto 1fr;
                 grid-template-areas: ". row1 . icon ." ". row2 . icon .";
 
-                 // Appearance
+                // Appearance
                 color: white;
                 text-decoration: none;
                 font-weight: 400;
@@ -135,5 +119,122 @@
     }
 
 }
+
+
+/** Mobile in Portrait **/
+@media only screen and (max-device-width: 599px) {
+    .SupporterBox {
+
+        .Logo {
+
+            // Size
+            width: 64vw;
+            height: 24vw;
+            padding: 2vw;
+
+            .WideImage {
+                width: 64vw;
+            }
+
+            .NarrowImage {
+                height: 24vw;
+            }
+        }
+
+    }
+}
+
+/** Mobile in Landscape **/
+@media only screen and (min-device-width: 600px) and (max-device-width: 979px) and (max-device-height: 599px) {
+    .SupporterBox {
+
+        .Logo {
+
+            // Size
+            width: 32vw;
+            height: 12vw;
+            padding: 1vw;
+
+            .WideImage {
+                width: 32vw;
+            }
+
+            .NarrowImage {
+                height: 12vw;
+            }
+        }
+
+    }
+}
+
+/** Tablet in Portrait **/
+@media only screen and (min-device-width: 600px) and (max-device-width: 979px) and (min-device-height: 599px) {
+    .SupporterBox {
+
+        .Logo {
+
+            // Size
+            width: 24vw;
+            height: 9vw;
+            padding: 0.75vw;
+
+            .WideImage {
+                width: 24vw;
+            }
+
+            .NarrowImage {
+                height: 9vw;
+            }
+        }
+
+    }
+}
+
+/** Tablet in Landscape **/
+@media only screen and (min-device-width: 980px) and (max-device-width: 1259px) {
+    .SupporterBox {
+
+        .Logo {
+
+            // Size
+            width: 20vw;
+            height: 7.5vw;
+            padding: 0.625vw;
+
+            .WideImage {
+                width: 20vw;
+            }
+
+            .NarrowImage {
+                height: 7.5vw;
+            }
+        }
+
+    }
+}
+
+/** Desktop **/
+@media only screen and (min-device-width: 1260px) {
+    .SupporterBox {
+
+        .Logo {
+
+            // Size
+            width: 16vw;
+            height: 6vw;
+            padding: 0.5vw;
+
+            .WideImage {
+                width: 16vw;
+            }
+
+            .NarrowImage {
+                height: 6vw;
+            }
+        }
+
+    }
+}
+
 
 
