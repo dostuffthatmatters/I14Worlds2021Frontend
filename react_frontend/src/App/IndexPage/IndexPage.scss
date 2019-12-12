@@ -1,18 +1,172 @@
 .IndexPage {
-    width: 100vw;
-    height: 100vh;
 
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
+    .CenterBox {
 
-    align-items: center;
-    justify-content: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
 
-    .MuiButton-root .MuiButton-label a {
-        text-decoration: none;
-        color: white;
+        z-index: 200;
+
+        .MuiButton-root {
+            z-index: 200;
+
+            .MuiButton-label {
+                z-index: 200;
+
+                a {
+                    text-decoration: none;
+                    color: white;
+                }
+            }
+        }
+
+        .Logo {
+            z-index: 200;
+
+            -webkit-filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.9));
+
+            rect, circle, path {
+                fill: white;
+                fill-rule: nonzero;
+            }
+        }
+
+        .Element {
+            position: relative;
+            display: block;
+        }
+    }
+
+    .Image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+    }
+
+    .breakpoint__medium-up {
+
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+
+        .Video {
+            position: absolute;
+            top: 50vh;
+            left: 50vw;
+            -webkit-transform: translateX(-50%) translateY(-50%);
+            transform: translateX(-50%) translateY(-50%);
+            min-width: 100vw;
+            min-height: 100vh;
+            width: auto;
+            height: auto;
+            z-index: 100;
+            overflow: hidden;
+        }
     }
 }
+
+/** Mobile in Portrait **/
+@media only screen and (max-device-width: 599px) {
+    .IndexPage {
+        .CenterBox {
+            width: 100vw;
+            height: 100vh;
+
+            .Logo {
+                width: 80vw;
+                margin-bottom: 2.5vh;
+            }
+        }
+
+        .Image {
+            background: url("https://storage.googleapis.com/i14-worlds-2021-gallery/default-images/IndexImage1_2800px_Portrait.jpg") no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+    }
+}
+
+/** Mobile in Landscape **/
+@media only screen and (min-device-width: 600px) and (max-device-width: 979px) and (max-device-height: 599px) {
+    .IndexPage {
+        .CenterBox {
+            width: 100vw;
+            height: 100vh;
+
+            .Logo {
+                width: 50vw;
+                margin-bottom: 2.5vh;
+            }
+        }
+
+        .Image {
+            background: url("https://storage.googleapis.com/i14-worlds-2021-gallery/default-images/IndexImage1_2800px_Landscape.jpg") no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+    }
+}
+
+/** Tablet in Portrait **/
+@media only screen and (min-device-width: 600px) and (max-device-width: 979px) and (min-device-height: 599px) {
+    .IndexPage .CenterBox {
+        width: 100vw;
+        height: 100vh;
+
+        .Logo {
+            width: 50vw;
+            margin-bottom: 2.5vw;
+        }
+    }
+}
+
+/** Tablet in Landscape **/
+@media only screen and (min-device-width: 980px) and (max-device-width: 1259px) {
+
+    #root {
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    .IndexPage {
+
+        .CenterBox {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+
+            .Logo {
+                width: 40vw;
+                margin-bottom: 2vw;
+            }
+        }
+    }
+}
+
+/** Desktop **/
+@media only screen and (min-device-width: 1260px) {
+    .IndexPage .CenterBox {
+        width: 100vw;
+        height: 100vh;
+
+        .Logo {
+            width: 30vw;
+            margin-bottom: 1.5vw;
+        }
+    }
+}
+
