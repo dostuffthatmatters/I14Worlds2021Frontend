@@ -12,7 +12,7 @@ import {Typography} from "@material-ui/core";
 
 
 /* Component Imports ------------------------------------------------------------- */
-import ScheduleTable from "./ScheduleTable";
+import SchedulePanel from "./SchedulePanel/SchedulePanel";
 
 
 /* Hook Linking Imports ---------------------------------------------------------- */
@@ -32,7 +32,7 @@ const styles = theme => ({
 	headlineSmall: {
 		display: "block",
 		textAlign: "center",
-		marginBottom: theme.spacing(1)
+		marginBottom: theme.spacing(2)
 	},
 });
 
@@ -49,7 +49,7 @@ class SailorsGuidePage extends React.Component {
 			<div className="SailorsGuidePage">
 				<Typography variant="h4" className={classes.headline}>Sailors Guide</Typography>
 				<Typography variant="h6" className={classes.headlineSmall}>Preliminary Schedule</Typography>
-				<ScheduleTable/>
+				<SchedulePanel/>
 			</div>
 		);
 	}
