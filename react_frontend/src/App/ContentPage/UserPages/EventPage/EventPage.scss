@@ -46,6 +46,10 @@
 
     }
 
+    .PaperContainer {
+        overflow: hidden;
+    }
+
     .InfoContainer {
         position: relative;
         margin-top: 100vh;
@@ -54,17 +58,12 @@
     .AddressContainer {
         position: relative;
         display: block;
-        margin-left: 20vw;
-        width: 60vw;
         overflow: hidden;
     }
 
     .MapPaper {
         position: relative;
         display: block;
-        margin-left: 20vw;
-        width: 60vw;
-        height: 30vw;
         overflow: hidden;
     }
 
@@ -77,19 +76,10 @@
 
         position: relative;
         display: block;
-        margin-left: 20vw;
-        width: 60vw;
-        height: calc(60vw * (1080 / 1920));
         overflow: hidden;
-
-        .react-pdf__Document .react-pdf__Page canvas {
-            max-width: 60vw !important;
-            height: auto !important;
-        }
 
         .PageNumberBox {
             position: absolute;
-            width: 60vw;
             left: 0;
             display: flex;
             align-items: center;
@@ -99,6 +89,7 @@
 
         .DarkColor {
             color: #282c34;
+
             svg path {
                 fill: #282c34;
             }
@@ -106,6 +97,7 @@
 
         .BrightColor {
             color: white;
+
             path {
                 fill: white;
             }
@@ -113,4 +105,227 @@
     }
 
 }
+
+
+/** Mobile in Portrait **/
+@media only screen and (max-device-width: 599px) {
+
+    .EventPage {
+
+        .ContainerSmall {
+            width: 90vw;
+        }
+
+        .AddressContainer {
+            margin-left: 5vw;
+            width:90vw;
+        }
+
+        .MapPaper {
+            margin-left: 5vw;
+            width: 90vw;
+            height: 75vh;
+        }
+
+        .PDFPaper {
+            margin-left: 5vw;
+            width: 90vw;
+            height: calc(90vw * (1080 / 1920));
+
+            .react-pdf__Document .react-pdf__Page canvas {
+                max-width: 90vw !important;
+                height: auto !important;
+            }
+
+            .PageNumberBox {
+                top: 0;
+                width: 90vw;
+            }
+        }
+
+    }
+
+}
+
+/** Mobile in Landscape **/
+@media only screen and (min-device-width: 600px) and (max-device-width: 979px) and (max-device-height: 599px) {
+
+    .EventPage {
+
+        .ContainerSmall {
+            margin-top: 15vh;
+            width: 45vw;
+        }
+
+        .InfoContainer {
+            width: 70vw;
+            margin-left: 15vw;
+        }
+
+        .AddressContainer {
+            margin-left: 5vw;
+            width: 90vw;
+        }
+
+        .MapPaper {
+            margin-left: 5vw;
+            width: 90vw;
+            height: 75vh;
+        }
+
+        .PDFPaper {
+            margin-left: 12.5vw;
+            width: 75vw;
+            height: calc(75vw * (1080 / 1920));
+
+            .react-pdf__Document .react-pdf__Page canvas {
+                max-width: 75vw !important;
+                height: auto !important;
+            }
+
+            .PageNumberBox {
+                top: 0;
+                width: 75vw;
+            }
+        }
+
+    }
+
+}
+
+/** Tablet in Portrait **/
+@media only screen and (min-device-width: 600px) and (max-device-width: 979px) and (min-device-height: 599px) {
+
+    .EventPage {
+
+        .ContainerSmall {
+            width: 60vw;
+        }
+
+        .InfoContainer {
+            width: 60vw;
+            margin-left: 20vw;
+        }
+
+        .AddressContainer {
+            margin-left: 20vw;
+            width: 60vw;
+        }
+
+        .MapPaper {
+            margin-left: 20vw;
+            width: 60vw;
+            height: 30vw;
+        }
+
+        .PDFPaper {
+            margin-left: 20vw;
+            width: 60vw;
+            height: calc(60vw * (1080 / 1920));
+
+            .react-pdf__Document .react-pdf__Page canvas {
+                max-width: 60vw !important;
+                height: auto !important;
+            }
+
+            .PageNumberBox {
+                top: 1vw;
+                width: 60vw;
+            }
+        }
+
+    }
+
+}
+
+/** Tablet in Landscape **/
+@media only screen and (min-device-width: 980px) and (max-device-width: 1259px) {
+
+    .EventPage {
+
+        .ContainerSmall {
+            width: 60vw;
+        }
+
+        .InfoContainer {
+            width: 60vw;
+            margin-left: 20vw;
+        }
+
+        .AddressContainer {
+            margin-left: 20vw;
+            width: 60vw;
+        }
+
+        .MapPaper {
+            margin-left: 20vw;
+            width: 60vw;
+            height: 30vw;
+        }
+
+        .PDFPaper {
+            margin-left: 20vw;
+            width: 60vw;
+            height: calc(60vw * (1080 / 1920));
+
+            .react-pdf__Document .react-pdf__Page canvas {
+                max-width: 60vw !important;
+                height: auto !important;
+            }
+
+            .PageNumberBox {
+                top: 1vw;
+                width: 60vw;
+            }
+        }
+
+    }
+
+}
+
+/** Desktop **/
+@media only screen and (min-device-width: 1260px) {
+
+    .EventPage {
+
+        .ContainerSmall {
+            width: 30vw;
+        }
+
+        .InfoContainer {
+            width: 30vw;
+            margin-left: 35vw;
+        }
+
+        .AddressContainer {
+            margin-left: 20vw;
+            width: 60vw;
+        }
+
+        .MapPaper {
+            margin-left: 20vw;
+            width: 60vw;
+            height: 30vw;
+        }
+
+        .PDFPaper {
+            margin-left: 20vw;
+            width: 60vw;
+            height: calc(60vw * (1080 / 1920));
+
+            .react-pdf__Document .react-pdf__Page canvas {
+                max-width: 60vw !important;
+                height: auto !important;
+            }
+
+            .PageNumberBox {
+                top: 1vw;
+                width: 60vw;
+            }
+        }
+
+    }
+
+}
+
 

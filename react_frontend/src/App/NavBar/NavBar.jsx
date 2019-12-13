@@ -31,7 +31,7 @@ import AccountCircleTwoToneIcon from '@material-ui/icons/AccountCircleTwoTone';
 
 
 /* Asset Imports ----------------------------------------------------------- */
-import I14Icon from './images/I14Icon.svg';
+import I14Icon from './images/I14IconSquare.svg';
 
 
 /* Component --------------------------------------------------------------------- */
@@ -44,7 +44,12 @@ const useStyles = makeStyles(theme => ({
 	title: {
 		flexGrow: 1,
 	},
-	i14Icon: {
+	I14Button: {
+		marginTop: 4,
+		backgroundColor: "transparent !important",
+	},
+	I14Icon: {
+		backgroundColor: "transparent !important",
 		width: theme.spacing(4),
 		height: theme.spacing(4),
 	},
@@ -203,9 +208,11 @@ export const NavBar = (props) => {
 					<Typography variant="h6" className={classes.title}>{pageTitle}</Typography>
 					<IconButton edge="end"
 					            color="inherit"
-					            aria-label="index">
+					            aria-label="index"
+					            className={classes.I14Button}
+					            disableRipple={true}>
 						<Link to="/">
-							<img src={I14Icon} className={classes.i14Icon} alt="I14 Icon"/>
+							<img src={I14Icon} className={classes.I14Icon} alt="I14 Icon"/>
 						</Link>
 					</IconButton>
 				</Toolbar>

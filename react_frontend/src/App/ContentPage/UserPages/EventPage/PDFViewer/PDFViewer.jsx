@@ -51,9 +51,6 @@ const styles = theme => ({
 	rightButton: {
 		right: theme.spacing(1),
 	},
-	pageNumberBox: {
-		top: theme.spacing(1),
-	},
 	pageNumber: {
 		paddingRight: theme.spacing(2),
 	}

@@ -53,6 +53,9 @@ const styles = theme => ({
 	paperContainer: {
 		overflow: "hidden",
 	},
+	infoContainer: {
+		overflow: "hidden",
+	},
 	addressPaper: {
 		margin: theme.spacing(2),
 		paddingTop: theme.spacing(2),
@@ -181,7 +184,7 @@ class EventPage extends React.Component {
 			<div className={clsx("EventPage", classes.page)}>
 				{eventImageElement}
 				<div className="EventImage1Overlay">
-					<Container maxWidth="sm">
+					<div className="ContainerSmall">
 						<Paper elevation={3} className={classes.paper}>
 							<img className={clsx(classes.logo, "Logo")} src={EventLogo}
 							     alt="I14 Worlds Logo"/>
@@ -191,10 +194,10 @@ class EventPage extends React.Component {
 							<img className={clsx(classes.logo, "Logo")} src={FSCLogo}
 							     alt="FSC Logo"/>
 						</Paper>
-					</Container>
+					</div>
 				</div>
 
-				<Container className={clsx(classes.paperContainer, "InfoContainer")} maxWidth="sm">
+				<div className={clsx(classes.infoContainer, "InfoContainer")}>
 
 					<Paper elevation={3} className={classes.paper}>
 						<img className={clsx(classes.logo, "Logo")} src={VRSportTVLogo}
@@ -256,7 +259,7 @@ class EventPage extends React.Component {
 						</Grid>
 					</Paper>
 
-				</Container>
+				</div>
 
 				<img className="EventImage2" src={EventImage2} alt="German Engineering"/>
 
@@ -286,12 +289,22 @@ class EventPage extends React.Component {
 					</Paper>
 
 					<Paper elevation={3} className={clsx(classes.mapPaper, "MapPaper")}>
-						<Map google={this.props.google}
-						     zoom={5}
-						     initialCenter={{lat: 54.836947, lng: 9.525610}}
-						     style={{width: '60vw', height: '30vw', borderRadius: 'inherit'}}>
-							<Marker/>
-						</Map>
+						<Breakpoint small down>
+							<Map google={this.props.google}
+							     zoom={5}
+							     initialCenter={{lat: 54.836947, lng: 9.525610}}
+							     style={{width: '90vw', height: '75vh', borderRadius: 'inherit'}}>
+								<Marker/>
+							</Map>
+						</Breakpoint>
+						<Breakpoint medium up>
+							<Map google={this.props.google}
+							     zoom={5}
+							     initialCenter={{lat: 54.836947, lng: 9.525610}}
+							     style={{width: '60vw', height: '30vw', borderRadius: 'inherit'}}>
+								<Marker/>
+							</Map>
+						</Breakpoint>
 					</Paper>
 				</div>
 
