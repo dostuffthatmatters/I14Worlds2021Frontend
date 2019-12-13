@@ -43,7 +43,6 @@ const styles = theme => ({
 		right: theme.spacing(2),
 		bottom: theme.spacing(2),
 	},
-
 });
 
 class ImageSlider extends React.Component {
@@ -126,10 +125,7 @@ class ImageSlider extends React.Component {
 	}
 
 	handleRightClick() {
-		let newIndex = this.props.imageSliderIndex + 1;
-		if (newIndex >= this.props.images.length) {
-			newIndex = 0;
-		}
+		let newIndex = (this.props.imageSliderIndex + 1) % this.props.images.length;
 		this.setState({loading: true});
 		this.props.newImageSliderIndex(newIndex);
 	}

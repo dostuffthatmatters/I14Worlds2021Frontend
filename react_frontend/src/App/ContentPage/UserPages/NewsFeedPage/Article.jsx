@@ -1,4 +1,3 @@
-
 /* General Imports --------------------------------------------------------------- */
 import React from "react";
 
@@ -11,8 +10,9 @@ import {Link} from 'react-router-dom';
 import {
 	Card,
 	CardMedia,
-	Container,
-	Typography} from "@material-ui/core";
+	Container, IconButton,
+	Typography
+} from "@material-ui/core";
 import ArrowBackIosTwoToneIcon from '@material-ui/icons/ArrowBackIosTwoTone';
 
 
@@ -21,6 +21,10 @@ import PropTypes from "prop-types";
 import withStyles from "@material-ui/styles/withStyles/withStyles";
 // noinspection ES6CheckImport
 import {withRouter} from "react-router-dom";
+import ImageSlider from "../../ImageSlider/ImageSlider";
+import clsx from "clsx";
+import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 
 /* Data -------------------------------------------------------------------------- */
 
@@ -61,6 +65,19 @@ const styles = theme => ({
 		height: 0,
 		paddingTop: '66.666%', // 3:2
 	},
+	icon: {
+		position: "absolute",
+		color: "white",
+		zIndex: 3000
+	},
+	prevIcon: {
+		left: theme.spacing(1),
+		bottom: theme.spacing(1),
+	},
+	nextIcon: {
+		right: theme.spacing(1),
+		bottom: theme.spacing(1),
+	},
 	articleContent: {
 		marginTop: theme.spacing(4),
 		marginBottom: theme.spacing(8),
@@ -80,11 +97,52 @@ class Article extends React.Component {
 		super(props);
 
 		this.state = {
-			currentImage: 0
+			imageSliderOpen: false,
+			imageSliderIndex: 0
 		};
 
 		this.articleId = this.props.match.params.articleId;
 		this.getArticleContent = this.getArticleContent.bind(this);
+
+		this.openImageSlider = this.openImageSlider.bind(this);
+		this.closeImageSlider = this.closeImageSlider.bind(this);
+		this.newImageSliderIndex = this.newImageSliderIndex.bind(this);
+	}
+
+	openImageSlider() {
+		this.setState({
+			imageSliderOpen: true
+		});
+	}
+
+	closeImageSlider() {
+		this.setState({
+			imageSliderOpen: false,
+		});
+	}
+
+	newImageSliderIndex(newIndex) {
+		this.setState({
+			imageSliderIndex: newIndex,
+		});
+	}
+
+	handleLeftClick() {
+		let newIndex = this.props.imageSliderIndex - 1;
+		if (newIndex < 0) {
+			newIndex += this.props.images.length;
+		}
+		this.setState({loading: true});
+		this.props.newImageSliderIndex(newIndex);
+	}
+
+	handleRightClick() {
+		let newIndex = this.props.imageSliderIndex + 1;
+		if (newIndex >= this.props.images.length) {
+			newIndex = 0;
+		}
+		this.setState({loading: true});
+		this.props.newImageSliderIndex(newIndex);
 	}
 
 	getArticleContent(article) {
@@ -95,23 +153,53 @@ class Article extends React.Component {
 		}
 
 		return (
+
 			<div className="ArticleView">
 				<Typography variant="h4" className={classes.headline}>{article.headline}</Typography>
-				<Container maxWidth="sm">
-					<Card elevation={3} className={classes.card}>
+				<Container maxWidth="md">
+					<Card elevation={3}
+					      className={classes.card}>
 						<CardMedia
 							className={classes.cardMedia}
-							image={article.images[this.state.currentImage]["filepath_large"]}
-							alt={article.images[this.state.currentImage]["description"]}
+							image={article.images[this.state.imageSliderIndex]["filepath_large"]}
+							alt={article.images[this.state.imageSliderIndex]["description"]}
+							onClick={this.openImageSlider}
 						/>
+						<IconButton
+							aria-label="previous image"
+							className={clsx(classes.icon, classes.prevIcon)}
+							size="medium"
+							onClick={() => {
+								let newIndex = this.state.imageSliderIndex - 1;
+								if (newIndex < 0) {
+									newIndex += article.images.length;
+								}
+								this.setState({loading: true});
+								this.newImageSliderIndex(newIndex);
+							}}>
+							<ChevronLeftIcon/>
+						</IconButton>
+						<IconButton
+							aria-label="next image"
+							className={clsx(classes.icon, classes.nextIcon)}
+							size="medium"
+							onClick={() => {
+								let newIndex = (this.state.imageSliderIndex + 1) % article.images.length;
+								this.setState({loading: true});
+								this.newImageSliderIndex(newIndex);
+							}}>
+							<ChevronRightIcon/>
+						</IconButton>
 					</Card>
 					<div className={classes.articleContent + " ArticleContent"}
 					     dangerouslySetInnerHTML={{__html: article.content_html}}/>
 					<div className={classes.articleCredit}>
-						<Typography variant="subtitle2" className={classes.articleCredit}>By {article.author}</Typography>
+						<Typography variant="subtitle2"
+						            className={classes.articleCredit}>By {article.author}</Typography>
 					</div>
 				</Container>
 			</div>
+
 		);
 	}
 
@@ -129,12 +217,22 @@ class Article extends React.Component {
 		}
 
 		return (
-			<div className="NewsFeedPage">
-				<Link to="/news-feed">
-					<ArrowBackIosTwoToneIcon className={classes.backIcon} color="secondary"/>
-				</Link>
-				{articleContent}
-			</div>
+			<React.Fragment>
+				{!this.state.imageSliderOpen && (
+					<div className="NewsFeedPage">
+						<Link to="/news-feed">
+							<ArrowBackIosTwoToneIcon className={classes.backIcon} color="secondary"/>
+						</Link>
+						{articleContent}
+					</div>
+				)}
+				{this.state.imageSliderOpen && (
+					<ImageSlider images={article["images"]}
+					             imageSliderIndex={this.state.imageSliderIndex}
+					             closeImageSlider={this.closeImageSlider}
+					             newImageSliderIndex={newIndex => this.newImageSliderIndex(newIndex)}/>
+				)}
+			</React.Fragment>
 		);
 	}
 }
