@@ -52,10 +52,10 @@ export const ContentPage = (props) => {
 				<Route>
 					<Container className="ContentPage" maxWidth="md">
 						<Route path="/news-feed">
-							<NewsFeedPageManager/>
+							<NewsFeedPageManager hideWebsite={props.hideWebsite}/>
 						</Route>
 						<Route path="/gallery">
-							<GalleryPageManager/>
+							<GalleryPageManager hideWebsite={props.hideWebsite}/>
 						</Route>
 						<Route path="/sailors-guide">
 							<SailorsGuidePage/>

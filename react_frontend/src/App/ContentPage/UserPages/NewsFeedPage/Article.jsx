@@ -110,12 +110,14 @@ class Article extends React.Component {
 	}
 
 	openImageSlider() {
+		this.props.hideWebsite(true);
 		this.setState({
 			imageSliderOpen: true
 		});
 	}
 
 	closeImageSlider() {
+		this.props.hideWebsite(false);
 		this.setState({
 			imageSliderOpen: false,
 		});
@@ -125,24 +127,6 @@ class Article extends React.Component {
 		this.setState({
 			imageSliderIndex: newIndex,
 		});
-	}
-
-	handleLeftClick() {
-		let newIndex = this.props.imageSliderIndex - 1;
-		if (newIndex < 0) {
-			newIndex += this.props.images.length;
-		}
-		this.setState({loading: true});
-		this.props.newImageSliderIndex(newIndex);
-	}
-
-	handleRightClick() {
-		let newIndex = this.props.imageSliderIndex + 1;
-		if (newIndex >= this.props.images.length) {
-			newIndex = 0;
-		}
-		this.setState({loading: true});
-		this.props.newImageSliderIndex(newIndex);
 	}
 
 	getArticleContent(article) {

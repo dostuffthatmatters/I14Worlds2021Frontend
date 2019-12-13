@@ -31,6 +31,8 @@ export const Router = (props) => {
 
 	let navBarRoutes = "/(";
 
+	let [websiteHidden, hideWebsite] = React.useState(false);
+
 	userRoutes.forEach(element => {
 		navBarRoutes += element.slice(1) + "|";
 	});
@@ -45,8 +47,10 @@ export const Router = (props) => {
 	return (
 		<BrowserRouter>
 			<Route path={navBarRoutes}>
-				<NavBar loggedIn={props.loggedIn}
-				        logoutUser={props.logoutUser}/>
+				{!websiteHidden && (
+					<NavBar loggedIn={props.loggedIn}
+					        logoutUser={props.logoutUser}/>
+				)}
 			</Route>
 			<Switch>
 				<Route exact strict path="/">
@@ -54,7 +58,7 @@ export const Router = (props) => {
 				</Route>
 				<Route exact strict path="/login">
 					{props.loggedIn && (
-						<Redirect to="/admin/news-feed" />
+						<Redirect to="/admin/news-feed"/>
 					)}
 					{!props.loggedIn && (
 						<LoginPageManager loggedIn={props.loggedIn}
@@ -64,7 +68,8 @@ export const Router = (props) => {
 				{userRoutes.map((path, index) => (
 						<Route path={path} key={index}>
 							<ContentPage loggedIn={props.loggedIn}
-							             path={path}/>
+							             path={path}
+							             hideWebsite={hideWebsite}/>
 						</Route>
 					)
 				)}
@@ -73,8 +78,7 @@ export const Router = (props) => {
 							<ContentPage automaticLogin={props.automaticLogin}
 							             loggedIn={props.loggedIn}
 							             path={path}
-							             api={props.api}
-							/>
+							             api={props.api}/>
 						</Route>
 					)
 				)}
@@ -83,7 +87,9 @@ export const Router = (props) => {
 				</Route>
 			</Switch>
 			<Route path={navBarRoutes}>
-				<Footer />
+				{!websiteHidden && (
+					<Footer/>
+				)}
 			</Route>
 		</BrowserRouter>
 	);

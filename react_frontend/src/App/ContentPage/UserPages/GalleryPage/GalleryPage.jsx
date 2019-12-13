@@ -185,7 +185,7 @@ class GalleryPageManager extends React.Component {
 						</React.Fragment>
 					)}
 					{!this.state.loading && (
-						<Album getAlbumFromId={this.getAlbumFromId}/>
+						<Album getAlbumFromId={this.getAlbumFromId} hideWebsite={this.props.hideWebsite}/>
 					)}
 				</Route>
 			</Switch>

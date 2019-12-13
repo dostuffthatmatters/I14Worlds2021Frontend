@@ -230,7 +230,8 @@ class NewsFeedPageManager extends React.Component {
 						</React.Fragment>
 					)}
 					{!this.state.loading && (
-						<Article getArticleFromId={this.getArticleFromId}/>
+						<Article getArticleFromId={this.getArticleFromId}
+						         hideWebsite={this.props.hideWebsite}/>
 					)}
 				</Route>
 			</Switch>

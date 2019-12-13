@@ -96,6 +96,7 @@ class Album extends React.Component {
 	}
 
 	openImageSlider(imageIndex) {
+		this.props.hideWebsite(true);
 		this.setState({
 			imageSliderOpen: true,
 			imageSliderIndex: imageIndex,
@@ -103,6 +104,7 @@ class Album extends React.Component {
 	}
 
 	closeImageSlider() {
+		this.props.hideWebsite(false);
 		this.setState({
 			imageSliderOpen: false,
 		});
