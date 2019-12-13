@@ -5,7 +5,7 @@ import 'date-fns';
 
 
 /* Routing Imports --------------------------------------------------------------- */
-import Link from "react-router-dom/Link";
+import {Link} from "react-router-dom";
 
 
 /* Styling Imports --------------------------------------------------------------- */

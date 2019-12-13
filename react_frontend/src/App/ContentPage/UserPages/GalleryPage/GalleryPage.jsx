@@ -4,9 +4,8 @@ import React from 'react';
 
 
 /* Routing Imports --------------------------------------------------------------- */
-import Switch from 'react-router-dom/Switch';
-import Route from 'react-router-dom/Route';
-import Link from 'react-router-dom/Link';
+// noinspection ES6CheckImport
+import {Switch, Route, Link} from 'react-router-dom';
 
 
 /* Styling Imports --------------------------------------------------------------- */

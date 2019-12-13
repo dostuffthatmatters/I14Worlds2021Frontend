@@ -90,7 +90,7 @@ export function Footer(props) {
 								<a href="https://github.com/dostuffthatmatters"
 								   rel="noopener noreferrer"
 								   target="_blank">
-									<Typography variant="h7">© Moritz Makowski</Typography>
+									<Typography>© Moritz Makowski</Typography>
 								</a>
 							</Card>
 						</Grid>
@@ -100,7 +100,7 @@ export function Footer(props) {
 								<a href="https://international14.de/"
 								   rel="noopener noreferrer"
 								   target="_blank">
-									<Typography variant="h7">© German International 14 Class Association</Typography>
+									<Typography>© German International 14 Class Association</Typography>
 								</a>
 							</Card>
 						</Grid>
@@ -110,7 +110,7 @@ export function Footer(props) {
 								<a href="https://www.nrv.de/"
 								   rel="noopener noreferrer"
 								   target="_blank">
-									<Typography variant="h7">© Sven Jürgensen (NRV)</Typography>
+									<Typography>© Sven Jürgensen (NRV)</Typography>
 								</a>
 							</Card>
 						</Grid>
@@ -120,7 +120,7 @@ export function Footer(props) {
 								<a href="https://www.vrsport.tv/"
 								   rel="noopener noreferrer"
 								   target="_blank">
-									<Typography variant="h7">© VR Sport TV</Typography>
+									<Typography>© VR Sport TV</Typography>
 								</a>
 							</Card>
 						</Grid>
@@ -135,7 +135,7 @@ export function Footer(props) {
 								   href="https://international14.de/datenschutz/"
 								   rel="noopener noreferrer"
 								   target="_blank">
-									<Typography variant="h7">Datenschutz</Typography>
+									<Typography>Datenschutz</Typography>
 								</a>
 							</Card>
 						</Grid>
@@ -146,7 +146,7 @@ export function Footer(props) {
 								   href="https://international14.de/impressum/"
 								   rel="noopener noreferrer"
 								   target="_blank">
-									<Typography variant="h7">Impressum</Typography>
+									<Typography>Impressum</Typography>
 								</a>
 							</Card>
 						</Grid>

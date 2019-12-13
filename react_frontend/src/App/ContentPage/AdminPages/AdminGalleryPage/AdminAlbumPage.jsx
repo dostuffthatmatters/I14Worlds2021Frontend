@@ -3,9 +3,8 @@ import React from 'react';
 
 
 /* Routing Imports --------------------------------------------------------------- */
-import Switch from "react-router-dom/Switch"
-import Route from "react-router-dom/Route"
-import Link from "react-router-dom/Link"
+// noinspection ES6CheckImport
+import {Switch, Route, Link} from 'react-router-dom';
 
 
 /* Material UI Imports ----------------------------------------------------------- */
@@ -23,8 +22,8 @@ import EditImagePage from './EditImagePage';
 /* Hook Linking Imports ---------------------------------------------------------- */
 import PropTypes from "prop-types";
 import withStyles from "@material-ui/styles/withStyles/withStyles";
-import withRouter from "react-router-dom/withRouter";
-
+// noinspection ES6CheckImport
+import {withRouter} from "react-router-dom";
 
 /* Styles ------------------------------------------------------------------------ */
 

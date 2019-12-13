@@ -4,10 +4,8 @@ import React from 'react';
 
 
 /* Routing Imports --------------------------------------------------------------- */
-import BrowserRouter from "react-router-dom/BrowserRouter";
-import Route from "react-router-dom/Route";
-import Switch from "react-router-dom/Switch";
-import Redirect from "react-router-dom/Redirect";
+// noinspection ES6CheckImport
+import {Switch, Route, BrowserRouter, Redirect} from 'react-router-dom';
 
 
 /* Component Imports ------------------------------------------------------------- */

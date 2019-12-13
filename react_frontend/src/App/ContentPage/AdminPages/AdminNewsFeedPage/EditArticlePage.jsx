@@ -4,7 +4,7 @@ import React from "react";
 
 
 /* Routing Imports --------------------------------------------------------------- */
-import Link from "react-router-dom/Link";
+import {Link} from "react-router-dom";
 
 
 /* Styling Imports --------------------------------------------------------------- */
@@ -35,12 +35,14 @@ import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import {CustomDatePicker} from "../../../../Components/Forms/CustomDatePicker";
 import {CustomTimePicker} from "../../../../Components/Forms/CustomTimePicker";
 import {CustomTextField} from "../../../../Components/Forms/CustomTextField";
+import ImageSelector from './ImageSelector';
 
 
 /* Hook Linking Imports ---------------------------------------------------------- */
 import PropTypes from "prop-types";
 import withStyles from "@material-ui/styles/withStyles/withStyles";
-import withRouter from "react-router-dom/withRouter";
+// noinspection ES6CheckImport
+import {withRouter} from "react-router-dom";
 
 
 /* Styles ------------------------------------------------------------------------ */
@@ -355,6 +357,11 @@ class EditArticlePage extends React.Component {
 			articleContent = this.getArticleForm(article);
 		}
 
+		let article_headline = this.state.headline === undefined ? article.headline : this.state.headline;
+		if (article_headline.length === 0) {
+			article_headline = "No Title"
+		}
+
 		return (
 			<div className="AdminGalleryPage">
 				<Breakpoint medium up>
@@ -362,9 +369,7 @@ class EditArticlePage extends React.Component {
 						<ArrowBackIosTwoToneIcon className={classes.backIcon} color="secondary"/>
 					</Link>
 				</Breakpoint>
-				<Typography variant="h4" className={classes.headline}>
-					{this.state.headline === undefined ? article.headline : this.state.headline}
-				</Typography>
+				<Typography variant="h4" className={classes.headline}>{article_headline}</Typography>
 				<Divider className={classes.divider}/>
 				{articleContent}
 			</div>

@@ -3,7 +3,7 @@ import React from 'react';
 
 
 /* Routing Imports --------------------------------------------------------------- */
-import Link from "react-router-dom/Link";
+import {Link} from "react-router-dom";
 
 
 /* AJAX Imports ------------------------------------------------------------------ */
@@ -33,8 +33,8 @@ import {CustomTextField} from "../../../../Components/Forms/CustomTextField";
 /* Hook Linking Imports ---------------------------------------------------------- */
 import PropTypes from "prop-types";
 import withStyles from "@material-ui/styles/withStyles/withStyles";
-import withRouter from "react-router-dom/withRouter";
-
+// noinspection ES6CheckImport
+import {withRouter} from "react-router-dom";
 
 /* Styles ------------------------------------------------------------------------ */
 
