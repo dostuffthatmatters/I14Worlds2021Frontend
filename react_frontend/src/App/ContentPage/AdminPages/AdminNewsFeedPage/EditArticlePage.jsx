@@ -170,7 +170,9 @@ class EditArticlePage extends React.Component {
 			content: undefined,
 			timestamp: undefined,
 			visible: undefined,
-			author: undefined
+			author: undefined,
+			selectedImageIds: undefined,
+			favoriteImageId: undefined,
 		};
 
 		this.articleId = this.props.match.params.articleId;
@@ -214,6 +216,14 @@ class EditArticlePage extends React.Component {
 
 		if (this.state.author !== undefined) {
 			params.article_author = this.state.author;
+		}
+
+		if (this.state.selectedImageIds !== undefined) {
+			params.article_selected_image_ids = this.state.selectedImageIds;
+		}
+
+		if (this.state.favoriteImageId !== undefined) {
+			params.article_favorite_image_id = this.state.favoriteImageId;
 		}
 
 		console.log(params);
@@ -357,10 +367,13 @@ class EditArticlePage extends React.Component {
 			articleContent = this.getArticleForm(article);
 		}
 
-		let article_headline = this.state.headline === undefined ? article.headline : this.state.headline;
-		if (article_headline.length === 0) {
-			article_headline = "No Title"
+		let headline = this.state.headline === undefined ? article.headline : this.state.headline;
+		if (headline.length === 0) {
+			headline = "No Title"
 		}
+
+		let selectedImageIds = this.state.selectedImageIds === undefined ? article.selected_image_ids : this.state.selectedImageIds;
+		let favoriteImageId = this.state.favoriteImageId === undefined ? article.favorite_image_id : this.state.favoriteImageId;
 
 		return (
 			<div className="AdminGalleryPage">
@@ -369,9 +382,15 @@ class EditArticlePage extends React.Component {
 						<ArrowBackIosTwoToneIcon className={classes.backIcon} color="secondary"/>
 					</Link>
 				</Breakpoint>
-				<Typography variant="h4" className={classes.headline}>{article_headline}</Typography>
+				<Typography variant="h4" className={classes.headline}>{headline}</Typography>
 				<Divider className={classes.divider}/>
 				{articleContent}
+				<Divider className={classes.divider}/>
+				<ImageSelector api={this.props.api}
+				               selectedImageIds={selectedImageIds}
+				               favoriteImageId={favoriteImageId}
+				               updateFavoriteImageId={(newFavoriteImageId) => this.setState({favoriteImageId: newFavoriteImageId})}
+				               updateSelectedImageIds={(newSelectedImageIds) => this.setState({selectedImageIds: newSelectedImageIds})}/>
 			</div>
 		);
 	}

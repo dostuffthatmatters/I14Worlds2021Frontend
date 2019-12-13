@@ -138,6 +138,8 @@ class AdminAlbumPage extends React.Component {
 					                     updateState={this.updateState}
 					                     api={this.props.api}
 					                     removeImageFromView={this.removeImageFromView}/>
+
+
 				</Grid>
 			);
 		});

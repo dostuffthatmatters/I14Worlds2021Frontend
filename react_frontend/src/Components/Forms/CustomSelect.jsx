@@ -47,8 +47,8 @@ export const CustomSelect = (props) => {
 				id="demo-simple-select"
 				value={value}
 				onChange={handleChange}>
-				{Object.keys(props.selectOptions).map(value => (
-					<MenuItem value={value}>{props.selectOptions[value]}</MenuItem>
+				{Object.keys(props.selectOptions).map((value, index) => (
+					<MenuItem key={index} value={value}>{props.selectOptions[value]}</MenuItem>
 				))}
 			</Select>
 		</FormControl>
