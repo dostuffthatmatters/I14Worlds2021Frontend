@@ -97,6 +97,7 @@ class AdminGalleryPageManager extends React.Component {
 			creatingAlbum: false
 		};
 
+		this.updateTitleImageId = this.updateTitleImageId.bind(this);
 		this.triggerReload = this.triggerReload.bind(this);
 
 		this.getAlbumFromId = this.getAlbumFromId.bind(this);
@@ -139,6 +140,12 @@ class AdminGalleryPageManager extends React.Component {
 			});
 		});
 
+	}
+
+	updateTitleImageId(albumId, imageId) {
+		let albums = this.state.albums;
+		albums[this.state.albumIdtoIndex[albumId]]["title_image_id"] = imageId;
+		this.setState({albums: albums});
 	}
 
 	triggerReload() {
@@ -222,12 +229,8 @@ class AdminGalleryPageManager extends React.Component {
 				"name": "",
 				"image_count": 0,
 				"visible_image_count": 0,
-				"title_image_paths": {
-					"filepath_small": "https://storage.googleapis.com/i14-worlds-2021-gallery/default-images/default-image-1-small.jpg",
-					"filepath_medium": "https://storage.googleapis.com/i14-worlds-2021-gallery/default-images/default-image-1-medium.jpg",
-					"filepath_large": "https://storage.googleapis.com/i14-worlds-2021-gallery/default-images/default-image-1-large.jpg",
-					"filepath_full": "https://storage.googleapis.com/i14-worlds-2021-gallery/default-images/default-image-1.jpg",
-				},
+				"title_image_id": 0,
+				"image_id_to_index": {},
 				"images": []
 			};
 
@@ -379,6 +382,7 @@ class AdminGalleryPageManager extends React.Component {
 					{!this.state.loading && (
 						<AdminAlbumPage getAlbumFromId={this.getAlbumFromId}
 						                api={this.props.api}
+						                updateTitleImageId={this.updateTitleImageId}
 						                updateImageState={this.updateImageState}
 						                removeImageFromView={this.removeImageFromView}
 						                albumIds={this.getAlbumIds()}

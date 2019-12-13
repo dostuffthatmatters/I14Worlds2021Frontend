@@ -130,13 +130,22 @@ class GalleryPageManager extends React.Component {
 			if (album.visible_image_count === 0) {
 				return "";
 			}
+
+			let imageSrc;
+
+			if (album.title_image_id === 0) {
+				imageSrc = "https://storage.googleapis.com/i14-worlds-2021-gallery/default-images/default-image-1-medium.jpg";
+			} else {
+				imageSrc = album.images[album.image_id_to_index[album.title_image_id]]["filepath_medium"];
+			}
+
 			return (
 				<Grid item xs={12} sm={6} md={4} lg={4} xl={4} key={index}>
 					<Link to={"gallery/" + album.id}>
 						<Card elevation={3} className={classes.card}>
 							<CardMedia
 								className={classes.cardMedia}
-								image={album.title_image_paths.filepath_medium}
+								image={imageSrc}
 								alt={"Images inside " + album.name}
 							/>
 							<CardContent className={classes.cardContent}>{album.name}</CardContent>

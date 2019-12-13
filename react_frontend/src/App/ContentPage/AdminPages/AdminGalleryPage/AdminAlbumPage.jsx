@@ -132,14 +132,14 @@ class AdminAlbumPage extends React.Component {
 		let imageList = album.images.map((image, index) => {
 			return (
 				<Grid item xs={12} sm={6} md={4} lg={4} xl={4} key={index}>
-					<AdminAlbumPageImage path={"/admin/gallery/" + album.id + "/" + image.id}
+					<AdminAlbumPageImage albumId={this.albumId}
+					                     titleImage={album.title_image_id === image.id}
+					                     updateTitleImageId={newId => this.props.updateTitleImageId(album.id, newId)}
 					                     image={image}
 					                     index={index}
 					                     updateState={this.updateState}
 					                     api={this.props.api}
 					                     removeImageFromView={this.removeImageFromView}/>
-
-
 				</Grid>
 			);
 		});

@@ -199,10 +199,10 @@ class EditImagePage extends React.Component {
 				window.open("/admin/gallery/" + this.state.albumId + "/" + this.imageId, "_self");
 			} else {
 				if (this.state.description !== undefined) {
-					this.props.album.images[this.props.album["image_id_to_index_dict"][this.imageId]]["description"] = this.state.description;
+					this.props.album.images[this.props.album["image_id_to_index"][this.imageId]]["description"] = this.state.description;
 				}
 				if (this.state.timestamp !== undefined) {
-					this.props.album.images[this.props.album["image_id_to_index_dict"][this.imageId]]["timestamp"] = this.state.timestamp;
+					this.props.album.images[this.props.album["image_id_to_index"][this.imageId]]["timestamp"] = this.state.timestamp;
 				}
 				this.setState({
 					description: undefined,
@@ -303,7 +303,7 @@ class EditImagePage extends React.Component {
 		let imagePageContent;
 
 		if (this.props.album !== undefined) {
-			image = this.props.album.images[this.props.album["image_id_to_index_dict"][this.imageId]];
+			image = this.props.album.images[this.props.album["image_id_to_index"][this.imageId]];
 		}
 
 		if (this.props.album === undefined || image === undefined) {
