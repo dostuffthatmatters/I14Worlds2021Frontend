@@ -27,6 +27,27 @@ const theme = createMuiTheme({
 		},
 		white: {
 			main: 'rgb(255, 255, 255)',
+		},
+
+		maastrichtBlue: {
+			main: 'hsl(237, 77%, 18%)',
+			transparent80: 'hsla(237, 77%, 18%, 0.8)',
+			transparent60: 'hsla(237, 77%, 18%, 0.6)',
+		},
+		pinctonBlue: {
+			main: 'hsl(206, 81%, 50%)',
+			transparent80: 'hsla(206, 81%, 50%, 0.8)',
+			transparent60: 'hsla(206, 81%, 50%, 0.6)',
+		},
+		desireMagenta: {
+			main: 'hsl(344, 93%, 50%)',
+			transparent80: 'hsla(344, 93%, 50%, 0.8)',
+			transparent60: 'hsla(344, 93%, 50%, 0.6)',
+		},
+		gunmetalGray: {
+			main: 'hsl(229, 25%, 18%)',
+			transparent80: 'hsla(229, 25%, 18%, 0.8)',
+			transparent60: 'hsla(229, 25%, 18%, 0.6)',
 		}
 	}
 });
