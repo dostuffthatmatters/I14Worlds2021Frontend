@@ -38,6 +38,9 @@ import I14Icon from './images/I14IconSquare.svg';
 
 
 const useStyles = makeStyles(theme => ({
+	navBar: {
+		backgroundColor: theme.palette.gunmetalGray.main,
+	},
 	menuButton: {
 		marginRight: theme.spacing(1),
 	},
@@ -196,7 +199,7 @@ export const NavBar = (props) => {
 
 	return (
 		<React.Fragment>
-			<AppBar position="fixed">
+			<AppBar position="fixed" className={classes.navBar}>
 				<Toolbar>
 					<IconButton edge="start"
 					            color="inherit"
@@ -207,7 +210,6 @@ export const NavBar = (props) => {
 					</IconButton>
 					<Typography variant="h6" className={classes.title}>{pageTitle}</Typography>
 					<IconButton edge="end"
-					            color="inherit"
 					            aria-label="index"
 					            className={classes.I14Button}
 					            disableRipple={true}>

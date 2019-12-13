@@ -1,4 +1,3 @@
-
 /* General Imports --------------------------------------------------------------- */
 import React from 'react'
 
@@ -12,7 +11,8 @@ import {
 	Card,
 	CardMedia,
 	Typography,
-	Grid} from "@material-ui/core";
+	Grid
+} from "@material-ui/core";
 import ArrowBackIosTwoToneIcon from '@material-ui/icons/ArrowBackIosTwoTone';
 
 
@@ -21,6 +21,7 @@ import PropTypes from "prop-types";
 import withStyles from "@material-ui/styles/withStyles/withStyles";
 // noinspection ES6CheckImport
 import {withRouter} from "react-router-dom";
+import ImageSlider from "../../ImageSlider/ImageSlider";
 
 /* ------------------------------------------------------------------------------- */
 
@@ -53,8 +54,17 @@ class Album extends React.Component {
 	constructor(props) {
 		super(props);
 
+		this.state = {
+			imageSliderOpen: false,
+			imageSliderIndex: undefined
+		};
+
 		this.albumId = this.props.match.params.albumId;
 		this.getImageList = this.getImageList.bind(this);
+
+		this.openImageSlider = this.openImageSlider.bind(this);
+		this.closeImageSlider = this.closeImageSlider.bind(this);
+		this.newImageSliderIndex = this.newImageSliderIndex.bind(this);
 	}
 
 	getImageList(album) {
@@ -66,7 +76,7 @@ class Album extends React.Component {
 			}
 			return (
 				<Grid item xs={12} sm={6} md={4} lg={4} xl={4} key={index}>
-					<Card elevation={3} className={classes.card}>
+					<Card elevation={3} className={classes.card} onClick={() => this.openImageSlider(index)}>
 						<CardMedia
 							className={classes.cardMedia}
 							image={image.filepath_medium}
@@ -83,6 +93,25 @@ class Album extends React.Component {
 				{imageList}
 			</Grid>
 		);
+	}
+
+	openImageSlider(imageIndex) {
+		this.setState({
+			imageSliderOpen: true,
+			imageSliderIndex: imageIndex,
+		});
+	}
+
+	closeImageSlider() {
+		this.setState({
+			imageSliderOpen: false,
+		});
+	}
+
+	newImageSliderIndex(newIndex) {
+		this.setState({
+			imageSliderIndex: newIndex,
+		});
 	}
 
 	render() {
@@ -103,12 +132,23 @@ class Album extends React.Component {
 		}
 
 		return (
-			<div className="GalleryPage">
-				<Link to="/gallery">
-					<ArrowBackIosTwoToneIcon className={classes.backIcon} color="secondary"/>
-				</Link>
-				{albumContent}
-			</div>
+			<React.Fragment>
+				{!this.state.imageSliderOpen && (
+					<div className="GalleryPage">
+						<Link to="/gallery">
+							<ArrowBackIosTwoToneIcon className={classes.backIcon} color="secondary"/>
+						</Link>
+						{albumContent}
+					</div>
+				)}
+				{this.state.imageSliderOpen && (
+					<ImageSlider images={album["images"]}
+					             imageSliderIndex={this.state.imageSliderIndex}
+					             closeImageSlider={this.closeImageSlider}
+					             newImageSliderIndex={newIndex => this.newImageSliderIndex(newIndex)}/>
+				)}
+
+			</React.Fragment>
 		);
 	}
 }
