@@ -20,8 +20,8 @@ import LoginPageManager from "../App/LoginPage/LoginPage";
 /* Data -------------------------------------------------------------------------- */
 
 
-const userRoutes = ["/event", "/news-feed", "/gallery", "/sailors-guide", "/contact-us"];
-const adminRoutes = ["/admin/news-feed", "/admin/gallery", "/admin/contact-us"];
+const userRoutes = ["/event", "/news-feed", "/news-feed/:articleId", "/gallery", "/gallery/:albumId", "/sailors-guide", "/contact-us"];
+const adminRoutes = ["/admin/news-feed", "/admin/news-feed/:articleId", "/admin/gallery", "/admin/gallery/:albumId", "/admin/gallery/:albumId/:imageId", "/admin/contact-us"];
 
 
 /* Component --------------------------------------------------------------------- */
@@ -66,7 +66,7 @@ export const Router = (props) => {
 					)}
 				</Route>
 				{userRoutes.map((path, index) => (
-						<Route path={path} key={index}>
+						<Route exact path={path} key={index}>
 							<ContentPage loggedIn={props.loggedIn}
 							             path={path}
 							             hideWebsite={hideWebsite}/>
@@ -74,7 +74,7 @@ export const Router = (props) => {
 					)
 				)}
 				{adminRoutes.map((path, index) => (
-						<Route path={path} key={index}>
+						<Route exact path={path} key={index}>
 							<ContentPage automaticLogin={props.automaticLogin}
 							             loggedIn={props.loggedIn}
 							             path={path}
@@ -82,7 +82,7 @@ export const Router = (props) => {
 						</Route>
 					)
 				)}
-				<Route path="/">
+				<Route>
 					<NotFoundPage/>
 				</Route>
 			</Switch>
