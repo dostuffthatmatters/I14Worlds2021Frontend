@@ -10,13 +10,9 @@ versions on mobile (no need to download 2800px on mobile)
 ratio of the screen to a certain degree the three control 
 buttons overlap with the image card
 
-* Redirect routes like "/gallery/1/ed" or "/gallery/ed" to 404 
-(Right now I can either remount the component every time a user 
-switches from "/gallery" to "/gallery/1" and do that rerouting 
-by including "exact" inside a Route-Component OR I can do it like 
-this by not remounting components unneccessarily but the "exact"
-option doesn't work because of regex)
+* Redirect routes like "/gallery/1/ed" or "/gallery/ed" to dedicated 
+404 page
 
- 
+
 
 
