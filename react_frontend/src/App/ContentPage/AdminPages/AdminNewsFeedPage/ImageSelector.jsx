@@ -58,7 +58,6 @@ class ImageSelector extends React.Component {
 
 		newSelectedImageIds.push(this.props.favoriteImageId);
 
-		console.log("Updating favorite image id: " + image_id.toString());
 		this.props.updateFavoriteImageId(image_id);
 		this.props.updateSelectedImageIds(newSelectedImageIds);
 	}
@@ -79,18 +78,16 @@ class ImageSelector extends React.Component {
 			api_key: this.props.api.api_key
 		};
 
-		console.log({params: params});
-		console.log({url: BACKEND_URL + "/backend/database/album"});
-
 		BackendGET(BACKEND_URL + "/backend/database/album", params).then((resolveMessage) => {
-			console.log("Fetching album data: Success");
+			console.log("Fetching album data: successful");
 
-			console.log({response: JSON.parse(resolveMessage)});
+			let responseJSON =  JSON.parse(resolveMessage);
+
 			this.setState({
-				albums: JSON.parse(resolveMessage)["albums"],
-				albumIdtoIndex: JSON.parse(resolveMessage)["album_id_to_index"],
-				albumIdtoNameDict: JSON.parse(resolveMessage)["album_id_to_name"],
-				albumId: JSON.parse(resolveMessage)["albums"][0]["id"]
+				albums: responseJSON["albums"],
+				albumIdtoIndex: responseJSON["album_id_to_index"],
+				albumIdtoNameDict: responseJSON["album_id_to_name"],
+				albumId: responseJSON["albums"][0]["id"]
 			});
 		}).catch(() => {
 			console.log("Fetching album data: failed");

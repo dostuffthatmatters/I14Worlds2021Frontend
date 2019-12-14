@@ -143,32 +143,13 @@ class AdminNewsFeedPageManager extends React.Component {
 	}
 
 	componentDidMount() {
-
-		console.log("Fetching article data");
-
-		const params = {
-			email: this.props.api.email,
-			api_key: this.props.api.api_key,
-		};
-
-		BackendGET(BACKEND_URL + "/backend/database/article", params).then((resolveMessage) => {
-			console.log("Fetching contact data: successful");
-			this.setState({
-				loading: false,
-				articles: JSON.parse(resolveMessage)["articles"],
-				articleIdtoIndex: JSON.parse(resolveMessage)["article_id_to_index"]
-			});
-		}).catch(() => {
-			console.log("Fetching contact data: failed");
-			this.setState({
-				loading: false
-			});
-		});
-
+		this.triggerReload();
 	}
 
 	triggerReload() {
 
+		this.setState({loading: true});
+
 		console.log("Fetching article data");
 
 		const params = {
@@ -177,14 +158,14 @@ class AdminNewsFeedPageManager extends React.Component {
 		};
 
 		BackendGET(BACKEND_URL + "/backend/database/article", params).then((resolveMessage) => {
-			console.log("Fetching contact data: successful");
+			console.log("Fetching article data: successful");
 			this.setState({
 				loading: false,
 				articles: JSON.parse(resolveMessage)["articles"],
 				articleIdtoIndex: JSON.parse(resolveMessage)["article_id_to_index"]
 			});
 		}).catch(() => {
-			console.log("Fetching contact data: failed");
+			console.log("Fetching article data: failed");
 			this.setState({
 				loading: false
 			});

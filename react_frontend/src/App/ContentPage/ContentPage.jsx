@@ -33,12 +33,13 @@ export const ContentPage = (props) => {
 
 	const history = useHistory();
 
+	// Redirecting from admin page to user page if the user
+	// is not logged in. In case the login process is still
+	// going on the view remains empty (Navbar and Footer visible)
 	if (props.path.startsWith("/admin")) {
 		if (props.automaticLogin) {
-			console.log({source: "contentPage:25"});
-			return "";
+			return <Container className="ContentPage" maxWidth="md"/>;
 		} else if (!props.loggedIn) {
-			console.log({source: "contentPage:28"});
 			history.push("/event");
 		}
 	}

@@ -159,7 +159,6 @@ class AdminAlbumPageImage extends React.Component {
 
 	triggerRemove() {
 
-		console.log({props: this.props});
 		let params = {
 			email: this.props.api.email,
 			api_key: this.props.api.api_key,

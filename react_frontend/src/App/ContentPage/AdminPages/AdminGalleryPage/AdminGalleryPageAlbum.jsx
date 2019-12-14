@@ -154,7 +154,6 @@ class AdminGalleryPageAlbum extends React.Component {
 		if (this.props.album.title_image_id === 0) {
 			imageSrc = "https://storage.googleapis.com/i14-worlds-2021-gallery/default-images/default-image-1-medium.jpg";
 		} else {
-			console.log({"this.props.album": this.props.album});
 			imageSrc = this.props.album.images[this.props.album.image_id_to_index[this.props.album.title_image_id]]["filepath_medium"];
 		}
 

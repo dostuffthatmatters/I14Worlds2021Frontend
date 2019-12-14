@@ -164,14 +164,11 @@ class GalleryPageManager extends React.Component {
 
 	getAlbumFromId(albumId) {
 		let album = this.state.albums[this.state.albumIdtoIndex[albumId]];
-		console.log({gettingAlbumFromID: albumId, albums: this.state.albums, album: album});
 		return album;
 	}
 
 	render() {
 		const {classes} = this.props;
-
-		console.log({dict_outside: this.state.albumIdtoIndex});
 
 		return (
 			<Switch>

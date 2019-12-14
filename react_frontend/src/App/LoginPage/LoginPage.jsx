@@ -115,8 +115,6 @@ class LoginPageManager extends React.Component {
 		BackendREST(BACKEND_URL + "/backend/login", params, "POST").then((resolveMessage) => {
 			const resultJson = JSON.parse(resolveMessage);
 
-			console.log({resultJson: resultJson});
-
 			if (resultJson["Status"] === "Ok") {
 				console.log("Login: Status = " + resolveMessage);
 				this.setState({
@@ -128,7 +126,7 @@ class LoginPageManager extends React.Component {
 					this.props.loginUser(params.email, resultJson["api_key"], resultJson["name"]);
 				}, 0.7);
 			} else {
-				console.log("Login failed");
+				console.log("Login failed: Status = " + resolveMessage);
 				this.setState({
 					loading: false,
 					errorMessageVisible: true,
@@ -137,9 +135,8 @@ class LoginPageManager extends React.Component {
 			}
 
 		}).catch((rejectMessage) => {
-			console.log("Login failed");
+			console.log("Login failed: " + rejectMessage);
 			const resultJson = JSON.parse(rejectMessage);
-			console.log({resultJson: resultJson});
 
 			this.setState({
 				loading: false,

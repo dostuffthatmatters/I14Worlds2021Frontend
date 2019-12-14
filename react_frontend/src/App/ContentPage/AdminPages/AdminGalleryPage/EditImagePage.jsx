@@ -297,8 +297,6 @@ class EditImagePage extends React.Component {
 
 		const {classes} = this.props;
 
-		console.log({album: this.props.album, state: this.state});
-
 		let image;
 		let imagePageContent;
 

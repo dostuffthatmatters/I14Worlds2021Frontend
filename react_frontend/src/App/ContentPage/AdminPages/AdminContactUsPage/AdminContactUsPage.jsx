@@ -100,7 +100,7 @@ class AdminContactUsPageManager extends React.Component {
 		};
 
 		BackendGET(BACKEND_URL + "/backend/database/contact", params).then((resolveMessage) => {
-			console.log("Fetching contact data: Success");
+			console.log("Fetching contact data: successful");
 			this.setState({
 				loading: false,
 				contacts: JSON.parse(resolveMessage)["contacts"]

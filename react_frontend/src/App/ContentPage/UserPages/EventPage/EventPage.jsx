@@ -163,19 +163,16 @@ class EventPage extends React.Component {
 		let eventImageElement;
 
 		if ((1866 / 2800) > (window.innerHeight / window.innerWidth)) {
-			console.log("LANDSCAPE");
 			eventImageElement = (
 				<img className="EventImage EventImageLandscape"
 				     src={EventImageLandScape} alt="Screaming Downwind"/>
 			);
 		} else if ((2666 / 2800) > (window.innerHeight / window.innerWidth)) {
-			console.log("SQUARE");
 			eventImageElement = (
 				<img className="EventImage EventImageSquare"
 				     src={EventImageSquare} alt="Screaming Downwind"/>
 			);
 		} else {
-			console.log("PORTRAIT");
 			eventImageElement = (
 				<img className="EventImage EventImagePortrait"
 				     src={EventImagePortrait} alt="Screaming Downwind"/>

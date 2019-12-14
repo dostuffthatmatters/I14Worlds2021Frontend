@@ -181,8 +181,6 @@ class NewImagePage extends React.Component {
 		formData.append("image_album_id", this.state.albumId);
 		formData.append("image_visible", this.state.visible);
 
-		console.log({formData: formData});
-
 		BackendImagePost(BACKEND_URL + "/backend/database/image", formData).then(resolveMessage => {
 			console.log("Uploading image: Status = " + resolveMessage);
 

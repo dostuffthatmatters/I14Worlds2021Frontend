@@ -121,13 +121,9 @@ class AdminGalleryPageManager extends React.Component {
 			api_key: this.props.api.api_key
 		};
 
-		console.log({params: params});
-		console.log({url: BACKEND_URL + "/backend/database/album"});
-
 		BackendGET(BACKEND_URL + "/backend/database/album", params).then((resolveMessage) => {
-			console.log("Fetching album data: Success");
+			console.log("Fetching album data: successful");
 
-			console.log({response: JSON.parse(resolveMessage)});
 			this.setState({
 				loading: false,
 				albums: JSON.parse(resolveMessage)["albums"],
@@ -157,13 +153,9 @@ class AdminGalleryPageManager extends React.Component {
 			api_key: this.props.api.api_key
 		};
 
-		console.log({params: params});
-		console.log({url: BACKEND_URL + "/backend/database/album"});
-
 		BackendGET(BACKEND_URL + "/backend/database/album", params).then((resolveMessage) => {
-			console.log("Reloading album data: Success");
+			console.log("Reloading album data: successful");
 
-			console.log({response: JSON.parse(resolveMessage)});
 			this.setState({
 				loading: false,
 				albums: JSON.parse(resolveMessage)["albums"],
@@ -180,7 +172,6 @@ class AdminGalleryPageManager extends React.Component {
 
 	getAlbumFromId(albumId) {
 		let album = this.state.albums[this.state.albumIdtoIndex[albumId]];
-		console.log({gettingAlbumFromID: albumId, albums: this.state.albums, album: album});
 		return album;
 	}
 

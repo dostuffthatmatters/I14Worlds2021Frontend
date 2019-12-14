@@ -43,8 +43,6 @@ export class Login extends React.Component {
 			api_key: Cookies.get("api_key"),
 		};
 
-		console.log({cookie: params});
-
 		BackendREST(BACKEND_URL + "/backend/login", params, "POST").then((resolveMessage) => {
 			const resultJson = JSON.parse(resolveMessage);
 
@@ -100,6 +98,8 @@ export class Login extends React.Component {
 	logoutUser() {
 		let params = {email: this.state.api.email, api_key: this.state.api.api_key};
 		BackendREST(BACKEND_URL + "/backend/logout", params, "POST").then(() => {
+			console.log("Logout: Status = Ok");
+
 			// Changing Frontend View
 			this.setState({
 				loggedIn: false,
@@ -112,14 +112,11 @@ export class Login extends React.Component {
 			});
 
 		}).catch((rejectMessage) => {
-			console.log(rejectMessage);
+			console.log("Logout Failed: " + rejectMessage);
 		});
 
 		Cookies.remove('email');
 		Cookies.remove('api_key');
-
-		// document.cookie = "email=";
-		// document.cookie = "api_key=";
 	}
 
 	render() {

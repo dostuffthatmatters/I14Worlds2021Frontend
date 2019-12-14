@@ -123,14 +123,14 @@ class NewsFeedPageManager extends React.Component {
 		console.log("Fetching article data");
 
 		BackendGET(BACKEND_URL + "/backend/database/article", {}).then((resolveMessage) => {
-			console.log("Fetching contact data: successful");
+			console.log("Fetching article data: successful");
 			this.setState({
 				loading: false,
 				articles: JSON.parse(resolveMessage)["articles"],
 				articleIdtoIndex: JSON.parse(resolveMessage)["article_id_to_index"]
 			});
 		}).catch(() => {
-			console.log("Fetching contact data: failed");
+			console.log("Fetching article data: failed");
 			this.setState({
 				loading: false
 			});

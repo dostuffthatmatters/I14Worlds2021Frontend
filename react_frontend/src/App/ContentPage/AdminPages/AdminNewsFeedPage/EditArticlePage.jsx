@@ -226,8 +226,6 @@ class EditArticlePage extends React.Component {
 			params.article_favorite_image_id = this.state.favoriteImageId;
 		}
 
-		console.log(params);
-
 		BackendREST(BACKEND_URL + "/backend/database/article", params, "PUT").then((resolveMessage) => {
 			const resolveJson = JSON.parse(resolveMessage);
 			console.log("Saving article: Status = " + resolveJson["Status"]);
