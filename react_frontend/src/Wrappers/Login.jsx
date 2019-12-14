@@ -36,7 +36,7 @@ export class Login extends React.Component {
 
 	componentDidMount() {
 
-		console.log("Trying to log in automatically");
+		console.log("Trying to log in automatically ...");
 
 		let params = {
 			email: Cookies.get("email"),
@@ -44,13 +44,13 @@ export class Login extends React.Component {
 		};
 
 		BackendREST(BACKEND_URL + "/backend/login", params, "POST").then((resolveMessage) => {
-			const resultJson = JSON.parse(resolveMessage);
+			const resultJSON = JSON.parse(resolveMessage);
 
-			if (resultJson["Status"] === "Ok") {
+			if (resultJSON["Status"] === "Ok") {
 				console.log("Automatic login: Status = " + resolveMessage);
-				this.loginUser(params.email, resultJson["api_key"], resultJson["name"]);
+				this.loginUser(params.email, resultJSON["api_key"], resultJSON["name"]);
 			} else {
-				console.log("Automatic login failed");
+				console.log("Automatic login: failed");
 				this.setState({
 					automaticLogin: false
 				});
@@ -59,7 +59,7 @@ export class Login extends React.Component {
 			}
 
 		}).catch(() => {
-			console.log("Automatic login failed");
+			console.log("Automatic login: failed");
 
 			this.setState({
 				automaticLogin: false

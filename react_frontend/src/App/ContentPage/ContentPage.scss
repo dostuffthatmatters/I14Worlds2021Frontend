@@ -1,9 +1,6 @@
 
 .ContentPage {
     top: 0;
-    margin-top: calc(4vw + 10vh);
-    margin-bottom: 10vh;
-    min-height: calc(80vh - 4vw);
 }
 
 .SyncSpinner {
@@ -11,13 +8,33 @@
 }
 
 @keyframes spinner {
-      0% { transform: rotate(360deg)}
-     25% { transform: rotate(270deg)}
-     50% { transform: rotate(180deg)}
-     75% { transform: rotate( 90deg)}
-    100% { transform: rotate(  0deg)}
+      0% {transform: rotate(360deg)}
+     25% {transform: rotate(270deg)}
+     50% {transform: rotate(180deg)}
+     75% {transform: rotate( 90deg)}
+    100% {transform: rotate(  0deg)}
 }
 
 a {
     text-decoration: none;
+}
+
+
+/** Mobile in Portrait **/
+/** Mobile in Landscape **/
+@media only screen and (max-width: 979px) {
+    .ContentPage {
+        margin: calc(8vw + 10vh) 0 10vh 0;
+        min-height: calc(80vh - 8vw);
+    }
+}
+
+/** Tablet in Portrait **/
+/** Tablet in Landscape **/
+/** Desktop **/
+@media only screen and (min-width: 600px) and (min-height: 599px) {
+    .ContentPage {
+        margin: calc(4vw + 10vh) 0 10vh 0;
+        min-height: calc(80vh - 4vw);
+    }
 }

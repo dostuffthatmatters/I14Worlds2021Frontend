@@ -64,6 +64,7 @@ const styles = theme => ({
 	},
 	cardContentBottom: {
 		position: "relative",
+		minHeight: theme.spacing(10),
 		maxHeight: theme.spacing(18),
 		marginBottom: theme.spacing(2),
 		textOverflow: "ellipsis",
@@ -152,7 +153,7 @@ class NewsFeedPageManager extends React.Component {
 			}
 
 			return (
-				<Grid item xs={12} key={index}>
+				<Grid item xs={12} sm={8} md={12} key={index}>
 					<Link to={"/news-feed/" + article.id}>
 						<Breakpoint small down>
 							<Card elevation={3}>
@@ -198,7 +199,7 @@ class NewsFeedPageManager extends React.Component {
 		});
 
 		return (
-			<Grid container spacing={2}>
+			<Grid container spacing={2} justify="center">
 				{articleList}
 			</Grid>
 		);

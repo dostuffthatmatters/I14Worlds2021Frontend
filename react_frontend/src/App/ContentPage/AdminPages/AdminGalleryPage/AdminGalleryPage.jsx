@@ -1,4 +1,3 @@
-
 /* General Imports --------------------------------------------------------------- */
 import React from 'react';
 
@@ -23,7 +22,8 @@ import {
 	LinearProgress,
 	Typography,
 	Grid,
-	Button} from "@material-ui/core";
+	Button
+} from "@material-ui/core";
 
 
 /* Component Imports ------------------------------------------------------------- */
@@ -113,6 +113,16 @@ class AdminGalleryPageManager extends React.Component {
 	}
 
 	componentDidMount() {
+		this.triggerReload();
+	}
+
+	updateTitleImageId(albumId, imageId) {
+		let albums = this.state.albums;
+		albums[this.state.albumIdtoIndex[albumId]]["title_image_id"] = imageId;
+		this.setState({albums: albums});
+	}
+
+	triggerReload() {
 
 		console.log("Fetching album data");
 
@@ -131,38 +141,6 @@ class AdminGalleryPageManager extends React.Component {
 			});
 		}).catch(() => {
 			console.log("Fetching album data: failed");
-			this.setState({
-				loading: false
-			});
-		});
-
-	}
-
-	updateTitleImageId(albumId, imageId) {
-		let albums = this.state.albums;
-		albums[this.state.albumIdtoIndex[albumId]]["title_image_id"] = imageId;
-		this.setState({albums: albums});
-	}
-
-	triggerReload() {
-
-		console.log("Reloading album data");
-
-		let params = {
-			email: this.props.api.email,
-			api_key: this.props.api.api_key
-		};
-
-		BackendGET(BACKEND_URL + "/backend/database/album", params).then((resolveMessage) => {
-			console.log("Reloading album data: successful");
-
-			this.setState({
-				loading: false,
-				albums: JSON.parse(resolveMessage)["albums"],
-				albumIdtoIndex: JSON.parse(resolveMessage)["album_id_to_index"]
-			});
-		}).catch(() => {
-			console.log("Reloading album data: failed");
 			this.setState({
 				loading: false
 			});
@@ -316,20 +294,20 @@ class AdminGalleryPageManager extends React.Component {
 		const {classes} = this.props;
 
 		return (
-			<Switch>
-				<Route exact path="/admin/gallery/new">
-					{this.state.loading && (
-						<LinearProgress className={classes.linearProgress} color="secondary"/>
-					)}
-					{!this.state.loading && (
-						<NewImagePage api={this.props.api}
-						              albumIds={this.getAlbumIds()}
-						              albumIdtoNameDict={this.getAlbumIdtoNameDict()}
-						              triggerReload={this.triggerReload}/>
-					)}
-				</Route>
-				<Route exact path="/admin/gallery">
-					<div className="AdminGalleryPage">
+			<div className="AdminGalleryPage">
+				<Switch>
+					<Route exact path="/admin/gallery/new">
+						{this.state.loading && (
+							<LinearProgress className={classes.linearProgress} color="secondary"/>
+						)}
+						{!this.state.loading && (
+							<NewImagePage api={this.props.api}
+							              albumIds={this.getAlbumIds()}
+							              albumIdtoNameDict={this.getAlbumIdtoNameDict()}
+							              triggerReload={this.triggerReload}/>
+						)}
+					</Route>
+					<Route exact path="/admin/gallery">
 						<Typography variant="h4" className={classes.headline}>Admin - Gallery</Typography>
 						{this.state.loading && (
 							<LinearProgress className={classes.linearProgress} color="secondary"/>
@@ -361,27 +339,27 @@ class AdminGalleryPageManager extends React.Component {
 								{this.getAlbumList()}
 							</div>
 						)}
-					</div>
-				</Route>
-				<Route path={"/admin/gallery/:albumId"}>
-					{this.state.loading && (
-						<div className="AdminGalleryPage">
-							<Typography variant="h4" className={classes.headline}>Gallery</Typography>
-							<LinearProgress className={classes.linearProgress} color="secondary"/>
-						</div>
-					)}
-					{!this.state.loading && (
-						<AdminAlbumPage getAlbumFromId={this.getAlbumFromId}
-						                api={this.props.api}
-						                updateTitleImageId={this.updateTitleImageId}
-						                updateImageState={this.updateImageState}
-						                removeImageFromView={this.removeImageFromView}
-						                albumIds={this.getAlbumIds()}
-						                albumIdtoNameDict={this.getAlbumIdtoNameDict()}
-						                triggerReload={this.triggerReload}/>
-					)}
-				</Route>
-			</Switch>
+					</Route>
+					<Route path={"/admin/gallery/:albumId"}>
+						{this.state.loading && (
+							<div className="AdminGalleryPage">
+								<Typography variant="h4" className={classes.headline}>Gallery</Typography>
+								<LinearProgress className={classes.linearProgress} color="secondary"/>
+							</div>
+						)}
+						{!this.state.loading && (
+							<AdminAlbumPage getAlbumFromId={this.getAlbumFromId}
+							                api={this.props.api}
+							                updateTitleImageId={this.updateTitleImageId}
+							                updateImageState={this.updateImageState}
+							                removeImageFromView={this.removeImageFromView}
+							                albumIds={this.getAlbumIds()}
+							                albumIdtoNameDict={this.getAlbumIdtoNameDict()}
+							                triggerReload={this.triggerReload}/>
+						)}
+					</Route>
+				</Switch>
+			</div>
 		);
 	}
 }

@@ -19,10 +19,11 @@ import LoginPageManager from "../App/LoginPage/LoginPage";
 
 /* Data -------------------------------------------------------------------------- */
 
+const userRoutesPlain = ["/event", "/news-feed", "/gallery", "/sailors-guide", "/contact-us"];
+const userRoutesNested = ["/event", "/(news-feed|news-feed/:articleId)", "/(gallery|gallery/:albumId)", "/sailors-guide", "/contact-us"];
 
-const userRoutes = ["/event", "/news-feed", "/news-feed/:articleId", "/gallery", "/gallery/:albumId", "/sailors-guide", "/contact-us"];
-const adminRoutes = ["/admin/news-feed", "/admin/news-feed/:articleId", "/admin/gallery", "/admin/gallery/:albumId", "/admin/gallery/:albumId/:imageId", "/admin/contact-us"];
-
+const adminRoutesPlain = ["/admin/news-feed", "/admin/news-feed", "/admin/gallery", "/admin/gallery", "/admin/gallery", "/admin/contact-us"];
+const adminRoutesNested = ["/admin/(news-feed|news-feed/:articleId)", "/admin/(gallery|gallery/:albumId|gallery/:albumId/:imageId)", "/admin/contact-us"];
 
 /* Component --------------------------------------------------------------------- */
 
@@ -33,11 +34,11 @@ export const Router = (props) => {
 
 	let [websiteHidden, hideWebsite] = React.useState(false);
 
-	userRoutes.forEach(element => {
+	userRoutesPlain.forEach(element => {
 		navBarRoutes += element.slice(1) + "|";
 	});
 	if (props.loggedIn) {
-		adminRoutes.forEach(element => {
+		adminRoutesPlain.forEach(element => {
 			navBarRoutes += element.slice(1) + "|";
 		});
 	}
@@ -65,16 +66,16 @@ export const Router = (props) => {
 						                  loginUser={(email, api_key) => props.loginUser(email, api_key)}/>
 					)}
 				</Route>
-				{userRoutes.map((path, index) => (
-						<Route exact path={path} key={index}>
+				{userRoutesNested.map((path, index) => (
+						<Route path={path} key={index}>
 							<ContentPage loggedIn={props.loggedIn}
 							             path={path}
 							             hideWebsite={hideWebsite}/>
 						</Route>
 					)
 				)}
-				{adminRoutes.map((path, index) => (
-						<Route exact path={path} key={index}>
+				{adminRoutesNested.map((path, index) => (
+						<Route path={path} key={index}>
 							<ContentPage automaticLogin={props.automaticLogin}
 							             loggedIn={props.loggedIn}
 							             path={path}

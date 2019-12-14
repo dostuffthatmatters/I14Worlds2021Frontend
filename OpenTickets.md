@@ -1,15 +1,22 @@
 # Small Changes Left to Make
 
-This is a collection of all the things that are left to change. Just small stuff (e.g. some style modifications on different vieports).
+This is a collection of all the things that are left to change. Just 
+small stuff (e.g. some style modifications on different vieports).
 
 * Change the images 2 and 3 ("AR One" and "Group Shot") to smaller 
 versions on mobile (no need to download 2800px on mobile)
-
-* More narrow lines in Footer (copyright, etc.) on mobile
 
 * Image Slider: When aspect ratio of image matches the aspect 
 ratio of the screen to a certain degree the three control 
 buttons overlap with the image card
 
+* Redirect routes like "/gallery/1/ed" or "/gallery/ed" to 404 
+(Right now I can either remount the component every time a user 
+switches from "/gallery" to "/gallery/1" and do that rerouting 
+by including "exact" inside a Route-Component OR I can do it like 
+this by not remounting components unneccessarily but the "exact"
+option doesn't work because of regex)
+
+ 
 
 
