@@ -79,13 +79,13 @@ const styles = theme => ({
 		paddingLeft: theme.spacing(2),
 		margin: 0,
 		"&:last-child": {
-			paddingBottom: theme.spacing(2),
+			paddingBottom: theme.spacing(1),
 		}
 	},
 	cardContentOverlay: {
 		position: "absolute",
 		left: 0,
-		bottom: theme.spacing(2),
+		bottom: "-1px",
 		width: "100%",
 		height: theme.spacing(4),
 		background: "linear-gradient(0deg, rgba(255,255,255,1.0), rgba(255,255,255,0.0))",

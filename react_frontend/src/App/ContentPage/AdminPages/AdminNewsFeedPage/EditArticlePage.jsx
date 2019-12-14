@@ -1,4 +1,3 @@
-
 /* General Imports --------------------------------------------------------------- */
 import React from "react";
 
@@ -25,7 +24,8 @@ import {
 	CircularProgress,
 	Divider,
 	Typography,
-	Grid} from "@material-ui/core";
+	Grid, Dialog, DialogTitle, DialogActions
+} from "@material-ui/core";
 import ArrowBackIosTwoToneIcon from '@material-ui/icons/ArrowBackIosTwoTone';
 import CheckBoxTwoToneIcon from '@material-ui/icons/CheckBoxTwoTone';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
@@ -166,6 +166,9 @@ class EditArticlePage extends React.Component {
 
 		this.state = {
 			uploading: false,
+			delting: false,
+			deleteDialogOpen: false,
+
 			headline: undefined,
 			content: undefined,
 			timestamp: undefined,
@@ -183,6 +186,8 @@ class EditArticlePage extends React.Component {
 		this.authorInputRef = React.createRef();
 
 		this.processUpload = this.processUpload.bind(this);
+		this.processDelete = this.processDelete.bind(this);
+
 		this.getArticleForm = this.getArticleForm.bind(this);
 	}
 
@@ -237,6 +242,32 @@ class EditArticlePage extends React.Component {
 			console.log("Saving article: failed");
 			this.setState({
 				uploading: false,
+			});
+		});
+	}
+
+	processDelete() {
+		console.log("Removing Article");
+
+		this.setState({deleting: true});
+
+		let params = {
+			email: this.props.api.email,
+			api_key: this.props.api.api_key,
+
+			article_id: this.articleId,
+		};
+
+		BackendREST(BACKEND_URL + "/backend/database/article", params, "DELETE").then((resolveMessage) => {
+			const resolveJson = JSON.parse(resolveMessage);
+			console.log("Removing article: Status = " + resolveJson["Status"]);
+
+			window.open("/admin/news-feed", "_self");
+
+		}).catch(() => {
+			console.log("Removing article: failed");
+			this.setState({
+				deleting: false,
 			});
 		});
 	}
@@ -344,10 +375,33 @@ class EditArticlePage extends React.Component {
 							<CircularProgress size={24}
 							                  className={classes.buttonProgress}
 							                  color="secondary"/>
-						)
-						}
+						)}
 					</div>
 				</div>
+				<div className={classes.uploadButtonWrapper}>
+					<div className={classes.buttonSpinnerWrapper}>
+						<Button variant="contained"
+						        color={this.state.deleting ? "default" : "default"}
+						        onClick={() => this.setState({deleteDialogOpen: true})}
+						        className={classes.button}>Remove Post</Button>
+						{this.state.deleting && (
+							<CircularProgress size={24}
+							                  className={classes.buttonProgress}
+							                  color="secondary"/>
+						)}
+					</div>
+				</div>
+				{this.state.deleteDialogOpen && (
+					<Dialog open={true}
+					        aria-labelledby="alert-dialog-title">
+						<DialogTitle id="alert-dialog-title">Do you really want to delete this post?</DialogTitle>
+						<DialogActions>
+							<Button onClick={() => this.setState({deleteDialogOpen: false})}
+							        color="primary">Disagree</Button>
+							<Button onClick={this.processDelete} color="secondary" autoFocus>Agree</Button>
+						</DialogActions>
+					</Dialog>
+				)}
 			</React.Fragment>
 		);
 	}

@@ -149,31 +149,35 @@ class Article extends React.Component {
 							alt={article.images[this.state.imageSliderIndex]["description"]}
 							onClick={this.openImageSlider}
 						/>
-						<IconButton
-							aria-label="previous image"
-							className={clsx(classes.icon, classes.prevIcon)}
-							size="medium"
-							onClick={() => {
-								let newIndex = this.state.imageSliderIndex - 1;
-								if (newIndex < 0) {
-									newIndex += article.images.length;
-								}
-								this.setState({loading: true});
-								this.newImageSliderIndex(newIndex);
-							}}>
-							<ChevronLeftIcon/>
-						</IconButton>
-						<IconButton
-							aria-label="next image"
-							className={clsx(classes.icon, classes.nextIcon)}
-							size="medium"
-							onClick={() => {
-								let newIndex = (this.state.imageSliderIndex + 1) % article.images.length;
-								this.setState({loading: true});
-								this.newImageSliderIndex(newIndex);
-							}}>
-							<ChevronRightIcon/>
-						</IconButton>
+						{article.images.length > 1 && (
+							<React.Fragment>
+								<IconButton
+									aria-label="previous image"
+									className={clsx(classes.icon, classes.prevIcon)}
+									size="medium"
+									onClick={() => {
+										let newIndex = this.state.imageSliderIndex - 1;
+										if (newIndex < 0) {
+											newIndex += article.images.length;
+										}
+										this.setState({loading: true});
+										this.newImageSliderIndex(newIndex);
+									}}>
+									<ChevronLeftIcon/>
+								</IconButton>
+								<IconButton
+									aria-label="next image"
+									className={clsx(classes.icon, classes.nextIcon)}
+									size="medium"
+									onClick={() => {
+										let newIndex = (this.state.imageSliderIndex + 1) % article.images.length;
+										this.setState({loading: true});
+										this.newImageSliderIndex(newIndex);
+									}}>
+									<ChevronRightIcon/>
+								</IconButton>
+							</React.Fragment>
+						)}
 					</Card>
 					<div className={classes.articleContent + " ArticleContent"}
 					     dangerouslySetInnerHTML={{__html: article.content_html}}/>
