@@ -24,16 +24,10 @@
 
 <br/>
 
-### Ideas for Improvement of the Technology Stack
+### Ideas for Improvement of the Frontend
 
 1. Using **Typscript instead of Javascript** in react (better development experience, but still less support for ReactTS over ReactJS)
 
-2. Switching **from Heroku Postgres to a more independent SQL Storage** solution (more independent from the heroku pipeline). Maybe Google Cloud SQL (I don't really need the flexibility of NoSQL in this project right now)
+2. Definitely using **React Redux** (or some other state management library) - especially for the admin pages
 
-3. Maybe hosting the **whole app on the Google Cloud** instead of using the Heroku pipline. More control, but also more effort.
-
-4. Definitely using **React Redux** - especially for the admin pages - to manage state transitions
-
-5. Finding a solution to *display pdf's** rather than with "react-pdf" (and "pdf.js"). Currently only these two make up 59% of my bundle size ...
-
-
+3. Finding a solution to *display pdf's** rather than with "react-pdf" (and "pdf.js"). Currently only these two make up 59% of my bundle size ...
