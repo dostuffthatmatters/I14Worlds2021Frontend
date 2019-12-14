@@ -103,11 +103,12 @@ class AdminGalleryPageAlbum extends React.Component {
 
 	handleNameChange(event) {
 		let newAlbum = {
-			name: event.target.value,
 			id: this.props.album.id,
+			name: event.target.value,
 			image_count: this.props.album.image_count,
 			visible_image_count: this.props.album.visible_image_count,
-			title_image_paths: this.props.album.title_image_paths,
+			title_image_id: this.props.album.title_image_id,
+			image_id_to_index: this.props.album.image_id_to_index,
 			images: this.props.album.images,
 		};
 		this.props.updateAlbumState(this.props.index, newAlbum);
