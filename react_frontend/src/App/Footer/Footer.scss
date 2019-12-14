@@ -120,22 +120,22 @@
 
 
 /** Mobile in Portrait **/
-@media only screen and (max-device-width: 599px) {
+@media only screen and (max-width: 599px) {
     .SupporterBox {
 
         .Logo {
 
             // Size
-            width: 64vw;
-            height: 24vw;
-            padding: 2vw;
+            width: 48vw;
+            height: 18vw;
+            padding: 1.5vw;
 
             .WideImage {
-                width: 64vw;
+                width: 48vw;
             }
 
             .NarrowImage {
-                height: 24vw;
+                height: 18vw;
             }
         }
 
@@ -143,22 +143,22 @@
 }
 
 /** Mobile in Landscape **/
-@media only screen and (min-device-width: 600px) and (max-device-width: 979px) and (max-device-height: 599px) {
+@media only screen and (min-width: 600px) and (max-width: 979px) and (max-height: 599px) {
     .SupporterBox {
 
         .Logo {
 
             // Size
-            width: 32vw;
-            height: 12vw;
-            padding: 1vw;
+            width: 24vw;
+            height: 9vw;
+            padding: 0.75vw;
 
             .WideImage {
-                width: 32vw;
+                width: 24vw;
             }
 
             .NarrowImage {
-                height: 12vw;
+                height: 9vw;
             }
         }
 
@@ -166,7 +166,7 @@
 }
 
 /** Tablet in Portrait **/
-@media only screen and (min-device-width: 600px) and (max-device-width: 979px) and (min-device-height: 599px) {
+@media only screen and (min-width: 600px) and (max-width: 979px) and (min-height: 599px) {
     .SupporterBox {
 
         .Logo {
@@ -189,7 +189,7 @@
 }
 
 /** Tablet in Landscape **/
-@media only screen and (min-device-width: 980px) and (max-device-width: 1259px) {
+@media only screen and (min-width: 980px) and (max-width: 1259px) {
     .SupporterBox {
 
         .Logo {
@@ -212,7 +212,7 @@
 }
 
 /** Desktop **/
-@media only screen and (min-device-width: 1260px) {
+@media only screen and (min-width: 1260px) {
     .SupporterBox {
 
         .Logo {

@@ -108,7 +108,7 @@
 
 
 /** Mobile in Portrait **/
-@media only screen and (max-device-width: 599px) {
+@media only screen and (max-width: 599px) {
 
     .EventPage {
 
@@ -148,18 +148,18 @@
 }
 
 /** Mobile in Landscape **/
-@media only screen and (min-device-width: 600px) and (max-device-width: 979px) and (max-device-height: 599px) {
+@media only screen and (min-width: 600px) and (max-width: 979px) and (max-height: 599px) {
 
     .EventPage {
 
         .ContainerSmall {
             margin-top: 15vh;
-            width: 45vw;
+            width: 50vw;
         }
 
         .InfoContainer {
-            width: 70vw;
-            margin-left: 15vw;
+            width: 50vw;
+            margin-left: 25vw;
         }
 
         .AddressContainer {
@@ -174,18 +174,21 @@
         }
 
         .PDFPaper {
-            margin-left: 12.5vw;
-            width: 75vw;
-            height: calc(75vw * (1080 / 1920));
+            margin-left: 20vw;
+            width: 60vw;
+            height: calc(60vw * (1080 / 1920));
+            overflow: hidden !important;
 
             .react-pdf__Document .react-pdf__Page canvas {
-                max-width: 75vw !important;
+                max-width: 60vw !important;
                 height: auto !important;
+                overflow: hidden !important;
             }
 
             .PageNumberBox {
                 top: 0;
-                width: 75vw;
+                width: 60vw;
+
             }
         }
 
@@ -194,7 +197,7 @@
 }
 
 /** Tablet in Portrait **/
-@media only screen and (min-device-width: 600px) and (max-device-width: 979px) and (min-device-height: 599px) {
+@media only screen and (min-width: 600px) and (max-width: 979px) and (min-height: 599px) {
 
     .EventPage {
 
@@ -239,7 +242,7 @@
 }
 
 /** Tablet in Landscape **/
-@media only screen and (min-device-width: 980px) and (max-device-width: 1259px) {
+@media only screen and (min-width: 980px) and (max-width: 1259px) {
 
     .EventPage {
 
@@ -284,7 +287,7 @@
 }
 
 /** Desktop **/
-@media only screen and (min-device-width: 1260px) {
+@media only screen and (min-width: 1260px) {
 
     .EventPage {
 

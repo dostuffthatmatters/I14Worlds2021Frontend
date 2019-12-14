@@ -31,7 +31,10 @@ const useStyles = makeStyles(theme => ({
 		width: "100vw",
 	},
 	simpleBox: {
+		textAlign: "center",
 		padding: theme.spacing(1),
+		marginLeft: theme.spacing(1),
+		marginRight: theme.spacing(1),
 	},
 }));
 
@@ -83,7 +86,7 @@ export function Footer(props) {
 			<div className={clsx(classes.impressumBox, "ImpressumBox")}>
 				<Container maxWidth="lg">
 
-					<Grid container justify="center" spacing={4}>
+					<Grid container justify="center" spacing={1}>
 
 						<Grid item>
 							<Card elevation={0} className={clsx(classes.simpleBox, "BrightCard", "SimpleBox")}>
@@ -104,6 +107,10 @@ export function Footer(props) {
 								</a>
 							</Card>
 						</Grid>
+
+					</Grid>
+
+					<Grid container justify="center" spacing={1}>
 
 						<Grid item>
 							<Card elevation={0} className={clsx(classes.simpleBox, "BrightCard", "SimpleBox")}>
@@ -127,7 +134,7 @@ export function Footer(props) {
 
 					</Grid>
 
-					<Grid container justify="center" spacing={4}>
+					<Grid container justify="center" spacing={1}>
 
 						<Grid item>
 							<Card elevation={0} className={clsx(classes.simpleBox, "BrightCard", "SimpleBox")}>

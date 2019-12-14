@@ -47,6 +47,9 @@ const styles = theme => ({
 		padding: theme.spacing(2),
 		margin: theme.spacing(2),
 	},
+	link: {
+		cursor: "pointer",
+	},
 	logo: {
 		width: "auto"
 	},
@@ -68,7 +71,6 @@ const styles = theme => ({
 		paddingBottom: theme.spacing(1),
 	},
 });
-
 
 
 /* Component --------------------------------------------------------------------- */
@@ -160,24 +162,24 @@ class EventPage extends React.Component {
 
 		let eventImageElement;
 
-		if ((1866/2800) > (window.innerHeight/window.innerWidth)) {
+		if ((1866 / 2800) > (window.innerHeight / window.innerWidth)) {
 			console.log("LANDSCAPE");
 			eventImageElement = (
 				<img className="EventImage EventImageLandscape"
 				     src={EventImageLandScape} alt="Screaming Downwind"/>
-				);
-		} else if ((2666/2800) > (window.innerHeight/window.innerWidth)) {
+			);
+		} else if ((2666 / 2800) > (window.innerHeight / window.innerWidth)) {
 			console.log("SQUARE");
 			eventImageElement = (
 				<img className="EventImage EventImageSquare"
 				     src={EventImageSquare} alt="Screaming Downwind"/>
-				);
-		} else  {
+			);
+		} else {
 			console.log("PORTRAIT");
 			eventImageElement = (
 				<img className="EventImage EventImagePortrait"
 				     src={EventImagePortrait} alt="Screaming Downwind"/>
-				);
+			);
 		}
 
 		return (
@@ -190,25 +192,34 @@ class EventPage extends React.Component {
 							     alt="I14 Worlds Logo"/>
 						</Paper>
 
-						<Paper elevation={3} className={classes.paper}>
-							<img className={clsx(classes.logo, "Logo")} src={FSCLogo}
-							     alt="FSC Logo"/>
+						<Paper elevation={3} className={clsx(classes.link, classes.paper)}>
+							<a href="https://www.fsc.de/"
+							   target="_blank"
+							   rel="noopener noreferrer">
+								<img className={clsx(classes.logo, "Logo")} src={FSCLogo}
+								     alt="FSC Logo"/>
+							</a>
 						</Paper>
 					</div>
 				</div>
 
 				<div className={clsx(classes.infoContainer, "InfoContainer")}>
 
-					<Paper elevation={3} className={classes.paper}>
-						<img className={clsx(classes.logo, "Logo")} src={VRSportTVLogo}
-						     alt="VR Sport TV Logo"/>
+					<Paper elevation={3} className={clsx(classes.link, classes.paper)}>
+						<a href="https://www.vrsport.tv/"
+						   target="_blank"
+						   rel="noopener noreferrer">
+							<img className={clsx(classes.logo, "Logo")} src={VRSportTVLogo}
+							     alt="VR Sport TV Logo"/>
+						</a>
 					</Paper>
 
 					<Paper elevation={3} className={clsx(classes.paper, classes.countdownContainer)}>
 						<Grid container spacing={0}>
 							<Grid item xs={12}>
-								<Typography variant="h5" className={classes.cardLabel}>August 6th - August
-									21st</Typography>
+								<Typography variant="h5" className={classes.cardLabel}>
+									August 8th - August 21st
+								</Typography>
 							</Grid>
 							<Grid item xs={3}>
 								<Typography variant="h5">{this.state.countdown.days}</Typography>
