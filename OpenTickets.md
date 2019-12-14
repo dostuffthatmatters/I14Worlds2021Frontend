@@ -13,6 +13,14 @@ buttons overlap with the image card
 * Redirect routes like "/gallery/1/ed" or "/gallery/ed" to dedicated 
 404 page
 
+* Button on articles
+
+* Spinner inside modal delete-dialog (article, image, contact)
+
+* Make Spinners alway spin for at least 0.5 seconds (arbitrary amount)
+so that the user get some feedback (even though the server might only take sub 0.1 seconds for the request)
+
+
 
 
 
