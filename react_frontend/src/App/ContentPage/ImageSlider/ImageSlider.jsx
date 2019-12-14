@@ -58,12 +58,14 @@ class ImageSlider extends React.Component {
 		this.buttonRef = React.createRef();
 
 		document.addEventListener("keydown", event => {
-			if (event.key === "ArrowLeft") {
-				this.handleLeftClick();
-			} else if (event.key === "ArrowRight") {
-				this.handleRightClick();
-			} else if (event.key === "Escape") {
+			if (event.key === "Escape") {
 				this.props.closeImageSlider();
+			} else if (this.props.images.length > 1) {
+				if (event.key === "ArrowLeft") {
+					this.handleLeftClick();
+				} else if (event.key === "ArrowRight") {
+					this.handleRightClick();
+				}
 			}
 		});
 
