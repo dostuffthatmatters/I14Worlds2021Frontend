@@ -22,7 +22,6 @@ const styles = theme => ({
 	fullscreen_imageSlider: {
 		backgroundColor: theme.palette.gunmetalGray.main,
 	},
-
 	card: {
 		display: "flex",
 		alignItem: "center",
@@ -35,15 +34,9 @@ const styles = theme => ({
 		maxWidth: `calc(100vw - ${theme.spacing(4)}px)`,
 		maxHeight: `calc(100vh - ${theme.spacing(4)}px)`,
 	},
-
-	fullscreen_img: {
-		width: "100%",
+	media: {
+		maxWidth: "100%",
 		heigth: "auto",
-		cursor: "pointer",
-	},
-	card_img: {
-		width: "100%",
-		height: "auto",
 		cursor: "pointer",
 	},
 	button: {
@@ -51,7 +44,6 @@ const styles = theme => ({
 		position: "absolute",
 		zIndex: 3000,
 		borderRadius: "50%",
-		backgroundColor: theme.palette.white.transparent60,
 		color: theme.palette.desireMagenta.main,
 	},
 	sizeButton: {
@@ -60,20 +52,33 @@ const styles = theme => ({
 	},
 	prevButton: {
 		left: theme.spacing(1),
-		bottom: theme.spacing(1),
+		top: theme.spacing(1),
 	},
 	nextButton: {
-		right: theme.spacing(1),
-		bottom: theme.spacing(1),
+		right: theme.spacing(8),
+		top: theme.spacing(1),
 	},
 	card_pageNumberBox: {
 		position: "absolute",
-		top: 0,
+		top: theme.spacing(1),
 		left: 0,
 		width: "100%",
 	},
 	card_pageNumber: {
 		paddingRight: theme.spacing(2),
+	},
+
+	brightColor: {
+		color: theme.palette.white.main,
+	},
+	darkColor: {
+		color: theme.palette.gunmetalGray.main,
+	},
+	brightBackgroundColor: {
+		backgroundColor: theme.palette.white.transparent60,
+	},
+	darkBackgroundColor: {
+		backgroundColor: theme.palette.gunmetalGray.transparent60,
 	},
 });
 
@@ -141,28 +146,52 @@ class InvitationSlider extends React.Component {
 
 	render() {
 
+		const VIDEO = (this.state.imageSliderIndex === 2);
+		const BRIGHT = (whitePages.includes(this.state.imageSliderIndex + 1));
+
+
 		const {classes} = this.props;
+		const imageSrc = this.images[this.state.imageSliderIndex].filepath_large;
 
-		const imageSrc = this.state.fullscreen ?
-			this.images[this.state.imageSliderIndex].filepath_full :
-			this.images[this.state.imageSliderIndex].filepath_large;
+		const preload = this.images.map(image => {
+			return (
+				<React.Fragment>
+					<link rel="preload" href={image.filepath_large} as="image"/>
+				</React.Fragment>
+			);
+		});
 
-		const image = (
-			<React.Fragment>
-				<img className={classes.fullscreen_img}
-				     src={imageSrc}
-				     alt={this.images[this.state.imageSliderIndex].description}
-				     onLoad={() => this.setState({loading: false})}
-				     onClick={() => this.setState({fullscreen: !this.state.fullscreen})}/>
-			</React.Fragment>
-		);
+		let image;
+		if (VIDEO) {
+			image = (
+				<video controls className={classes.media}>
+					<source
+						src="https://storage.googleapis.com/i14-worlds-2021-gallery/default-images/GCA_Teaser_Cut.mp4"
+						type="video/mp4"/>
+				</video>
+			);
+		} else {
+			image = (
+				<React.Fragment>
+					<img className={classes.media}
+					     src={imageSrc}
+					     alt={this.images[this.state.imageSliderIndex].description}
+					     style={{display: this.state.loading ? "none" : "block"}}
+					     onLoad={() => this.setState({loading: false})}
+					     onClick={() => this.setState({fullscreen: !this.state.fullscreen})}/>
+				</React.Fragment>
+			);
+		}
 
 		const buttons = (
 			<React.Fragment>
 				<IconButton
 					color="inherit"
 					aria-label="close image slider"
-					className={clsx(classes.button, classes.sizeButton)}
+					className={clsx(classes.button,
+						classes.sizeButton,
+						BRIGHT ? classes.brightColor : classes.darkColor,
+						BRIGHT ? classes.darkBackgroundColor : classes.brightBackgroundColor)}
 					size="medium"
 					onClick={() => this.setState({fullscreen: !this.state.fullscreen})}>
 					{this.state.fullscreen ? <FullscreenExitIcon/> : <FullscreenIcon/>}
@@ -170,7 +199,10 @@ class InvitationSlider extends React.Component {
 				<IconButton
 					color="inherit"
 					aria-label="previous image"
-					className={clsx(classes.button, classes.prevButton)}
+					className={clsx(classes.button,
+						classes.prevButton,
+						BRIGHT ? classes.brightColor : classes.darkColor,
+						BRIGHT ? classes.darkBackgroundColor : classes.brightBackgroundColor)}
 					size="medium"
 					onClick={this.handleLeftClick}>
 					<ChevronLeftIcon/>
@@ -178,7 +210,10 @@ class InvitationSlider extends React.Component {
 				<IconButton
 					color="inherit"
 					aria-label="next image"
-					className={clsx(classes.button, classes.nextButton)}
+					className={clsx(classes.button,
+						classes.nextButton,
+						BRIGHT ? classes.brightColor : classes.darkColor,
+						BRIGHT ? classes.darkBackgroundColor : classes.brightBackgroundColor)}
 					size="medium"
 					onClick={this.handleRightClick}>
 					<ChevronRightIcon/>
@@ -186,42 +221,42 @@ class InvitationSlider extends React.Component {
 			</React.Fragment>
 		);
 
-		if (this.state.fullscreen) {
-			return (
-				<div className={clsx(classes.fullscreen_imageSlider, "ImageSlider")}>
-					<div className="Image">
-						<Card className={clsx(classes.card, classes.fullscreen_card)}
-						      elevation={3}
-						      style={{display: this.state.loading ? "none" : "block"}}>
+		const pageNumberBox = (
+			<div className={clsx(classes.card_pageNumberBox, "PageNumberBox", BRIGHT ? classes.darkColor : classes.brightColor)}>
+				<Typography variant="h6"
+				            className={clsx(
+					            classes.card_pageNumber,
+					            BRIGHT ? classes.darkColor : classes.brightColor
+				            )}>
+					{this.state.imageSliderIndex + 1} / {this.images.length}
+				</Typography>
+				<div className={clsx(classes.downloadButton)}>
+					<IconButton
+						aria-label="download"
+						className={BRIGHT ? classes.darkColor : classes.brightColor}
+						size="medium"
+						onClick={() => window.open("https://storage.googleapis.com/i14-worlds-documents/Invitation_WM2021.pdf", "_blank")}>
+						<GetAppIcon/>
+					</IconButton>
+				</div>
+			</div>
+		);
+
+		return (
+			<div className={this.state.fullscreen ? clsx(classes.fullscreen_imageSlider, "ImageSlider") : ""}>
+					<div className={this.state.fullscreen ? "Image" : ""}>
+						<Card className={this.state.fullscreen ?
+							clsx(classes.card, classes.fullscreen_card) :
+							clsx(classes.card, "PDFPaper")}
+						      elevation={3}>
+							{preload}
 							{image}
 							{buttons}
+							{!this.state.fullscreen && pageNumberBox}
 						</Card>
 					</div>
 				</div>
-			);
-		} else {
-			return (
-				<Card elevation={3} className={clsx(classes.card, "PDFPaper")}>
-					{image}
-					{buttons}
-					<div className={clsx(classes.card_pageNumberBox, "PageNumberBox", (whitePages.includes(this.state.imageSliderIndex + 1)) ? "DarkColor" : "BrightColor")}>
-						<Typography variant="h6"
-						            className={classes.card_pageNumber}>
-							{this.state.imageSliderIndex + 1} / {this.images.length}
-						</Typography>
-						<div className={clsx(classes.downloadButton)}>
-							<a href="https://storage.googleapis.com/i14-worlds-documents/Invitation_WM2021.pdf"
-							   target="_blank"
-							   rel="noopener noreferrer">
-								<IconButton aria-label="download" size="medium">
-									<GetAppIcon/>
-								</IconButton>
-							</a>
-						</div>
-					</div>
-				</Card>
-			);
-		}
+		);
 	}
 }
 
