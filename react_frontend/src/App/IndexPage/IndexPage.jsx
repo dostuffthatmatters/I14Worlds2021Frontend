@@ -15,7 +15,7 @@ import {Button} from '@material-ui/core';
 
 
 /* Assets Imports ---------------------------------------------------------------- */
-import EVENT_LOGO from './images/EventLogo';
+import EVENT_LOGO from './images/EventLogo.svg';
 
 /* Component --------------------------------------------------------------------- */
 
@@ -28,12 +28,16 @@ export function IndexPage() {
 			</Breakpoint>
 			<Breakpoint medium up>
 				<video className="Video" autoPlay muted loop>
-					<source id="mp4" src="https://storage.googleapis.com/i14-worlds-2021-gallery/default-images/GCA_Teaser_Cut.mp4" type="video/mp4"/>
+					<source id="mp4"
+					        src="https://storage.googleapis.com/i14-worlds-2021-gallery/default-images/GCA_Teaser_Cut.mp4"
+					        type="video/mp4"/>
 				</video>
 			</Breakpoint>
 			<div className="CenterBox">
-                <div className="Logo Element">{EVENT_LOGO}</div>
-                <Button className="Element" variant="contained" color="secondary">
+				<div className="Logo Element">
+					<img src={EVENT_LOGO} alt="Event Logo"/>
+				</div>
+				<Button className="Element" variant="contained" color="secondary">
 					<Link to={"/event"}>Learn More</Link>
 				</Button>
 			</div>

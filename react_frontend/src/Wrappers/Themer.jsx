@@ -27,6 +27,8 @@ const theme = createMuiTheme({
 		},
 		white: {
 			main: 'rgb(255, 255, 255)',
+			transparent80: 'rgba(255, 255, 255, 0.8)',
+			transparent60: 'rgba(255, 255, 255, 0.6)',
 		},
 
 		maastrichtBlue: {
@@ -48,7 +50,7 @@ const theme = createMuiTheme({
 			main: 'hsl(229, 25%, 18%)',
 			transparent80: 'hsla(229, 25%, 18%, 0.8)',
 			transparent60: 'hsla(229, 25%, 18%, 0.6)',
-		}
+		},
 	}
 });
 

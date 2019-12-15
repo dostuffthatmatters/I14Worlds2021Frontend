@@ -20,7 +20,8 @@ import withStyles from "@material-ui/styles/withStyles/withStyles";
 
 
 /* Component Imports ------------------------------------------------------------- */
-import PDFViewer from './PDFViewer/PDFViewer';
+import InvitationSlider from './InvitationSlider/InvitationSlider';
+
 
 /* Assets Imports ---------------------------------------------------------------- */
 import EventImageLandScape from './images/_DSC9541_Landscape.jpg'
@@ -319,7 +320,7 @@ class EventPage extends React.Component {
 				<img className="EventImage3" src={EventImage3} alt="I14 Culture"/>
 
 				<div className={clsx(classes.paperContainer)}>
-					<PDFViewer/>
+					<InvitationSlider/>
 				</div>
 
 			</div>

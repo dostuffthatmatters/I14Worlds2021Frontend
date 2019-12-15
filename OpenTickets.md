@@ -18,9 +18,12 @@ buttons overlap with the image card
 * Spinner inside modal delete-dialog (article, image, contact)
 
 * Make Spinners alway spin for at least 0.5 seconds (arbitrary amount)
-so that the user get some feedback (even though the server might only take sub 0.1 seconds for the request)
+so that the user get some feedback (even though the server might only 
+take sub 0.1 seconds for the request)
 
+* Improve Material UI Imports (import directly from ".../core/Button"
+instead of ".../core")
 
-
+* Maybe build my own datepicker because it makes up 7.5% of the bundle size (material ui is 30%)
 
 
