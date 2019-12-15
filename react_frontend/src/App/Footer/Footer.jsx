@@ -47,36 +47,15 @@ export function Footer(props) {
 			<div className={clsx(classes.supporterBox, "SupporterBox")}>
 				<Container maxWidth="lg">
 					<Typography variant="h5" className={classes.headline}>
-						Thanks to our amazing <strong>Sponsors</strong>!
+						Thanks to our amazing <strong>Sponsor</strong>!
 					</Typography>
 					<Grid container justify="center" spacing={2}>
-
-						<Grid item>
-							<Card elevation={0} className="DarkCard Logo">
-								<a href="https://en.wikipedia.org/wiki/European_Space_Agency"
-								   rel="noopener noreferrer"
-								   target="_blank">
-									<img className="NarrowImage" src={ESALogo} alt="Logo of the ESA"/>
-								</a>
-							</Card>
-						</Grid>
-
 						<Grid item>
 							<Card elevation={0} className="DarkCard Logo">
 								<a href="https://www.vrsport.tv/"
 								   rel="noopener noreferrer"
 								   target="_blank">
 									<img className="WideImage" src={VRSportTVLogo} alt="Logo of VR Sport TV"/>
-								</a>
-							</Card>
-						</Grid>
-
-						<Grid item>
-							<Card elevation={0} className="DarkCard Logo">
-								<a href="https://en.wikipedia.org/wiki/SpaceX"
-								   rel="noopener noreferrer"
-								   target="_blank">
-									<img className="WideImage" src={SpaceXLogo} alt="Logo of SpaceX"/>
 								</a>
 							</Card>
 						</Grid>
