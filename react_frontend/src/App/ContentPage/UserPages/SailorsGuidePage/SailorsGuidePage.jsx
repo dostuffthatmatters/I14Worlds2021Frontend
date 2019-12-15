@@ -48,7 +48,7 @@ class SailorsGuidePage extends React.Component {
 		return (
 			<div className="SailorsGuidePage">
 				<Typography variant="h4" className={classes.headline}>Sailors Guide</Typography>
-				<Typography variant="h6" className={classes.headlineSmall}>Preliminary Schedule coming soon!</Typography>
+				<Typography variant="h6" className={classes.headlineSmall}>Preliminary schedule coming soon!</Typography>
 				{/*<SchedulePanel/>*/}
 			</div>
 		);

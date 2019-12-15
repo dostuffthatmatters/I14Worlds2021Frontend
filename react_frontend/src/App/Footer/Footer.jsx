@@ -2,8 +2,6 @@ import React from 'react';
 import './Footer.scss';
 
 import VRSportTVLogo from './images/vr_sport_logo.svg';
-import ESALogo from './images/ESA_LOGO.svg';
-import SpaceXLogo from './images/SpaceX_Logo.svg';
 
 import {makeStyles} from '@material-ui/core/styles';
 import {Card, Grid, Container, Typography} from '@material-ui/core';

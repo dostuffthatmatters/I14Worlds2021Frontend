@@ -24,6 +24,9 @@ take sub 0.1 seconds for the request)
 * Improve Material UI Imports (import directly from ".../core/Button"
 instead of ".../core")
 
-* Maybe build my own datepicker because it makes up 7.5% of the bundle size (material ui is 30%)
+* Maybe build my own datepicker or just a select-drop-down. Currently 
+the material datepicker makes up 7.3% of the total bundle size. And in
+addition to that "date-fns" makes up 7.2%. So i could definitely save 
+a lot here (95KB uncrompresses JS).
 
 

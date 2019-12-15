@@ -31,18 +31,29 @@ const styles = theme => ({
 		textAlign: "center",
 	},
 	fullscreen_card: {
+		display: "block",
+		width: "auto",
+		height: "auto",
 		maxWidth: `calc(100vw - ${theme.spacing(4)}px)`,
 		maxHeight: `calc(100vh - ${theme.spacing(4)}px)`,
 	},
-	media: {
-		maxWidth: "100%",
-		heigth: "auto",
+	card_media: {
+		display: "block",
+		width: "100%",
+		height: "auto",
+		cursor: "pointer",
+	},
+	fullscreen_media: {
+		display: "block",
+		width: "auto",
+		height: "auto",
+		maxWidth: `calc(100vw - ${theme.spacing(4)}px)`,
+		maxHeight: `calc(100vh - ${theme.spacing(4)}px)`,
 		cursor: "pointer",
 	},
 	button: {
 		cursor: "pointer",
 		position: "absolute",
-		zIndex: 3000,
 		borderRadius: "50%",
 		color: theme.palette.desireMagenta.main,
 	},
@@ -153,18 +164,14 @@ class InvitationSlider extends React.Component {
 		const {classes} = this.props;
 		const imageSrc = this.images[this.state.imageSliderIndex].filepath_large;
 
-		const preload = this.images.map(image => {
-			return (
-				<React.Fragment>
-					<link rel="preload" href={image.filepath_large} as="image"/>
-				</React.Fragment>
-			);
-		});
+		const preload = this.images.map(image => (
+			<link rel="preload" href={image.filepath_large} as="image"/>
+		));
 
 		let image;
 		if (VIDEO) {
 			image = (
-				<video controls className={classes.media}>
+				<video controls className={this.state.fullscreen ? classes.fullscreen_media : classes.card_media}>
 					<source
 						src="https://storage.googleapis.com/i14-worlds-2021-gallery/default-images/GCA_Teaser_Cut.mp4"
 						type="video/mp4"/>
@@ -173,7 +180,7 @@ class InvitationSlider extends React.Component {
 		} else {
 			image = (
 				<React.Fragment>
-					<img className={classes.media}
+					<img className={this.state.fullscreen ? classes.fullscreen_media : classes.card_media}
 					     src={imageSrc}
 					     alt={this.images[this.state.imageSliderIndex].description}
 					     style={{display: this.state.loading ? "none" : "block"}}
@@ -193,6 +200,7 @@ class InvitationSlider extends React.Component {
 						BRIGHT ? classes.brightColor : classes.darkColor,
 						BRIGHT ? classes.darkBackgroundColor : classes.brightBackgroundColor)}
 					size="medium"
+					style={{zIndex: this.state.fullscreen ? 3000 : 300}}
 					onClick={() => this.setState({fullscreen: !this.state.fullscreen})}>
 					{this.state.fullscreen ? <FullscreenExitIcon/> : <FullscreenIcon/>}
 				</IconButton>
@@ -204,6 +212,7 @@ class InvitationSlider extends React.Component {
 						BRIGHT ? classes.brightColor : classes.darkColor,
 						BRIGHT ? classes.darkBackgroundColor : classes.brightBackgroundColor)}
 					size="medium"
+					style={{zIndex: this.state.fullscreen ? 3000 : 300}}
 					onClick={this.handleLeftClick}>
 					<ChevronLeftIcon/>
 				</IconButton>
@@ -215,6 +224,7 @@ class InvitationSlider extends React.Component {
 						BRIGHT ? classes.brightColor : classes.darkColor,
 						BRIGHT ? classes.darkBackgroundColor : classes.brightBackgroundColor)}
 					size="medium"
+					style={{zIndex: this.state.fullscreen ? 3000 : 300}}
 					onClick={this.handleRightClick}>
 					<ChevronRightIcon/>
 				</IconButton>
@@ -222,7 +232,8 @@ class InvitationSlider extends React.Component {
 		);
 
 		const pageNumberBox = (
-			<div className={clsx(classes.card_pageNumberBox, "PageNumberBox", BRIGHT ? classes.darkColor : classes.brightColor)}>
+			<div
+				className={clsx(classes.card_pageNumberBox, "PageNumberBox", BRIGHT ? classes.darkColor : classes.brightColor)}>
 				<Typography variant="h6"
 				            className={clsx(
 					            classes.card_pageNumber,
@@ -244,18 +255,18 @@ class InvitationSlider extends React.Component {
 
 		return (
 			<div className={this.state.fullscreen ? clsx(classes.fullscreen_imageSlider, "ImageSlider") : ""}>
-					<div className={this.state.fullscreen ? "Image" : ""}>
-						<Card className={this.state.fullscreen ?
-							clsx(classes.card, classes.fullscreen_card) :
-							clsx(classes.card, "PDFPaper")}
-						      elevation={3}>
-							{preload}
-							{image}
-							{buttons}
-							{!this.state.fullscreen && pageNumberBox}
-						</Card>
-					</div>
+				<div className={this.state.fullscreen ? "Image" : ""}>
+					<Card className={this.state.fullscreen ?
+						clsx(classes.card, classes.fullscreen_card) :
+						clsx(classes.card, "PDFPaper")}
+					      elevation={3}>
+						{preload}
+						{image}
+						{buttons}
+						{!this.state.fullscreen && pageNumberBox}
+					</Card>
 				</div>
+			</div>
 		);
 	}
 }
