@@ -198,11 +198,17 @@ class NewsFeedPageManager extends React.Component {
 			);
 		});
 
-		return (
-			<Grid container spacing={2} justify="center">
-				{articleList}
-			</Grid>
-		);
+		if (this.state.articles.length === 0) {
+			return (
+				<Typography variant="h6" style={{textAlign: "center"}}>No posts ...</Typography>
+			);
+		} else {
+			return (
+				<Grid container spacing={2} justify="center">
+					{articleList}
+				</Grid>
+			);
+		}
 	}
 
 	getArticleFromId(articleId) {

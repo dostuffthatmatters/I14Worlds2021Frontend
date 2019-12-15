@@ -2,11 +2,9 @@
 /* General Imports --------------------------------------------------------------- */
 import React from 'react';
 
-
 /* Routing Imports --------------------------------------------------------------- */
 // noinspection ES6CheckImport
 import {Switch, Route, BrowserRouter, Redirect} from 'react-router-dom';
-
 
 /* Component Imports ------------------------------------------------------------- */
 import {IndexPage} from "../App/IndexPage/IndexPage";

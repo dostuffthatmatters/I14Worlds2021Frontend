@@ -204,11 +204,18 @@ class ContactUsPageManager extends React.Component {
 			);
 		});
 
-		return (
-			<Grid container spacing={2} justify="center">
-				{contactList}
-			</Grid>
-		);
+
+		if (this.state.contacts.length === 0) {
+			return (
+				<Typography variant="h6" style={{textAlign: "center"}}>No contacts ...</Typography>
+			);
+		} else {
+			return (
+				<Grid container spacing={2} justify="center">
+					{contactList}
+				</Grid>
+			);
+		}
 	}
 
 	getCountryHostList() {

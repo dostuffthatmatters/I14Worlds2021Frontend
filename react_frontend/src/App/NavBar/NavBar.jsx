@@ -1,5 +1,6 @@
 /* General Imports --------------------------------------------------------------- */
 import React, {useState} from 'react';
+import {animateScroll as scroll} from 'react-scroll';
 
 
 /* Routing Imports --------------------------------------------------------------- */
@@ -116,33 +117,47 @@ export const NavBar = (props) => {
 		pageTitle += " (Admin)";
 	}
 
+	const handleClick = () => {
+		scroll.scrollToTop({duration: 300});
+	};
+
 	const userPages = (
 		<React.Fragment>
-			<Link to="/event" className={classes.link}>
+			<Link to="/event"
+			      className={classes.link}
+			      onClick={handleClick}>
 				<Button size="large"
 				        color={path.startsWith("/event") ? "secondary" : "primary"}
 				        startIcon={<EmojiEventsTwoToneIcon/>}
 				        className={`${classes.button} ${classes.topButton}`}>Event</Button>
 			</Link>
-			<Link to="/news-feed" className={classes.link}>
+			<Link to="/news-feed"
+			      className={classes.link}
+			      onClick={handleClick}>
 				<Button size="large"
 				        color={path.startsWith("/news-feed") ? "secondary" : "primary"}
 				        startIcon={<ChatTwoToneIcon/>}
 				        className={classes.button}>News Feed</Button>
 			</Link>
-			<Link to="/gallery" className={classes.link}>
+			<Link to="/gallery"
+			      className={classes.link}
+			      onClick={handleClick}>
 				<Button size="large"
 				        color={path.startsWith("/gallery") ? "secondary" : "primary"}
 				        startIcon={<PermMediaTwoToneIcon/>}
 				        className={classes.button}>Gallery</Button>
 			</Link>
-			<Link to="/sailors-guide" className={classes.link}>
+			<Link to="/sailors-guide"
+			      className={classes.link}
+			      onClick={handleClick}>
 				<Button size="large"
 				        color={path.startsWith("/sailors-guide") ? "secondary" : "primary"}
 				        startIcon={<AssignmentTurnedInTwoToneIcon/>}
 				        className={classes.button}>Sailors Guide</Button>
 			</Link>
-			<Link to="/contact-us" className={classes.link}>
+			<Link to="/contact-us"
+			      className={classes.link}
+			      onClick={handleClick}>
 				<Button size="large"
 				        color={path.startsWith("/contact-us") ? "secondary" : "primary"}
 				        startIcon={<ContactMailTwoToneIcon/>}
@@ -153,19 +168,25 @@ export const NavBar = (props) => {
 
 	const adminPages = (
 		<React.Fragment>
-			<Link to="/admin/news-feed" className={classes.link}>
+			<Link to="/admin/news-feed"
+			      className={classes.link}
+			      onClick={handleClick}>
 				<Button size="large"
 				        color={path.startsWith("/admin/news-feed") ? "secondary" : "primary"}
 				        startIcon={<ChatTwoToneIcon/>}
 				        className={classes.button}>Admin - News Feed</Button>
 			</Link>
-			<Link to="/admin/gallery" className={classes.link}>
+			<Link to="/admin/gallery"
+			      className={classes.link}
+			      onClick={handleClick}>
 				<Button size="large"
 				        color={path.startsWith("/admin/gallery") ? "secondary" : "primary"}
 				        startIcon={<PermMediaTwoToneIcon/>}
 				        className={classes.button}>Admin - Gallery</Button>
 			</Link>
-			<Link to="/admin/contact-us" className={classes.link}>
+			<Link to="/admin/contact-us"
+			      className={classes.link}
+			      onClick={handleClick}>
 				<Button size="large"
 				        color={path.startsWith("/admin/contact-us") ? "secondary" : "primary"}
 				        startIcon={<ContactMailTwoToneIcon/>}
@@ -181,13 +202,18 @@ export const NavBar = (props) => {
 			<Button size="large"
 			        startIcon={<AccountCircleTwoToneIcon/>}
 			        className={`${classes.button} ${classes.loginButton}`}
-			        onClick={props.logoutUser}>
+			        onClick={() => {
+			        	handleClick();
+			        	props.logoutUser();
+			        }}>
 				Logout
 			</Button>
 		);
 	} else {
 		loginButton = (
-			<Link to="/login" className={classes.link}>
+			<Link to="/login"
+			      className={classes.link}
+			      onClick={handleClick}>
 				<Button size="large"
 				        startIcon={<AccountCircleTwoToneIcon/>}
 				        className={`${classes.button} ${classes.loginButton}`}>

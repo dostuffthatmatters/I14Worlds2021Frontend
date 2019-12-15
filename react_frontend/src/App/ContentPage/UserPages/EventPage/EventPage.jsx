@@ -277,8 +277,9 @@ class EventPage extends React.Component {
 					<Paper elevation={3} className={clsx(classes.addressPaper, "AddressContainer")}>
 						<Grid container spacing={0}>
 							<Grid item xs={12}>
-								<Typography variant="h5" className={classes.cardLabel}>Flensburg Sailing
-									Club</Typography>
+								<Typography variant="h5" className={classes.cardLabel}>
+									Flensburger Segel-Club
+								</Typography>
 							</Grid>
 							<Grid item xs={12}>
 								<Typography variant="h6">Quellental</Typography>
