@@ -30,4 +30,6 @@
 
 2. Definitely using **React Redux** (or some other state management library) - especially for the admin pages
 
-3. Finding a solution to *display pdf's** rather than with "react-pdf" (and "pdf.js"). Currently only these two make up 59% of my bundle size ...
+3. Building my own datepicker or better haveing just a select-drop-down -> Save 15% (95KB unpacked) of the current bundle size
+
+4. Using Preact instead of React -> Save almost 20% of current bundle size AND faster application
