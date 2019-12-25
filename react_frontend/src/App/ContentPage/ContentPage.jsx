@@ -12,7 +12,7 @@ import './ContentPage.scss';
 
 
 /* Material UI Imports ----------------------------------------------------------- */
-import {Container} from "@material-ui/core";
+import Container from "@material-ui/core/Container";
 
 
 /* Component Imports ------------------------------------------------------------- */

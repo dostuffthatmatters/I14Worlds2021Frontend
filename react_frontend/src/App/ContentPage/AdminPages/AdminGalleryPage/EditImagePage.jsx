@@ -12,14 +12,14 @@ import {BACKEND_URL} from "../../../../constants";
 
 
 /* Material UI Imports ----------------------------------------------------------- */
-import {
-	Button,
-	Card,
-	CardContent,
-	CardMedia,
-	CircularProgress,
-	Typography,
-	Grid} from "@material-ui/core";
+import Card from '@material-ui/core/Card';
+import CardMedia from '@material-ui/core/CardMedia';
+import CardContent from '@material-ui/core/CardContent';
+import Grid from '@material-ui/core/Grid';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+
 import ArrowBackIosTwoToneIcon from '@material-ui/icons/ArrowBackIosTwoTone';
 
 

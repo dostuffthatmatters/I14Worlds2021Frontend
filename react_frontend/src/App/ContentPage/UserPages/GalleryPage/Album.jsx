@@ -7,12 +7,11 @@ import {Link} from 'react-router-dom';
 
 
 /* Material UI Imports ----------------------------------------------------------- */
-import {
-	Card,
-	CardMedia,
-	Typography,
-	Grid
-} from "@material-ui/core";
+import Card from '@material-ui/core/Card';
+import CardMedia from '@material-ui/core/CardMedia';
+import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
+
 import ArrowBackIosTwoToneIcon from '@material-ui/icons/ArrowBackIosTwoTone';
 
 

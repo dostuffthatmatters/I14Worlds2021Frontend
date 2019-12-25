@@ -13,14 +13,14 @@ import {BACKEND_URL} from "../../../../constants";
 
 
 /* Material UI Imports ----------------------------------------------------------- */
-import {
-	Card,
-	Typography,
-	Divider,
-	Dialog,
-	DialogTitle,
-	DialogActions,
-	Button} from "@material-ui/core";
+import Card from '@material-ui/core/Card';
+import Divider from '@material-ui/core/Divider';
+import Dialog from '@material-ui/core/Dialog';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import DialogActions from '@material-ui/core/DialogActions';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+
 import AssignmentTwoToneIcon from '@material-ui/icons/AssignmentTwoTone';
 import PersonOutlineTwoToneIcon from '@material-ui/icons/PersonOutlineTwoTone';
 import MailTwoToneIcon from '@material-ui/icons/MailTwoTone';

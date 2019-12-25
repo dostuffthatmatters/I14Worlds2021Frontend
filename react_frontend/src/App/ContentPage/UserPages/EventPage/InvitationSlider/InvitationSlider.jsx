@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from "prop-types";
 import withStyles from "@material-ui/styles/withStyles/withStyles";
-// noinspection ES6CheckImport
+
 import {withRouter} from "react-router-dom";
 
-import {Card, CircularProgress, IconButton, Typography} from '@material-ui/core';
+import Card from '@material-ui/core/Card'
+import IconButton from '@material-ui/core/IconButton'
+import Typography from '@material-ui/core/Typography'
 
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
@@ -12,7 +14,6 @@ import FullscreenIcon from '@material-ui/icons/Fullscreen';
 import FullscreenExitIcon from '@material-ui/icons/FullscreenExit';
 
 import clsx from 'clsx';
-import GetAppIcon from "@material-ui/icons/GetApp";
 
 
 const whitePages = [1, 2, 3, 4, 5, 6, 7, 9, 13, 15, 17, 20, 22, 25];
@@ -41,7 +42,6 @@ const styles = theme => ({
 		display: "block",
 		width: "100%",
 		height: "auto",
-		cursor: "pointer",
 	},
 	fullscreen_media: {
 		display: "block",
@@ -49,7 +49,6 @@ const styles = theme => ({
 		height: "auto",
 		maxWidth: `calc(100vw - ${theme.spacing(4)}px)`,
 		maxHeight: `calc(100vh - ${theme.spacing(4)}px)`,
-		cursor: "pointer",
 	},
 	button: {
 		cursor: "pointer",
@@ -87,9 +86,15 @@ const styles = theme => ({
 	},
 	brightBackgroundColor: {
 		backgroundColor: theme.palette.white.transparent60,
+		"&:hover": {
+			backgroundColor: theme.palette.white.transparent60,
+		}
 	},
 	darkBackgroundColor: {
 		backgroundColor: theme.palette.gunmetalGray.transparent60,
+		"&:hover": {
+			backgroundColor: theme.palette.gunmetalGray.transparent60,
+		}
 	},
 });
 
@@ -184,8 +189,7 @@ class InvitationSlider extends React.Component {
 					     src={imageSrc}
 					     alt={this.images[this.state.imageSliderIndex].description}
 					     style={{display: this.state.loading ? "none" : "block"}}
-					     onLoad={() => this.setState({loading: false})}
-					     onClick={() => this.setState({fullscreen: !this.state.fullscreen})}/>
+					     onLoad={() => this.setState({loading: false})}/>
 				</React.Fragment>
 			);
 		}
@@ -241,6 +245,7 @@ class InvitationSlider extends React.Component {
 				            )}>
 					{this.state.imageSliderIndex + 1} / {this.images.length}
 				</Typography>
+				{/*
 				<div className={clsx(classes.downloadButton)}>
 					<IconButton
 						aria-label="download"
@@ -249,7 +254,7 @@ class InvitationSlider extends React.Component {
 						onClick={() => window.open("https://storage.googleapis.com/i14-worlds-documents/Invitation_WM2021.pdf", "_blank")}>
 						<GetAppIcon/>
 					</IconButton>
-				</div>
+				</div>*/}
 			</div>
 		);
 

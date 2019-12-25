@@ -1,7 +1,11 @@
 import React from 'react';
 import PropTypes from "prop-types";
 import withStyles from "@material-ui/styles/withStyles/withStyles";
-import {Grid, LinearProgress, Typography} from "@material-ui/core";
+
+import Grid from '@material-ui/core/Grid';
+import LinearProgress from '@material-ui/core/LinearProgress';
+import Typography from '@material-ui/core/Typography';
+
 import {CustomSelect} from "../../../../Components/Forms/CustomSelect";
 import {BACKEND_URL} from "../../../../constants";
 import {BackendGET} from "../../../../Wrappers/backendCommunication";

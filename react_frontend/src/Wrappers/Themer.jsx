@@ -3,8 +3,8 @@ import React from 'react';
 
 
 /* Styling Imports --------------------------------------------------------------- */
-import {createMuiTheme} from "@material-ui/core";
-import {ThemeProvider} from "@material-ui/styles";
+import {createMuiTheme} from "@material-ui/core/styles";
+import {ThemeProvider} from "@material-ui/core/styles";
 import {BreakpointProvider} from 'react-socks';
 
 

@@ -1,4 +1,4 @@
-export const schedule = [
+export const scheduleData = [
 	{
 		colored: false,
 		date: "07.08.2021",

@@ -13,13 +13,13 @@ import {BACKEND_URL} from "../../../../constants";
 
 
 /* Material UI Imports ----------------------------------------------------------- */
-import {
-	Typography,
-	LinearProgress,
-	Card,
-	CardMedia,
-	CardContent,
-	Grid} from "@material-ui/core";
+import Typography from '@material-ui/core/Typography';
+import LinearProgress from '@material-ui/core/LinearProgress';
+import Card from '@material-ui/core/Card';
+import CardMedia from '@material-ui/core/CardMedia';
+import CardContent from '@material-ui/core/CardContent';
+import Grid from '@material-ui/core/Grid';
+
 import AssignmentTwoToneIcon from '@material-ui/icons/AssignmentTwoTone';
 import PersonOutlineTwoToneIcon from '@material-ui/icons/PersonOutlineTwoTone';
 import MailTwoToneIcon from '@material-ui/icons/MailTwoTone';

@@ -4,7 +4,7 @@ import React from "react";
 
 
 /* Material UI Imports ----------------------------------------------------------- */
-import {TextField} from "@material-ui/core";
+import TextField from "@material-ui/core/TextField";
 
 
 /* Component --------------------------------------------------------------------- */

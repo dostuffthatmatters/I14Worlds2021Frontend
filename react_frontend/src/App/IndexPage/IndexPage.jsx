@@ -11,7 +11,7 @@ import './IndexPage.scss';
 import Breakpoint from 'react-socks';
 
 /* Material UI Imports ----------------------------------------------------------- */
-import {Button} from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 
 
 /* Assets Imports ---------------------------------------------------------------- */

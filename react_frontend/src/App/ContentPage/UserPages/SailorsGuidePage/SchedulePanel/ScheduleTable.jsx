@@ -2,7 +2,7 @@ import React from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 
 import ScheduleRow from './ScheduleRow';
-import {schedule} from './Schedule';
+import {scheduleData} from './ScheduleData';
 
 
 const useStyles = makeStyles(theme => ({
@@ -20,10 +20,10 @@ const useStyles = makeStyles(theme => ({
 	},
 }));
 
-export default function SchedulePanel() {
+export default function ScheduleTable() {
 	const classes = useStyles();
 
-	let scheduleRows = schedule.map(day => {
+	let scheduleRows = scheduleData.map(day => {
 		return (
 			<ScheduleRow colored={day.colored}
 			             date={day.date}

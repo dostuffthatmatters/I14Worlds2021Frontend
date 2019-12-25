@@ -8,20 +8,19 @@ import {Link} from 'react-router-dom';
 
 
 /* Styling Imports --------------------------------------------------------------- */
-import {makeStyles} from "@material-ui/core";
+import {makeStyles} from "@material-ui/core/styles";
 import './NavBar.scss';
 
 
 /* Material UI Imports ----------------------------------------------------------- */
-import {
-	AppBar,
-	Toolbar,
-	IconButton,
-	Typography,
-	Drawer,
-	Divider,
-	Button
-} from '@material-ui/core';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
+import Drawer from '@material-ui/core/Drawer';
+import Divider from '@material-ui/core/Divider';
+import Button from '@material-ui/core/Button';
+
 import MenuIcon from '@material-ui/icons/Menu';
 import EmojiEventsTwoToneIcon from '@material-ui/icons/EmojiEventsTwoTone';
 import ChatTwoToneIcon from '@material-ui/icons/ChatTwoTone';

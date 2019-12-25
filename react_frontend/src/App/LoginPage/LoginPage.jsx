@@ -16,14 +16,13 @@ import {BACKEND_URL} from '../../constants';
 
 
 /* Material UI Imports ----------------------------------------------------------- */
-import {
-	Container,
-	Typography,
-	CircularProgress,
-	Snackbar,
-	SnackbarContent,
-	TextField,
-	Button} from "@material-ui/core";
+import Container from '@material-ui/core/Container';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Snackbar from '@material-ui/core/Snackbar';
+import SnackbarContent from '@material-ui/core/SnackbarContent';
+import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 
 
 /* Hook Linking Imports ---------------------------------------------------------- */

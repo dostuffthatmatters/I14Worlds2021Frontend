@@ -8,7 +8,9 @@ import clsx from "clsx";
 import Breakpoint from 'react-socks';
 
 /* Material UI Imports ----------------------------------------------------------- */
-import {Typography, Paper, Grid} from "@material-ui/core";
+import Typography from '@material-ui/core/Typography';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
 
 /* Google Maps Imports ----------------------------------------------------------- */
 import {Map, Marker, GoogleApiWrapper} from 'google-maps-react';

@@ -16,14 +16,12 @@ import {BACKEND_URL} from "../../../../constants";
 
 
 /* Material UI Imports ----------------------------------------------------------- */
-import {
-	CircularProgress,
-	Divider,
-	LinearProgress,
-	Typography,
-	Grid,
-	Button
-} from "@material-ui/core";
+import Grid from '@material-ui/core/Grid';
+import Divider from '@material-ui/core/Divider';
+import LinearProgress from '@material-ui/core/LinearProgress';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 
 
 /* Component Imports ------------------------------------------------------------- */

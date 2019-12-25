@@ -8,11 +8,11 @@ import './SailorsGuidePage.scss';
 
 
 /* Material UI Imports ----------------------------------------------------------- */
-import {Typography} from "@material-ui/core";
+import Typography from "@material-ui/core/Typography";
 
 
 /* Component Imports ------------------------------------------------------------- */
-import SchedulePanel from "./SchedulePanel/SchedulePanel";
+// import SchedulePanel from "./SchedulePanel/SchedulePanel";
 
 
 /* Hook Linking Imports ---------------------------------------------------------- */

@@ -7,12 +7,12 @@ import {Link} from 'react-router-dom';
 
 
 /* Material UI Imports ----------------------------------------------------------- */
-import {
-	Card,
-	CardMedia,
-	Container, IconButton,
-	Typography
-} from "@material-ui/core";
+import Card from '@material-ui/core/Card';
+import CardMedia from '@material-ui/core/CardMedia';
+import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
+import IconButton from '@material-ui/core/IconButton';
+
 import ArrowBackIosTwoToneIcon from '@material-ui/icons/ArrowBackIosTwoTone';
 
 
@@ -39,7 +39,7 @@ const contentReplacements = {
 	"<p>": "<p class='MuiTypography-root MuiTypography-body1'>",
 	"<a href=": "<strong><a href=",
 	"<a target=": "<strong><a target=",
-	"</a>": "</a><strong>",
+	"</a>": "</a></strong>",
 };
 
 

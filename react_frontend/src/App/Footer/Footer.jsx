@@ -4,7 +4,11 @@ import './Footer.scss';
 import VRSportTVLogo from './images/vr_sport_logo.svg';
 
 import {makeStyles} from '@material-ui/core/styles';
-import {Card, Grid, Container, Typography} from '@material-ui/core';
+
+import Card from '@material-ui/core/Card';
+import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 
 import clsx from 'clsx';
 

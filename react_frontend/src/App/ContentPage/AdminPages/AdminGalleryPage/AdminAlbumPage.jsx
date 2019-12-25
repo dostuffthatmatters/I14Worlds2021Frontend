@@ -8,9 +8,9 @@ import {Switch, Route, Link} from 'react-router-dom';
 
 
 /* Material UI Imports ----------------------------------------------------------- */
-import {
-	Typography,
-	Grid} from "@material-ui/core";
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+
 import ArrowBackIosTwoToneIcon from '@material-ui/icons/ArrowBackIosTwoTone';
 
 

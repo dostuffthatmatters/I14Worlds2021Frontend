@@ -5,7 +5,10 @@ import withStyles from "@material-ui/styles/withStyles/withStyles";
 // noinspection ES6CheckImport
 import {withRouter} from "react-router-dom";
 
-import {Card, CircularProgress, IconButton} from '@material-ui/core';
+import Card from '@material-ui/core/Card';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import IconButton from '@material-ui/core/IconButton';
+
 import CloseIcon from '@material-ui/icons/Close';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
