@@ -2,6 +2,9 @@
 
 # Website for the I14 World-Championship 2021
 
+*This is my first big React App and served/serves as 
+a learning opportunity so please be gentle! :wink:*
+
 ### Technology Stack
 
 * **Frontend: [React (JS)](https://reactjs.org/)**
@@ -30,4 +33,6 @@
 
 2. Definitely using **React Redux** (or some other state management library) - especially for the admin pages
 
-3. Finding a solution to *display pdf's** rather than with "react-pdf" (and "pdf.js"). Currently only these two make up 59% of my bundle size ...
+3. Maybe using **Preact** to make the app faster (especially improve loading times)
+
+4. Increase the use of lazy loading of used libraries
