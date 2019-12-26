@@ -265,7 +265,7 @@ class InvitationSlider extends React.Component {
 						clsx(classes.card, classes.fullscreen_card) :
 						clsx(classes.card, "PDFPaper")}
 					      elevation={3}>
-						{preload}
+						{/*preload*/}
 						{image}
 						{buttons}
 						{!this.state.fullscreen && pageNumberBox}

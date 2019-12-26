@@ -18,10 +18,24 @@ import LinearProgress from "@material-ui/core/LinearProgress";
 
 /* Component Imports ------------------------------------------------------------- */
 import EventPage from "./UserPages/EventPage/EventPage";
-import NewsFeedPageManager from "./UserPages/NewsFeedPage/NewsFeedPage";
-import GalleryPageManager from "./UserPages/GalleryPage/GalleryPage";
-import SailorsGuidePage from "./UserPages/SailorsGuidePage/SailorsGuidePage";
-import ContactUsPageManager from "./UserPages/ContactUsPage/ContactUsPage";
+
+
+const NewsFeedPageManager = React.lazy(() => {
+	console.log("Importing NewsFeedPage JS now.");
+	return import("./UserPages/NewsFeedPage/NewsFeedPage");
+});
+const GalleryPageManager = React.lazy(() => {
+	console.log("Importing GalleryPage JS now.");
+	return import("./UserPages/GalleryPage/GalleryPage");
+});
+const SailorsGuidePage = React.lazy(() => {
+	console.log("Importing SailorsGuidePage JS now.");
+	return import("./UserPages/SailorsGuidePage/SailorsGuidePage");
+});
+const ContactUsPageManager = React.lazy(() => {
+	console.log("Importing ContactUsPage JS now.");
+	return import("./UserPages/ContactUsPage/ContactUsPage");
+});
 
 
 const AdminNewsFeedPageManager = React.lazy(() => {
@@ -71,16 +85,32 @@ export const ContentPage = (props) => {
 				<Route>
 					<Container className="ContentPage" maxWidth="md">
 						<Route path="/news-feed">
-							<NewsFeedPageManager hideWebsite={props.hideWebsite}/>
+							<React.Suspense
+								fallback={<LinearProgress style={{borderRadius: "2px"}}
+								                          color="secondary"/>}>
+								<NewsFeedPageManager hideWebsite={props.hideWebsite}/>
+							</React.Suspense>
 						</Route>
 						<Route path="/gallery">
-							<GalleryPageManager hideWebsite={props.hideWebsite}/>
+							<React.Suspense
+								fallback={<LinearProgress style={{borderRadius: "2px"}}
+								                          color="secondary"/>}>
+								<GalleryPageManager hideWebsite={props.hideWebsite}/>
+							</React.Suspense>
 						</Route>
 						<Route path="/sailors-guide">
-							<SailorsGuidePage/>
+							<React.Suspense
+								fallback={<LinearProgress style={{borderRadius: "2px"}}
+								                          color="secondary"/>}>
+								<SailorsGuidePage/>
+							</React.Suspense>
 						</Route>
 						<Route path="/contact-us">
-							<ContactUsPageManager/>
+							<React.Suspense
+								fallback={<LinearProgress style={{borderRadius: "2px"}}
+								                          color="secondary"/>}>
+								<ContactUsPageManager/>
+							</React.Suspense>
 						</Route>
 						<Route path="/admin/news-feed">
 							<React.Suspense

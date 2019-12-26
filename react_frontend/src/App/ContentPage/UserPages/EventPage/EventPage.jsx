@@ -12,17 +12,9 @@ import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 
-/* Google Maps Imports ----------------------------------------------------------- */
-import {Map, Marker, GoogleApiWrapper} from 'google-maps-react';
-import {GoogleMapsAPIKey} from '../../../../secrets.js';
-
 /* Hook Linking Imports --------------------------------------------------------------- */
 import PropTypes from "prop-types";
 import withStyles from "@material-ui/styles/withStyles/withStyles";
-
-
-/* Component Imports ------------------------------------------------------------- */
-import InvitationSlider from './InvitationSlider/InvitationSlider';
 
 
 /* Assets Imports ---------------------------------------------------------------- */
@@ -57,6 +49,18 @@ import Image03Square2800 from './images/Image03/9718_Square_2800.jpg';
 import EventLogo from './images/EventLogo.svg'
 import FSCLogo from './images/FSCLogo.svg'
 import VRSportTVLogo from './images/VRSportTVLogo.svg'
+import LinearProgress from "@material-ui/core/LinearProgress";
+
+
+/* (Lazy) Component Imports ------------------------------------------------------------- */
+const GoogleMap = React.lazy(() => {
+	console.log("Importing GoogleMap JS now.");
+	return import("./GoogleMap/GoogleMap");
+});
+const InvitationSlider = React.lazy(() => {
+	console.log("Importing InvitationSlider JS now.");
+	return import("./InvitationSlider/InvitationSlider");
+});
 
 
 /* Style ------------------------------------------------------------------------- */
@@ -453,6 +457,7 @@ class EventPage extends React.Component {
 
 				{imageElement02}
 
+				{/* Adress and Map */}
 				<div className={clsx(classes.paperContainer)}>
 
 					<Paper elevation={3} className={clsx(classes.addressPaper, "AddressContainer")}>
@@ -479,30 +484,23 @@ class EventPage extends React.Component {
 						</Grid>
 					</Paper>
 
-					<Paper elevation={3} className={clsx(classes.mapPaper, "MapPaper")}>
-						<Breakpoint small down>
-							<Map google={this.props.google}
-							     zoom={5}
-							     initialCenter={{lat: 54.836947, lng: 9.525610}}
-							     style={{width: '90vw', height: '75vh', borderRadius: 'inherit'}}>
-								<Marker/>
-							</Map>
-						</Breakpoint>
-						<Breakpoint medium up>
-							<Map google={this.props.google}
-							     zoom={5}
-							     initialCenter={{lat: 54.836947, lng: 9.525610}}
-							     style={{width: '60vw', height: '30vw', borderRadius: 'inherit'}}>
-								<Marker/>
-							</Map>
-						</Breakpoint>
-					</Paper>
+					<React.Suspense fallback={<LinearProgress style={{borderRadius: "2px"}}
+					                                          color="secondary"/>}>
+						<Paper elevation={3} className={clsx(classes.mapPaper, "MapPaper")}>
+							<GoogleMap/>
+						</Paper>
+					</React.Suspense>
+
 				</div>
 
 				{imageElement03}
 
+				{/* Invitation Slider */}
 				<div className={clsx(classes.paperContainer)}>
-					<InvitationSlider/>
+					<React.Suspense fallback={<LinearProgress style={{borderRadius: "2px"}}
+					                                          color="secondary"/>}>
+						<InvitationSlider/>
+					</React.Suspense>
 				</div>
 
 			</div>
@@ -521,6 +519,4 @@ EventPage.propTypes = {
 	classes: PropTypes.object.isRequired,
 };
 
-export default GoogleApiWrapper({
-	apiKey: (GoogleMapsAPIKey)
-})(withStyles(styles)(EventPage));
+export default withStyles(styles)(EventPage);

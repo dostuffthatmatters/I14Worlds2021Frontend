@@ -37,9 +37,11 @@ export function IndexPage() {
 				<div className="Logo Element">
 					<img src={EVENT_LOGO} alt="Event Logo"/>
 				</div>
-				<Button className="Element" variant="contained" color="secondary">
-					<Link to={"/event"}>Learn More</Link>
-				</Button>
+				<Link to={"/event"}>
+					<Button className="Element" variant="contained" color="secondary">
+						Learn More
+					</Button>
+				</Link>
 			</div>
 		</div>
 	);
