@@ -36,3 +36,5 @@ a learning opportunity so please be gentle! :wink:*
 3. Maybe using **Preact** to make the app faster (especially improve loading times)
 
 4. Increase the use of lazy loading of used libraries
+
+5. Building my own datepicker or better haveing just a select-drop-down -> Save 15% (95KB unpacked) of the current bundle size

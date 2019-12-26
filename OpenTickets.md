@@ -18,4 +18,5 @@ the material datepicker makes up 7.3% of the total bundle size. And in
 addition to that "date-fns" makes up 7.2%. So i could definitely save 
 a lot here (95KB uncrompresses JS).
 
-
+* EventImageSlider: Disable Button-Hover Effect and disable page-click
+for fullscreen-toggle
