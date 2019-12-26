@@ -1,4 +1,3 @@
-
 /* General Imports --------------------------------------------------------------- */
 import React from 'react';
 import 'date-fns';
@@ -54,6 +53,8 @@ const styles = theme => ({
 		left: theme.spacing(1),
 	},
 	headline: {
+		paddingLeft: theme.spacing(5),
+		paddingRight: theme.spacing(5),
 		display: "block",
 		textAlign: "center",
 		marginBottom: theme.spacing(4)
@@ -328,12 +329,10 @@ class NewArticlePage extends React.Component {
 		const {classes} = this.props;
 
 		return (
-			<div className="AdminGalleryPage">
-				<Breakpoint medium up>
-					<Link to="/admin/news-feed" onClick={this.props.triggerReload}>
-						<ArrowBackIosTwoToneIcon className={classes.backIcon} color="secondary"/>
-					</Link>
-				</Breakpoint>
+			<div className="AdminNewsFeedPage">
+				<Link to="/admin/news-feed">
+					<ArrowBackIosTwoToneIcon className={classes.backIcon} color="secondary"/>
+				</Link>
 				<Typography variant="h4" className={classes.headline}>New Post</Typography>
 				<Divider className={classes.divider}/>
 				{this.getArticleForm()}

@@ -57,6 +57,8 @@ const styles = theme => ({
 		left: theme.spacing(1),
 	},
 	headline: {
+		paddingLeft: theme.spacing(5),
+		paddingRight: theme.spacing(5),
 		display: "block",
 		textAlign: "center",
 		marginBottom: theme.spacing(4)
@@ -134,7 +136,6 @@ const styles = theme => ({
 	buttonSpinnerWrapper: {
 		position: 'relative',
 		display: "inline-flex",
-		marginTop: theme.spacing(3),
 		marginLeft: theme.spacing(0.5),
 		marginRight: theme.spacing(0.5),
 	},
@@ -151,6 +152,7 @@ const styles = theme => ({
 		marginLeft: -12,
 	},
 	uploadButtonWrapper: {
+		marginTop: theme.spacing(2),
 		display: "flex",
 		alignItems: "center",
 		justifyContent: "center"
@@ -168,7 +170,7 @@ class EditArticlePage extends React.Component {
 
 		this.state = {
 			uploading: false,
-			delting: false,
+			deleting: false,
 			deleteDialogOpen: false,
 
 			headline: undefined,
@@ -236,15 +238,18 @@ class EditArticlePage extends React.Component {
 		BackendREST(BACKEND_URL + "/backend/database/article", params, "PUT").then((resolveMessage) => {
 			const resolveJson = JSON.parse(resolveMessage);
 			console.log("Saving article: Status = " + resolveJson["Status"]);
-
-			this.setState({
-				uploading: false
-			});
+			setTimeout(() => {
+				this.setState({
+					uploading: false
+				});
+			}, 1000);
 		}).catch(() => {
 			console.log("Saving article: failed");
-			this.setState({
-				uploading: false,
-			});
+			setTimeout(() => {
+				this.setState({
+					uploading: false
+				});
+			}, 1000);
 		});
 	}
 
@@ -263,14 +268,16 @@ class EditArticlePage extends React.Component {
 		BackendREST(BACKEND_URL + "/backend/database/article", params, "DELETE").then((resolveMessage) => {
 			const resolveJson = JSON.parse(resolveMessage);
 			console.log("Removing article: Status = " + resolveJson["Status"]);
-
-			window.open("/admin/news-feed", "_self");
-
+			setTimeout(() => {
+				window.open("/admin/news-feed", "_self");
+			}, 1000);
 		}).catch(() => {
 			console.log("Removing article: failed");
-			this.setState({
-				deleting: false,
-			});
+			setTimeout(() => {
+				this.setState({
+					deleting: false,
+				});
+			}, 1000);
 		});
 	}
 
@@ -370,7 +377,8 @@ class EditArticlePage extends React.Component {
 				<div className={classes.uploadButtonWrapper}>
 					<div className={classes.buttonSpinnerWrapper}>
 						<Button variant="contained"
-						        color={this.state.uploading ? "default" : "secondary"}
+						        disabled={this.state.uploading}
+						        color="secondary"
 						        onClick={this.processUpload}
 						        className={classes.button}>Save Post</Button>
 						{this.state.uploading && (
@@ -381,17 +389,11 @@ class EditArticlePage extends React.Component {
 					</div>
 				</div>
 				<div className={classes.uploadButtonWrapper}>
-					<div className={classes.buttonSpinnerWrapper}>
-						<Button variant="contained"
-						        color={this.state.deleting ? "default" : "default"}
-						        onClick={() => this.setState({deleteDialogOpen: true})}
-						        className={classes.button}>Remove Post</Button>
-						{this.state.deleting && (
-							<CircularProgress size={24}
-							                  className={classes.buttonProgress}
-							                  color="secondary"/>
-						)}
-					</div>
+					<Button variant="contained"
+					        color="default"
+					        disabled={this.state.uploading}
+					        onClick={() => this.setState({deleteDialogOpen: true})}
+					        className={classes.button}>Remove Post</Button>
 				</div>
 				{this.state.deleteDialogOpen && (
 					<Dialog open={true}
@@ -399,8 +401,18 @@ class EditArticlePage extends React.Component {
 						<DialogTitle id="alert-dialog-title">Do you really want to delete this post?</DialogTitle>
 						<DialogActions>
 							<Button onClick={() => this.setState({deleteDialogOpen: false})}
+							        disabled={this.state.deleting}
 							        color="primary">Disagree</Button>
-							<Button onClick={this.processDelete} color="secondary" autoFocus>Agree</Button>
+							<div className={classes.buttonSpinnerWrapper}>
+								<Button onClick={this.processDelete}
+								        disabled={this.state.deleting}
+								        autoFocus>Agree</Button>
+								{this.state.deleting && (
+									<CircularProgress size={24}
+									                  className={classes.buttonProgress}
+									                  color="secondary"/>
+								)}
+							</div>
 						</DialogActions>
 					</Dialog>
 				)}
@@ -430,12 +442,10 @@ class EditArticlePage extends React.Component {
 		let favoriteImageId = this.state.favoriteImageId === undefined ? article.favorite_image_id : this.state.favoriteImageId;
 
 		return (
-			<div className="AdminGalleryPage">
-				<Breakpoint medium up>
-					<Link to="/admin/news-feed" onClick={this.props.triggerReload}>
-						<ArrowBackIosTwoToneIcon className={classes.backIcon} color="secondary"/>
-					</Link>
-				</Breakpoint>
+			<div className="AdminNewsFeedPage">
+				<Link to="/admin/news-feed" onClick={this.props.triggerReload}>
+					<ArrowBackIosTwoToneIcon className={classes.backIcon} color="secondary"/>
+				</Link>
 				<Typography variant="h4" className={classes.headline}>{headline}</Typography>
 				<Divider className={classes.divider}/>
 				{articleContent}
