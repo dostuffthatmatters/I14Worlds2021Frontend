@@ -126,9 +126,13 @@ class Album extends React.Component {
 		if (album === undefined) {
 			albumContent = <Typography variant="h4" className={classes.headline}>Nothing here ...</Typography>;
 		} else {
+			let headline = album.name;
+			if (headline.length === 0) {
+				headline = "No Title"
+			}
 			albumContent = (
 				<React.Fragment>
-					<Typography variant="h4" className={classes.headline}>{album.name}</Typography>
+					<Typography variant="h4" className={classes.headline}>{headline}</Typography>
 					{this.getImageList(album)}
 				</React.Fragment>
 			);

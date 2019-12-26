@@ -43,14 +43,14 @@ const styles = theme => ({
 	headline: {
 		display: "block",
 		textAlign: "center",
-		marginBottom: theme.spacing(3)
+		marginBottom: theme.spacing(3),
 	},
 	linearProgress: {
-		borderRadius: "2px"
+		borderRadius: "2px",
 	},
 	card: {
 		display: 'flex',
-		cursor: "pointer"
+		cursor: "pointer",
 	},
 	cardContentRight: {
 		position: "relative",
@@ -151,6 +151,11 @@ class NewsFeedPageManager extends React.Component {
 				imageSrc = article.images[0]["filepath_medium"];
 			}
 
+			let headline = article.headline;
+			if (headline.length === 0) {
+				headline = "No Title"
+			}
+
 			return (
 				<Grid item xs={12} sm={8} md={12} key={index}>
 					<Link to={"/news-feed/" + article.id}>
@@ -164,7 +169,7 @@ class NewsFeedPageManager extends React.Component {
 									<div className={classes.cardContentOverlay}/>
 									<CardContent className={classes.cardContent}>
 										<Typography component="h5" variant="h5">
-											{article.headline}
+											{headline}
 										</Typography>
 										<Typography variant="subtitle1" color="textSecondary">
 											{article.content_plain}
@@ -183,7 +188,7 @@ class NewsFeedPageManager extends React.Component {
 									<div className={classes.cardContentOverlay}/>
 									<CardContent className={classes.cardContent}>
 										<Typography component="h5" variant="h5">
-											{article.headline}
+											{headline}
 										</Typography>
 										<Typography variant="subtitle1" color="textSecondary">
 											{article.content_plain}

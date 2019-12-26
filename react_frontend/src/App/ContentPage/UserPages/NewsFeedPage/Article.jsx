@@ -141,6 +141,11 @@ class Article extends React.Component {
 			article.content_html = article.content_html.replace(stringToReplace, contentReplacements[stringToReplace]);
 		}
 
+		let headline = article.headline;
+		if (headline.length === 0) {
+			headline = "No Title"
+		}
+
 		return (
 
 			<div className="ArticleView">
@@ -148,7 +153,7 @@ class Article extends React.Component {
 					<Link to="/news-feed" className={classes.relativeContainer}>
 						<ArrowBackIosTwoToneIcon className={classes.backIcon} color="secondary"/>
 					</Link>
-					<Typography variant="h4" className={classes.headline}>{article.headline}</Typography>
+					<Typography variant="h4" className={classes.headline}>{headline}</Typography>
 					<Card elevation={3}
 					      className={classes.card}>
 						<CardMedia

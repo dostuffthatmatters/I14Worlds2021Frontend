@@ -144,6 +144,11 @@ class GalleryPageManager extends React.Component {
 				imageSrc = album.images[album.image_id_to_index[album.title_image_id]]["filepath_medium"];
 			}
 
+			let headline = album.name;
+			if (headline.length === 0) {
+				headline = "No Title"
+			}
+
 			return (
 				<Grid item xs={12} sm={6} md={4} lg={4} xl={4} key={index}>
 					<Link to={"gallery/" + album.id}>
@@ -153,7 +158,7 @@ class GalleryPageManager extends React.Component {
 								image={imageSrc}
 								alt={"Images inside " + album.name}
 							/>
-							<CardContent className={classes.cardContent}>{album.name}</CardContent>
+							<CardContent className={classes.cardContent}>{headline}</CardContent>
 						</Card>
 					</Link>
 				</Grid>
