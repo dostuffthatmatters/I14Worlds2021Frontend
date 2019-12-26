@@ -31,10 +31,6 @@ class GoogleMap extends React.Component {
 	}
 }
 
-GoogleMap.propTypes = {
-	classes: PropTypes.object.isRequired,
-};
-
 export default GoogleApiWrapper({
 	apiKey: (GoogleMapsAPIKey)
 })(GoogleMap);
