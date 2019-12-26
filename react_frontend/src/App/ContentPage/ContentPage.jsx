@@ -13,17 +13,33 @@ import './ContentPage.scss';
 
 /* Material UI Imports ----------------------------------------------------------- */
 import Container from "@material-ui/core/Container";
+import LinearProgress from "@material-ui/core/LinearProgress";
 
 
 /* Component Imports ------------------------------------------------------------- */
 import EventPage from "./UserPages/EventPage/EventPage";
 import NewsFeedPageManager from "./UserPages/NewsFeedPage/NewsFeedPage";
 import GalleryPageManager from "./UserPages/GalleryPage/GalleryPage";
-import AdminGalleryPageManager from "./AdminPages/AdminGalleryPage/AdminGalleryPage";
 import SailorsGuidePage from "./UserPages/SailorsGuidePage/SailorsGuidePage";
 import ContactUsPageManager from "./UserPages/ContactUsPage/ContactUsPage";
-import AdminNewsFeedPageManager from "./AdminPages/AdminNewsFeedPage/AdminNewsFeedPage";
-import AdminContactUsPageManager from "./AdminPages/AdminContactUsPage/AdminContactUsPage";
+
+
+const AdminNewsFeedPageManager = React.lazy(() => {
+	console.log("Importing AdminNewsPage JS now.");
+	return import("./AdminPages/AdminNewsFeedPage/AdminNewsFeedPage");
+});
+const AdminGalleryPageManager = React.lazy(() => {
+	console.log("Importing AdminGalleryPage JS now.");
+	return import("./AdminPages/AdminGalleryPage/AdminGalleryPage");
+});
+const AdminContactUsPageManager = React.lazy(() => {
+	console.log("Importing AdminContactUsPage JS now.");
+	return import("./AdminPages/AdminContactUsPage/AdminContactUsPage")
+});
+
+// import AdminNewsFeedPageManager from "./AdminPages/AdminNewsFeedPage/AdminNewsFeedPage";
+// import AdminGalleryPageManager from "./AdminPages/AdminGalleryPage/AdminGalleryPage";
+// import AdminContactUsPageManager from "./AdminPages/AdminContactUsPage/AdminContactUsPage";
 
 
 /* Component --------------------------------------------------------------------- */
@@ -65,13 +81,25 @@ export const ContentPage = (props) => {
 							<ContactUsPageManager/>
 						</Route>
 						<Route path="/admin/news-feed">
-							<AdminNewsFeedPageManager api={props.api}/>
+							<React.Suspense
+								fallback={<LinearProgress style={{borderRadius: "2px"}}
+								                          color="secondary"/>}>
+								<AdminNewsFeedPageManager api={props.api}/>
+							</React.Suspense>
 						</Route>
 						<Route path="/admin/gallery">
-							<AdminGalleryPageManager api={props.api}/>
+							<React.Suspense
+								fallback={<LinearProgress style={{borderRadius: "2px"}}
+								                          color="secondary"/>}>
+								<AdminGalleryPageManager api={props.api}/>
+							</React.Suspense>
 						</Route>
 						<Route path="/admin/contact-us">
-							<AdminContactUsPageManager api={props.api}/>
+							<React.Suspense
+								fallback={<LinearProgress style={{borderRadius: "2px"}}
+								                          color="secondary"/>}>
+								<AdminContactUsPageManager api={props.api}/>
+							</React.Suspense>
 						</Route>
 					</Container>
 				</Route>

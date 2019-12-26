@@ -26,16 +26,37 @@ import InvitationSlider from './InvitationSlider/InvitationSlider';
 
 
 /* Assets Imports ---------------------------------------------------------------- */
-import EventImageLandScape from './images/_DSC9541_Landscape.jpg'
-import EventImageSquare from './images/_DSC9541_Square.jpg'
-import EventImagePortrait from './images/_DSC9541_Portrait.jpg'
+import Image01Landscape1200 from './images/Image01/9541_Landscape_1200.jpg';
+import Image01Landscape2000 from './images/Image01/9541_Landscape_2000.jpg';
+import Image01Landscape2800 from './images/Image01/9541_Landscape_2800.jpg';
+
+import Image01Square1200 from './images/Image01/9541_Square_1200.jpg';
+import Image01Square2000 from './images/Image01/9541_Square_2000.jpg';
+import Image01Square2800 from './images/Image01/9541_Square_2800.jpg';
+
+import Image01Portrait1600 from './images/Image01/9541_Portrait_1600.jpg';
+import Image01Portrait2200 from './images/Image01/9541_Portrait_2200.jpg';
+import Image01Portrait2800 from './images/Image01/9541_Portrait_2800.jpg';
+
+import Image02Landscape1200 from './images/Image02/9072_Landscape_1200.jpg';
+import Image02Landscape2000 from './images/Image02/9072_Landscape_2000.jpg';
+import Image02Landscape2800 from './images/Image02/9072_Landscape_2800.jpg';
+
+import Image02Square1200 from './images/Image02/9072_Square_1200.jpg';
+import Image02Square2000 from './images/Image02/9072_Square_2000.jpg';
+import Image02Square2800 from './images/Image02/9072_Square_2800.jpg';
+
+import Image03Landscape1200 from './images/Image03/9718_Landscape_1200.jpg';
+import Image03Landscape2000 from './images/Image03/9718_Landscape_2000.jpg';
+import Image03Landscape2800 from './images/Image03/9718_Landscape_2800.jpg';
+
+import Image03Square1200 from './images/Image03/9718_Square_1200.jpg';
+import Image03Square2000 from './images/Image03/9718_Square_2000.jpg';
+import Image03Square2800 from './images/Image03/9718_Square_2800.jpg';
 
 import EventLogo from './images/EventLogo.svg'
 import FSCLogo from './images/FSCLogo.svg'
 import VRSportTVLogo from './images/VRSportTVLogo.svg'
-
-import EventImage2 from './images/_DSC9072_2800px_cut.jpg'
-import EventImage3 from './images/_DSC9718_3200px_cut.jpg'
 
 
 /* Style ------------------------------------------------------------------------- */
@@ -74,7 +95,6 @@ const styles = theme => ({
 		paddingBottom: theme.spacing(1),
 	},
 });
-
 
 /* Component --------------------------------------------------------------------- */
 
@@ -163,28 +183,187 @@ class EventPage extends React.Component {
 
 		const {classes} = this.props;
 
-		let eventImageElement;
+		let imageElement01, imageElement02, imageElement03;
 
-		if ((1866 / 2800) > (window.innerHeight / window.innerWidth)) {
-			eventImageElement = (
-				<img className="EventImage EventImageLandscape"
-				     src={EventImageLandScape} alt="Screaming Downwind"/>
+		if ((3342 / 5015) > (window.innerHeight / window.innerWidth)) {
+			imageElement01 = (
+				<React.Fragment>
+					<Breakpoint small down>
+						<img className="EventImage EventImageLandscape"
+						     src={Image01Landscape1200}
+						     alt="Screaming Downwind"/>
+					</Breakpoint>
+					<Breakpoint medium only>
+						<img className="EventImage EventImageLandscape"
+						     src={Image01Landscape2000}
+						     alt="Screaming Downwind"/>
+					</Breakpoint>
+					<Breakpoint large up>
+						<img className="EventImage EventImageLandscape"
+						     src={Image01Landscape2800}
+						     alt="Screaming Downwind"/>
+					</Breakpoint>
+				</React.Fragment>
 			);
-		} else if ((2666 / 2800) > (window.innerHeight / window.innerWidth)) {
-			eventImageElement = (
-				<img className="EventImage EventImageSquare"
-				     src={EventImageSquare} alt="Screaming Downwind"/>
+			imageElement02 = (
+				<React.Fragment>
+					<Breakpoint small down>
+						<img className="EventImage2"
+						     src={Image02Landscape1200}
+						     alt="German Engineering"/>
+					</Breakpoint>
+					<Breakpoint medium only>
+						<img className="EventImage2"
+						     src={Image02Landscape2000}
+						     alt="German Engineering"/>
+					</Breakpoint>
+					<Breakpoint large up>
+						<img className="EventImage2"
+						     src={Image02Landscape2800}
+						     alt="German Engineering"/>
+					</Breakpoint>
+				</React.Fragment>
+			);
+			imageElement03 = (
+				<React.Fragment>
+					<Breakpoint small down>
+						<img className="EventImage3"
+						     src={Image03Landscape1200}
+						     alt="I14 Culture"/>
+					</Breakpoint>
+					<Breakpoint medium only>
+						<img className="EventImage3"
+						     src={Image03Landscape2000}
+						     alt="I14 Culture"/>
+					</Breakpoint>
+					<Breakpoint large up>
+						<img className="EventImage3"
+						     src={Image03Landscape2800}
+						     alt="I14 Culture"/>
+					</Breakpoint>
+				</React.Fragment>
+			);
+		} else if ((3367 / 3647) > (window.innerHeight / window.innerWidth)) {
+			imageElement01 = (
+				<React.Fragment>
+					<Breakpoint small down>
+						<img className="EventImage EventImageSquare"
+						     src={Image01Square1200}
+						     alt="Screaming Downwind"/>
+					</Breakpoint>
+					<Breakpoint medium only>
+						<img className="EventImage EventImageSquare"
+						     src={Image01Square2000}
+						     alt="Screaming Downwind"/>
+					</Breakpoint>
+					<Breakpoint large up>
+						<img className="EventImage EventImageSquare"
+						     src={Image01Square2800}
+						     alt="Screaming Downwind"/>
+					</Breakpoint>
+				</React.Fragment>
+			);
+			imageElement02 = (
+				<React.Fragment>
+					<Breakpoint small down>
+						<img className="EventImage2"
+						     src={Image02Landscape1200}
+						     alt="German Engineering"/>
+					</Breakpoint>
+					<Breakpoint medium only>
+						<img className="EventImage2"
+						     src={Image02Landscape2000}
+						     alt="German Engineering"/>
+					</Breakpoint>
+					<Breakpoint large up>
+						<img className="EventImage2"
+						     src={Image02Landscape2800}
+						     alt="German Engineering"/>
+					</Breakpoint>
+				</React.Fragment>
+			);
+			imageElement03 = (
+				<React.Fragment>
+					<Breakpoint small down>
+						<img className="EventImage3"
+						     src={Image03Landscape1200}
+						     alt="I14 Culture"/>
+					</Breakpoint>
+					<Breakpoint medium only>
+						<img className="EventImage3"
+						     src={Image03Landscape2000}
+						     alt="I14 Culture"/>
+					</Breakpoint>
+					<Breakpoint large up>
+						<img className="EventImage3"
+						     src={Image03Landscape2800}
+						     alt="I14 Culture"/>
+					</Breakpoint>
+				</React.Fragment>
 			);
 		} else {
-			eventImageElement = (
-				<img className="EventImage EventImagePortrait"
-				     src={EventImagePortrait} alt="Screaming Downwind"/>
+			imageElement01 = (
+				<React.Fragment>
+					<Breakpoint small down>
+						<img className="EventImage EventImagePortrait"
+						     src={Image01Portrait1600}
+						     alt="Screaming Downwind"/>
+					</Breakpoint>
+					<Breakpoint medium only>
+						<img className="EventImage EventImagePortrait"
+						     src={Image01Portrait2200}
+						     alt="Screaming Downwind"/>
+					</Breakpoint>
+					<Breakpoint large up>
+						<img className="EventImage EventImagePortrait"
+						     src={Image01Portrait2800}
+						     alt="Screaming Downwind"/>
+					</Breakpoint>
+				</React.Fragment>
+			);
+			imageElement02 = (
+				<React.Fragment>
+					<Breakpoint small down>
+						<img className="EventImage2"
+						     src={Image02Square1200}
+						     alt="German Engineering"/>
+					</Breakpoint>
+					<Breakpoint medium only>
+						<img className="EventImage2"
+						     src={Image02Square2000}
+						     alt="German Engineering"/>
+					</Breakpoint>
+					<Breakpoint large up>
+						<img className="EventImage2"
+						     src={Image02Square2800}
+						     alt="German Engineering"/>
+					</Breakpoint>
+				</React.Fragment>
+			);
+			imageElement03 = (
+				<React.Fragment>
+					<Breakpoint small down>
+						<img className="EventImage3"
+						     src={Image03Square1200}
+						     alt="I14 Culture"/>
+					</Breakpoint>
+					<Breakpoint medium only>
+						<img className="EventImage3"
+						     src={Image03Square2000}
+						     alt="I14 Culture"/>
+					</Breakpoint>
+					<Breakpoint large up>
+						<img className="EventImage3"
+						     src={Image03Square2800}
+						     alt="I14 Culture"/>
+					</Breakpoint>
+				</React.Fragment>
 			);
 		}
 
 		return (
 			<div className={clsx("EventPage", classes.page)}>
-				{eventImageElement}
+				{imageElement01}
 				<div className="EventImage1Overlay">
 					<div className="ContainerSmall">
 						<Paper elevation={3} className={classes.paper}>
@@ -272,7 +451,7 @@ class EventPage extends React.Component {
 
 				</div>
 
-				<img className="EventImage2" src={EventImage2} alt="German Engineering"/>
+				{imageElement02}
 
 				<div className={clsx(classes.paperContainer)}>
 
@@ -320,7 +499,7 @@ class EventPage extends React.Component {
 					</Paper>
 				</div>
 
-				<img className="EventImage3" src={EventImage3} alt="I14 Culture"/>
+				{imageElement03}
 
 				<div className={clsx(classes.paperContainer)}>
 					<InvitationSlider/>

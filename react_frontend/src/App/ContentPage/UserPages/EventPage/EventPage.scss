@@ -17,15 +17,15 @@
     }
 
     .EventImageLandscape {
-        top: calc((-1866vw / 28) + 100vh);
+        top: calc((-3342vw / 50.15) + 100vh + 1px);
     }
 
     .EventImageSquare {
-        top: calc((-2666vw / 28) + 100vh);
+        top: calc((-3367vw / 36.47) + 100vh + 1px);
     }
 
     .EventImagePortrait {
-        top: calc((-2800vw / 13.91) + 100vh);
+        top: calc((-3367vw / 15.98) + 100vh + 1px);
     }
 
     .EventImage1Overlay {
@@ -212,7 +212,6 @@
 
             .PageNumberBox {
                 width: 60vw;
-
             }
         }
 

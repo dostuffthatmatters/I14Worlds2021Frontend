@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from "prop-types";
 import withStyles from "@material-ui/styles/withStyles/withStyles";
 
+import Breakpoint from 'react-socks';
+
 import {withRouter} from "react-router-dom";
 
 import Card from '@material-ui/core/Card'
@@ -70,14 +72,10 @@ const styles = theme => ({
 	},
 	card_pageNumberBox: {
 		position: "absolute",
-		top: theme.spacing(1),
+		top: "4%",
 		left: 0,
 		width: "100%",
 	},
-	card_pageNumber: {
-		paddingRight: theme.spacing(2),
-	},
-
 	brightColor: {
 		color: theme.palette.white.main,
 	},
@@ -169,8 +167,8 @@ class InvitationSlider extends React.Component {
 		const {classes} = this.props;
 		const imageSrc = this.images[this.state.imageSliderIndex].filepath_large;
 
-		const preload = this.images.map(image => (
-			<link rel="preload" href={image.filepath_large} as="image"/>
+		const preload = this.images.map((image, index) => (
+			<link key={index} rel="preload" href={image.filepath_large} as="image"/>
 		));
 
 		let image;
@@ -238,13 +236,15 @@ class InvitationSlider extends React.Component {
 		const pageNumberBox = (
 			<div
 				className={clsx(classes.card_pageNumberBox, "PageNumberBox", BRIGHT ? classes.darkColor : classes.brightColor)}>
-				<Typography variant="h6"
-				            className={clsx(
-					            classes.card_pageNumber,
-					            BRIGHT ? classes.darkColor : classes.brightColor
-				            )}>
-					{this.state.imageSliderIndex + 1} / {this.images.length}
-				</Typography>
+				<Breakpoint medium up>
+					<Typography variant="h6"
+					            className={clsx(
+						            classes.card_pageNumber,
+						            BRIGHT ? classes.darkColor : classes.brightColor
+					            )}>
+						{this.state.imageSliderIndex + 1} / {this.images.length}
+					</Typography>
+				</Breakpoint>
 				{/*
 				<div className={clsx(classes.downloadButton)}>
 					<IconButton
