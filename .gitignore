@@ -2,6 +2,8 @@
 # Created by https://www.gitignore.io/api/node,react,macos,flask,python,pycharm,intellij
 # Edit at https://www.gitignore.io/?templates=node,react,macos,flask,python,pycharm,intellij
 
+react_frontend/src/secrets.js
+
 ### Flask ###
 instance/*
 !instance/.gitignore
