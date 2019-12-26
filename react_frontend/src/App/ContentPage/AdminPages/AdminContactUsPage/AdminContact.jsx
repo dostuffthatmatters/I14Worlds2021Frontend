@@ -36,6 +36,7 @@ import {CustomTextField} from "../../../../Components/Forms/CustomTextField";
 /* Hook Linking Imports --------------------------------------------------------------- */
 import PropTypes from "prop-types";
 import withStyles from "@material-ui/styles/withStyles/withStyles";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 /* ------------------------------------------------------------------------------- */
 
@@ -90,7 +91,20 @@ const styles = theme => ({
 		position: "absolute",
 		right: theme.spacing(2),
 		bottom: theme.spacing(2),
-	}
+	},
+	buttonSpinnerWrapper: {
+		position: 'relative',
+		display: "inline-flex",
+		marginLeft: theme.spacing(0.5),
+		marginRight: theme.spacing(0.5),
+	},
+	buttonProgress: {
+		position: 'absolute',
+		top: '50%',
+		left: '50%',
+		marginTop: -12,
+		marginLeft: -12,
+	},
 });
 
 class AdminContact extends React.Component {
@@ -100,6 +114,7 @@ class AdminContact extends React.Component {
 
 		this.state = {
 			deleteDialogOpen: false,
+			deleting: false,
 		};
 
 		this.roleInputRef = React.createRef();
@@ -109,7 +124,7 @@ class AdminContact extends React.Component {
 		this.pushCurrentVersion = this.pushCurrentVersion.bind(this);
 
 		this.toggleVisibility = this.toggleVisibility.bind(this);
-		this.triggerRemove = this.triggerRemove.bind(this);
+		this.processDelete = this.processDelete.bind(this);
 	}
 
 	pushCurrentVersion() {
@@ -154,7 +169,11 @@ class AdminContact extends React.Component {
 		}, 0.05);
 	}
 
-	triggerRemove() {
+	processDelete() {
+		this.setState({
+			deleting: true,
+		});
+
 		let params = {
 			email: this.props.api.email,
 			api_key: this.props.api.api_key,
@@ -162,14 +181,20 @@ class AdminContact extends React.Component {
 		};
 
 		BackendREST(BACKEND_URL + "/backend/database/contact", params, "DELETE").then((resolveMessage) => {
-			this.setState({
-				deleteDialogOpen: false
-			});
-			this.props.removeContactFromView(this.props.index);
+			setTimeout(() => {
+				this.setState({
+					deleteDialogOpen: false,
+					deleting: false,
+				});
+				this.props.removeContactFromView(this.props.index);
+			}, 1000);
 		}).catch((rejectmessage) => {
-			this.setState({
-				deleteDialogOpen: false
-			});
+			setTimeout(() => {
+				this.setState({
+					deleteDialogOpen: false,
+					deleting: false,
+				});
+			}, 1000);
 		});
 	}
 
@@ -242,8 +267,18 @@ class AdminContact extends React.Component {
 						<DialogTitle id="alert-dialog-title">Do you really want to delete this contact?</DialogTitle>
 						<DialogActions>
 							<Button onClick={() => this.setState({deleteDialogOpen: false})}
+							        disabled={this.state.deleting}
 							        color="primary">Disagree</Button>
-							<Button onClick={this.triggerRemove} color="secondary" autoFocus>Agree</Button>
+							<div className={classes.buttonSpinnerWrapper}>
+								<Button onClick={this.processDelete}
+								        disabled={this.state.deleting}
+								        autoFocus>Agree</Button>
+								{this.state.deleting && (
+									<CircularProgress size={24}
+									                  className={classes.buttonProgress}
+									                  color="secondary"/>
+								)}
+							</div>
 						</DialogActions>
 					</Dialog>
 				)}

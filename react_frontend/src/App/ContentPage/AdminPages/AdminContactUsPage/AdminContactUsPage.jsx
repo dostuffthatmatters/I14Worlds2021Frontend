@@ -204,7 +204,8 @@ class AdminContactUsPageManager extends React.Component {
 						<React.Fragment>
 							<div className={classes.wrapper}>
 								<Button variant="contained"
-								        color={this.state.creatingContact ? "default" : "secondary"}
+								        color="secondary"
+								        disabled={this.state.creatingContact}
 								        onClick={this.createContact}
 								        className={classes.button}>Add Contact</Button>
 								{this.state.creatingContact && (
