@@ -1,5 +1,6 @@
 /* General Imports --------------------------------------------------------------- */
 import React from 'react';
+import {animateScroll as scroll} from "react-scroll";
 
 
 /* Routing Imports --------------------------------------------------------------- */
@@ -35,6 +36,7 @@ import PropTypes from "prop-types";
 import withStyles from "@material-ui/styles/withStyles/withStyles";
 // noinspection ES6CheckImport
 import {withRouter} from "react-router-dom";
+
 
 /* Styles ------------------------------------------------------------------------ */
 
@@ -332,7 +334,8 @@ class EditImagePage extends React.Component {
 
 		return (
 			<div className="AdminGalleryPage">
-				<Link to={"/admin/gallery/" + this.albumId}>
+				<Link to={"/admin/gallery/" + this.albumId}
+				      onClick={() => scroll.scrollToTop({duration: 300})}>
 					<ArrowBackIosTwoToneIcon className={classes.backIcon} color="secondary"/>
 				</Link>
 				{imagePageContent}

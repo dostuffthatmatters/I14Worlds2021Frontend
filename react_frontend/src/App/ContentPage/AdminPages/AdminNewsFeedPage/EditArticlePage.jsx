@@ -1,5 +1,6 @@
 /* General Imports --------------------------------------------------------------- */
 import React from "react";
+import {animateScroll as scroll} from "react-scroll";
 
 
 /* Routing Imports --------------------------------------------------------------- */
@@ -269,6 +270,7 @@ class EditArticlePage extends React.Component {
 			const resolveJson = JSON.parse(resolveMessage);
 			console.log("Removing article: Status = " + resolveJson["Status"]);
 			setTimeout(() => {
+				scroll.scrollToTop({duration: 300});
 				window.open("/admin/news-feed", "_self");
 			}, 1000);
 		}).catch(() => {
@@ -443,7 +445,11 @@ class EditArticlePage extends React.Component {
 
 		return (
 			<div className="AdminNewsFeedPage">
-				<Link to="/admin/news-feed" onClick={this.props.triggerReload}>
+				<Link to="/admin/news-feed"
+				      onClick={() => {
+				      	scroll.scrollToTop({duration: 300});
+				      	this.props.triggerReload();
+				      }}>
 					<ArrowBackIosTwoToneIcon className={classes.backIcon} color="secondary"/>
 				</Link>
 				<Typography variant="h4" className={classes.headline}>{headline}</Typography>

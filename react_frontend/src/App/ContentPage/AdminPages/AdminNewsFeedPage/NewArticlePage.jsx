@@ -41,6 +41,7 @@ import {CustomTextField} from "../../../../Components/Forms/CustomTextField";
 /* Hook Linking Imports ---------------------------------------------------------- */
 import PropTypes from "prop-types";
 import withStyles from "@material-ui/styles/withStyles/withStyles";
+import {animateScroll as scroll} from "react-scroll";
 
 
 /* Styles ------------------------------------------------------------------------ */
@@ -330,7 +331,8 @@ class NewArticlePage extends React.Component {
 
 		return (
 			<div className="AdminNewsFeedPage">
-				<Link to="/admin/news-feed">
+				<Link to="/admin/news-feed"
+				      onClick={() => scroll.scrollToTop({duration: 300})}>
 					<ArrowBackIosTwoToneIcon className={classes.backIcon} color="secondary"/>
 				</Link>
 				<Typography variant="h4" className={classes.headline}>New Post</Typography>

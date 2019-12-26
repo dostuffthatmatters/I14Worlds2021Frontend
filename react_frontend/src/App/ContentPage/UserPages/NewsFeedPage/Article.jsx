@@ -1,5 +1,6 @@
 /* General Imports --------------------------------------------------------------- */
 import React from "react";
+import {animateScroll as scroll} from "react-scroll";
 
 
 /* Routing Imports --------------------------------------------------------------- */
@@ -25,6 +26,7 @@ import ImageSlider from "../../ImageSlider/ImageSlider";
 import clsx from "clsx";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+
 
 /* Data -------------------------------------------------------------------------- */
 
@@ -150,7 +152,9 @@ class Article extends React.Component {
 
 			<div className="ArticleView">
 				<Container maxWidth="md" className={classes.relativeContainer}>
-					<Link to="/news-feed" className={classes.relativeContainer}>
+					<Link to="/news-feed"
+					      className={classes.relativeContainer}
+					      onClick={() => scroll.scrollToTop({duration: 300})}>
 						<ArrowBackIosTwoToneIcon className={classes.backIcon} color="secondary"/>
 					</Link>
 					<Typography variant="h4" className={classes.headline}>{headline}</Typography>

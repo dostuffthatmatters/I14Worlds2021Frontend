@@ -1,6 +1,7 @@
 /* General Imports --------------------------------------------------------------- */
 import React from 'react';
 import 'date-fns';
+import {animateScroll as scroll} from "react-scroll";
 
 
 /* Routing Imports --------------------------------------------------------------- */
@@ -297,7 +298,11 @@ class NewImagePage extends React.Component {
 
 		return (
 			<div className="AdminGalleryPage">
-				<Link to="/admin/gallery" onClick={this.props.triggerReload}>
+				<Link to="/admin/gallery"
+				      onClick={() => {
+					      this.props.triggerReload();
+					      scroll.scrollToTop({duration: 300});
+				      }}>
 					<ArrowBackIosTwoToneIcon className={classes.backIcon} color="secondary"/>
 				</Link>
 				<Typography variant="h4" className={classes.headline}>Image Upload</Typography>

@@ -1,5 +1,6 @@
 /* General Imports --------------------------------------------------------------- */
 import React from 'react'
+import {animateScroll as scroll} from 'react-scroll';
 
 
 /* Routing Imports --------------------------------------------------------------- */
@@ -142,7 +143,8 @@ class Album extends React.Component {
 			<React.Fragment>
 				{!this.state.imageSliderOpen && (
 					<div className="GalleryPage">
-						<Link to="/gallery">
+						<Link to="/gallery"
+						      onClick={() => scroll.scrollToTop({duration: 300})}>
 							<ArrowBackIosTwoToneIcon className={classes.backIcon} color="secondary"/>
 						</Link>
 						{albumContent}

@@ -1,5 +1,7 @@
 /* General Imports --------------------------------------------------------------- */
 import React from 'react';
+import {animateScroll as scroll} from "react-scroll";
+
 
 /* Routing Imports --------------------------------------------------------------- */
 // noinspection ES6CheckImport
@@ -43,6 +45,10 @@ export const Router = (props) => {
 			navBarRoutes += element.slice(1) + "|";
 		});
 	}
+
+	window.onpopstate = () => {
+		scroll.scrollToTop({duration: 300});
+	};
 
 	navBarRoutes = navBarRoutes.slice(0, -1) + ")";
 

@@ -1,5 +1,6 @@
 /* General Imports --------------------------------------------------------------- */
 import React from 'react';
+import {animateScroll as scroll} from "react-scroll";
 
 
 /* Routing Imports --------------------------------------------------------------- */
@@ -24,6 +25,7 @@ import PropTypes from "prop-types";
 import withStyles from "@material-ui/styles/withStyles/withStyles";
 // noinspection ES6CheckImport
 import {withRouter} from "react-router-dom";
+
 
 /* Styles ------------------------------------------------------------------------ */
 
@@ -193,7 +195,8 @@ class AdminAlbumPage extends React.Component {
 			<div className="AdminGalleryPage">
 				<Switch>
 					<Route exact path={"/admin/gallery/" + this.albumId}>
-						<Link to="/admin/gallery">
+						<Link to="/admin/gallery"
+						      onClick={() => scroll.scrollToTop({duration: 300})}>
 							<ArrowBackIosTwoToneIcon className={classes.backIcon} color="secondary"/>
 						</Link>
 						{albumContent}
