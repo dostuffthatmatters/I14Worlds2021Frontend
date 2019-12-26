@@ -8,6 +8,7 @@ import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
+import {KeyboardDatePicker} from "@material-ui/pickers";
 
 
 /* Component --------------------------------------------------------------------- */
@@ -42,6 +43,7 @@ export const CustomSelect = (props) => {
 		<FormControl className={"className" in props ? props["className"] : ""}>
 			<InputLabel id="select-label">{props.label}</InputLabel>
 			<Select
+				disabled={"disabled" in props ? props["disabled"] : false}
 				labelId="select-label"
 				id="demo-simple-select"
 				value={value}

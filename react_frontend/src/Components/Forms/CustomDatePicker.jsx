@@ -33,12 +33,11 @@ export const CustomDatePicker = (props) => {
 		}
 	};
 
-	const className = ("className" in props ? props["className"] : undefined);
-
 	return (
 		<MuiPickersUtilsProvider utils={DateFnsUtils}>
 			<KeyboardDatePicker
-				className={className !== undefined ? className : ""}
+				className={"className" in props ? props["className"] : ""}
+				disabled={"disabled" in props ? props["disabled"] : false}
 				margin="normal"
 				id="date-picker"
 				label="Date"
