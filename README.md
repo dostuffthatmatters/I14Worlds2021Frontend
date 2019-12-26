@@ -37,4 +37,4 @@ a learning opportunity so please be gentle! :wink:*
 
 4. Increase the use of lazy loading of used libraries
 
-5. Building my own datepicker or better haveing just a select-drop-down -> Save 15% (95KB unpacked) of the current bundle size
+5. Building my own datepicker or better having just a select-drop-down -> Save 15% (95KB unpacked) of the current bundle size
