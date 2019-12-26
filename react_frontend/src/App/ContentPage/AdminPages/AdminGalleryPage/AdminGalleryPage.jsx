@@ -10,6 +10,7 @@ import {Switch, Route, Link} from 'react-router-dom';
 /* Styling Imports --------------------------------------------------------------- */
 import './AdminGalleryPage.scss';
 
+
 /* AJAX Imports ------------------------------------------------------------------ */
 import {BackendGET, BackendREST} from "../../../../Wrappers/backendCommunication";
 import {BACKEND_URL} from "../../../../constants";
@@ -315,7 +316,8 @@ class AdminGalleryPageManager extends React.Component {
 								<div className={classes.buttonRow}>
 									<div className={classes.buttonSpinnerWrapper}>
 										<Button variant="contained"
-										        color={this.state.creatingAlbum ? "default" : "secondary"}
+										        color="secondary"
+										        disabled={this.state.creatingAlbum}
 										        onClick={this.createAlbum}
 										        className={classes.button}>Add Album</Button>
 										{this.state.creatingAlbum && (
@@ -329,6 +331,7 @@ class AdminGalleryPageManager extends React.Component {
 										<Link to="/admin/gallery/new">
 											<Button variant="contained"
 											        color="secondary"
+											        disabled={this.state.creatingAlbum}
 											        className={classes.button}>Add Image</Button>
 										</Link>
 									</div>

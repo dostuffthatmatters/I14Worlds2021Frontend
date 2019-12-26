@@ -51,6 +51,8 @@ const styles = theme => ({
 		left: theme.spacing(1),
 	},
 	headline: {
+		paddingLeft: theme.spacing(5),
+		paddingRight: theme.spacing(5),
 		display: "block",
 		textAlign: "center",
 		marginBottom: theme.spacing(4)
@@ -206,6 +208,7 @@ class NewImagePage extends React.Component {
 
 				<Grid item xs={12} className={classes.gridItem}>
 					<input accept="image/*"
+					       disabled={this.state.uploading}
 					       className={classes.hiddenInput}
 					       id="select-file-button"
 					       type="file"
@@ -214,6 +217,7 @@ class NewImagePage extends React.Component {
 					<label htmlFor="select-file-button">
 						<Button variant="contained"
 						        color="default"
+						        disabled={this.state.uploading}
 						        className={classes.selectButton}
 						        startIcon={<CloudUploadIcon color="primary"/>}
 						        component="span">
@@ -224,6 +228,7 @@ class NewImagePage extends React.Component {
 
 				<Grid item className={classes.gridItem}>
 					<CustomSelect label="Album"
+					              disabled={this.state.uploading}
 					              value={this.state.albumId}
 					              selectOptions={this.props.albumIdtoNameDict}
 					              onChange={newValue => this.setState({albumId: newValue})}
@@ -231,13 +236,15 @@ class NewImagePage extends React.Component {
 				</Grid>
 
 				<Grid item className={classes.gridItem}>
-					<CustomDatePicker timestamp={this.state.timestamp}
+					<CustomDatePicker disabled={this.state.uploading}
+					                  timestamp={this.state.timestamp}
 					                  updateTimestamp={timestamp => this.setState({timestamp: timestamp})}
 					                  className={classes.datepicker}/>
 				</Grid>
 
 				<Grid item className={classes.gridItem}>
-					<CustomTimePicker timestamp={this.state.timestamp}
+					<CustomTimePicker disabled={this.state.uploading}
+					                  timestamp={this.state.timestamp}
 					                  updateTimestamp={timestamp => this.setState({timestamp: timestamp})}
 					                  className={classes.timepicker}/>
 				</Grid>
@@ -246,6 +253,7 @@ class NewImagePage extends React.Component {
 					<CustomTextField
 						fullWidth={true}
 						className={classes.descriptionInput}
+						disabled={this.state.uploading}
 						value={this.state.description}
 						ref={this.descriptionInputRef}
 						onChange={value => this.setState({description: value})}
@@ -267,7 +275,8 @@ class NewImagePage extends React.Component {
 				<div className={classes.uploadButtonWrapper}>
 					<div className={classes.buttonSpinnerWrapper}>
 						<Button variant="contained"
-						        color={this.state.uploading ? "default" : "secondary"}
+						        color="secondary"
+						        disabled={this.state.uploading}
 						        onClick={this.processUpload}
 						        className={classes.button}>Upload Image</Button>
 						{this.state.uploading && (
@@ -288,11 +297,9 @@ class NewImagePage extends React.Component {
 
 		return (
 			<div className="AdminGalleryPage">
-				<Breakpoint medium up>
-					<Link to="/admin/gallery" onClick={this.props.triggerReload}>
-						<ArrowBackIosTwoToneIcon className={classes.backIcon} color="secondary"/>
-					</Link>
-				</Breakpoint>
+				<Link to="/admin/gallery" onClick={this.props.triggerReload}>
+					<ArrowBackIosTwoToneIcon className={classes.backIcon} color="secondary"/>
+				</Link>
 				<Typography variant="h4" className={classes.headline}>Image Upload</Typography>
 				<Divider className={classes.divider}/>
 				{this.getUploadForm()}

@@ -35,6 +35,8 @@ const styles = theme => ({
 		left: theme.spacing(1),
 	},
 	headline: {
+		paddingLeft: theme.spacing(5),
+		paddingRight: theme.spacing(5),
 		display: "block",
 		textAlign: "center",
 		marginBottom: theme.spacing(4)
@@ -173,9 +175,15 @@ class AdminAlbumPage extends React.Component {
 				</React.Fragment>
 			);
 		} else {
+
+			let headline = album.name;
+			if (headline.length === 0) {
+				headline = "No Title"
+			}
+
 			albumContent = (
 				<React.Fragment>
-					<Typography variant="h4" className={classes.headline}>{album.name}</Typography>
+					<Typography variant="h4" className={classes.headline}>{headline}</Typography>
 					{this.getImageList(album)}
 				</React.Fragment>
 			);
@@ -183,11 +191,11 @@ class AdminAlbumPage extends React.Component {
 
 		return (
 			<div className="AdminGalleryPage">
-				<Link to="/admin/gallery">
-					<ArrowBackIosTwoToneIcon className={classes.backIcon} color="secondary"/>
-				</Link>
 				<Switch>
 					<Route exact path={"/admin/gallery/" + this.albumId}>
+						<Link to="/admin/gallery">
+							<ArrowBackIosTwoToneIcon className={classes.backIcon} color="secondary"/>
+						</Link>
 						{albumContent}
 					</Route>
 					<Route path={"/admin/gallery/:albumId/:imageId"}>

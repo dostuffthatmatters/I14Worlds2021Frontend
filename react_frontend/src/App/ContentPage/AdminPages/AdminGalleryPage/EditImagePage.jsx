@@ -46,6 +46,8 @@ const styles = theme => ({
 		left: theme.spacing(1),
 	},
 	headline: {
+		paddingLeft: theme.spacing(5),
+		paddingRight: theme.spacing(5),
 		display: "block",
 		textAlign: "center",
 		marginBottom: theme.spacing(4)
@@ -149,7 +151,7 @@ class EditImagePage extends React.Component {
 			description: undefined,
 			timestamp: undefined,
 			albumId: this.albumId,
-			saving: false,
+			uploading: false,
 		};
 
 		this.descriptionInputRef = React.createRef();
@@ -161,7 +163,7 @@ class EditImagePage extends React.Component {
 	processSave() {
 		console.log("Saving image");
 
-		this.setState({saving: true});
+		this.setState({uploading: true});
 
 		let params = {
 			email: this.props.api.email,
@@ -188,7 +190,7 @@ class EditImagePage extends React.Component {
 		}
 
 		if (!changesDetected) {
-			this.setState({saving: false});
+			this.setState({uploading: false});
 			return;
 		}
 
@@ -198,23 +200,27 @@ class EditImagePage extends React.Component {
 			if (this.state.albumId !== undefined && this.state.albumId !== this.albumId) {
 				window.open("/admin/gallery/" + this.state.albumId + "/" + this.imageId, "_self");
 			} else {
-				if (this.state.description !== undefined) {
-					this.props.album.images[this.props.album["image_id_to_index"][this.imageId]]["description"] = this.state.description;
-				}
-				if (this.state.timestamp !== undefined) {
-					this.props.album.images[this.props.album["image_id_to_index"][this.imageId]]["timestamp"] = this.state.timestamp;
-				}
-				this.setState({
-					description: undefined,
-					timestamp: undefined,
-					saving: false,
-				});
+				setTimeout(() => {
+					if (this.state.description !== undefined) {
+						this.props.album.images[this.props.album["image_id_to_index"][this.imageId]]["description"] = this.state.description;
+					}
+					if (this.state.timestamp !== undefined) {
+						this.props.album.images[this.props.album["image_id_to_index"][this.imageId]]["timestamp"] = this.state.timestamp;
+					}
+					this.setState({
+						description: undefined,
+						timestamp: undefined,
+						uploading: false,
+					});
+				}, 1000);
 			}
 		}).catch(() => {
 			console.log("Saving image: failed");
-			this.setState({
-				saving: false,
-			});
+			setTimeout(() => {
+				this.setState({
+					uploading: false,
+				});
+			}, 1000);
 		});
 	}
 
@@ -227,6 +233,7 @@ class EditImagePage extends React.Component {
 
 				<Grid item className={classes.gridItem}>
 					<CustomSelect
+						disabled={this.state.uploading}
 						label="Album"
 						value={this.state.albumId}
 						selectOptions={this.props.albumIdtoNameDict}
@@ -236,6 +243,7 @@ class EditImagePage extends React.Component {
 
 				<Grid item className={classes.gridItem}>
 					<CustomDatePicker
+						disabled={this.state.uploading}
 						timestamp={this.state.timestamp === undefined ? parseInt(image.timestamp) : this.state.timestamp}
 						updateTimestamp={timestamp => this.setState({timestamp: timestamp})}
 						className={classes.datepicker}/>
@@ -243,6 +251,7 @@ class EditImagePage extends React.Component {
 
 				<Grid item className={classes.gridItem}>
 					<CustomTimePicker
+						disabled={this.state.uploading}
 						timestamp={this.state.timestamp === undefined ? parseInt(image.timestamp) : this.state.timestamp}
 						updateTimestamp={timestamp => this.setState({timestamp: timestamp})}
 						className={classes.timepicker}/>
@@ -252,6 +261,7 @@ class EditImagePage extends React.Component {
 					<CustomTextField
 						fullWidth={true}
 						className={classes.descriptionInput}
+						disabled={this.state.uploading}
 						value={this.state.description === undefined ? image.description : this.state.description}
 						ref={this.descriptionInputRef}
 						onChange={value => this.setState({description: value})}
@@ -278,10 +288,11 @@ class EditImagePage extends React.Component {
 				<div className={classes.saveButtonWrapper}>
 					<div className={classes.buttonSpinnerWrapper}>
 						<Button variant="contained"
-						        color={this.state.saving ? "default" : "secondary"}
+						        color="secondary"
+						        disabled={this.state.uploading}
 						        onClick={this.processSave}
 						        className={classes.button}>Save Changes</Button>
-						{this.state.saving && (
+						{this.state.uploading && (
 							<CircularProgress size={24}
 							                  className={classes.buttonProgress}
 							                  color="secondary"/>

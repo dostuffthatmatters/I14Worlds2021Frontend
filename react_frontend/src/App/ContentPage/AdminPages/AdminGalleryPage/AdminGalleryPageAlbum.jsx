@@ -1,4 +1,3 @@
-
 /* General Imports /* ------------------------------------------------------------ */
 import React from 'react';
 
@@ -27,6 +26,7 @@ import DeleteTwoToneIcon from '@material-ui/icons/DeleteTwoTone';
 /* Hook Linking Imports ---------------------------------------------------------- */
 import PropTypes from "prop-types";
 import withStyles from "@material-ui/styles/withStyles/withStyles";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 
 /* Styles ------------------------------------------------------------------------ */
@@ -61,6 +61,19 @@ const styles = theme => ({
 		right: theme.spacing(1),
 		bottom: theme.spacing(1),
 	},
+	buttonSpinnerWrapper: {
+		position: 'relative',
+		display: "inline-flex",
+		marginLeft: theme.spacing(0.5),
+		marginRight: theme.spacing(0.5),
+	},
+	buttonProgress: {
+		position: 'absolute',
+		top: '50%',
+		left: '50%',
+		marginTop: -12,
+		marginLeft: -12,
+	},
 });
 
 
@@ -74,6 +87,7 @@ class AdminGalleryPageAlbum extends React.Component {
 
 		this.state = {
 			deleteDialogOpen: false,
+			deleting: false,
 		};
 
 		this.nameInputRef = React.createRef();
@@ -85,7 +99,7 @@ class AdminGalleryPageAlbum extends React.Component {
 
 		this.handleBlur = this.handleBlur.bind(this);
 
-		this.triggerRemove = this.triggerRemove.bind(this);
+		this.processDelete = this.processDelete.bind(this);
 	}
 
 	pushCurrentVersion() {
@@ -126,7 +140,11 @@ class AdminGalleryPageAlbum extends React.Component {
 		this.pushCurrentVersion();
 	}
 
-	triggerRemove() {
+	processDelete() {
+		this.setState({
+			deleting: true,
+		});
+
 		let params = {
 			email: this.props.api.email,
 			api_key: this.props.api.api_key,
@@ -134,15 +152,21 @@ class AdminGalleryPageAlbum extends React.Component {
 		};
 
 		BackendREST(BACKEND_URL + "/backend/database/album", params, "DELETE").then(() => {
-			this.setState({
-				deleteDialogOpen: false
-			});
-			this.props.removeAlbumFromView(this.props.index);
+			setTimeout(() => {
+				this.setState({
+					deleteDialogOpen: false,
+					deleting: false,
+				});
+				this.props.removeAlbumFromView(this.props.index);
+			}, 1000);
 		}).catch(() => {
-			this.setState({
-				deleteDialogOpen: false
-			});
-		});
+			setTimeout(() => {
+				this.setState({
+					deleteDialogOpen: false,
+					deleting: false,
+				});
+			}, 1000);
+		})
 	}
 
 	render() {
@@ -184,10 +208,18 @@ class AdminGalleryPageAlbum extends React.Component {
 						<DialogTitle id="alert-dialog-title">Do you really want to delete this album?</DialogTitle>
 						<DialogActions>
 							<Button onClick={() => this.setState({deleteDialogOpen: false})}
+							        disabled={this.state.deleting}
 							        color="primary">Disagree</Button>
-							<Button onClick={this.triggerRemove}
-							        color="secondary"
-							        autoFocus>Agree</Button>
+							<div className={classes.buttonSpinnerWrapper}>
+								<Button onClick={this.processDelete}
+								        disabled={this.state.deleting}
+								        autoFocus>Agree</Button>
+								{this.state.deleting && (
+									<CircularProgress size={24}
+									                  className={classes.buttonProgress}
+									                  color="secondary"/>
+								)}
+							</div>
 						</DialogActions>
 					</Dialog>
 				)}
