@@ -47,15 +47,20 @@ const contentReplacements = {
 
 
 const styles = theme => ({
+	relativeContainer: {
+		position: "relative",
+	},
 	backIcon: {
 		position: "absolute",
 		top: theme.spacing(1),
 		left: theme.spacing(1),
 	},
 	headline: {
+		marginLeft: theme.spacing(5),
+		marginRight: theme.spacing(5),
 		display: "block",
 		textAlign: "center",
-		marginBottom: theme.spacing(4)
+		marginBottom: theme.spacing(2)
 	},
 	card: {
 		position: "relative",
@@ -139,8 +144,11 @@ class Article extends React.Component {
 		return (
 
 			<div className="ArticleView">
-				<Typography variant="h4" className={classes.headline}>{article.headline}</Typography>
-				<Container maxWidth="md">
+				<Container maxWidth="md" className={classes.relativeContainer}>
+					<Link to="/news-feed" className={classes.relativeContainer}>
+						<ArrowBackIosTwoToneIcon className={classes.backIcon} color="secondary"/>
+					</Link>
+					<Typography variant="h4" className={classes.headline}>{article.headline}</Typography>
 					<Card elevation={3}
 					      className={classes.card}>
 						<CardMedia
@@ -208,9 +216,6 @@ class Article extends React.Component {
 			<React.Fragment>
 				{!this.state.imageSliderOpen && (
 					<div className="NewsFeedPage">
-						<Link to="/news-feed">
-							<ArrowBackIosTwoToneIcon className={classes.backIcon} color="secondary"/>
-						</Link>
 						{articleContent}
 					</div>
 				)}

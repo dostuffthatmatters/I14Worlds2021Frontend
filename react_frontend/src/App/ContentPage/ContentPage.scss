@@ -3,6 +3,10 @@
     top: 0;
 }
 
+.FullHeightContainer {
+    min-height: 100vh;
+}
+
 .SyncSpinner {
     animation: spinner 1s infinite linear;
 }

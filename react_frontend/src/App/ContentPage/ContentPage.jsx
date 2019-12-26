@@ -64,7 +64,9 @@ export const ContentPage = (props) => {
 		<React.Fragment>
 			<Switch>
 				<Route path="/event">
-					<EventPage/>
+					<div className="FullHeightContainer">
+						<EventPage/>
+					</div>
 				</Route>
 				<Route>
 					<Container className="ContentPage" maxWidth="md">

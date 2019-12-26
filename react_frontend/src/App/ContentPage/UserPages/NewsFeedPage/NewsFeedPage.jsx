@@ -43,7 +43,7 @@ const styles = theme => ({
 	headline: {
 		display: "block",
 		textAlign: "center",
-		marginBottom: theme.spacing(4)
+		marginBottom: theme.spacing(3)
 	},
 	linearProgress: {
 		borderRadius: "2px"
