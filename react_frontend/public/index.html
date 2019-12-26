@@ -6,20 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta name="theme-color" content="#282c34"/>
     <meta name="description"
-          content="Web site created using create-react-app"/>
+          content="International 14 World Championship 2021"/>
     <meta name="viewport"
           content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="apple-touch-icon" href="I14_White.png"/>
-
-    <link rel="preconnect" href="https://i14worlds2021.herokuapp.com">
-    <link rel="preconnect" href="https://storage.googleapis.com">
-
-    <link rel="preconnect" href="https://maps.gstatic.com">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://maps.googleapis.com">
-
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json"/>
+
+    <meta property="og:title"
+          content="International 14 World Championship 2021"/>
+    <meta property="og:description"
+          content="One of the most exciting skiff class - Held at Flensburg, Germany"/>
+    <meta property="og:image"
+          content="%PUBLIC_URL%/9541_Square_1200.jpg"/>
+
     <title>I14 Worlds 2021</title>
+    <link rel="stylesheet" href="index.css">
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -34,7 +35,15 @@
     </script>
 </head>
 <body class="mdc-typography mdc-theme--background">
-<noscript>You need to enable JavaScript to run this app.</noscript>
-<div id="root"></div>
+<noscript>
+    <div class="FullPageMessage">
+        You need to enable JavaScript to run this app.
+    </div>
+</noscript>
+<div id="root">
+    <div class="FullPageLoader">
+        <img width="30" src="%PUBLIC_URL%/I14_White.png" alt="I14 Logo"/>
+    </div>
+</div>
 </body>
 </html>
