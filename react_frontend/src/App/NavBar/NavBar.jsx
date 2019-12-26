@@ -10,6 +10,7 @@ import {Link} from 'react-router-dom';
 /* Styling Imports --------------------------------------------------------------- */
 import {makeStyles} from "@material-ui/core/styles";
 import './NavBar.scss';
+import clsx from 'clsx';
 
 
 /* Material UI Imports ----------------------------------------------------------- */
@@ -80,14 +81,25 @@ const useStyles = makeStyles(theme => ({
 		marginRight: theme.spacing(1),
 		marginLeft: theme.spacing(1),
 	},
+	drawerBox: {
+		height: "100vh",
+		position: "relative",
+	},
+	drawerScrollBox: {
+		paddingBottom: theme.spacing(10),
+	},
+	loginButtonBox: {
+		paddingTop: theme.spacing(1),
+		paddingBottom: theme.spacing(1),
+		position: "fixed",
+		left: 0,
+		bottom: 0,
+		backgroundColor: "white",
+	},
 	loginButton: {
 		padding: theme.spacing(1),
 		width: "225px",
 		textTransform: "capitalize",
-		position: "absolute",
-		left: 0,
-		bottom: theme.spacing(1),
-		backgroundColor: "white"
 	},
 }));
 
@@ -128,7 +140,7 @@ export const NavBar = (props) => {
 				<Button size="large"
 				        color={path.startsWith("/event") ? "secondary" : "primary"}
 				        startIcon={<EmojiEventsTwoToneIcon/>}
-				        className={`${classes.button} ${classes.topButton}`}>Event</Button>
+				        className={clsx(classes.button, classes.topButton)}>Event</Button>
 			</Link>
 			<Link to="/news-feed"
 			      className={classes.link}
@@ -198,24 +210,26 @@ export const NavBar = (props) => {
 
 	if (props.loggedIn) {
 		loginButton = (
-			<Button size="large"
-			        startIcon={<AccountCircleTwoToneIcon/>}
-			        className={`${classes.button} ${classes.loginButton}`}
-			        onClick={() => {
-			        	handleClick();
-			        	props.logoutUser();
-			        }}>
-				Logout
-			</Button>
+			<div className={classes.loginButtonBox}>
+				<Button size="large"
+				        startIcon={<AccountCircleTwoToneIcon/>}
+				        className={clsx(classes.button, classes.loginButton)}
+				        onClick={() => {
+					        handleClick();
+					        props.logoutUser();
+				        }}>
+					Logout
+				</Button>
+			</div>
 		);
 	} else {
 		loginButton = (
 			<Link to="/login"
-			      className={classes.link}
+			      className={clsx(classes.link, classes.loginButtonBox)}
 			      onClick={handleClick}>
 				<Button size="large"
 				        startIcon={<AccountCircleTwoToneIcon/>}
-				        className={`${classes.button} ${classes.loginButton}`}>
+				        className={clsx(classes.button, classes.loginButton)}>
 					Login
 				</Button>
 			</Link>
@@ -248,10 +262,12 @@ export const NavBar = (props) => {
 			        onClose={() => toggleDrawer(false)}
 			        onClick={() => toggleDrawer(false)}
 			        onKeyDown={() => toggleDrawer(false)}>
-				<div role="presentation">
-					{userPages}
-					{props.loggedIn && <Divider className={classes.divider}/>}
-					{props.loggedIn && adminPages}
+				<div role="presentation" className={classes.drawerBox}>
+					<div className={classes.drawerScrollBox}>
+						{userPages}
+						{props.loggedIn && <Divider className={classes.divider}/>}
+						{props.loggedIn && adminPages}
+					</div>
 					{loginButton}
 				</div>
 			</Drawer>

@@ -123,7 +123,8 @@ class LoginPageManager extends React.Component {
 				});
 				setTimeout(() => {
 					this.props.loginUser(params.email, resultJson["api_key"], resultJson["name"]);
-				}, 0.7);
+					// The redirect now happens automatically
+				}, 600);
 			} else {
 				console.log("Login failed: Status = " + resolveMessage);
 				this.setState({
@@ -186,6 +187,7 @@ class LoginPageManager extends React.Component {
 
 					<TextField required
 					           fullWidth
+					           disabled={this.state.loading}
 					           id="email-input"
 					           label="Email"
 					           variant="outlined"
@@ -196,6 +198,7 @@ class LoginPageManager extends React.Component {
 					           className={classes.textField}/>
 					<TextField required
 					           fullWidth
+					           disabled={this.state.loading}
 					           type="password"
 					           id="password-input"
 					           label="Password"
@@ -208,14 +211,16 @@ class LoginPageManager extends React.Component {
 					<div className="ButtonBox">
 						<div className={classes.wrapper}>
 							<Button variant="contained"
-							        color={this.state.loading ? "default" : "secondary"}
+							        disabled={this.state.loading}
+							        color="secondary"
 							        className={classes.button}>
 								<Link to={"/event"} className={classes.link}>Cancel</Link>
 							</Button>
 						</div>
 						<div className={classes.wrapper}>
 							<Button variant="contained"
-							        color={this.state.loading ? "default" : "secondary"}
+							        disabled={this.state.loading}
+							        color="secondary"
 							        onClick={this.processLogin}
 							        className={classes.button}>login</Button>
 							{this.state.loading && (
