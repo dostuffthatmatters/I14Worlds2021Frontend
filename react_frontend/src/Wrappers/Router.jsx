@@ -1,4 +1,3 @@
-
 /* General Imports --------------------------------------------------------------- */
 import React from 'react';
 
@@ -12,8 +11,12 @@ import {NavBar} from "../App/NavBar/NavBar";
 import {Footer} from "../App/Footer/Footer";
 import {ContentPage} from "../App/ContentPage/ContentPage";
 import {NotFoundPage} from "../App/NotFoundPage/NotFoundPage";
-import LoginPageManager from "../App/LoginPage/LoginPage";
+import LinearProgress from "@material-ui/core/LinearProgress";
 
+const LoginPageManager = React.lazy(() => {
+	console.log("Importing LoginPage JS now.");
+	return import("../App/LoginPage/LoginPage");
+});
 
 /* Data -------------------------------------------------------------------------- */
 
@@ -60,8 +63,10 @@ export const Router = (props) => {
 						<Redirect to="/admin/news-feed"/>
 					)}
 					{!props.loggedIn && (
-						<LoginPageManager loggedIn={props.loggedIn}
-						                  loginUser={(email, api_key) => props.loginUser(email, api_key)}/>
+						<React.Suspense fallback={<FullPageLoader/>}>
+							<LoginPageManager loggedIn={props.loggedIn}
+							                  loginUser={(email, api_key) => props.loginUser(email, api_key)}/>
+						</React.Suspense>
 					)}
 				</Route>
 				{userRoutesNested.map((path, index) => (
@@ -92,4 +97,20 @@ export const Router = (props) => {
 			</Route>
 		</BrowserRouter>
 	);
+};
+
+
+const FullPageLoader = props => {
+
+	const styles = {
+		position: "absolute",
+		top: "50vh",
+		left: "5vw",
+		width: "90vw",
+		borderRadius: "2px",
+	};
+
+	return (
+		<LinearProgress style={styles} color="secondary"/>
+	)
 };
