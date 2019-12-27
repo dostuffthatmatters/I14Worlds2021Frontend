@@ -80,10 +80,12 @@ const styles = theme => ({
 	prevIcon: {
 		left: theme.spacing(1),
 		bottom: theme.spacing(1),
+		zIndex: "200",
 	},
 	nextIcon: {
 		right: theme.spacing(1),
 		bottom: theme.spacing(1),
+		zIndex: "200",
 	},
 	articleContent: {
 		marginTop: theme.spacing(4),

@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import withStyles from "@material-ui/styles/withStyles/withStyles";
 
 import Breakpoint from 'react-socks';
+import './InvitationSlider.scss';
 
 import {withRouter} from "react-router-dom";
 
@@ -124,6 +125,7 @@ class InvitationSlider extends React.Component {
 		document.addEventListener("keydown", event => {
 			if (event.key === "Escape") {
 				if (this.state.fullscreen) {
+					this.props.hideWebsite(false);
 					this.setState({fullscreen: false});
 				}
 			} else if (this.images.length > 1) {
@@ -167,9 +169,9 @@ class InvitationSlider extends React.Component {
 		const {classes} = this.props;
 		const imageSrc = this.images[this.state.imageSliderIndex].filepath_large;
 
-		const preload = this.images.map((image, index) => (
+		/* const preload = this.images.map((image, index) => (
 			<link key={index} rel="preload" href={image.filepath_large} as="image"/>
-		));
+		));*/
 
 		let image;
 		if (VIDEO) {
@@ -203,8 +205,18 @@ class InvitationSlider extends React.Component {
 						BRIGHT ? classes.darkBackgroundColor : classes.brightBackgroundColor)}
 					size="medium"
 					style={{zIndex: this.state.fullscreen ? 3000 : 300}}
-					onClick={() => this.setState({fullscreen: !this.state.fullscreen})}>
-					{this.state.fullscreen ? <FullscreenExitIcon/> : <FullscreenIcon/>}
+					onClick={() => {
+						if (this.state.fullscreen) {
+							document.body.style.position = '';
+							document.body.style.top = '';
+						} else {
+							document.body.style.position = 'fixed';
+							document.body.style.top = `-${window.scrollY}px`;
+						}
+						this.setState({fullscreen: !this.state.fullscreen})
+					}}>
+					{this.state.fullscreen ? <FullscreenExitIcon alt="Exit Fullscreen Icon"/> :
+						<FullscreenIcon alt="Enter Fullscreen Icon"/>}
 				</IconButton>
 				<IconButton
 					color="inherit"
@@ -216,7 +228,7 @@ class InvitationSlider extends React.Component {
 					size="medium"
 					style={{zIndex: this.state.fullscreen ? 3000 : 300}}
 					onClick={this.handleLeftClick}>
-					<ChevronLeftIcon/>
+					<ChevronLeftIcon alt="Previous Slide Icon"/>
 				</IconButton>
 				<IconButton
 					color="inherit"
@@ -228,7 +240,7 @@ class InvitationSlider extends React.Component {
 					size="medium"
 					style={{zIndex: this.state.fullscreen ? 3000 : 300}}
 					onClick={this.handleRightClick}>
-					<ChevronRightIcon/>
+					<ChevronRightIcon alt="Next Slide Icon"/>
 				</IconButton>
 			</React.Fragment>
 		);

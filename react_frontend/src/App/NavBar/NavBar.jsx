@@ -139,7 +139,7 @@ export const NavBar = (props) => {
 			      onClick={handleClick}>
 				<Button size="large"
 				        color={path.startsWith("/event") ? "secondary" : "primary"}
-				        startIcon={<EmojiEventsTwoToneIcon/>}
+				        startIcon={<EmojiEventsTwoToneIcon alt="Event Icon"/>}
 				        className={clsx(classes.button, classes.topButton)}>Event</Button>
 			</Link>
 			<Link to="/news-feed"
@@ -147,7 +147,7 @@ export const NavBar = (props) => {
 			      onClick={handleClick}>
 				<Button size="large"
 				        color={path.startsWith("/news-feed") ? "secondary" : "primary"}
-				        startIcon={<ChatTwoToneIcon/>}
+				        startIcon={<ChatTwoToneIcon alt="News Feed Icon"/>}
 				        className={classes.button}>News Feed</Button>
 			</Link>
 			<Link to="/gallery"
@@ -155,7 +155,7 @@ export const NavBar = (props) => {
 			      onClick={handleClick}>
 				<Button size="large"
 				        color={path.startsWith("/gallery") ? "secondary" : "primary"}
-				        startIcon={<PermMediaTwoToneIcon/>}
+				        startIcon={<PermMediaTwoToneIcon alt="Gallery Icon"/>}
 				        className={classes.button}>Gallery</Button>
 			</Link>
 			<Link to="/sailors-guide"
@@ -163,7 +163,7 @@ export const NavBar = (props) => {
 			      onClick={handleClick}>
 				<Button size="large"
 				        color={path.startsWith("/sailors-guide") ? "secondary" : "primary"}
-				        startIcon={<AssignmentTurnedInTwoToneIcon/>}
+				        startIcon={<AssignmentTurnedInTwoToneIcon alt="Sailors Guide Icon"/>}
 				        className={classes.button}>Sailors Guide</Button>
 			</Link>
 			<Link to="/contact-us"
@@ -171,7 +171,7 @@ export const NavBar = (props) => {
 			      onClick={handleClick}>
 				<Button size="large"
 				        color={path.startsWith("/contact-us") ? "secondary" : "primary"}
-				        startIcon={<ContactMailTwoToneIcon/>}
+				        startIcon={<ContactMailTwoToneIcon alt="Contact Us Icon"/>}
 				        className={classes.button}>Contact Us</Button>
 			</Link>
 		</React.Fragment>
@@ -184,7 +184,7 @@ export const NavBar = (props) => {
 			      onClick={handleClick}>
 				<Button size="large"
 				        color={path.startsWith("/admin/news-feed") ? "secondary" : "primary"}
-				        startIcon={<ChatTwoToneIcon/>}
+				        startIcon={<ChatTwoToneIcon alt="Admin News Feed Icon"/>}
 				        className={classes.button}>Admin - News Feed</Button>
 			</Link>
 			<Link to="/admin/gallery"
@@ -192,7 +192,7 @@ export const NavBar = (props) => {
 			      onClick={handleClick}>
 				<Button size="large"
 				        color={path.startsWith("/admin/gallery") ? "secondary" : "primary"}
-				        startIcon={<PermMediaTwoToneIcon/>}
+				        startIcon={<PermMediaTwoToneIcon alt="Admin Gallery Icon"/>}
 				        className={classes.button}>Admin - Gallery</Button>
 			</Link>
 			<Link to="/admin/contact-us"
@@ -200,7 +200,7 @@ export const NavBar = (props) => {
 			      onClick={handleClick}>
 				<Button size="large"
 				        color={path.startsWith("/admin/contact-us") ? "secondary" : "primary"}
-				        startIcon={<ContactMailTwoToneIcon/>}
+				        startIcon={<ContactMailTwoToneIcon alt="Admin Contact Us Icon"/>}
 				        className={classes.button}>Admin - Contact Us</Button>
 			</Link>
 		</React.Fragment>
@@ -212,7 +212,7 @@ export const NavBar = (props) => {
 		loginButton = (
 			<div className={classes.loginButtonBox}>
 				<Button size="large"
-				        startIcon={<AccountCircleTwoToneIcon/>}
+				        startIcon={<AccountCircleTwoToneIcon alt="Logout Icon"/>}
 				        className={clsx(classes.button, classes.loginButton)}
 				        onClick={() => {
 					        handleClick();
@@ -228,7 +228,7 @@ export const NavBar = (props) => {
 			      className={clsx(classes.link, classes.loginButtonBox)}
 			      onClick={handleClick}>
 				<Button size="large"
-				        startIcon={<AccountCircleTwoToneIcon/>}
+				        startIcon={<AccountCircleTwoToneIcon alt="Login Icon"/>}
 				        className={clsx(classes.button, classes.loginButton)}>
 					Login
 				</Button>
@@ -245,7 +245,7 @@ export const NavBar = (props) => {
 					            aria-label="menu"
 					            className={classes.menuButton}
 					            onClick={() => toggleDrawer(true)}>
-						<MenuIcon/>
+						<MenuIcon alt="Menu Icon"/>
 					</IconButton>
 					<Typography variant="h6" className={classes.title}>{pageTitle}</Typography>
 					<IconButton edge="end"

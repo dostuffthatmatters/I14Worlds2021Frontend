@@ -1,7 +1,6 @@
 import Breakpoint from "react-socks";
 import {GoogleApiWrapper, Map, Marker} from "google-maps-react";
 import React from "react";
-import PropTypes from "prop-types";
 import {GoogleMapsAPIKey} from "../../../../../secrets";
 
 

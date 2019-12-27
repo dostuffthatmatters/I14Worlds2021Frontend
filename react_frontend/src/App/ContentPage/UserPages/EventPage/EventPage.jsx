@@ -113,7 +113,7 @@ class EventPage extends React.Component {
 				hours: 0,
 				minutes: 0,
 				seconds: 0
-			}
+			},
 		};
 	}
 
@@ -499,7 +499,7 @@ class EventPage extends React.Component {
 				<div className={clsx(classes.paperContainer)}>
 					<React.Suspense fallback={<LinearProgress style={{borderRadius: "2px"}}
 					                                          color="secondary"/>}>
-						<InvitationSlider/>
+						<InvitationSlider hideWebsite={() => {}}/>
 					</React.Suspense>
 				</div>
 
