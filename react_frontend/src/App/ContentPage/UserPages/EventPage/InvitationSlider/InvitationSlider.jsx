@@ -15,6 +15,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import FullscreenIcon from '@material-ui/icons/Fullscreen';
 import FullscreenExitIcon from '@material-ui/icons/FullscreenExit';
+import GetAppIcon from '@material-ui/icons/GetApp';
 
 import clsx from 'clsx';
 
@@ -45,6 +46,7 @@ const styles = theme => ({
 		display: "block",
 		width: "100%",
 		height: "auto",
+		zIndex: "200",
 	},
 	fullscreen_media: {
 		display: "block",
@@ -52,12 +54,14 @@ const styles = theme => ({
 		height: "auto",
 		maxWidth: `calc(100vw - ${theme.spacing(4)}px)`,
 		maxHeight: `calc(100vh - ${theme.spacing(4)}px)`,
+		zIndex: "200",
 	},
 	button: {
 		cursor: "pointer",
 		position: "absolute",
 		borderRadius: "50%",
 		color: theme.palette.desireMagenta.main,
+		zIndex: "300",
 	},
 	sizeButton: {
 		right: theme.spacing(1),
@@ -73,9 +77,12 @@ const styles = theme => ({
 	},
 	card_pageNumberBox: {
 		position: "absolute",
-		top: "4%",
+		top: "2%",
 		left: 0,
 		width: "100%",
+	},
+	downloadButton: {
+		marginLeft: theme.spacing(2),
 	},
 	brightColor: {
 		color: theme.palette.white.main,
@@ -113,8 +120,8 @@ class InvitationSlider extends React.Component {
 
 		for (let i = 1; i <= 25; i++) {
 			images.push({
-				filepath_large: imageBucket + "Invitation_" + i.toString() + "_large.jpg",
-				filepath_full: imageBucket + "Invitation_" + i.toString() + "_full.jpg",
+				filepath_large: imageBucket + "invitation_1080_" + i.toString() + ".jpg",
+				filepath_full: imageBucket + "invitation_1080_" + i.toString() + ".jpg",
 				description: "Invitation Page " + i.toString(),
 			});
 		}
@@ -178,6 +185,7 @@ class InvitationSlider extends React.Component {
 			image = (
 				<video controls className={this.state.fullscreen ? classes.fullscreen_media : classes.card_media}>
 					<source
+						style={{zIndex: "200"}}
 						src="https://storage.googleapis.com/i14-worlds-2021-gallery/default-images/GCA_Teaser_Cut.mp4"
 						type="video/mp4"/>
 				</video>
@@ -257,16 +265,15 @@ class InvitationSlider extends React.Component {
 						{this.state.imageSliderIndex + 1} / {this.images.length}
 					</Typography>
 				</Breakpoint>
-				{/*
 				<div className={clsx(classes.downloadButton)}>
 					<IconButton
 						aria-label="download"
 						className={BRIGHT ? classes.darkColor : classes.brightColor}
 						size="medium"
-						onClick={() => window.open("https://storage.googleapis.com/i14-worlds-documents/Invitation_WM2021.pdf", "_blank")}>
+						onClick={() => window.open("https://storage.googleapis.com/i14-worlds-documents/I14worlds2021_invitation.pdf", "_blank")}>
 						<GetAppIcon/>
 					</IconButton>
-				</div>*/}
+				</div>
 			</div>
 		);
 

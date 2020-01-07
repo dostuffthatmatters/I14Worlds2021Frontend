@@ -18,37 +18,35 @@ import withStyles from "@material-ui/styles/withStyles/withStyles";
 
 
 /* Assets Imports ---------------------------------------------------------------- */
-import Image01Landscape1200 from './images/Image01/9541_Landscape_1200.jpg';
-import Image01Landscape2000 from './images/Image01/9541_Landscape_2000.jpg';
-import Image01Landscape2800 from './images/Image01/9541_Landscape_2800.jpg';
+import Image01Landscape1200 from './images/Image01/2305_Landscape_1200.jpg';
+import Image01Landscape2000 from './images/Image01/2305_Landscape_2000.jpg';
+import Image01Landscape2800 from './images/Image01/2305_Landscape_2800.jpg';
 
-import Image01Square1200 from './images/Image01/9541_Square_1200.jpg';
-import Image01Square2000 from './images/Image01/9541_Square_2000.jpg';
-import Image01Square2800 from './images/Image01/9541_Square_2800.jpg';
+import Image01Square1200 from './images/Image01/2305_Square_1200.jpg';
+import Image01Square2000 from './images/Image01/2305_Square_2000.jpg';
+import Image01Square2800 from './images/Image01/2305_Square_2800.jpg';
 
-import Image01Portrait1600 from './images/Image01/9541_Portrait_1600.jpg';
-import Image01Portrait2200 from './images/Image01/9541_Portrait_2200.jpg';
-import Image01Portrait2800 from './images/Image01/9541_Portrait_2800.jpg';
+import Image01Portrait1600 from './images/Image01/2305_Portrait_1600.jpg';
+import Image01Portrait2200 from './images/Image01/2305_Portrait_2200.jpg';
+import Image01Portrait2800 from './images/Image01/2305_Portrait_2800.jpg';
 
-import Image02Landscape1200 from './images/Image02/9072_Landscape_1200.jpg';
-import Image02Landscape2000 from './images/Image02/9072_Landscape_2000.jpg';
-import Image02Landscape2800 from './images/Image02/9072_Landscape_2800.jpg';
+import Image02Landscape1200 from './images/Image02/9718_Landscape_1200.jpg';
+import Image02Landscape2000 from './images/Image02/9718_Landscape_2000.jpg';
+import Image02Landscape2800 from './images/Image02/9718_Landscape_2800.jpg';
 
-import Image02Square1200 from './images/Image02/9072_Square_1200.jpg';
-import Image02Square2000 from './images/Image02/9072_Square_2000.jpg';
-import Image02Square2800 from './images/Image02/9072_Square_2800.jpg';
+import Image02Square1200 from './images/Image02/9718_Square_1200.jpg';
+import Image02Square2000 from './images/Image02/9718_Square_2000.jpg';
+import Image02Square2800 from './images/Image02/9718_Square_2800.jpg';
 
-import Image03Landscape1200 from './images/Image03/9718_Landscape_1200.jpg';
-import Image03Landscape2000 from './images/Image03/9718_Landscape_2000.jpg';
-import Image03Landscape2800 from './images/Image03/9718_Landscape_2800.jpg';
+import Image03Landscape1200 from './images/Image03/Marina_Landscape_1200.jpg';
+import Image03Landscape2000 from './images/Image03/Marina_Landscape_2000.jpg';
+import Image03Landscape2800 from './images/Image03/Marina_Landscape_2800.jpg';
 
-import Image03Square1200 from './images/Image03/9718_Square_1200.jpg';
-import Image03Square2000 from './images/Image03/9718_Square_2000.jpg';
-import Image03Square2800 from './images/Image03/9718_Square_2800.jpg';
+import Image03Square1200 from './images/Image03/Marina_Square_1200.jpg';
+import Image03Square2000 from './images/Image03/Marina_Square_2000.jpg';
+import Image03Square2800 from './images/Image03/Marina_Square_2800.jpg';
 
-import EventLogo from './images/EventLogo.svg'
-import FSCLogo from './images/FSCLogo.svg'
-import VRSportTVLogo from './images/VRSportTVLogo.svg'
+import EventLogo from './images/EventLogo.svg';
 import LinearProgress from "@material-ui/core/LinearProgress";
 
 
@@ -82,9 +80,6 @@ const styles = theme => ({
 		width: "auto"
 	},
 	paperContainer: {
-		overflow: "hidden",
-	},
-	infoContainer: {
 		overflow: "hidden",
 	},
 	addressPaper: {
@@ -375,84 +370,73 @@ class EventPage extends React.Component {
 							     alt="I14 Worlds Logo"/>
 						</Paper>
 
-						<Paper elevation={3} className={clsx(classes.link, classes.paper)}>
-							<a href="https://www.fsc.de/"
-							   target="_blank"
-							   rel="noopener noreferrer">
-								<img className={clsx(classes.logo, "Logo")} src={FSCLogo}
-								     alt="FSC Logo"/>
-							</a>
+						<Paper elevation={3} className={clsx(classes.paper, classes.countdownContainer)}>
+							<Grid container spacing={0}>
+								{/*<Grid item xs={12}>
+								<Typography variant="h5" className={classes.cardLabel}>
+									First Warning Signal
+								</Typography>
+							</Grid>*/}
+								<Grid item xs={3}>
+									<Typography variant="h5">{this.state.countdown.days}</Typography>
+								</Grid>
+								<Grid item xs={3}>
+									<Typography variant="h5">{this.state.countdown.hours}</Typography>
+								</Grid>
+								<Grid item xs={3}>
+									<Typography variant="h5">{this.state.countdown.minutes}</Typography>
+								</Grid>
+								<Grid item xs={3}>
+									<Typography variant="h5">{this.state.countdown.seconds}</Typography>
+								</Grid>
+								<Grid item xs={12}>
+									<Breakpoint small down>
+										<Grid container spacing={0}>
+											<Grid item xs={3}>
+												<Typography variant="h6">d</Typography>
+											</Grid>
+											<Grid item xs={3}>
+												<Typography variant="h6">h</Typography>
+											</Grid>
+											<Grid item xs={3}>
+												<Typography variant="h6">m</Typography>
+											</Grid>
+											<Grid item xs={3}>
+												<Typography variant="h6">s</Typography>
+											</Grid>
+										</Grid>
+									</Breakpoint>
+									<Breakpoint medium up>
+										<Grid container spacing={0}>
+											<Grid item xs={3}>
+												<Typography variant="h6">days</Typography>
+											</Grid>
+											<Grid item xs={3}>
+												<Typography variant="h6">hours</Typography>
+											</Grid>
+											<Grid item xs={3}>
+												<Typography variant="h6">minutes</Typography>
+											</Grid>
+											<Grid item xs={3}>
+												<Typography variant="h6">seconds</Typography>
+											</Grid>
+										</Grid>
+									</Breakpoint>
+								</Grid>
+							</Grid>
 						</Paper>
 					</div>
 				</div>
 
-				<div className={clsx(classes.infoContainer, "InfoContainer")}>
-
-					<Paper elevation={3} className={clsx(classes.link, classes.paper)}>
-						<a href="https://www.vrsport.tv/"
-						   target="_blank"
-						   rel="noopener noreferrer">
-							<img className={clsx(classes.logo, "Logo")} src={VRSportTVLogo}
-							     alt="VR Sport TV Logo"/>
-						</a>
-					</Paper>
-
-					<Paper elevation={3} className={clsx(classes.paper, classes.countdownContainer)}>
-						<Grid container spacing={0}>
-							<Grid item xs={12}>
-								<Typography variant="h5" className={classes.cardLabel}>
-									August 8th - August 21st
-								</Typography>
-							</Grid>
-							<Grid item xs={3}>
-								<Typography variant="h5">{this.state.countdown.days}</Typography>
-							</Grid>
-							<Grid item xs={3}>
-								<Typography variant="h5">{this.state.countdown.hours}</Typography>
-							</Grid>
-							<Grid item xs={3}>
-								<Typography variant="h5">{this.state.countdown.minutes}</Typography>
-							</Grid>
-							<Grid item xs={3}>
-								<Typography variant="h5">{this.state.countdown.seconds}</Typography>
-							</Grid>
-							<Grid item xs={12}>
-								<Breakpoint small down>
-									<Grid container spacing={0}>
-										<Grid item xs={3}>
-											<Typography variant="h6">d</Typography>
-										</Grid>
-										<Grid item xs={3}>
-											<Typography variant="h6">h</Typography>
-										</Grid>
-										<Grid item xs={3}>
-											<Typography variant="h6">m</Typography>
-										</Grid>
-										<Grid item xs={3}>
-											<Typography variant="h6">s</Typography>
-										</Grid>
-									</Grid>
-								</Breakpoint>
-								<Breakpoint medium up>
-									<Grid container spacing={0}>
-										<Grid item xs={3}>
-											<Typography variant="h6">days</Typography>
-										</Grid>
-										<Grid item xs={3}>
-											<Typography variant="h6">hours</Typography>
-										</Grid>
-										<Grid item xs={3}>
-											<Typography variant="h6">minutes</Typography>
-										</Grid>
-										<Grid item xs={3}>
-											<Typography variant="h6">seconds</Typography>
-										</Grid>
-									</Grid>
-								</Breakpoint>
-							</Grid>
-						</Grid>
-					</Paper>
-
+				{/* Invitation Slider */}
+				<div className="SliderContainer">
+					<div className={clsx(classes.paperContainer)}>
+						<React.Suspense fallback={<LinearProgress style={{borderRadius: "2px"}}
+						                                          color="secondary"/>}>
+							<InvitationSlider hideWebsite={() => {
+							}}/>
+						</React.Suspense>
+					</div>
 				</div>
 
 				{imageElement02}
@@ -495,13 +479,6 @@ class EventPage extends React.Component {
 
 				{imageElement03}
 
-				{/* Invitation Slider */}
-				<div className={clsx(classes.paperContainer)}>
-					<React.Suspense fallback={<LinearProgress style={{borderRadius: "2px"}}
-					                                          color="secondary"/>}>
-						<InvitationSlider hideWebsite={() => {}}/>
-					</React.Suspense>
-				</div>
 
 			</div>
 		);
