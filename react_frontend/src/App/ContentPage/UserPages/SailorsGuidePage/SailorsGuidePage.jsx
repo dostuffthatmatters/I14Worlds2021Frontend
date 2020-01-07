@@ -12,7 +12,7 @@ import Typography from "@material-ui/core/Typography";
 
 
 /* Component Imports ------------------------------------------------------------- */
-// import SchedulePanel from "./SchedulePanel/SchedulePanel";
+import ScheduleTable from "./SchedulePanel/ScheduleTable";
 
 
 /* Hook Linking Imports ---------------------------------------------------------- */
@@ -48,8 +48,8 @@ class SailorsGuidePage extends React.Component {
 		return (
 			<div className="SailorsGuidePage">
 				<Typography variant="h4" className={classes.headline}>Sailors Guide</Typography>
-				<Typography variant="h6" className={classes.headlineSmall}>Preliminary schedule coming soon!</Typography>
-				{/*<SchedulePanel/>*/}
+				<Typography variant="h6" className={classes.headlineSmall}>Preliminary Schedule</Typography>
+				<ScheduleTable/>
 			</div>
 		);
 	}

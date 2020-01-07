@@ -37,7 +37,7 @@ export const scheduleData = [
 			{label: "Organization", content: "Measuring of skiffs and equipment, \nregistration of competitors/teams"},
 			{label: "Sailing", content: "Round Robin #2, after sailing beer / snacks"},
 			{label: "Socials", content: "BlackBox Tours (for all those who are not sailing)"},
-			{label: "Evening", content: "Price giving, \nTeam Worlds Dinner at the FSC (guest tickets available), \nPresentation Night at the boat shed of the FSC, \n Tiki Bar, FSC Bar"},
+			{label: "Evening", content: "Price giving Team Worlds, \nTeam Worlds Dinner at the FSC (guest tickets available), \nPresentation Night at the boat shed of the FSC, \n Tiki Bar, FSC Bar"},
 		]
 	},{
 		colored: false,
