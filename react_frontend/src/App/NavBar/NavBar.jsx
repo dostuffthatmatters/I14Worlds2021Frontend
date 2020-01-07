@@ -33,6 +33,7 @@ import AccountCircleTwoToneIcon from '@material-ui/icons/AccountCircleTwoTone';
 
 /* Asset Imports ----------------------------------------------------------- */
 import I14Icon from './images/I14IconSquare.svg';
+import HeaderLogo from './images/HeaderLogo.svg';
 
 
 /* Component --------------------------------------------------------------------- */
@@ -54,8 +55,8 @@ const useStyles = makeStyles(theme => ({
 	},
 	I14Icon: {
 		backgroundColor: "transparent !important",
-		width: theme.spacing(4),
-		height: theme.spacing(4),
+		height: theme.spacing(5),
+		margin: "-6px",
 	},
 	button: {
 		margin: theme.spacing(1),
@@ -142,6 +143,7 @@ export const NavBar = (props) => {
 				        startIcon={<EmojiEventsTwoToneIcon alt="Event Icon"/>}
 				        className={clsx(classes.button, classes.topButton)}>Event</Button>
 			</Link>
+			{/*
 			<Link to="/news-feed"
 			      className={classes.link}
 			      onClick={handleClick}>
@@ -157,7 +159,7 @@ export const NavBar = (props) => {
 				        color={path.startsWith("/gallery") ? "secondary" : "primary"}
 				        startIcon={<PermMediaTwoToneIcon alt="Gallery Icon"/>}
 				        className={classes.button}>Gallery</Button>
-			</Link>
+			</Link>*/}
 			<Link to="/sailors-guide"
 			      className={classes.link}
 			      onClick={handleClick}>
@@ -253,7 +255,7 @@ export const NavBar = (props) => {
 					            className={classes.I14Button}
 					            disableRipple={true}>
 						<Link to="/">
-							<img src={I14Icon} className={classes.I14Icon} alt="I14 Icon"/>
+							<img src={HeaderLogo} className={classes.I14Icon} alt="I14 Icon"/>
 						</Link>
 					</IconButton>
 				</Toolbar>

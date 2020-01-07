@@ -8,3 +8,28 @@
     padding-right: 4px;
     margin-top: 2px;
 }
+
+/** Mobile in Portrait **/
+@media only screen and (max-width: 599px) {
+
+}
+
+/** Mobile in Landscape **/
+@media only screen and (min-width: 600px) and (max-width: 979px) and (max-height: 599px) {
+
+}
+
+/** Tablet in Portrait **/
+@media only screen and (min-width: 600px) and (max-width: 979px) and (min-height: 599px) {
+
+}
+
+/** Tablet in Landscape **/
+@media only screen and (min-width: 980px) and (max-width: 1259px) {
+
+}
+
+/** Desktop **/
+@media only screen and (min-width: 1260px) {
+
+}
