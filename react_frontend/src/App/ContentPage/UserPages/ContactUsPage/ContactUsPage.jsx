@@ -5,7 +5,7 @@ import React from 'react';
 
 /* Styling Imports --------------------------------------------------------------- */
 import './ContactUsPage.scss';
-
+import clsx from 'clsx';
 
 /* AJAX Imports ------------------------------------------------------------------ */
 import {BackendGET} from "../../../../Wrappers/backendCommunication";
@@ -44,27 +44,27 @@ import withStyles from "@material-ui/styles/withStyles/withStyles";
 const countryHosts = [
 	{
 		name: "Henning Uck",
-		email: "henning.uck@hotmail.de",
+		email: "aus@i14worlds2021.com",
 		flag: AUSFlag,
 		alt: "AUS Flag"
 	}, {
 		name: "Andrew McConnell",
-		email: "mcconnell.aps@gmail.com",
+		email: "can@i14worlds2021.com",
 		flag: CANFlag,
 		alt: "CAN Flag"
 	}, {
 		name: "Mathias Nippel",
-		email: "mathiasnippel@gmail.com",
+		email: "jpn@i14worlds2021.com",
 		flag: JPNFlag,
 		alt: "JPN Flag"
 	}, {
 		name: "Dennis Gehrlein",
-		email: "gehrleindennis@gmail.com",
+		email: "usa@i14worlds2021.com",
 		flag: USAFlag,
 		alt: "US Flag"
 	}, {
 		name: "Lasse Nielandt",
-		email: "lasse.nielandt@gmail.com",
+		email: "eu@i14worlds2021.com",
 		flag: EURFlag,
 		alt: "EURO Flag"
 	}
@@ -94,11 +94,11 @@ const styles = theme => ({
 	},
 	contact_line: {
 		display: "block",
-		padding: theme.spacing(1)
+		padding: theme.spacing(1),
 	},
 	country_line: {
 		display: "block",
-		padding: 0
+		padding: 0,
 	},
 	contact_icon: {
 		display: "inline-flex",
@@ -133,7 +133,7 @@ const styles = theme => ({
 		}
 	},
 	countryLinePadding: {
-		paddingBottom: theme.spacing(1),
+		paddingBottom: theme.spacing(2),
 	}
 });
 
@@ -288,16 +288,16 @@ class ContactUsPageManager extends React.Component {
 
 		return (
 			<div className="ContactUsPage">
-				<Typography variant="h4" className={classes.headline}>Contact Us</Typography>
-				{this.state.loading && <LinearProgress className={classes.linearProgress} color="secondary"/>}
-				<div className={classes.root}>
-					{!this.state.loading && this.getContactList()}
-				</div>
-				<Typography variant="h4" className={`${classes.headline} ${classes.headline2}`}>
+				<Typography variant="h4" className={classes.headline}>
 					Country Hosts
 				</Typography>
 				<div className={classes.root}>
 					{this.getCountryHostList()}
+				</div>
+				<Typography variant="h4" className={clsx(classes.headline, classes.headline2)}>Contact Us</Typography>
+				{this.state.loading && <LinearProgress className={classes.linearProgress} color="secondary"/>}
+				<div className={classes.root}>
+					{!this.state.loading && this.getContactList()}
 				</div>
 			</div>
 		);

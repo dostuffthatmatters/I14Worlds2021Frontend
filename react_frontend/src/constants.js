@@ -1,2 +1,2 @@
 
-export const BACKEND_URL = "https://i14worlds2021.herokuapp.com";
+export const BACKEND_URL = "https://www.i14worlds2021.com";
