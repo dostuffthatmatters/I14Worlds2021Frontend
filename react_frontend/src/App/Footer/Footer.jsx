@@ -49,7 +49,7 @@ export function Footer(props) {
 			<div className={clsx(classes.supporterBox, "SupporterBox")}>
 				<Container maxWidth="lg">
 					<Typography variant="h5" className={classes.headline}>
-						Thanks to our amazing <strong>Sponsor</strong>!
+						Watch all the action on
 					</Typography>
 					<Grid container justify="center" spacing={2}>
 						<Grid item>
@@ -91,6 +91,7 @@ export function Footer(props) {
 
 					</Grid>
 
+					{/*
 					<Grid container justify="center" spacing={1}>
 
 						<Grid item>
@@ -114,6 +115,7 @@ export function Footer(props) {
 						</Grid>
 
 					</Grid>
+					*/}
 
 					<Grid container justify="center" spacing={1}>
 
