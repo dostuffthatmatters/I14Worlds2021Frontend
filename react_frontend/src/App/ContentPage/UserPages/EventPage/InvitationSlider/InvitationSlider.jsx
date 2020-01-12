@@ -82,7 +82,8 @@ const styles = theme => ({
 		width: "100%",
 	},
 	downloadButton: {
-		marginLeft: theme.spacing(2),
+		marginLeft: theme.spacing(1),
+		marginRight: theme.spacing(1),
 	},
 	brightColor: {
 		color: theme.palette.white.main,
@@ -186,7 +187,7 @@ class InvitationSlider extends React.Component {
 				<video controls className={this.state.fullscreen ? classes.fullscreen_media : classes.card_media}>
 					<source
 						style={{zIndex: "200"}}
-						src="https://storage.googleapis.com/i14-worlds-2021-gallery/default-images/GCA_Teaser_Cut.mp4"
+						src="https://storage.googleapis.com/i14-worlds-documents/i14worlds2021_promo_video.mp4"
 						type="video/mp4"/>
 				</video>
 			);
@@ -287,7 +288,7 @@ class InvitationSlider extends React.Component {
 						{/*preload*/}
 						{image}
 						{buttons}
-						{!this.state.fullscreen && pageNumberBox}
+						{!VIDEO && (!this.state.fullscreen && pageNumberBox)}
 					</Card>
 				</div>
 			</div>

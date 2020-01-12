@@ -32,7 +32,6 @@ import AccountCircleTwoToneIcon from '@material-ui/icons/AccountCircleTwoTone';
 
 
 /* Asset Imports ----------------------------------------------------------- */
-import I14Icon from './images/I14IconSquare.svg';
 import HeaderLogo from './images/HeaderLogo.svg';
 
 
@@ -52,6 +51,8 @@ const useStyles = makeStyles(theme => ({
 	I14Button: {
 		marginTop: 4,
 		backgroundColor: "transparent !important",
+		overflow: "visible",
+		borderRadius: "0",
 	},
 	I14Icon: {
 		backgroundColor: "transparent !important",
