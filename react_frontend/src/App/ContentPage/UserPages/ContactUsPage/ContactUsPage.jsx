@@ -30,6 +30,7 @@ import AUSFlag from './images/AUSFlag.png';
 import CANFlag from './images/CANFlag.svg';
 import JPNFlag from './images/JPNFlag.svg';
 import USAFlag from './images/USAFlag.svg';
+import GBRFlag from './images/GBRFlag.png';
 import EURFlag from './images/EURFlag.svg';
 
 
@@ -53,15 +54,20 @@ const countryHosts = [
 		flag: CANFlag,
 		alt: "CAN Flag"
 	}, {
+		name: "Dennis Gehrlein",
+		email: "usa@i14worlds2021.com",
+		flag: USAFlag,
+		alt: "US Flag"
+	}, {
 		name: "Mathias Nippel",
 		email: "jpn@i14worlds2021.com",
 		flag: JPNFlag,
 		alt: "JPN Flag"
 	}, {
-		name: "Dennis Gehrlein",
-		email: "usa@i14worlds2021.com",
-		flag: USAFlag,
-		alt: "US Flag"
+		name: "Michel Elle",
+		email: "gbr@i14worlds2021.com",
+		flag: GBRFlag,
+		alt: "GBR Flag"
 	}, {
 		name: "Lasse Nielandt",
 		email: "eu@i14worlds2021.com",
