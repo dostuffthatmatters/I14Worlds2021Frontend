@@ -74,10 +74,10 @@ const countryHosts = [
 		flag: JPNFlag,
 		alt: "JPN Flag"
 	}, {
-		name: "Oliver Peter (Classic International 14)",
-		email: "oliver.peter@outlook.com",
+		name: "Oliver Peter",
+		email: "classic14@i14worlds2021.com",
 		flag: CLASSICSFlag,
-		alt: "International 14 Classics"
+		alt: "Classic International 14"
 	}, {
 		name: "Michel Elle",
 		email: "gbr@i14worlds2021.com",
@@ -85,42 +85,42 @@ const countryHosts = [
 		alt: "GBR Flag"
 	}, {
 		name: "Lasse Nielandt",
-		email: "eu@i14worlds2021.com",
+		email: "fra@i14worlds2021.com",
 		flag: FRAFlag,
 		alt: "FRA Flag"
 	}, {
 		name: "Lasse Nielandt",
-		email: "eu@i14worlds2021.com",
+		email: "ita@i14worlds2021.com",
 		flag: ITAFlag,
 		alt: "ITA Flag"
 	}, {
 		name: "Lasse Nielandt",
-		email: "eu@i14worlds2021.com",
+		email: "den@i14worlds2021.com",
 		flag: DENFlag,
 		alt: "DEN Flag"
 	}, {
 		name: "Lasse Nielandt",
-		email: "eu@i14worlds2021.com",
+		email: "swe@i14worlds2021.com",
 		flag: SWEFlag,
 		alt: "SWE Flag"
 	}, {
 		name: "Lasse Nielandt",
-		email: "eu@i14worlds2021.com",
+		email: "aut@i14worlds2021.com",
 		flag: AUTFlag,
 		alt: "AUT Flag"
 	}, {
 		name: "Lasse Nielandt",
-		email: "eu@i14worlds2021.com",
+		email: "sui@i14worlds2021.com",
 		flag: SUIFlag,
 		alt: "SUI Flag"
 	}, {
 		name: "Lasse Nielandt",
-		email: "eu@i14worlds2021.com",
+		email: "irl@i14worlds2021.com",
 		flag: IRLFlag,
 		alt: "IRL Flag"
 	}, {
 		name: "Lasse Nielandt",
-		email: "eu@i14worlds2021.com",
+		email: "pol@i14worlds2021.com",
 		flag: POLFlag,
 		alt: "POL Flag"
 	}
