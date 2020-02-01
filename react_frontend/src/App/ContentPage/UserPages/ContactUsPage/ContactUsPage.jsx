@@ -30,9 +30,19 @@ import AUSFlag from './images/AUSFlag.png';
 import CANFlag from './images/CANFlag.svg';
 import JPNFlag from './images/JPNFlag.svg';
 import USAFlag from './images/USAFlag.svg';
-import GBRFlag from './images/GBRFlag.png';
-import EURFlag from './images/EURFlag.svg';
 
+import CLASSICSFlag from './images/CLASSICS.png';
+
+import GBRFlag from './images/GBRFlag.png';
+
+import FRAFlag from './images/FRAFlag.svg';
+import ITAFlag from './images/ITAFlag.svg';
+import DENFlag from './images/DENFlag.svg';
+import SWEFlag from './images/SWEFlag.svg';
+import AUTFlag from './images/AUTFlag.svg';
+import SUIFlag from './images/SUIFlag.svg';
+import IRLFlag from './images/IRLFlag.svg';
+import POLFlag from './images/POLFlag.svg';
 
 /* Hook Linking Imports --------------------------------------------------------------- */
 import PropTypes from "prop-types";
@@ -64,6 +74,11 @@ const countryHosts = [
 		flag: JPNFlag,
 		alt: "JPN Flag"
 	}, {
+		name: "Oliver Peter (Classic International 14)",
+		email: "oliver.peter@outlook.com",
+		flag: CLASSICSFlag,
+		alt: "International 14 Classics"
+	}, {
 		name: "Michel Elle",
 		email: "gbr@i14worlds2021.com",
 		flag: GBRFlag,
@@ -71,11 +86,45 @@ const countryHosts = [
 	}, {
 		name: "Lasse Nielandt",
 		email: "eu@i14worlds2021.com",
-		flag: EURFlag,
-		alt: "EURO Flag"
+		flag: FRAFlag,
+		alt: "FRA Flag"
+	}, {
+		name: "Lasse Nielandt",
+		email: "eu@i14worlds2021.com",
+		flag: ITAFlag,
+		alt: "ITA Flag"
+	}, {
+		name: "Lasse Nielandt",
+		email: "eu@i14worlds2021.com",
+		flag: DENFlag,
+		alt: "DEN Flag"
+	}, {
+		name: "Lasse Nielandt",
+		email: "eu@i14worlds2021.com",
+		flag: SWEFlag,
+		alt: "SWE Flag"
+	}, {
+		name: "Lasse Nielandt",
+		email: "eu@i14worlds2021.com",
+		flag: AUTFlag,
+		alt: "AUT Flag"
+	}, {
+		name: "Lasse Nielandt",
+		email: "eu@i14worlds2021.com",
+		flag: SUIFlag,
+		alt: "SUI Flag"
+	}, {
+		name: "Lasse Nielandt",
+		email: "eu@i14worlds2021.com",
+		flag: IRLFlag,
+		alt: "IRL Flag"
+	}, {
+		name: "Lasse Nielandt",
+		email: "eu@i14worlds2021.com",
+		flag: POLFlag,
+		alt: "POL Flag"
 	}
 ];
-
 
 /* Styles ------------------------------------------------------------------------ */
 
