@@ -115,7 +115,7 @@ class LoginPageManager extends React.Component {
 			const resultJson = JSON.parse(resolveMessage);
 
 			if (resultJson["Status"] === "Ok") {
-				console.log("Login: Status = " + resolveMessage);
+				console.log("Login: Status = Ok");
 				this.setState({
 					loading: false,
 					successMessageVisible: true,
@@ -126,7 +126,7 @@ class LoginPageManager extends React.Component {
 					// The redirect now happens automatically
 				}, 600);
 			} else {
-				console.log("Login failed: Status = " + resolveMessage);
+				console.log("Login failed: " + resultJson["Status"]);
 				this.setState({
 					loading: false,
 					errorMessageVisible: true,

@@ -39,7 +39,7 @@ export function IndexPage() {
 				</div>
 				<Link to={"/event"}>
 					<Button className="Element" variant="contained" color="secondary">
-						Learn More
+						<div style={{backgroundColor: "inherit"}}>Event Page</div>
 					</Button>
 				</Link>
 			</div>

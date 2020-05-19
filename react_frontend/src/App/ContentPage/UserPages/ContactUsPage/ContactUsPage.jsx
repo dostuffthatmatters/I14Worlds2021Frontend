@@ -5,7 +5,7 @@ import React from 'react';
 
 /* Styling Imports --------------------------------------------------------------- */
 import './ContactUsPage.scss';
-
+import clsx from 'clsx';
 
 /* AJAX Imports ------------------------------------------------------------------ */
 import {BackendGET} from "../../../../Wrappers/backendCommunication";
@@ -30,8 +30,19 @@ import AUSFlag from './images/AUSFlag.png';
 import CANFlag from './images/CANFlag.svg';
 import JPNFlag from './images/JPNFlag.svg';
 import USAFlag from './images/USAFlag.svg';
-import EURFlag from './images/EURFlag.svg';
 
+import CLASSICSFlag from './images/CLASSICS.png';
+
+import GBRFlag from './images/GBRFlag.png';
+
+import FRAFlag from './images/FRAFlag.svg';
+import ITAFlag from './images/ITAFlag.svg';
+import DENFlag from './images/DENFlag.svg';
+import SWEFlag from './images/SWEFlag.svg';
+import AUTFlag from './images/AUTFlag.svg';
+import SUIFlag from './images/SUIFlag.svg';
+import IRLFlag from './images/IRLFlag.svg';
+import POLFlag from './images/POLFlag.svg';
 
 /* Hook Linking Imports --------------------------------------------------------------- */
 import PropTypes from "prop-types";
@@ -44,32 +55,76 @@ import withStyles from "@material-ui/styles/withStyles/withStyles";
 const countryHosts = [
 	{
 		name: "Henning Uck",
-		email: "henning.uck@hotmail.de",
+		email: "aus@i14worlds2021.com",
 		flag: AUSFlag,
 		alt: "AUS Flag"
 	}, {
 		name: "Andrew McConnell",
-		email: "mcconnell.aps@gmail.com",
+		email: "can@i14worlds2021.com",
 		flag: CANFlag,
 		alt: "CAN Flag"
 	}, {
-		name: "Mathias Nippel",
-		email: "mathiasnippel@gmail.com",
-		flag: JPNFlag,
-		alt: "JPN Flag"
-	}, {
 		name: "Dennis Gehrlein",
-		email: "gehrleindennis@gmail.com",
+		email: "usa@i14worlds2021.com",
 		flag: USAFlag,
 		alt: "US Flag"
 	}, {
+		name: "Mathias Nippel",
+		email: "jpn@i14worlds2021.com",
+		flag: JPNFlag,
+		alt: "JPN Flag"
+	}, {
+		name: "Oliver Peter",
+		email: "classic14@i14worlds2021.com",
+		flag: CLASSICSFlag,
+		alt: "Classic International 14"
+	}, {
+		name: "Michel Elle",
+		email: "gbr@i14worlds2021.com",
+		flag: GBRFlag,
+		alt: "GBR Flag"
+	}, {
 		name: "Lasse Nielandt",
-		email: "lasse.nielandt@gmail.com",
-		flag: EURFlag,
-		alt: "EURO Flag"
+		email: "fra@i14worlds2021.com",
+		flag: FRAFlag,
+		alt: "FRA Flag"
+	}, {
+		name: "Lasse Nielandt",
+		email: "ita@i14worlds2021.com",
+		flag: ITAFlag,
+		alt: "ITA Flag"
+	}, {
+		name: "Lasse Nielandt",
+		email: "den@i14worlds2021.com",
+		flag: DENFlag,
+		alt: "DEN Flag"
+	}, {
+		name: "Lasse Nielandt",
+		email: "swe@i14worlds2021.com",
+		flag: SWEFlag,
+		alt: "SWE Flag"
+	}, {
+		name: "Lasse Nielandt",
+		email: "aut@i14worlds2021.com",
+		flag: AUTFlag,
+		alt: "AUT Flag"
+	}, {
+		name: "Lasse Nielandt",
+		email: "sui@i14worlds2021.com",
+		flag: SUIFlag,
+		alt: "SUI Flag"
+	}, {
+		name: "Lasse Nielandt",
+		email: "irl@i14worlds2021.com",
+		flag: IRLFlag,
+		alt: "IRL Flag"
+	}, {
+		name: "Lasse Nielandt",
+		email: "pol@i14worlds2021.com",
+		flag: POLFlag,
+		alt: "POL Flag"
 	}
 ];
-
 
 /* Styles ------------------------------------------------------------------------ */
 
@@ -94,11 +149,11 @@ const styles = theme => ({
 	},
 	contact_line: {
 		display: "block",
-		padding: theme.spacing(1)
+		padding: theme.spacing(1),
 	},
 	country_line: {
 		display: "block",
-		padding: 0
+		padding: 0,
 	},
 	contact_icon: {
 		display: "inline-flex",
@@ -133,7 +188,7 @@ const styles = theme => ({
 		}
 	},
 	countryLinePadding: {
-		paddingBottom: theme.spacing(1),
+		paddingBottom: theme.spacing(2),
 	}
 });
 
@@ -288,16 +343,16 @@ class ContactUsPageManager extends React.Component {
 
 		return (
 			<div className="ContactUsPage">
-				<Typography variant="h4" className={classes.headline}>Contact Us</Typography>
-				{this.state.loading && <LinearProgress className={classes.linearProgress} color="secondary"/>}
-				<div className={classes.root}>
-					{!this.state.loading && this.getContactList()}
-				</div>
-				<Typography variant="h4" className={`${classes.headline} ${classes.headline2}`}>
+				<Typography variant="h4" className={classes.headline}>
 					Country Hosts
 				</Typography>
 				<div className={classes.root}>
 					{this.getCountryHostList()}
+				</div>
+				<Typography variant="h4" className={clsx(classes.headline, classes.headline2)}>Contact Us</Typography>
+				{this.state.loading && <LinearProgress className={classes.linearProgress} color="secondary"/>}
+				<div className={classes.root}>
+					{!this.state.loading && this.getContactList()}
 				</div>
 			</div>
 		);

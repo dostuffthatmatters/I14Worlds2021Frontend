@@ -52,9 +52,10 @@
         overflow: hidden;
     }
 
-    .InfoContainer {
+    .SliderContainer {
         position: relative;
         margin-top: 100vh;
+        overflow: hidden;
     }
 
     .AddressContainer {
@@ -72,6 +73,7 @@
     .EventImage2, .EventImage3 {
         position: relative;
         width: 100vw;
+        margin-bottom: -3px;
     }
 
     .PDFPaper {

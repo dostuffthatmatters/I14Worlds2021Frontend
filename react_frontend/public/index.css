@@ -1,0 +1,35 @@
+
+.FullPageMessage, .FullPageLoader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: hsl(229, 25%, 18%);
+}
+
+.FullPageLoader img {
+    animation: 1.5s ease-in-out infinite OpacityLoader;
+}
+
+@keyframes OpacityLoader {
+      0% { opacity: 0.4;}
+     50% { opacity: 1.0;}
+    100% { opacity: 0.4;}
+}
+
+.FullPageMessage {
+    z-index: 200;
+    color: white;
+    font-family: "Roboto", sans-serif;
+    font-size: 20px;
+}
+
+.FullPageLoader {
+    z-index: 100;
+}

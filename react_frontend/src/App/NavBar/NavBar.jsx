@@ -32,7 +32,7 @@ import AccountCircleTwoToneIcon from '@material-ui/icons/AccountCircleTwoTone';
 
 
 /* Asset Imports ----------------------------------------------------------- */
-import I14Icon from './images/I14IconSquare.svg';
+import HeaderLogo from './images/HeaderLogo.svg';
 
 
 /* Component --------------------------------------------------------------------- */
@@ -51,11 +51,13 @@ const useStyles = makeStyles(theme => ({
 	I14Button: {
 		marginTop: 4,
 		backgroundColor: "transparent !important",
+		overflow: "visible",
+		borderRadius: "0",
 	},
 	I14Icon: {
 		backgroundColor: "transparent !important",
-		width: theme.spacing(4),
-		height: theme.spacing(4),
+		height: theme.spacing(5),
+		margin: "-6px",
 	},
 	button: {
 		margin: theme.spacing(1),
@@ -139,15 +141,16 @@ export const NavBar = (props) => {
 			      onClick={handleClick}>
 				<Button size="large"
 				        color={path.startsWith("/event") ? "secondary" : "primary"}
-				        startIcon={<EmojiEventsTwoToneIcon/>}
+				        startIcon={<EmojiEventsTwoToneIcon alt="Event Icon"/>}
 				        className={clsx(classes.button, classes.topButton)}>Event</Button>
 			</Link>
+			{/*
 			<Link to="/news-feed"
 			      className={classes.link}
 			      onClick={handleClick}>
 				<Button size="large"
 				        color={path.startsWith("/news-feed") ? "secondary" : "primary"}
-				        startIcon={<ChatTwoToneIcon/>}
+				        startIcon={<ChatTwoToneIcon alt="News Feed Icon"/>}
 				        className={classes.button}>News Feed</Button>
 			</Link>
 			<Link to="/gallery"
@@ -155,15 +158,15 @@ export const NavBar = (props) => {
 			      onClick={handleClick}>
 				<Button size="large"
 				        color={path.startsWith("/gallery") ? "secondary" : "primary"}
-				        startIcon={<PermMediaTwoToneIcon/>}
+				        startIcon={<PermMediaTwoToneIcon alt="Gallery Icon"/>}
 				        className={classes.button}>Gallery</Button>
-			</Link>
+			</Link>*/}
 			<Link to="/sailors-guide"
 			      className={classes.link}
 			      onClick={handleClick}>
 				<Button size="large"
 				        color={path.startsWith("/sailors-guide") ? "secondary" : "primary"}
-				        startIcon={<AssignmentTurnedInTwoToneIcon/>}
+				        startIcon={<AssignmentTurnedInTwoToneIcon alt="Sailors Guide Icon"/>}
 				        className={classes.button}>Sailors Guide</Button>
 			</Link>
 			<Link to="/contact-us"
@@ -171,7 +174,7 @@ export const NavBar = (props) => {
 			      onClick={handleClick}>
 				<Button size="large"
 				        color={path.startsWith("/contact-us") ? "secondary" : "primary"}
-				        startIcon={<ContactMailTwoToneIcon/>}
+				        startIcon={<ContactMailTwoToneIcon alt="Contact Us Icon"/>}
 				        className={classes.button}>Contact Us</Button>
 			</Link>
 		</React.Fragment>
@@ -184,7 +187,7 @@ export const NavBar = (props) => {
 			      onClick={handleClick}>
 				<Button size="large"
 				        color={path.startsWith("/admin/news-feed") ? "secondary" : "primary"}
-				        startIcon={<ChatTwoToneIcon/>}
+				        startIcon={<ChatTwoToneIcon alt="Admin News Feed Icon"/>}
 				        className={classes.button}>Admin - News Feed</Button>
 			</Link>
 			<Link to="/admin/gallery"
@@ -192,7 +195,7 @@ export const NavBar = (props) => {
 			      onClick={handleClick}>
 				<Button size="large"
 				        color={path.startsWith("/admin/gallery") ? "secondary" : "primary"}
-				        startIcon={<PermMediaTwoToneIcon/>}
+				        startIcon={<PermMediaTwoToneIcon alt="Admin Gallery Icon"/>}
 				        className={classes.button}>Admin - Gallery</Button>
 			</Link>
 			<Link to="/admin/contact-us"
@@ -200,7 +203,7 @@ export const NavBar = (props) => {
 			      onClick={handleClick}>
 				<Button size="large"
 				        color={path.startsWith("/admin/contact-us") ? "secondary" : "primary"}
-				        startIcon={<ContactMailTwoToneIcon/>}
+				        startIcon={<ContactMailTwoToneIcon alt="Admin Contact Us Icon"/>}
 				        className={classes.button}>Admin - Contact Us</Button>
 			</Link>
 		</React.Fragment>
@@ -212,7 +215,7 @@ export const NavBar = (props) => {
 		loginButton = (
 			<div className={classes.loginButtonBox}>
 				<Button size="large"
-				        startIcon={<AccountCircleTwoToneIcon/>}
+				        startIcon={<AccountCircleTwoToneIcon alt="Logout Icon"/>}
 				        className={clsx(classes.button, classes.loginButton)}
 				        onClick={() => {
 					        handleClick();
@@ -228,7 +231,7 @@ export const NavBar = (props) => {
 			      className={clsx(classes.link, classes.loginButtonBox)}
 			      onClick={handleClick}>
 				<Button size="large"
-				        startIcon={<AccountCircleTwoToneIcon/>}
+				        startIcon={<AccountCircleTwoToneIcon alt="Login Icon"/>}
 				        className={clsx(classes.button, classes.loginButton)}>
 					Login
 				</Button>
@@ -245,7 +248,7 @@ export const NavBar = (props) => {
 					            aria-label="menu"
 					            className={classes.menuButton}
 					            onClick={() => toggleDrawer(true)}>
-						<MenuIcon/>
+						<MenuIcon alt="Menu Icon"/>
 					</IconButton>
 					<Typography variant="h6" className={classes.title}>{pageTitle}</Typography>
 					<IconButton edge="end"
@@ -253,7 +256,7 @@ export const NavBar = (props) => {
 					            className={classes.I14Button}
 					            disableRipple={true}>
 						<Link to="/">
-							<img src={I14Icon} className={classes.I14Icon} alt="I14 Icon"/>
+							<img src={HeaderLogo} className={classes.I14Icon} alt="I14 Icon"/>
 						</Link>
 					</IconButton>
 				</Toolbar>

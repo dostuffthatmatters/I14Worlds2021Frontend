@@ -8,10 +8,6 @@ import {animateScroll as scroll} from "react-scroll";
 import {Link} from "react-router-dom";
 
 
-/* Styling Imports --------------------------------------------------------------- */
-import Breakpoint from 'react-socks';
-
-
 /* AJAX Imports ------------------------------------------------------------------ */
 import {BackendImagePost} from "../../../../Wrappers/backendCommunication";
 import {BACKEND_URL} from "../../../../constants";

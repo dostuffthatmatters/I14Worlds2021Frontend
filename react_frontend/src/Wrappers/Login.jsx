@@ -1,4 +1,3 @@
-
 /* General Imports --------------------------------------------------------------- */
 import React from 'react';
 import Cookies from 'js-cookie'
@@ -97,20 +96,25 @@ export class Login extends React.Component {
 
 	logoutUser() {
 		let params = {email: this.state.api.email, api_key: this.state.api.api_key};
-		BackendREST(BACKEND_URL + "/backend/logout", params, "POST").then(() => {
-			console.log("Logout: Status = Ok");
+		BackendREST(BACKEND_URL + "/backend/logout", params, "POST").then((resolveMessage) => {
+			const resultJSON = JSON.parse(resolveMessage);
 
-			// Changing Frontend View
-			this.setState({
-				loggedIn: false,
+			if (resultJSON["Status"] === "Ok") {
+				console.log("Logout: Status = Ok");
 
-				api: {
-					email: "none",
-					api_key: "none",
-					name: "none"
-				}
-			});
+				// Changing Frontend View
+				this.setState({
+					loggedIn: false,
 
+					api: {
+						email: "none",
+						api_key: "none",
+						name: "none"
+					}
+				});
+			} else {
+				console.log("Logout Failed: " + resultJSON["Status"]);
+			}
 		}).catch((rejectMessage) => {
 			console.log("Logout Failed: " + rejectMessage);
 		});
